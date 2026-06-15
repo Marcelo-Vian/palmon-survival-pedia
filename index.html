@@ -254,98 +254,194 @@
   <div class="wrap">
     <section class="hero">
       <div class="topbar">
-        <span class="eyebrow">Palmon Survival Hub 2026</span>
+        <span class="eyebrow" data-i18n="eyebrow">Palmon Survival Hub 2026</span>
       </div>
       <div class="lang-panel">
-        <span class="lang-label">Idioma / Language</span>
+        <span class="lang-label" data-i18n="langLabel">Idioma / Language</span>
         <div class="lang-switch" aria-label="Language switch">
           <button id="langPt" class="active" type="button">PT</button>
           <button id="langEn" type="button">EN</button>
         </div>
       </div>
-      <h1>Pedia, simuladores e ferramentas do jogo em um só lugar</h1>
-      <p>
+      <h1 data-i18n="heroTitle">Pedia, simuladores e ferramentas do jogo em um só lugar</h1>
+      <p data-i18n="heroCopy">
         Este hub reúne a enciclopédia consolidada, o montador de time, o simulador de batalha
         e o analisador de loja. A base mistura dados extraídos do APK, cruzamento com fontes
         oficiais e regras práticas de gameplay organizadas para consulta rápida.
       </p>
       <div class="actions">
-        <a class="btn btn-primary" id="btnPedia" href="palmon_survival_pedia_completa.html">Abrir Pedia Completa</a>
-        <a class="btn btn-secondary" id="btnBuilder" href="palmon_battle_simulator.html?mode=builder">Montar Time</a>
-        <a class="btn btn-secondary" id="btnBattle" href="palmon_battle_simulator.html">Simular Batalha</a>
-        <span class="btn btn-disabled" id="btnShop">Loja offline por enquanto</span>
+        <a class="btn btn-primary" id="btnPedia" data-i18n="btnPedia" href="palmon_survival_pedia_completa.html">Abrir Pedia Completa</a>
+        <a class="btn btn-secondary" id="btnBuilder" data-i18n="btnBuilder" href="palmon_battle_simulator.html?mode=builder">Montar Time</a>
+        <a class="btn btn-secondary" id="btnBattle" data-i18n="btnBattle" href="palmon_battle_simulator.html">Simular Batalha</a>
+        <span class="btn btn-disabled" id="btnShop" data-i18n="btnShop">Loja offline por enquanto</span>
       </div>
     </section>
 
     <section class="section">
-      <h2 id="toolsTitle">Ferramentas</h2>
-      <p>Entre pela Pedia para estudar o jogo, depois use os simuladores para decidir time, perks, skills e prioridades de progressão.</p>
+      <h2 id="toolsTitle" data-i18n="toolsTitle">Ferramentas</h2>
+      <p data-i18n="toolsCopy">Entre pela Pedia para estudar o jogo, depois use os simuladores para decidir time, perks, skills e prioridades de progressão.</p>
       <div class="grid">
         <a class="card" href="palmon_survival_pedia_completa.html">
-          <img src="pedia_screenshot.png" alt="Preview da Pedia Completa">
+          <img src="pedia_screenshot.png" alt="Preview da Pedia Completa" data-i18n-alt="imgPediaAlt">
           <div class="card-body">
-            <h3 id="cardPediaTitle">Pedia Completa</h3>
-            <p>Resumo executivo, combate, elementos, perks, tier list, PalmonDex e regras práticas em uma leitura só.</p>
+            <h3 id="cardPediaTitle" data-i18n="cardPediaTitle">Pedia Completa</h3>
+            <p data-i18n="cardPediaCopy">Resumo executivo, combate, elementos, perks, tier list, PalmonDex e regras práticas em uma leitura só.</p>
             <div class="meta">
-              <span class="chip">Enciclopédia</span>
-              <span class="chip">Tier list</span>
-              <span class="chip">Mecânicas</span>
+              <span class="chip" data-i18n="chipPedia1">Enciclopédia</span>
+              <span class="chip" data-i18n="chipPedia2">Tier list</span>
+              <span class="chip" data-i18n="chipPedia3">Mecânicas</span>
             </div>
           </div>
         </a>
 
         <a class="card" href="palmon_battle_simulator.html?mode=builder">
-          <img src="team_builder_screenshot.png" alt="Preview do Montador de Time">
+          <img src="team_builder_screenshot.png" alt="Preview do Montador de Time" data-i18n-alt="imgBuilderAlt">
           <div class="card-body">
-            <h3 id="cardBuilderTitle">Montador de Time</h3>
-            <p><span id="cardBuilderCopy">Use o mesmo motor do simulador para arrastar, trocar, otimizar so o seu elenco atual e ajustar evolucao, perks e skills por Palmon.</span></p>
+            <h3 id="cardBuilderTitle" data-i18n="cardBuilderTitle">Montador de Time</h3>
+            <p><span id="cardBuilderCopy" data-i18n="cardBuilderCopy">Use o mesmo motor do simulador para arrastar, trocar, otimizar so o seu elenco atual e ajustar evolucao, perks e skills por Palmon.</span></p>
             <div class="meta">
-              <span class="chip">7 slots</span>
-              <span class="chip">Perks</span>
-              <span class="chip">Otimizador</span>
+              <span class="chip" data-i18n="chipBuilder1">7 slots</span>
+              <span class="chip" data-i18n="chipBuilder2">Perks</span>
+              <span class="chip" data-i18n="chipBuilder3">Otimizador</span>
             </div>
           </div>
         </a>
 
         <a class="card" href="palmon_battle_simulator.html">
-          <img src="battle_simulator_screenshot.png" alt="Preview do Simulador de Batalha">
+          <img src="battle_simulator_screenshot.png" alt="Preview do Simulador de Batalha" data-i18n-alt="imgBattleAlt">
           <div class="card-body">
-            <h3 id="cardBattleTitle">Simulador de Batalha</h3>
-            <p>Teste distribuição frente/fundo, pressão de dano, resistência e impacto estimado das combinações do seu time.</p>
+            <h3 id="cardBattleTitle" data-i18n="cardBattleTitle">Simulador de Batalha</h3>
+            <p data-i18n="cardBattleCopy">Teste distribuição frente/fundo, pressão de dano, resistência e impacto estimado das combinações do seu time.</p>
             <div class="meta">
-              <span class="chip">Simulação</span>
-              <span class="chip">Posicionamento</span>
-              <span class="chip">Comparação</span>
+              <span class="chip" data-i18n="chipBattle1">Simulação</span>
+              <span class="chip" data-i18n="chipBattle2">Posicionamento</span>
+              <span class="chip" data-i18n="chipBattle3">Comparação</span>
             </div>
           </div>
         </a>
 
         <div class="card card-disabled" aria-disabled="true">
-          <img src="shop_analyzer_screenshot_wide.png" alt="Preview do Shop Analyzer">
+          <img src="shop_analyzer_screenshot_wide.png" alt="Preview do Shop Analyzer" data-i18n-alt="imgShopAlt">
           <div class="card-body">
-            <h3 id="cardShopTitle">Shop Analyzer</h3>
-            <p><span id="cardShopCopy">Modulo de bundles e loja deixado offline por enquanto, ate a leitura do lado servidor ficar melhor amarrada com o que esta ativo no dia.</span></p>
+            <h3 id="cardShopTitle" data-i18n="cardShopTitle">Shop Analyzer</h3>
+            <p><span id="cardShopCopy" data-i18n="cardShopCopy">Modulo de bundles e loja deixado offline por enquanto, ate a leitura do lado servidor ficar melhor amarrada com o que esta ativo no dia.</span></p>
             <div class="meta">
-              <span class="chip">Offline</span>
-              <span class="chip">Bundles</span>
-              <span class="chip">Loja</span>
+              <span class="chip" data-i18n="chipShop1">Offline</span>
+              <span class="chip" data-i18n="chipShop2">Bundles</span>
+              <span class="chip" data-i18n="chipShop3">Loja</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <p class="footer" id="footerWrap">
+    <p class="footer" id="footerWrap" data-i18n="footerWrap">
       Publicação preparada para GitHub Pages. Alguns dados vêm do cliente/APK e outros de fontes oficiais e da comunidade verificadas em 2026.
     </p>
   </div>
   <script>
+    const translations = {
+      pt: {
+        pageTitle: 'Palmon Survival Hub 2026',
+        eyebrow: 'Palmon Survival Hub 2026',
+        langLabel: 'Idioma / Language',
+        heroTitle: 'Pedia, simuladores e ferramentas do jogo em um só lugar',
+        heroCopy: 'Este hub reúne a enciclopédia consolidada, o montador de time, o simulador de batalha e o analisador de loja. A base mistura dados extraídos do APK, cruzamento com fontes oficiais e regras práticas de gameplay organizadas para consulta rápida.',
+        btnPedia: 'Abrir Pedia Completa',
+        btnBuilder: 'Montar Time',
+        btnBattle: 'Simular Batalha',
+        btnShop: 'Loja offline por enquanto',
+        toolsTitle: 'Ferramentas',
+        toolsCopy: 'Entre pela Pedia para estudar o jogo, depois use os simuladores para decidir time, perks, skills e prioridades de progressão.',
+        cardPediaTitle: 'Pedia Completa',
+        cardPediaCopy: 'Resumo executivo, combate, elementos, perks, tier list, PalmonDex e regras práticas em uma leitura só.',
+        chipPedia1: 'Enciclopédia',
+        chipPedia2: 'Tier list',
+        chipPedia3: 'Mecânicas',
+        cardBuilderTitle: 'Montador de Time',
+        cardBuilderCopy: 'Use o mesmo motor do simulador para arrastar, trocar, otimizar só o seu elenco atual e ajustar evolução, perks e skills por Palmon.',
+        chipBuilder1: '7 slots',
+        chipBuilder2: 'Perks',
+        chipBuilder3: 'Otimizador',
+        cardBattleTitle: 'Simulador de Batalha',
+        cardBattleCopy: 'Teste distribuição frente/fundo, pressão de dano, resistência e impacto estimado das combinações do seu time.',
+        chipBattle1: 'Simulação',
+        chipBattle2: 'Posicionamento',
+        chipBattle3: 'Comparação',
+        cardShopTitle: 'Shop Analyzer',
+        cardShopCopy: 'Módulo de bundles e loja deixado offline por enquanto, até a leitura do lado servidor ficar melhor amarrada com o que está ativo no dia.',
+        chipShop1: 'Offline',
+        chipShop2: 'Bundles',
+        chipShop3: 'Loja',
+        footerWrap: 'Publicação preparada para GitHub Pages. Alguns dados vêm do cliente/APK e outros de fontes oficiais e da comunidade verificadas em 2026.',
+        imgPediaAlt: 'Preview da Pedia Completa',
+        imgBuilderAlt: 'Preview do Montador de Time',
+        imgBattleAlt: 'Preview do Simulador de Batalha',
+        imgShopAlt: 'Preview do Shop Analyzer'
+      },
+      en: {
+        pageTitle: 'Palmon Survival Hub 2026',
+        eyebrow: 'Palmon Survival Hub 2026',
+        langLabel: 'Language / Idioma',
+        heroTitle: 'Pedia, simulators, and game tools in one place',
+        heroCopy: 'This hub brings together the consolidated encyclopedia, team builder, battle simulator, and shop analyzer. The knowledge base combines APK-extracted data, official sources, and practical gameplay rules organized for quick consultation.',
+        btnPedia: 'Open Full Pedia',
+        btnBuilder: 'Build Team',
+        btnBattle: 'Simulate Battle',
+        btnShop: 'Shop offline for now',
+        toolsTitle: 'Tools',
+        toolsCopy: 'Start with the Pedia to study the game, then use the simulators to decide team layout, perks, skills, and progression priorities.',
+        cardPediaTitle: 'Full Pedia',
+        cardPediaCopy: 'Executive summary, combat, elements, perks, tier list, PalmonDex, and practical rules in a single read.',
+        chipPedia1: 'Encyclopedia',
+        chipPedia2: 'Tier list',
+        chipPedia3: 'Mechanics',
+        cardBuilderTitle: 'Team Builder',
+        cardBuilderCopy: 'Use the same simulator engine to drag, swap, optimize only your current roster, and adjust evolution, perks, and skills for each Palmon.',
+        chipBuilder1: '7 slots',
+        chipBuilder2: 'Perks',
+        chipBuilder3: 'Optimizer',
+        cardBattleTitle: 'Battle Simulator',
+        cardBattleCopy: 'Test front/back distribution, damage pressure, survivability, and the estimated impact of your team combinations.',
+        chipBattle1: 'Simulation',
+        chipBattle2: 'Positioning',
+        chipBattle3: 'Comparison',
+        cardShopTitle: 'Shop Analyzer',
+        cardShopCopy: 'Bundles and shop module is offline for now until server-side reading is better aligned with what is active each day.',
+        chipShop1: 'Offline',
+        chipShop2: 'Bundles',
+        chipShop3: 'Shop',
+        footerWrap: 'Publication prepared for GitHub Pages. Some data comes from the client/APK and other parts come from official and community sources verified in 2026.',
+        imgPediaAlt: 'Full Pedia preview',
+        imgBuilderAlt: 'Team Builder preview',
+        imgBattleAlt: 'Battle Simulator preview',
+        imgShopAlt: 'Shop Analyzer preview'
+      }
+    };
+
     const langButtons = { pt: document.getElementById('langPt'), en: document.getElementById('langEn') };
+    function applyTranslations(lang) {
+      const dict = translations[lang] || translations.pt;
+      document.title = dict.pageTitle;
+      document.querySelectorAll('[data-i18n]').forEach((element) => {
+        const key = element.dataset.i18n;
+        if (dict[key]) {
+          element.textContent = dict[key];
+        }
+      });
+      document.querySelectorAll('[data-i18n-alt]').forEach((element) => {
+        const key = element.dataset.i18nAlt;
+        if (dict[key]) {
+          element.alt = dict[key];
+        }
+      });
+    }
     function setLang(lang) {
       langButtons.pt.classList.toggle('active', lang === 'pt');
       langButtons.en.classList.toggle('active', lang === 'en');
       document.documentElement.lang = lang === 'en' ? 'en' : 'pt-BR';
       localStorage.setItem('palmon_lang', lang);
+      applyTranslations(lang);
     }
     langButtons.pt.addEventListener('click', () => setLang('pt'));
     langButtons.en.addEventListener('click', () => setLang('en'));
