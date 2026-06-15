@@ -98,6 +98,23 @@
       box-shadow: 0 6px 16px rgba(39, 75, 128, 0.08);
     }
 
+    .lang-panel {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      width: fit-content;
+      padding: 12px 14px;
+      border: 1px solid #bfd8fb;
+      border-radius: 14px;
+      background: #f8fbff;
+    }
+
+    .lang-label {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
     .lang-switch button {
       border: 0;
       background: transparent;
@@ -239,9 +256,12 @@
       <div class="topbar">
         <span class="eyebrow">Palmon Survival Hub 2026</span>
       </div>
-      <div class="lang-switch" aria-label="Language switch" style="width:fit-content">
-        <button id="langPt" class="active" type="button">PT</button>
-        <button id="langEn" type="button">EN</button>
+      <div class="lang-panel">
+        <span class="lang-label">Idioma / Language</span>
+        <div class="lang-switch" aria-label="Language switch">
+          <button id="langPt" class="active" type="button">PT</button>
+          <button id="langEn" type="button">EN</button>
+        </div>
       </div>
       <h1>Pedia, simuladores e ferramentas do jogo em um só lugar</h1>
       <p>
