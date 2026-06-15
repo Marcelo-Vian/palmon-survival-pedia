@@ -80,6 +80,38 @@
       gap: 12px;
     }
 
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+
+    .lang-switch {
+      display: inline-flex;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 6px 16px rgba(39, 75, 128, 0.08);
+    }
+
+    .lang-switch button {
+      border: 0;
+      background: transparent;
+      padding: 10px 14px;
+      font-weight: 800;
+      color: var(--muted);
+      cursor: pointer;
+    }
+
+    .lang-switch button.active {
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color: #fff;
+    }
+
     .btn {
       display: inline-flex;
       align-items: center;
@@ -204,7 +236,14 @@
 <body>
   <div class="wrap">
     <section class="hero">
-      <span class="eyebrow">Palmon Survival Hub 2026</span>
+      <div class="topbar">
+        <span class="eyebrow">Palmon Survival Hub 2026</span>
+        <div class="lang-switch" aria-label="Language switch">
+          <button id="langPt" class="active" type="button">PT</button>
+          <button id="langEn" type="button">EN</button>
+        </div>
+      </div>
+      <span class="eyebrow" id="hubBadge">Palmon Survival Hub 2026</span>
       <h1>Pedia, simuladores e ferramentas do jogo em um só lugar</h1>
       <p>
         Este hub reúne a enciclopédia consolidada, o montador de time, o simulador de batalha
@@ -212,21 +251,21 @@
         oficiais e regras práticas de gameplay organizadas para consulta rápida.
       </p>
       <div class="actions">
-        <a class="btn btn-primary" href="palmon_survival_pedia_completa.html">Abrir Pedia Completa</a>
-        <a class="btn btn-secondary" href="palmon_battle_simulator.html?mode=builder">Montar Time</a>
-        <a class="btn btn-secondary" href="palmon_battle_simulator.html">Simular Batalha</a>
-        <span class="btn btn-disabled">Loja offline por enquanto</span>
+        <a class="btn btn-primary" id="btnPedia" href="palmon_survival_pedia_completa.html">Abrir Pedia Completa</a>
+        <a class="btn btn-secondary" id="btnBuilder" href="palmon_battle_simulator.html?mode=builder">Montar Time</a>
+        <a class="btn btn-secondary" id="btnBattle" href="palmon_battle_simulator.html">Simular Batalha</a>
+        <span class="btn btn-disabled" id="btnShop">Loja offline por enquanto</span>
       </div>
     </section>
 
     <section class="section">
-      <h2>Ferramentas</h2>
+      <h2 id="toolsTitle">Ferramentas</h2>
       <p>Entre pela Pedia para estudar o jogo, depois use os simuladores para decidir time, perks, skills e prioridades de progressão.</p>
       <div class="grid">
         <a class="card" href="palmon_survival_pedia_completa.html">
           <img src="pedia_screenshot.png" alt="Preview da Pedia Completa">
           <div class="card-body">
-            <h3>Pedia Completa</h3>
+            <h3 id="cardPediaTitle">Pedia Completa</h3>
             <p>Resumo executivo, combate, elementos, perks, tier list, PalmonDex e regras práticas em uma leitura só.</p>
             <div class="meta">
               <span class="chip">Enciclopédia</span>
@@ -239,8 +278,8 @@
         <a class="card" href="palmon_battle_simulator.html?mode=builder">
           <img src="team_builder_screenshot.png" alt="Preview do Montador de Time">
           <div class="card-body">
-            <h3>Montador de Time</h3>
-            <p>Use o mesmo motor do simulador para arrastar, trocar, otimizar so o seu elenco atual e ajustar evolucao, perks e skills por Palmon.</p>
+            <h3 id="cardBuilderTitle">Montador de Time</h3>
+            <p><span id="cardBuilderCopy">Use o mesmo motor do simulador para arrastar, trocar, otimizar so o seu elenco atual e ajustar evolucao, perks e skills por Palmon.</span></p>
             <div class="meta">
               <span class="chip">7 slots</span>
               <span class="chip">Perks</span>
@@ -252,7 +291,7 @@
         <a class="card" href="palmon_battle_simulator.html">
           <img src="battle_simulator_screenshot.png" alt="Preview do Simulador de Batalha">
           <div class="card-body">
-            <h3>Simulador de Batalha</h3>
+            <h3 id="cardBattleTitle">Simulador de Batalha</h3>
             <p>Teste distribuição frente/fundo, pressão de dano, resistência e impacto estimado das combinações do seu time.</p>
             <div class="meta">
               <span class="chip">Simulação</span>
@@ -265,8 +304,8 @@
         <div class="card card-disabled" aria-disabled="true">
           <img src="shop_analyzer_screenshot_wide.png" alt="Preview do Shop Analyzer">
           <div class="card-body">
-            <h3>Shop Analyzer</h3>
-            <p>Modulo de bundles e loja deixado offline por enquanto, ate a leitura do lado servidor ficar melhor amarrada com o que esta ativo no dia.</p>
+            <h3 id="cardShopTitle">Shop Analyzer</h3>
+            <p><span id="cardShopCopy">Modulo de bundles e loja deixado offline por enquanto, ate a leitura do lado servidor ficar melhor amarrada com o que esta ativo no dia.</span></p>
             <div class="meta">
               <span class="chip">Offline</span>
               <span class="chip">Bundles</span>
@@ -277,9 +316,21 @@
       </div>
     </section>
 
-    <p class="footer">
+    <p class="footer" id="footerWrap">
       Publicação preparada para GitHub Pages. Alguns dados vêm do cliente/APK e outros de fontes oficiais e da comunidade verificadas em 2026.
     </p>
   </div>
+  <script>
+    const langButtons = { pt: document.getElementById('langPt'), en: document.getElementById('langEn') };
+    function setLang(lang) {
+      langButtons.pt.classList.toggle('active', lang === 'pt');
+      langButtons.en.classList.toggle('active', lang === 'en');
+      document.documentElement.lang = lang === 'en' ? 'en' : 'pt-BR';
+      localStorage.setItem('palmon_lang', lang);
+    }
+    langButtons.pt.addEventListener('click', () => setLang('pt'));
+    langButtons.en.addEventListener('click', () => setLang('en'));
+    setLang(localStorage.getItem('palmon_lang') || 'pt');
+  </script>
 </body>
 </html>
