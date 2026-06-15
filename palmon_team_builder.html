@@ -76,10 +76,15 @@
   <main>
     <h1>Redirecionando para o novo Montar Time</h1>
     <p>O montador agora usa o mesmo motor do simulador de batalha, com drag and drop, troca de slots, perks, skills individuais e sugestoes mais completas.</p>
-    <a href="palmon_battle_simulator.html?mode=builder">Abrir Montar Time</a>
+    <a id="builderLink" href="palmon_battle_simulator.html?mode=builder">Abrir Montar Time</a>
   </main>
   <script>
-    window.location.replace('palmon_battle_simulator.html?mode=builder');
+    const queryLang = new URLSearchParams(window.location.search).get('lang');
+    const storedLang = localStorage.getItem('palmon_lang');
+    const lang = ['pt', 'en'].includes(queryLang) ? queryLang : (['pt', 'en'].includes(storedLang) ? storedLang : 'pt');
+    const target = `palmon_battle_simulator.html?mode=builder&lang=${lang}`;
+    document.getElementById('builderLink').href = target;
+    window.location.replace(target);
   </script>
 </body>
 </html>

@@ -340,6 +340,7 @@
     </p>
   </div>
   <script>
+    window.PALMON_SKIP_TEXT_TRANSLATION = true;
     const translations = {
       pt: {
         pageTitle: 'Palmon Survival Hub 2026',
@@ -447,5 +448,6 @@
     langButtons.en.addEventListener('click', () => setLang('en'));
     setLang(localStorage.getItem('palmon_lang') || 'pt');
   </script>
+  <script src="palmon_i18n.js"></script>
 </body>
 </html>
