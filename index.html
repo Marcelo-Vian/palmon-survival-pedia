@@ -103,6 +103,14 @@
       color: var(--text);
     }
 
+    .btn-disabled {
+      background: #f8fbff;
+      border-color: var(--line);
+      color: var(--muted);
+      cursor: default;
+      pointer-events: none;
+    }
+
     .section {
       margin-top: 28px;
     }
@@ -131,6 +139,10 @@
       overflow: hidden;
       box-shadow: var(--shadow);
       display: grid;
+    }
+
+    .card-disabled {
+      opacity: 0.82;
     }
 
     .card img {
@@ -201,9 +213,9 @@
       </p>
       <div class="actions">
         <a class="btn btn-primary" href="palmon_survival_pedia_completa.html">Abrir Pedia Completa</a>
-        <a class="btn btn-secondary" href="palmon_team_builder.html">Montar Time</a>
+        <a class="btn btn-secondary" href="palmon_battle_simulator.html?mode=builder">Montar Time</a>
         <a class="btn btn-secondary" href="palmon_battle_simulator.html">Simular Batalha</a>
-        <a class="btn btn-secondary" href="palmon_shop_analyzer.html">Abrir Shop Analyzer</a>
+        <span class="btn btn-disabled">Loja offline por enquanto</span>
       </div>
     </section>
 
@@ -224,15 +236,15 @@
           </div>
         </a>
 
-        <a class="card" href="palmon_team_builder.html">
+        <a class="card" href="palmon_battle_simulator.html?mode=builder">
           <img src="team_builder_screenshot.png" alt="Preview do Montador de Time">
           <div class="card-body">
             <h3>Montador de Time</h3>
-            <p>Monte seus 7 slots, ajuste função, perks, skill level e receba sugestões de realocação sem trocar seus Palmons.</p>
+            <p>Use o mesmo motor do simulador para arrastar, trocar, otimizar so o seu elenco atual e ajustar evolucao, perks e skills por Palmon.</p>
             <div class="meta">
               <span class="chip">7 slots</span>
               <span class="chip">Perks</span>
-              <span class="chip">Skills</span>
+              <span class="chip">Otimizador</span>
             </div>
           </div>
         </a>
@@ -250,18 +262,18 @@
           </div>
         </a>
 
-        <a class="card" href="palmon_shop_analyzer.html">
+        <div class="card card-disabled" aria-disabled="true">
           <img src="shop_analyzer_screenshot_wide.png" alt="Preview do Shop Analyzer">
           <div class="card-body">
             <h3>Shop Analyzer</h3>
-            <p>Consulte itens, pacotes e equivalências conhecidas do cliente para estudar custo-benefício e planejar compras.</p>
+            <p>Modulo de bundles e loja deixado offline por enquanto, ate a leitura do lado servidor ficar melhor amarrada com o que esta ativo no dia.</p>
             <div class="meta">
+              <span class="chip">Offline</span>
+              <span class="chip">Bundles</span>
               <span class="chip">Loja</span>
-              <span class="chip">Pacotes</span>
-              <span class="chip">Recursos</span>
             </div>
           </div>
-        </a>
+        </div>
       </div>
     </section>
 
