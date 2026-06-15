@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Palmon Survival Hub 2026</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f4f8ff;
+      --panel: #ffffff;
+      --text: #19324d;
+      --muted: #5b7188;
+      --line: #cfe0f5;
+      --primary: #2c73d2;
+      --primary-2: #5fd0ff;
+      --accent: #5bbf7a;
+      --shadow: 0 14px 34px rgba(39, 75, 128, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(95, 208, 255, 0.28), transparent 28%),
+        radial-gradient(circle at top right, rgba(91, 191, 122, 0.18), transparent 24%),
+        var(--bg);
+      color: var(--text);
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .wrap {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 32px 0 48px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #fff 0%, #eef6ff 100%);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 28px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      width: fit-content;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: #e8f2ff;
+      border: 1px solid #bfd8fb;
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(30px, 5vw, 50px);
+      line-height: 1.02;
+    }
+
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.55;
+      max-width: 840px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 18px;
+      border-radius: 12px;
+      font-weight: 700;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-2) 100%);
+      color: #fff;
+      box-shadow: 0 10px 20px rgba(44, 115, 210, 0.22);
+    }
+
+    .btn-secondary {
+      background: #fff;
+      border-color: var(--line);
+      color: var(--text);
+    }
+
+    .section {
+      margin-top: 28px;
+    }
+
+    .section h2 {
+      margin: 0 0 14px;
+      font-size: 26px;
+    }
+
+    .section p {
+      margin: 0 0 18px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      display: grid;
+    }
+
+    .card img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      display: block;
+      background: #dfeeff;
+    }
+
+    .card-body {
+      padding: 16px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .card-body h3 {
+      margin: 0;
+      font-size: 22px;
+    }
+
+    .card-body p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #f0f6ff;
+      border: 1px solid #d6e6fb;
+      color: var(--primary);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .footer {
+      margin-top: 30px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 720px) {
+      .wrap { width: min(100% - 20px, 1180px); padding-top: 20px; }
+      .hero { padding: 20px; }
+      .section { margin-top: 22px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <span class="eyebrow">Palmon Survival Hub 2026</span>
+      <h1>Pedia, simuladores e ferramentas do jogo em um só lugar</h1>
+      <p>
+        Este hub reúne a enciclopédia consolidada, o montador de time, o simulador de batalha
+        e o analisador de loja. A base mistura dados extraídos do APK, cruzamento com fontes
+        oficiais e regras práticas de gameplay organizadas para consulta rápida.
+      </p>
+      <div class="actions">
+        <a class="btn btn-primary" href="palmon_survival_pedia_completa.html">Abrir Pedia Completa</a>
+        <a class="btn btn-secondary" href="palmon_team_builder.html">Montar Time</a>
+        <a class="btn btn-secondary" href="palmon_battle_simulator.html">Simular Batalha</a>
+        <a class="btn btn-secondary" href="palmon_shop_analyzer.html">Abrir Shop Analyzer</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Ferramentas</h2>
+      <p>Entre pela Pedia para estudar o jogo, depois use os simuladores para decidir time, perks, skills e prioridades de progressão.</p>
+      <div class="grid">
+        <a class="card" href="palmon_survival_pedia_completa.html">
+          <img src="pedia_screenshot.png" alt="Preview da Pedia Completa">
+          <div class="card-body">
+            <h3>Pedia Completa</h3>
+            <p>Resumo executivo, combate, elementos, perks, tier list, PalmonDex e regras práticas em uma leitura só.</p>
+            <div class="meta">
+              <span class="chip">Enciclopédia</span>
+              <span class="chip">Tier list</span>
+              <span class="chip">Mecânicas</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="card" href="palmon_team_builder.html">
+          <img src="team_builder_screenshot.png" alt="Preview do Montador de Time">
+          <div class="card-body">
+            <h3>Montador de Time</h3>
+            <p>Monte seus 7 slots, ajuste função, perks, skill level e receba sugestões de realocação sem trocar seus Palmons.</p>
+            <div class="meta">
+              <span class="chip">7 slots</span>
+              <span class="chip">Perks</span>
+              <span class="chip">Skills</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="card" href="palmon_battle_simulator.html">
+          <img src="battle_simulator_screenshot.png" alt="Preview do Simulador de Batalha">
+          <div class="card-body">
+            <h3>Simulador de Batalha</h3>
+            <p>Teste distribuição frente/fundo, pressão de dano, resistência e impacto estimado das combinações do seu time.</p>
+            <div class="meta">
+              <span class="chip">Simulação</span>
+              <span class="chip">Posicionamento</span>
+              <span class="chip">Comparação</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="card" href="palmon_shop_analyzer.html">
+          <img src="shop_analyzer_screenshot_wide.png" alt="Preview do Shop Analyzer">
+          <div class="card-body">
+            <h3>Shop Analyzer</h3>
+            <p>Consulte itens, pacotes e equivalências conhecidas do cliente para estudar custo-benefício e planejar compras.</p>
+            <div class="meta">
+              <span class="chip">Loja</span>
+              <span class="chip">Pacotes</span>
+              <span class="chip">Recursos</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <p class="footer">
+      Publicação preparada para GitHub Pages. Alguns dados vêm do cliente/APK e outros de fontes oficiais e da comunidade verificadas em 2026.
+    </p>
+  </div>
+</body>
+</html>

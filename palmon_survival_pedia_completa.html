@@ -1,0 +1,991 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Palmon Survival Pedia 2026 - Enciclopédia Completa</title>
+<style>
+:root{--ink:#162033;--muted:#667085;--line:#dbe3ee;--paper:#fff;--soft:#f5f7fb;--blue:#2563eb;--green:#16a34a;--gold:#b7791f;--purple:#7c3aed;--teal:#0f766e;--radius:8px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:#f3f6fa;color:var(--ink)}a{color:#1d4ed8;text-decoration:none}a:hover{text-decoration:underline}
+.layout{display:grid;grid-template-columns:270px minmax(0,1fr);min-height:100vh}aside{position:sticky;top:0;height:100vh;overflow:auto;background:#fff;border-right:1px solid var(--line);padding:18px 14px}main{min-width:0}.brand{font-weight:900;font-size:20px;line-height:1.1;margin-bottom:4px}.brand small{display:block;color:var(--muted);font-weight:700;font-size:12px;margin-top:6px}nav a{display:block;padding:8px 10px;border-radius:6px;color:#293548;font-weight:700;font-size:13px}nav a:hover{background:#eef4ff;text-decoration:none}
+.hero{background:linear-gradient(180deg,#e8f1ff,#fff);border-bottom:1px solid var(--line);padding:28px 28px 22px}.hero h1{font-size:34px;margin:0 0 8px;letter-spacing:0}.hero p{max-width:920px;color:#475467;font-size:15px;line-height:1.5;margin:0}.stat-grid{display:grid;grid-template-columns:repeat(6,minmax(120px,1fr));gap:10px;margin-top:18px}.stat-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:12px;box-shadow:0 1px 2px #0000000c}.stat-card span{font-size:24px;font-weight:900;display:block}.stat-card small{color:var(--muted);font-weight:700}
+.section{padding:22px 28px;border-bottom:1px solid var(--line)}.section h2{font-size:24px;margin:0 0 10px}.section h3{font-size:17px;margin:0 0 8px}.lead{color:#475467;max-width:980px;line-height:1.5}.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.rule-card,.info-card,.element-card,.slot-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:13px;box-shadow:0 1px 2px #0000000b}.rule-card{background:#fbfffc;border-color:#c9efd5}.info-card ul{margin:8px 0 0 18px;padding:0}.info-card li{margin:7px 0}.info-card span{color:var(--muted)}.callout{background:#fffaf0;border-left:4px solid #d69e2e;border-radius:6px;padding:10px 12px;margin:10px 0;color:#45320b}.danger{background:#fff5f5;border-left-color:#e53e3e;color:#591b1b}.ok{background:#f0fff4;border-left-color:#16a34a;color:#12351f}
+.table-wrap{overflow:auto;background:#fff;border:1px solid var(--line);border-radius:var(--radius)}table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:9px 10px;border-bottom:1px solid #e8edf5;text-align:left;vertical-align:top}th{background:#f8fafc;color:#344054;position:sticky;top:0;z-index:1}tr:last-child td{border-bottom:0}.ranknum{font-size:18px;font-weight:900;text-align:center}.mini{width:46px;height:46px;object-fit:contain}.tier{display:inline-flex;min-width:34px;height:24px;align-items:center;justify-content:center;border-radius:6px;color:#fff;font-weight:900;font-size:12px}.tier-SS{background:var(--purple)}.tier-S{background:var(--teal)}.tier-A{background:var(--blue)}.tier-B{background:var(--gold)}.tier-C{background:#64748b}
+.filters{display:grid;grid-template-columns:2fr repeat(4,1fr);gap:8px;margin:12px 0}input,select{border:1px solid #cfd8e3;background:#fff;border-radius:6px;padding:9px 10px;font:inherit;font-size:14px}.toolbar-note{font-size:12px;color:var(--muted);margin-top:6px}.pal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(430px,1fr));gap:14px}.pal-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);display:grid;grid-template-columns:138px 1fr;min-height:320px;overflow:hidden;box-shadow:0 1px 2px #0000000c}.card-media{position:relative;background:linear-gradient(180deg,#eef4ff,#fff);display:flex;align-items:center;justify-content:center;padding:12px}.card-media img{max-width:130px;max-height:230px;object-fit:contain}.card-media .evo{position:absolute;right:6px;bottom:6px;width:58px;height:72px;background:#ffffffdf;border:1px solid var(--line);border-radius:6px}.rank-badge{position:absolute;top:8px;left:8px;background:#162033;color:#fff;font-weight:900;border-radius:6px;padding:4px 8px}.card-body{padding:13px}.card-title{display:flex;align-items:center;gap:8px;justify-content:space-between}.card-title h3{font-size:19px;margin:0}.evo-line{margin:5px 0;color:#475467}.chips{display:flex;flex-wrap:wrap;gap:5px;margin:8px 0}.chips span{border:1px solid #ccd6e4;border-radius:999px;padding:2px 7px;font-size:12px;font-weight:800;background:#fafcff}.focus{background:#fff8df;border-left:4px solid #e3b525;border-radius:4px;padding:7px 8px}.perk{background:#eefcf3;border-left:4px solid var(--green);border-radius:4px;padding:7px 8px}details{margin-top:8px}summary{font-weight:900;cursor:pointer}details ul{padding-left:18px}details li{margin:8px 0;line-height:1.35}small{color:var(--muted)}
+.slots{display:grid;grid-template-columns:repeat(7,minmax(120px,1fr));gap:8px}.slot-card b{display:block}.slot-card span{display:block;font-weight:900;margin:4px 0}.slot-card.front{background:#fff7ed;border-color:#fdba74}.slot-card.back{background:#eff6ff;border-color:#93c5fd}.elements{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.element-card.water{border-color:#7dd3fc;background:#f0f9ff}.element-card.fire{border-color:#fca5a5;background:#fff5f5}.element-card.earth{border-color:#d6c17b;background:#fffbea}.element-card.electric{border-color:#fde047;background:#fffde8}.bars{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.barbox{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:12px}.bar-row{display:grid;grid-template-columns:88px 1fr 28px;align-items:center;gap:8px;margin:8px 0;font-size:13px}.bar{height:8px;background:#e6edf5;border-radius:999px;overflow:hidden}.bar i{display:block;height:100%;background:#2563eb;border-radius:999px}.kbd{font-family:ui-monospace,Consolas,monospace;background:#eef2f7;border:1px solid #d4dce8;padding:1px 5px;border-radius:4px}.hidden{display:none!important}footer{padding:22px 28px;color:#667085;font-size:13px}
+@media(max-width:1100px){.layout{grid-template-columns:1fr}aside{position:static;height:auto}nav{display:grid;grid-template-columns:repeat(3,1fr)}.stat-grid{grid-template-columns:repeat(3,1fr)}.grid-2,.grid-3,.bars{grid-template-columns:1fr}.elements{grid-template-columns:repeat(2,1fr)}.slots{grid-template-columns:repeat(2,1fr)}.filters{grid-template-columns:1fr 1fr}}
+@media(max-width:680px){.hero,.section{padding:18px 14px}.hero h1{font-size:26px}.stat-grid{grid-template-columns:repeat(2,1fr)}nav{grid-template-columns:1fr 1fr}.pal-grid{grid-template-columns:1fr}.pal-card{grid-template-columns:110px 1fr}.card-media img{max-width:105px}.filters{grid-template-columns:1fr}.elements{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside>
+  <div class="brand">Palmon Pedia<small>Base consolidada 2026</small></div>
+  <nav>
+    <a href="#resumo">Resumo</a><a href="palmon_team_builder.html">Montador de time</a><a href="palmon_battle_simulator.html">Simulador de batalha</a><a href="palmon_shop_analyzer.html">Shop Analyzer</a><a href="#fontes">Fontes</a><a href="#loop">Loop e progressão</a><a href="#combate">Combate</a><a href="#elementos">Elementos</a><a href="#slots">7 posições</a><a href="#perks">Perks e breeding</a><a href="#tier">Tier list</a><a href="#palmondex">PalmonDex</a><a href="#estrategias">Estratégias</a><a href="#screenshots">Prints</a><a href="#lacunas">Lacunas</a>
+  </nav>
+</aside>
+<main>
+<header class="hero" id="resumo">
+  <h1>Palmon Survival Pedia 2026</h1>
+  <p>Enciclopédia consolidada com tudo que temos até agora: dados extraídos do APK/XAPK, ranking estratégico, habilidades, elementos, posições de batalha, perks, breeding, progressão, eventos e guia para responder prints. Onde não há confirmação de 2026, está marcado como lacuna.</p>
+  <div class="stat-grid"><div class="stat-card"><span>58</span><small>Palmons catalogados</small></div><div class="stat-card"><span>207</span><small>Imagens locais</small></div><div class="stat-card"><span>8</span><small>Tier SS</small></div><div class="stat-card"><span>35</span><small>UR no ranking</small></div><div class="stat-card"><span>24</span><small>Frente</small></div><div class="stat-card"><span>34</span><small>Fundo</small></div></div>
+</header>
+
+<section class="section">
+  <h2>Leitura rápida</h2>
+  <div class="grid-3">
+    <article class="info-card"><h3>Faça primeiro</h3><ul><li>Monte 1 tank central, 2-3 DPS protegidos e 1 controle/suporte.</li><li>Use o bônus de elemento se conseguir 3+ Palmons do mesmo tipo sem destruir a função do time.</li><li>Antes de evoluir, defina as 4 perks do Palmon.</li></ul></article>
+    <article class="info-card"><h3>Evite</h3><ul><li>Gastar Skillfruit/Omni Token em Palmon que vai sair do time.</li><li>Colocar DPS frágil no Slot 2.</li><li>Breedar com pais cheios de traits ruins, porque aumenta o RNG.</li></ul></article>
+    <article class="info-card"><h3>Melhor base atual</h3><ul><li><b>Tank:</b> Mammolith ou Embergeist; Ghillant/Statchew como alternativas.</li><li><b>DPS:</b> Zapantis, Hexkit, Rootwarden, Glacewing, Thundertooth, Plunderjaw.</li><li><b>Slots:</b> tank no 2; carries no 4/5; agressivos nos 1/6.</li></ul></article>
+  </div>
+  <p class="callout ok"><b>Nota de confiança:</b> Palmons, stats, skills, elementos, linhas, slots e traits vêm do APK/XAPK. Estratégia de rank/perks é inferência prática baseada nesses dados + fontes 2026.</p>
+  <p class="callout"><b>Ferramentas novas:</b> use o <a href="palmon_team_builder.html">Montador de Time</a> para montar sua formação, o <a href="palmon_battle_simulator.html">Simulador de Batalha</a> para testar posições/skills/perks e o <a href="palmon_shop_analyzer.html">Shop Analyzer</a> para comparar lojas, pacotes e custo-benefício de recursos.</p>
+</section>
+
+<section class="section" id="fontes">
+  <h2>Fontes e confiabilidade</h2>
+  <p class="lead">A Pedia prioriza APK/config local e fontes oficiais. Guias de comunidade entram como recomendação, não como regra oficial.</p>
+  <div class="table-wrap"><table><thead><tr><th>Fonte</th><th>Link/data</th><th>Tipo</th><th>Confiabilidade</th><th>Uso na Pedia</th></tr></thead><tbody><tr><td>XAPK/APK Palmon Survival 0.5.277</td><td>Arquivo local analisado em 2026-06-05</td><td>APK/config</td><td>Alta para dados internos da versão</td><td>hero, card_skill_pal, card_buff_pal, hero_evolve_potency, traits, scene_map</td></tr><tr><td>AllClash - Important Rules for Breeding</td><td><a href="https://www.allclash.com/important-rules-for-breeding-in-palmon-survival/" target="_blank">abrir</a></td><td>Guia comunidade</td><td>Média</td><td>Publicado em 2026-04-30; usado para regras de breeding/perks</td></tr><tr><td>Site oficial Palmon Survival</td><td><a href="https://palmonsurvival-official.lilith.com/" target="_blank">abrir</a></td><td>Oficial</td><td>Alta</td><td>Usado para identidade/canais oficiais; pouco detalhe mecânico</td></tr><tr><td>Google Play</td><td><a href="https://play.google.com/store/apps/details?id=com.funfizz.palmon.gp" target="_blank">abrir</a></td><td>Loja oficial</td><td>Alta</td><td>Descrição do jogo, compras no app e dados de loja da pesquisa 2026</td></tr><tr><td>App Store</td><td><a href="https://apps.apple.com/us/app/palmon-survival/id6739345737" target="_blank">abrir</a></td><td>Loja oficial</td><td>Alta</td><td>Versão, categoria, loot boxes/compras e dados de loja</td></tr><tr><td>X oficial - patch 2026-01-27</td><td><a href="https://x.com/PalmonSurvival/status/2016058598250405897" target="_blank">abrir</a></td><td>Patch oficial</td><td>Alta</td><td>Guild Nursery, Electric Frenzy, Skin Hub, Monday Market, VIP Shop, Surging Snows e fixes</td></tr><tr><td>PalmonGuide 2026</td><td><a href="https://www.palmonguide.com/" target="_blank">abrir</a></td><td>Guia comunidade</td><td>Média</td><td>Evolution, traits, Palmanac e builds gerais; tratar como comunidade</td></tr><tr><td>Reddit guias 2026</td><td><a href="https://www.reddit.com/r/PalmonSurvival/" target="_blank">abrir</a></td><td>Comunidade/forum</td><td>Baixa-média</td><td>Usado como evidência de jogador; nunca como regra oficial isolada</td></tr></tbody></table></div>
+</section>
+
+<section class="section" id="loop">
+  <h2>Loop de gameplay e progressão</h2>
+  <div class="grid-2">
+    <article class="info-card"><h3>Loop principal</h3><ul><li>Obter Palmons por Hatchery, summons/eventos, breeding e recompensas.</li><li>Usar Palmons em combate e trabalho/base.</li><li>Melhorar base/camp para liberar sistemas, produção e evolução.</li><li>Guardar recursos para janelas de evento quando quiser otimizar.</li><li>Participar de guilda para Nursery, presentes, rallies, Dojo/GvG e progresso social.</li></ul></article>
+    <article class="info-card"><h3>Prioridade de investimento</h3><ul><li><b>Início:</b> use os melhores que tiver, mas não espalhe recurso raro.</li><li><b>Meio:</b> feche 1 carry + 1 tank + 2 DPS/controle + bônus elemental possível.</li><li><b>Avançado:</b> refine perks, estrelas, evolução e slots finos por matchup.</li><li><b>F2P:</b> maximize eventos, guilda e breeding inteligente antes de gastar premium.</li></ul></article>
+  </div>
+</section>
+
+<section class="section" id="combate">
+  <h2>Mecânicas de combate</h2>
+  <div class="grid-3">
+    <article class="info-card"><h3>Funções</h3><ul><li><b>Tank:</b> segura o centro e absorve pressão.</li><li><b>DPS fundo:</b> dano principal protegido.</li><li><b>DPS frente/bruiser:</b> dano com sobrevivência nos flancos.</li><li><b>Suporte/controle:</b> buff, debuff, stun, freeze, paralyze, shield ou redução de dano.</li></ul></article>
+    <article class="info-card"><h3>Skills</h3><ul><li>Todo Palmon tem ataque básico, skill principal/fúria e passivas.</li><li>A prioridade da página foca a skill que muda combate: dano alto, controle, escudo ou buff.</li><li>Skills com alvo backline/aleatório podem mudar valor conforme o inimigo.</li></ul></article>
+    <article class="info-card"><h3>Rank bruto APK</h3><ul><li>É a ordem/config técnica extraída, útil para auditoria.</li><li>Não é a melhor ordem para jogar sozinha.</li><li>O Rank Geral combina APK + função + skill + controle + perks + posição.</li></ul></article>
+  </div>
+  <div class="bars">
+    <div class="barbox"><h3>Elementos</h3><div class="bar-row"><span>Terra</span><div class="bar"><i style="width:31.0%"></i></div><b>18</b></div><div class="bar-row"><span>Agua</span><div class="bar"><i style="width:25.9%"></i></div><b>15</b></div><div class="bar-row"><span>Fogo</span><div class="bar"><i style="width:22.4%"></i></div><b>13</b></div><div class="bar-row"><span>Eletrico</span><div class="bar"><i style="width:20.7%"></i></div><b>12</b></div></div>
+    <div class="barbox"><h3>Tier</h3><div class="bar-row"><span>C</span><div class="bar"><i style="width:39.7%"></i></div><b>23</b></div><div class="bar-row"><span>A</span><div class="bar"><i style="width:25.9%"></i></div><b>15</b></div><div class="bar-row"><span>S</span><div class="bar"><i style="width:17.2%"></i></div><b>10</b></div><div class="bar-row"><span>SS</span><div class="bar"><i style="width:13.8%"></i></div><b>8</b></div><div class="bar-row"><span>B</span><div class="bar"><i style="width:3.4%"></i></div><b>2</b></div></div>
+    <div class="barbox"><h3>Linha</h3><div class="bar-row"><span>Fundo</span><div class="bar"><i style="width:58.6%"></i></div><b>34</b></div><div class="bar-row"><span>Frente</span><div class="bar"><i style="width:41.4%"></i></div><b>24</b></div></div>
+    <div class="barbox"><h3>Perfil de perks</h3><div class="bar-row"><span>DPS fundo</span><div class="bar"><i style="width:51.7%"></i></div><b>30</b></div><div class="bar-row"><span>DPS frente/bruiser</span><div class="bar"><i style="width:27.6%"></i></div><b>16</b></div><div class="bar-row"><span>Suporte/controle</span><div class="bar"><i style="width:10.3%"></i></div><b>6</b></div><div class="bar-row"><span>Tank</span><div class="bar"><i style="width:10.3%"></i></div><b>6</b></div></div>
+  </div>
+</section>
+
+<section class="section" id="elementos">
+  <h2>Elementos e counters</h2>
+  <p class="lead">Counter confirmado: dano causado +10% e dano recebido -10% quando seu elemento vence o alvo. A cadeia atual é Elétrico &gt; Água &gt; Fogo &gt; Terra &gt; Elétrico.</p>
+  <div class="elements">
+    <article class="element-card water"><h3>Água</h3><p><b>Forte contra:</b> Fogo<br><b>Fraco contra:</b> Elétrico</p><small>Confirmado por APK/screenshot: bônus de counter dá +10% dano causado e -10% dano recebido.</small></article>
+    <article class="element-card fire"><h3>Fogo</h3><p><b>Forte contra:</b> Terra<br><b>Fraco contra:</b> Água</p><small>Use Fire contra times Terra; evite contra Água.</small></article>
+    <article class="element-card earth"><h3>Terra</h3><p><b>Forte contra:</b> Elétrico<br><b>Fraco contra:</b> Fogo</p><small>Boa base defensiva e muitos tanks/controle.</small></article>
+    <article class="element-card electric"><h3>Elétrico</h3><p><b>Forte contra:</b> Água<br><b>Fraco contra:</b> Terra</p><small>Forte para pressão, backline e paralisação.</small></article>
+  </div>
+  <p class="callout"><b>Bônus de mesma composição:</b> 3 Palmons do mesmo tipo = +5% ATK/DEF/HP; 4 = +10%; 5 = +20%; 6 = +25%; 7 = +30%. Não force 7 do mesmo elemento se isso destruir tank/DPS/controle.</p>
+</section>
+
+<section class="section" id="slots">
+  <h2>Formação e 7 posições</h2>
+  <p class="lead">O APK confirma coordenadas de 7 slots em <span class="kbd">constant_func.lua &gt; scene_map[-1].attacker_init_pos</span>. Pela coordenada de avanço, 1/2/6 ficam na frente e 3/4/5/7 ficam atrás.</p>
+  <div class="slots"><div class="slot-card front"><b>Slot 1</b><span>Frente esquerda</span><small>off-tank, controle, bruiser lateral</small></div><div class="slot-card front"><b>Slot 2</b><span>Frente meio</span><small>tank principal ou iniciador mais importante</small></div><div class="slot-card front"><b>Slot 6</b><span>Frente direita</span><small>flanco agressivo, salto/backline, controle</small></div><div class="slot-card back"><b>Slot 3</b><span>Fundo esquerda</span><small>DPS secundário ou suporte menos prioritário</small></div><div class="slot-card back"><b>Slot 4</b><span>Fundo meio-esquerda</span><small>DPS/buffer mais valioso protegido</small></div><div class="slot-card back"><b>Slot 5</b><span>Fundo meio-direita</span><small>DPS/controle AOE protegido</small></div><div class="slot-card back"><b>Slot 7</b><span>Fundo direita</span><small>DPS secundário, atacante de linha de trás ou isca lateral</small></div></div>
+  <div class="grid-2">
+    <article class="info-card"><h3>Regra prática</h3><ul><li><b>Slot 2:</b> tank principal.</li><li><b>Slots 1/6:</b> bruiser, controle, salto/backline.</li><li><b>Slots 4/5:</b> melhores DPS e buffers.</li><li><b>Slots 3/7:</b> DPS secundário, isca lateral ou suporte menos crítico.</li></ul></article>
+    <article class="info-card"><h3>O que ainda não é 100% fechado</h3><ul><li>O APK confirma posições, mas não uma regra pública dizendo que “lado X recebe mais dano”.</li><li>O lado exato é recomendação estratégica por proteção, alvo e valor do Palmon.</li><li>Se o inimigo pune um lado, troque carry entre Slot 4 e 5.</li></ul></article>
+  </div>
+</section>
+
+<section class="section" id="perks">
+  <h2>Perks, traits e breeding</h2>
+  <p class="lead">As traits S abaixo vêm do APK. A regra de breeding usada vem da AllClash 2026: guardar Palmons com trait S, montar blueprint com 4 traits e usar o slot esquerdo do Nursery para definir qual Palmon nasce.</p>
+  <div class="grid-2"><div><article class="rule-card"><h3>Tank</h3><p><b>4 perks padrão:</b><br>Vigorous/Vigoroso HP +10% | Unshakeable/Inabalável DEF +10% | Robust/Robusto HP +7% | Steel Skull/Crânio de Aço Crit Dmg Reduction +8%</p><p><b>Alternativas:</b><br>Unyielding/Indomável, Steadfast/Firme, Clear-Headed/Lúcido, Elusive/Evasivo</p><p><b>Uso:</b> Tank do Slot 2; precisa durar e absorver pressão.</p></article><article class="rule-card"><h3>DPS fundo</h3><p><b>4 perks padrão:</b><br>Warlike/Guerreiro ATK +10% | Belligerent/Beligerante ATK +7% | Blessed/Abençoado Crit Rate +8% | Heartless/Impiedoso Crit Dmg +15%</p><p><b>Alternativas:</b><br>Deadeye/Certeiro, Sharpshooter/Franco-atirador, Ruthless/Cruel, Fortunate/Afortunado, Robust se morrer cedo</p><p><b>Uso:</b> Carry protegido na backline; maximiza dano.</p></article><article class="rule-card"><h3>DPS frente/bruiser</h3><p><b>4 perks padrão:</b><br>Warlike/Guerreiro ATK +10% | Belligerent/Beligerante ATK +7% | Robust/Robusto HP +7% | Vigorous/Vigoroso HP +10%</p><p><b>Alternativas:</b><br>Steel Skull, Unyielding ou Blessed se o combate pedir mais defesa ou dano</p><p><b>Uso:</b> Frontliner agressivo dos flancos; dano sem explodir cedo.</p></article><article class="rule-card"><h3>Suporte/controle</h3><p><b>4 perks padrão:</b><br>Vigorous/Vigoroso HP +10% | Robust/Robusto HP +7% | Unshakeable/Inabalável DEF +10% | Iron Will/Determinação de Ferro Tenacity +8%</p><p><b>Alternativas:</b><br>Clear-Headed contra stun, Steel Skull contra burst, Belligerent se também for carry</p><p><b>Uso:</b> Precisa sobreviver para buffar, reduzir dano ou controlar mais vezes.</p></article></div><div class="table-wrap"><table><thead><tr><th>Trait EN</th><th>PT</th><th>Efeito</th><th>Valor</th><th>Raw</th></tr></thead><tbody><tr><td>Warlike</td><td>Guerreiro</td><td>Attack +10%</td><td>10</td><td>1000</td></tr><tr><td>Unshakeable</td><td>Inabalável</td><td>Defense +10%</td><td>10</td><td>1000</td></tr><tr><td>Vigorous</td><td>Vigoroso</td><td>HP +10%</td><td>10</td><td>1000</td></tr><tr><td>Deadeye</td><td>Certeiro</td><td>Accuracy +8%</td><td>8</td><td>800</td></tr><tr><td>Blessed</td><td>Abençoado</td><td>Crit Rate +8%</td><td>8</td><td>800</td></tr><tr><td>Iron Will</td><td>Determinação de Ferro</td><td>Tenacity +8%</td><td>8</td><td>800</td></tr><tr><td>Heartless</td><td>Impiedoso</td><td>Crit Damage +15%</td><td>15</td><td>1500</td></tr><tr><td>Diamond Skull</td><td>Crânio de Diamante</td><td>Crit Damage Reduction +15%</td><td>15</td><td>1500</td></tr><tr><td>Belligerent</td><td>Beligerante</td><td>Attack +7%</td><td>7</td><td>700</td></tr><tr><td>Steadfast</td><td>Firme</td><td>Defense +7%</td><td>7</td><td>700</td></tr><tr><td>Robust</td><td>Robusto</td><td>HP +7%</td><td>7</td><td>700</td></tr><tr><td>Sharpshooter</td><td>Franco-atirador</td><td>Accuracy +5%</td><td>5</td><td>500</td></tr><tr><td>Elusive</td><td>Evasivo</td><td>Evasion +5%</td><td>5</td><td>500</td></tr><tr><td>Fortunate</td><td>Afortunado</td><td>Crit Rate +5%</td><td>5</td><td>500</td></tr><tr><td>Unyielding</td><td>Indomável</td><td>Tenacity +5%</td><td>5</td><td>500</td></tr><tr><td>Ruthless</td><td>Cruel</td><td>Crit Damage +8%</td><td>8</td><td>800</td></tr><tr><td>Steel Skull</td><td>Crânio de Aço</td><td>Crit Damage Reduction +8%</td><td>8</td><td>800</td></tr><tr><td>Clear-Headed</td><td>Lúcido</td><td>Stun Resist +7%</td><td>7</td><td>700</td></tr></tbody></table></div></div>
+  <p class="callout danger"><b>Cuidado:</b> páginas individuais públicas não confirmam as 4 perks perfeitas de todos os Palmons. Por isso a Pedia usa perfil por função e marca como recomendação prática.</p>
+</section>
+
+<section class="section" id="tier">
+  <h2>Tier list e decisões rápidas</h2>
+  <div class="grid-3">
+    <article class="info-card"><h3>Melhores tanks</h3><ol><li><b>#2 Mammolith</b> <span>Slot 2 - Frente meio · Investida Avalanche</span></li><li><b>#3 Embergeist</b> <span>Slot 2 - Frente meio · Proteção Infernal</span></li><li><b>#9 Ghillant</b> <span>Slot 2 - Frente meio · Ímpeto Umbral</span></li><li><b>#10 Statchew</b> <span>Slot 2 - Frente meio · Rugido Protetor</span></li><li><b>#38 Platyputz</b> <span>Slot 2 - Frente meio · Escudo de Bolhas</span></li><li><b>#50 Maximito</b> <span>Slot 2 - Frente meio · Bênção Elefantina</span></li></ol></article>
+    <article class="info-card"><h3>Melhores DPS/top core</h3><ol><li><b>#1 Zapantis</b> <span>Eletrico · Slot 6 - Frente direita · foco Salto Relâmpago</span></li><li><b>#4 Hexkit</b> <span>Fogo · Slot 4 - Fundo meio-esquerda · foco Aperto Infernal</span></li><li><b>#5 Rootwarden</b> <span>Terra · Slot 5 - Fundo meio-direita · foco Armadilha Verde</span></li><li><b>#6 Glacewing</b> <span>Agua · Slot 5 - Fundo meio-direita · foco Explosão Asa Gélida</span></li><li><b>#7 Thundertooth</b> <span>Eletrico · Slot 4 - Fundo meio-esquerda · foco Rajada Fantasma</span></li><li><b>#8 Plunderjaw</b> <span>Agua · Slot 4 - Fundo meio-esquerda · foco Perdição Devoradora</span></li><li><b>#11 Regalion</b> <span>Agua · Slot 1 - Frente esquerda · foco Maré Revolta</span></li><li><b>#12 Fulgairy</b> <span>Eletrico · Slot 1 - Frente esquerda · foco Contravoltaico</span></li><li><b>#13 Gnashley</b> <span>Agua · Slot 6 - Frente direita · foco Balançada de Cauda</span></li><li><b>#14 Hoofrit</b> <span>Fogo · Slot 5 - Fundo meio-direita · foco Rajada Ardente</span></li><li><b>#15 Salamantis</b> <span>Terra · Slot 5 - Fundo meio-direita · foco Vórtice de Lâminas</span></li><li><b>#16 Battereina</b> <span>Eletrico · Slot 4 - Fundo meio-esquerda · foco Descarga Dinâmica</span></li></ol></article>
+    <article class="info-card"><h3>Suportes/controle puros</h3><ol><li><b>#26 Limudroid</b> <span>Slot 5 - Fundo meio-direita · Raios Iônicos</span></li><li><b>#30 Escarffier</b> <span>Slot 6 - Frente direita · Bom Apetite</span></li><li><b>#35 Woozard</b> <span>Slot 5 - Fundo meio-direita · Fungestouro</span></li><li><b>#42 Cerverdant</b> <span>Slot 1 - Frente esquerda · Graça Verdejante </span></li><li><b>#48 Meowdame</b> <span>Slot 4 - Fundo meio-esquerda · Bênção Estelar</span></li><li><b>#51 Lendanear</b> <span>Slot 4 - Fundo meio-esquerda · Rejuvenescer</span></li></ol></article>
+  </div>
+  <div class="filters"><input id="tableSearch" placeholder="Buscar na tier list"><select id="tableTier"><option value="all">Todos tiers</option><option>SS</option><option>S</option><option>A</option><option>B</option><option>C</option></select><select id="tableElement"><option value="all">Todos elementos</option><option>Agua</option><option>Fogo</option><option>Terra</option><option>Eletrico</option></select><select id="tablePos"><option value="all">Frente/Fundo</option><option>Frente</option><option>Fundo</option></select><select id="tableRole"><option value="all">Todas funções</option><option>Tank</option><option>DPS fundo</option><option>DPS frente/bruiser</option><option>Suporte/controle</option></select></div>
+  <div class="table-wrap"><table id="rankTable"><thead><tr><th>Rank</th><th>Tier</th><th></th><th>Palmon</th><th>Elemento</th><th>Linha</th><th>Slot</th><th>Skill foco</th><th>Perks</th><th>Bruto APK</th></tr></thead><tbody><tr data-name="zapantis" data-tier="SS" data-element="Eletrico" data-pos="Frente" data-role="DPS frente/bruiser"><td class="ranknum">1</td><td><span class="tier tier-SS">SS</span></td><td><img src="images/Zapantis_5033.png" class="mini" alt="Zapantis"></td><td><b>Zapantis</b><br><small>Shockmantis</small></td><td>Eletrico<br><small>forte Agua · fraco Terra</small></td><td>Frente</td><td>Slot 6 - Frente direita</td><td><b>Salto Relâmpago</b><br><small>Salto Relâmpago &gt; Velocidade Voltaica &gt; Foice da Tormenta</small></td><td>DPS frente/bruiser</td><td>7</td></tr><tr data-name="mammolith" data-tier="SS" data-element="Terra" data-pos="Frente" data-role="Tank"><td class="ranknum">2</td><td><span class="tier tier-SS">SS</span></td><td><img src="images/Mammolith_5024.png" class="mini" alt="Mammolith"></td><td><b>Mammolith</b><br><small>Prismalith</small></td><td>Terra<br><small>forte Eletrico · fraco Fogo</small></td><td>Frente</td><td>Slot 2 - Frente meio</td><td><b>Investida Avalanche</b><br><small>Investida Avalanche &gt; Couro Rúnico &gt; Trombada</small></td><td>Tank</td><td>3</td></tr><tr data-name="embergeist" data-tier="SS" data-element="Fogo" data-pos="Frente" data-role="Tank"><td class="ranknum">3</td><td><span class="tier tier-SS">SS</span></td><td><img src="images/Embergeist_5026.png" class="mini" alt="Embergeist"></td><td><b>Embergeist</b><br><small>Pyregeist</small></td><td>Fogo<br><small>forte Terra · fraco Agua</small></td><td>Frente</td><td>Slot 2 - Frente meio</td><td><b>Proteção Infernal</b><br><small>Proteção Infernal &gt; Fúria Insana &gt; Tiro Flamejante</small></td><td>Tank</td><td>6</td></tr><tr data-name="hexkit" data-tier="SS" data-element="Fogo" data-pos="Fundo" data-role="DPS fundo"><td class="ranknum">4</td><td><span class="tier tier-SS">SS</span></td><td><img src="images/Hexkit_5035.png" class="mini" alt="Hexkit"></td><td><b>Hexkit</b><br><small>Cinderpurr</small></td><td>Fogo<br><small>forte Terra · fraco Agua</small></td><td>Fundo</td><td>Slot 4 - Fundo meio-esquerda</td><td><b>Aperto Infernal</b><br><small>Aperto Infernal &gt; Onda Ardente &gt; Chama Arcana</small></td><td>DPS fundo</td><td>2</td></tr><tr data-name="rootwarden" data-tier="SS" data-element="Terra" data-pos="Fundo" data-role="DPS fundo"><td class="ranknum">5</td><td><span class="tier tier-SS">SS</span></td><td><img src="images/Rootwarden_5034.png" class="mini" alt="Rootwarden"></td><td><b>Rootwarden</b><br><small>Thornkeeper</small></td><td>Terra<br><small>forte Eletrico · fraco Fogo</small></td><td>Fundo</td><td>Slot 5 - Fundo meio-direita</td><td><b>Armadilha Verde</b><br><small>Armadilha Verde &gt; Força Primitiva &gt; Onda Energética</small></td><td>DPS fundo</td><td>1</td></tr><tr data-name="glacewing" data-tier="SS" data-element="Agua" data-pos="Fundo" data-role="DPS fundo"><td class="ranknum">6</td><td><span class="tier tier-SS">SS</span></td><td><img src="images/Glacewing_5023.png" class="mini" alt="Glacewing"></td><td><b>Glacewing</b><br><small>Cryovern</small></td><td>Agua<br><small>forte Fogo · fraco Eletrico</small></td><td>Fundo</td><td>Slot 5 - Fundo meio-direita</td><td><b>Explosão Asa Gélida</b><br><small>Explosão Asa Gélida &gt; Rugido do Dragão &gt; Barragem de Gelo</small></td><td>DPS fundo</td><td>8</td></tr><tr data-name="thundertooth" data-tier="SS" data-element="Eletrico" data-pos="Fundo" data-role="DPS fundo"><td class="ranknum">7</td><td><span class="tier tier-SS">SS</span></td><td><img src="images/Thundertooth_5025.png" class="mini" alt="Thundertooth"></td><td><b>Thundertooth</b><br><small>Thundermane</small></td><td>Eletrico<br><small>forte Agua · fraco Terra</small></td><td>Fundo</td><td>Slot 4 - Fundo meio-esquerda</td><td><b>Rajada Fantasma</b><br><small>Rajada Fantasma &gt; Raio Energizado &gt; Garras da Tempestade</small></td><td>DPS fundo</td><td>5</td></tr><tr data-name="plunderjaw" data-tier="SS" data-element="Agua" data-pos="Fundo" data-role="DPS fundo"><td class="ranknum">8</td><td><span class="tier tier-SS">SS</span></td><td><img src="images/Plunderjaw_5032.png" class="mini" alt="Plunderjaw"></td><td><b>Plunderjaw</b><br><small>Dreadmaw</small></td><td>Agua<br><small>forte Fogo · fraco Eletrico</small></td><td>Fundo</td><td>Slot 4 - Fundo meio-esquerda</td><td><b>Perdição Devoradora</b><br><small>Perdição Devoradora &gt; Vantagem do Predador &gt; Golpe de Gancho</small></td><td>DPS fundo</td><td>4</td></tr><tr data-name="ghillant" data-tier="S" data-element="Terra" data-pos="Frente" data-role="Tank"><td class="ranknum">9</td><td><span class="tier tier-S">S</span></td><td><img src="images/Ghillant_5005.png" class="mini" alt="Ghillant"></td><td><b>Ghillant</b><br><small>Chefeuillier</small></td><td>Terra<br><small>forte Eletrico · fraco Fogo</small></td><td>Frente</td><td>Slot 2 - Frente meio</td><td><b>Ímpeto Umbral</b><br><small>Ímpeto Umbral &gt; Guardião da Natureza &gt; Blitz</small></td><td>Tank</td><td>32</td></tr><tr data-name="statchew" data-tier="S" data-element="Terra" data-pos="Frente" data-role="Tank"><td class="ranknum">10</td><td><span class="tier tier-S">S</span></td><td><img src="images/Statchew_5008.png" class="mini" alt="Statchew"></td><td><b>Statchew</b><br><small>Anubeast</small></td><td>Terra<br><small>forte Eletrico · fraco Fogo</small></td><td>Frente</td><td>Slot 2 - Frente meio</td><td><b>Rugido Protetor</b><br><small>Rugido Protetor &gt; Sentinela &gt; Abocanhar</small></td><td>Tank</td><td>18</td></tr><tr data-name="regalion" data-tier="S" data-element="Agua" data-pos="Frente" data-role="DPS frente/bruiser"><td class="ranknum">11</td><td><span class="tier tier-S">S</span></td><td><img src="images/Regalion_5019.png" class="mini" alt="Regalion"></td><td><b>Regalion</b><br><small>Lionarch</small></td><td>Agua<br><small>forte Fogo · fraco Eletrico</small></td><td>Frente</td><td>Slot 1 - Frente esquerda</td><td><b>Maré Revolta</b><br><small>Maré Revolta &gt; Rei das Ondas &gt; Fúria dos Mares</small></td><td>DPS frente/bruiser</td><td>31</td></tr><tr data-name="fulgairy" data-tier="S" data-element="Eletrico" data-pos="Frente" data-role="DPS frente/bruiser"><td class="ranknum">12</td><td><span class="tier tier-S">S</span></td><td><img src="images/Fulgairy_5016.png" class="mini" alt="Fulgairy"></td><td><b>Fulgairy</b><br><small>Keraunosaur</small></td><td>Eletrico<br><small>forte Agua · fraco Terra</small></td><td>Frente</td><td>Slot 1 - Frente esquerda</td><td><b>Contravoltaico</b><br><small>Contravoltaico &gt; Bônus Trovejante &gt; Eletroestouro</small></td><td>DPS frente/bruiser</td><td>26</td></tr><tr data-name="gnashley" data-tier="S" data-element="Agua" data-pos="Frente" data-role="DPS frente/bruiser"><td class="ranknum">13</td><td><span class="tier tier-S">S</span></td><td><img src="images/Gnashley_5027.png" class="mini" alt="Gnashley"></td><td><b>Gnashley</b><br><small>Gnashfin</small></td><td>Agua<br><small>forte Fogo · fraco Eletrico</small></td><td>Frente</td><td>Slot 6 - Frente direita</td><td><b>Balançada de Cauda</b><br><small>Balançada de Cauda &gt; Bênção do Oceano &gt; Chicote</small></td><td>DPS frente/bruiser</td><td>13</td></tr><tr data-name="hoofrit" data-tier="S" data-element="Fogo" data-pos="Fundo" data-role="DPS fundo"><td class="ranknum">14</td><td><span class="tier tier-S">S</span></td><td><img src="images/Hoofrit_5017.png" class="mini" alt="Hoofrit"></td><td><b>Hoofrit</b><br><small>Flaries</small></td><td>Fogo<br><small>forte Terra · fraco Agua</small></td><td>Fundo</td><td>Slot 5 - Fundo meio-direita</td><td><b>Rajada Ardente</b><br><small>Rajada Ardente &gt; Intensificação Ardente &gt; Investida Ardente</small></td><td>DPS fundo</td><td>16</td></tr><tr data-name="salamantis" data-tier="S" data-element="Terra" data-pos="Fundo" data-role="DPS fundo"><td class="ranknum">15</td><td><span class="tier tier-S">S</span></td><td><img src="images/Salamantis_5015.png" class="mini" alt="Salamantis"></td><td><b>Salamantis</b><br><small>Silvaurus</small></td><td>Terra<br><small>forte Eletrico · fraco Fogo</small></td><td>Fundo</td><td>Slot 5 - Fundo meio-direita</td><td><b>Vórtice de Lâminas</b><br><small>Vórtice de Lâminas &gt; Instintos de Predador &gt; Voador Fatal</small></td><td>DPS fundo</td><td>12</td></tr><tr data-name="battereina" data-tier="S" data-element="Eletrico" data-pos="Fundo" data-role="DPS fundo"><td class="ranknum">16</td><td><span class="tier tier-S">S</span></td><td><img src="images/Battereina_5020.png" class="mini" alt="Battereina"></td><td><b>Battereina</b><br><small>Ampereina</small></td><td>Eletrico<br><small>forte Agua · fraco Terra</small></td><td>Fundo</td><td>Slot 4 - Fundo meio-esquerda</td><td><b>Descarga Dinâmica</b><br><small>Descarga Dinâmica &gt; Saúdem a Rainha &gt; Golpe Fulminante</small></td><td>DPS fundo</td><td>29</td></tr><tr data-name="revontulet" data-tier="S" data-element="Fogo" data-pos="Fundo" data-role="DPS fundo"><td class="ranknum">17</td><td><span class="tier tier-S">S</span></td><td><img src="images/Revontulet_5021.png" class="mini" alt="Revontulet"></td><td><b>Revontulet</b><br><small>Vulpyrean</small></td><td>Fogo<br><small>forte Terra · fraco Agua</small></td><td>Fundo</td><td>Slot 5 - Fundo meio-direita</td><td><b>Caudas Incendiárias</b><br><small>Caudas Incendiárias &gt; Chamas Espectrais &gt; Fogo da Raposa</small></td><td>DPS fundo</td><td>33</td></tr><tr data-name="spookaboo" data-tier="S" data-element="Fogo" data-pos="Fundo" data-role="DPS fundo"><td class="ranknum">18</td><td><span class="tier tier-S">S</span></td><td><img src="images/Spookaboo_5030.png" class="mini" alt="Spookaboo"></td><td><b>Spookaboo</b><br><small></small></td><td>Fogo<br><small>forte Terra · fraco Agua</small></td><td>Fundo</td><td>Slot 5 - Fundo meio-direita</td><td><b>Abóbora Esmagadora</b><br><small>Abóbora Esmagadora &gt; Poder Fantasmagórico &gt; Chama de Vela</small></td><td>DPS fundo</td><td>22</td></tr><tr data-name="dolphriend" data-tier="A" data-element="Agua" data-pos="Frente" data-role="DPS frente/bruiser"><td class="ranknum">19</td><td><span class="tier tier-A">A</span></td><td><img src="images/Dolphriend_5006.png" class="mini" alt="Dolphriend"></td><td><b>Dolphriend</b><br><small>Adolphonis</small></td><td>Agua<br><small>forte Fogo · fraco Eletrico</small></td><td>Frente</td><td>Slot 1 - Frente esquerda</td><td><b>Onda Impetuosa</b><br><small>Onda Impetuosa &gt; Guarda das Marés &gt; Esmagamento</small></td><td>DPS frente/bruiser</td><td>10</td></tr><tr data-name="magmolin" data-tier="A" data-element="Fogo" data-pos="Frente" data-role="DPS frente/bruiser"><td class="ranknum">20</td><td><span class="tier tier-A">A</span></td><td><img src="images/Magmolin_5011.png" class="mini" alt="Magmolin"></td><td><b>Magmolin</b><br><small>Obsidrake</small></td><td>Fogo<br><small>forte Terra · fraco Agua</small></td><td>Frente</td><td>Slot 1 - Frente esquerda</td><td><b>Erupção de Lava</b><br><small>Erupção de Lava &gt; Aço Temperado &gt; Arranhão</small></td><td>DPS frente/bruiser</td><td>17</td></tr><tr data-name="kungpaw" data-tier="A" data-element="Agua" data-pos="Frente" data-role="DPS frente/bruiser"><td class="ranknum">21</td><td><span class="tier tier-A">A</span></td><td><img src="images/Kungpaw_5031.png" class="mini" alt="Kungpaw"></td><td><b>Kungpaw</b><br><small>Kungfury</small></td><td>Agua<br><small>forte Fogo · fraco Eletrico</small></td><td>Frente</td><td>Slot 1 - Frente esquerda</td><td><b>Vórtice da Maré</b><br><small>Vórtice da Maré &gt; Orientação do Shifu &gt; Soco Hidráulico</small></td><td>DPS frente/bruiser</td><td>23</td></tr><tr data-name="blazeal" data-tier="A" data-element="Fogo" data-pos="Fundo" data-role="DPS fundo"><td class="ranknum">22</td><td><span class="tier tier-A">A</span></td><td><img src="images/Blazeal_5009.png" class="mini" alt="Blazeal"></td><td><b>Blazeal</b><br><small>Wildfuror</small></td><td>Fogo<br><small>forte Terra · fraco Agua</small></td><td>Fundo</td><td>Slot 5 - Fundo meio-direita</td><td><b>Huuuah!</b><br><small>Huuuah! &gt; Aço Temperado &gt; Hyah!</small></td><td>DPS fundo</td><td>15</td></tr><tr data-name="abuzzinian" data-tier="A" data-element="Eletrico" data-pos="Frente" data-role="DPS frente/bruiser"><td class="ranknum">23</td><td><span class="tier tier-A">A</span></td><td><img src="images/Abuzzinian_5007.png" class="mini" alt="Abuzzinian"></td><td><b>Abuzzinian</b><br><small>Servolt</small></td><td>Eletrico<br><small>forte Agua · fraco Terra</small></td><td>Frente</td><td>Slot 6 - Frente direita</td><td><b>Tempestade Noturna</b><br><small>Tempestade Noturna &gt; Passo Fantasma &gt; Surto Elétrico</small></td><td>DPS frente/bruiser</td><td>25</td></tr><tr data-name="pipistrigoi" data-tier="A" data-element="Fogo" data-pos="Fundo" data-role="DPS fundo"><td class="ranknum">24</td><td><span class="tier tier-A">A</span></td><td><img src="images/Pipistrigoi_5028.png" class="mini" alt="Pipistrigoi"></td><td><b>Pipistrigoi</b><br><small>Azurostrigoi</small></td><td>Fogo<br><small>forte Terra · fraco Agua</small></td><td>Fundo</td><td>Slot 5 - Fundo meio-direita</td><td><b>Ciclone Fantasma</b><br><small>Ciclone Fantasma &gt; Foco Noturno &gt; Chama Infernal</small></td><td>DPS fundo</td><td>28</td></tr><tr data-name="baboom" data-tier="A" data-element="Terra" data-pos="Fundo" data-role="DPS fundo"><td class="ranknum">25</td><td><span class="tier tier-A">A</span></td><td><img src="images/Baboom_5010.png" class="mini" alt="Baboom"></td><td><b>Baboom</b><br><small>Rumbkey</small></td><td>Terra<br><small>forte Eletrico · fraco Fogo</small></td><td>Fundo</td><td>Slot 5 - Fundo meio-direita</td><td><b>Golpe Poderoso</b><br><small>Golpe Poderoso &gt; Neurônios de Aço &gt; Sufocar</small></td><td>DPS fundo</td><td>14</td></tr><tr data-name="limudroid" data-tier="A" data-element="Eletrico" data-pos="Fundo" data-role="Suporte/controle"><td class="ranknum">26</td><td><span class="tier tier-A">A</span></td><td><img src="images/Limudroid_5018.png" class="mini" alt="Limudroid"></td><td><b>Limudroid</b><br><small>Bunodroid</small></td><td>Eletrico<br><small>forte Agua · fraco Terra</small></td><td>Fundo</td><td>Slot 5 - Fundo meio-direita</td><td><b>Raios Iônicos</b><br><small>Raios Iônicos &gt; Prodígio &gt; Esfera de Energia</small></td><td>Suporte/controle</td><td>20</td></tr><tr data-name="ninjump" data-tier="A" data-element="Agua" data-pos="Fundo" data-role="DPS fundo"><td class="ranknum">27</td><td><span class="tier tier-A">A</span></td><td><img src="images/Ninjump_5002.png" class="mini" alt="Ninjump"></td><td><b>Ninjump</b><br><small>Bufonobi</small></td><td>Agua<br><small>forte Fogo · fraco Eletrico</small></td><td>Fundo</td><td>Slot 5 - Fundo meio-direita</td><td><b>Águas que Caem</b><br><small>Águas que Caem &gt; Ondas que Quebram &gt; Águas que Correm</small></td><td>DPS fundo</td><td>9</td></tr><tr data-name="fingenue" data-tier="A" data-element="Agua" data-pos="Fundo" data-role="DPS fundo"><td class="ranknum">28</td><td><span class="tier tier-A">A</span></td><td><img src="images/Fingenue_5013.png" class="mini" alt="Fingenue"></td><td><b>Fingenue</b><br><small>Finnabelle</small></td><td>Agua<br><small>forte Fogo · fraco Eletrico</small></td><td>Fundo</td><td>Slot 4 - Fundo meio-esquerda</td><td><b>Esguicho de Água</b><br><small>Esguicho de Água &gt; Presente do Oceano &gt; Esguicho</small></td><td>DPS fundo</td><td>30</td></tr><tr data-name="barkplug" data-tier="A" data-element="Eletrico" data-pos="Frente" data-role="DPS frente/bruiser"><td class="ranknum">29</td><td><span class="tier tier-A">A</span></td><td><img src="images/Barkplug_5001.png" class="mini" alt="Barkplug"></td><td><b>Barkplug</b><br><small>Wattweiler</small></td><td>Eletrico<br><small>forte Agua · fraco Terra</small></td><td>Frente</td><td>Slot 6 - Frente direita</td><td><b>Sobrecarga </b><br><small>Sobrecarga  &gt; Voltagem Concentrada &gt; Raio do Turbilhão</small></td><td>DPS frente/bruiser</td><td>11</td></tr><tr data-name="escarffier" data-tier="A" data-element="Fogo" data-pos="Frente" data-role="Suporte/controle"><td class="ranknum">30</td><td><span class="tier tier-A">A</span></td><td><img src="images/Escarffier_5022.png" class="mini" alt="Escarffier"></td><td><b>Escarffier</b><br><small>Essaucier</small></td><td>Fogo<br><small>forte Terra · fraco Agua</small></td><td>Frente</td><td>Slot 6 - Frente direita</td><td><b>Bom Apetite</b><br><small>Bom Apetite &gt; Ignição Furiosa &gt; Punição Picante</small></td><td>Suporte/controle</td><td>35</td></tr><tr data-name="mantleray" data-tier="A" data-element="Eletrico" data-pos="Fundo" data-role="DPS fundo"><td class="ranknum">31</td><td><span class="tier tier-A">A</span></td><td><img src="images/Mantleray_5004.png" class="mini" alt="Mantleray"></td><td><b>Mantleray</b><br><small>Sorceray</small></td><td>Eletrico<br><small>forte Agua · fraco Terra</small></td><td>Fundo</td><td>Slot 4 - Fundo meio-esquerda</td><td><b>Explosão Elétrica</b><br><small>Explosão Elétrica &gt; Ferroada Elétrica &gt; Relâmpago</small></td><td>DPS fundo</td><td>34</td></tr><tr data-name="surveilynx" data-tier="A" data-element="Terra" data-pos="Fundo" data-role="DPS fundo"><td class="ranknum">32</td><td><span class="tier tier-A">A</span></td><td><img src="images/Surveilynx_5012.png" class="mini" alt="Surveilynx"></td><td><b>Surveilynx</b><br><small>Camouflynx</small></td><td>Terra<br><small>forte Eletrico · fraco Fogo</small></td><td>Fundo</td><td>Slot 5 - Fundo meio-direita</td><td><b>Passo Umbral</b><br><small>Passo Umbral &gt; Exercícios Táticos &gt; Tiro Preciso</small></td><td>DPS fundo</td><td>27</td></tr><tr data-name="oleana" data-tier="A" data-element="Terra" data-pos="Fundo" data-role="DPS fundo"><td class="ranknum">33</td><td><span class="tier tier-A">A</span></td><td><img src="images/Oleana_5029.png" class="mini" alt="Oleana"></td><td><b>Oleana</b><br><small></small></td><td>Terra<br><small>forte Eletrico · fraco Fogo</small></td><td>Fundo</td><td>Slot 5 - Fundo meio-direita</td><td><b>Arremesso de Guirlanda</b><br><small>Arremesso de Guirlanda &gt; Abraço Folhoso &gt; Barragem de Oliva</small></td><td>DPS fundo</td><td>21</td></tr><tr data-name="lucidina" data-tier="B" data-element="Agua" data-pos="Fundo" data-role="DPS fundo"><td class="ranknum">34</td><td><span class="tier tier-B">B</span></td><td><img src="images/Lucidina_5003.png" class="mini" alt="Lucidina"></td><td><b>Lucidina</b><br><small>Oneirina</small></td><td>Agua<br><small>forte Fogo · fraco Eletrico</small></td><td>Fundo</td><td>Slot 5 - Fundo meio-direita</td><td><b>Tormento</b><br><small>Tormento &gt; Sombra Onírica &gt; Fantasma </small></td><td>DPS fundo</td><td>24</td></tr><tr data-name="woozard" data-tier="B" data-element="Terra" data-pos="Fundo" data-role="Suporte/controle"><td class="ranknum">35</td><td><span class="tier tier-B">B</span></td><td><img src="images/Woozard_5014.png" class="mini" alt="Woozard"></td><td><b>Woozard</b><br><small>Fleurizard</small></td><td>Terra<br><small>forte Eletrico · fraco Fogo</small></td><td>Fundo</td><td>Slot 5 - Fundo meio-direita</td><td><b>Fungestouro</b><br><small>Fungestouro &gt; Dracônico &gt; Fungitiro</small></td><td>Suporte/controle</td><td>19</td></tr><tr data-name="rotorlotor" data-tier="C" data-element="Eletrico" data-pos="Fundo" data-role="DPS fundo"><td class="ranknum">36</td><td><span class="tier tier-C">C</span></td><td><img src="images/Rotorlotor_4011.png" class="mini" alt="Rotorlotor"></td><td><b>Rotorlotor</b><br><small></small></td><td>Eletrico<br><small>forte Agua · fraco Terra</small></td><td>Fundo</td><td>Slot 7 - Fundo direita</td><td><b>Tempestade de Raios</b><br><small>Tempestade de Raios &gt; Riquezas do Vento &gt; Ataque Carregado</small></td><td>DPS fundo</td><td>51</td></tr><tr data-name="voltbolt" data-tier="C" data-element="Eletrico" data-pos="Frente" data-role="DPS frente/bruiser"><td class="ranknum">37</td><td><span class="tier tier-C">C</span></td><td><img src="images/Voltbolt_4015.png" class="mini" alt="Voltbolt"></td><td><b>Voltbolt</b><br><small></small></td><td>Eletrico<br><small>forte Agua · fraco Terra</small></td><td>Frente</td><td>Slot 6 - Frente direita</td><td><b>Mergulho da Tormenta</b><br><small>Mergulho da Tormenta &gt; Estudo Rápido &gt; Chute Rápido</small></td><td>DPS frente/bruiser</td><td>44</td></tr><tr data-name="platyputz" data-tier="C" data-element="Agua" data-pos="Frente" data-role="Tank"><td class="ranknum">38</td><td><span class="tier tier-C">C</span></td><td><img src="images/Platyputz_4003.png" class="mini" alt="Platyputz"></td><td><b>Platyputz</b><br><small></small></td><td>Agua<br><small>forte Fogo · fraco Eletrico</small></td><td>Frente</td><td>Slot 2 - Frente meio</td><td><b>Escudo de Bolhas</b><br><small>Escudo de Bolhas &gt; Dessensibilizado &gt; Sei do Que Precisa</small></td><td>Tank</td><td>45</td></tr><tr data-name="axollium" data-tier="C" data-element="Terra" data-pos="Frente" data-role="DPS frente/bruiser"><td class="ranknum">39</td><td><span class="tier tier-C">C</span></td><td><img src="images/Axollium_4016.png" class="mini" alt="Axollium"></td><td><b>Axollium</b><br><small></small></td><td>Terra<br><small>forte Eletrico · fraco Fogo</small></td><td>Frente</td><td>Slot 1 - Frente esquerda</td><td><b>Choque Verde</b><br><small>Choque Verde &gt; Corrida Onírica &gt; Horticultura Letal</small></td><td>DPS frente/bruiser</td><td>42</td></tr><tr data-name="incineraptor" data-tier="C" data-element="Fogo" data-pos="Fundo" data-role="DPS fundo"><td class="ranknum">40</td><td><span class="tier tier-C">C</span></td><td><img src="images/Incineraptor_4007.png" class="mini" alt="Incineraptor"></td><td><b>Incineraptor</b><br><small></small></td><td>Fogo<br><small>forte Terra · fraco Agua</small></td><td>Fundo</td><td>Slot 5 - Fundo meio-direita</td><td><b>Queda Flamejante</b><br><small>Queda Flamejante &gt; Olho de Águia &gt; Onda de Calor</small></td><td>DPS fundo</td><td>50</td></tr><tr data-name="wyvierno" data-tier="C" data-element="Fogo" data-pos="Fundo" data-role="DPS fundo"><td class="ranknum">41</td><td><span class="tier tier-C">C</span></td><td><img src="images/Wyvierno_4001.png" class="mini" alt="Wyvierno"></td><td><b>Wyvierno</b><br><small></small></td><td>Fogo<br><small>forte Terra · fraco Agua</small></td><td>Fundo</td><td>Slot 5 - Fundo meio-direita</td><td><b>Varredura Ardente </b><br><small>Varredura Ardente  &gt; Coração Ardente &gt; Bola de Fogo</small></td><td>DPS fundo</td><td>47</td></tr><tr data-name="cerverdant" data-tier="C" data-element="Terra" data-pos="Frente" data-role="Suporte/controle"><td class="ranknum">42</td><td><span class="tier tier-C">C</span></td><td><img src="images/Cerverdant_4012.png" class="mini" alt="Cerverdant"></td><td><b>Cerverdant</b><br><small></small></td><td>Terra<br><small>forte Eletrico · fraco Fogo</small></td><td>Frente</td><td>Slot 1 - Frente esquerda</td><td><b>Graça Verdejante </b><br><small>Graça Verdejante  &gt; Fartura Verdejante &gt; Força da Natureza</small></td><td>Suporte/controle</td><td>39</td></tr><tr data-name="thunderclawd" data-tier="C" data-element="Eletrico" data-pos="Fundo" data-role="DPS fundo"><td class="ranknum">43</td><td><span class="tier tier-C">C</span></td><td><img src="images/Thunderclawd_4005.png" class="mini" alt="Thunderclawd"></td><td><b>Thunderclawd</b><br><small></small></td><td>Eletrico<br><small>forte Agua · fraco Terra</small></td><td>Fundo</td><td>Slot 5 - Fundo meio-direita</td><td><b>Nuvem Escura</b><br><small>Nuvem Escura &gt; Ionizado  &gt; Trovejada</small></td><td>DPS fundo</td><td>40</td></tr><tr data-name="snowkami" data-tier="C" data-element="Agua" data-pos="Fundo" data-role="DPS fundo"><td class="ranknum">44</td><td><span class="tier tier-C">C</span></td><td><img src="images/Snowkami_4004.png" class="mini" alt="Snowkami"></td><td><b>Snowkami</b><br><small></small></td><td>Agua<br><small>forte Fogo · fraco Eletrico</small></td><td>Fundo</td><td>Slot 5 - Fundo meio-direita</td><td><b>Uivo Glacial</b><br><small>Uivo Glacial &gt; Vontade Lupina &gt; Garragélida</small></td><td>DPS fundo</td><td>46</td></tr><tr data-name="vulcanid" data-tier="C" data-element="Fogo" data-pos="Frente" data-role="DPS frente/bruiser"><td class="ranknum">45</td><td><span class="tier tier-C">C</span></td><td><img src="images/Vulcanid_4013.png" class="mini" alt="Vulcanid"></td><td><b>Vulcanid</b><br><small></small></td><td>Fogo<br><small>forte Terra · fraco Agua</small></td><td>Frente</td><td>Slot 1 - Frente esquerda</td><td><b>Prova de Fogo</b><br><small>Prova de Fogo &gt; Cachorro Quente &gt; Mordida Ardida </small></td><td>DPS frente/bruiser</td><td>43</td></tr><tr data-name="bruiseberry" data-tier="C" data-element="Terra" data-pos="Frente" data-role="DPS frente/bruiser"><td class="ranknum">46</td><td><span class="tier tier-C">C</span></td><td><img src="images/Bruiseberry_4009.png" class="mini" alt="Bruiseberry"></td><td><b>Bruiseberry</b><br><small></small></td><td>Terra<br><small>forte Eletrico · fraco Fogo</small></td><td>Frente</td><td>Slot 1 - Frente esquerda</td><td><b>Pancada de Frutas</b><br><small>Pancada de Frutas &gt; Aquecimento Flamejante &gt; Golpe Frutífero </small></td><td>DPS frente/bruiser</td><td>38</td></tr><tr data-name="squeezel" data-tier="C" data-element="Agua" data-pos="Fundo" data-role="DPS fundo"><td class="ranknum">47</td><td><span class="tier tier-C">C</span></td><td><img src="images/Squeezel_3202.png" class="mini" alt="Squeezel"></td><td><b>Squeezel</b><br><small></small></td><td>Agua<br><small>forte Fogo · fraco Eletrico</small></td><td>Fundo</td><td>Slot 7 - Fundo direita</td><td><b>Aquartilharia</b><br><small>Aquartilharia &gt; Explosão Aquática &gt; Jato Aquático</small></td><td>DPS fundo</td><td>41</td></tr><tr data-name="meowdame" data-tier="C" data-element="Agua" data-pos="Fundo" data-role="Suporte/controle"><td class="ranknum">48</td><td><span class="tier tier-C">C</span></td><td><img src="images/Meowdame_4002.png" class="mini" alt="Meowdame"></td><td><b>Meowdame</b><br><small></small></td><td>Agua<br><small>forte Fogo · fraco Eletrico</small></td><td>Fundo</td><td>Slot 4 - Fundo meio-esquerda</td><td><b>Bênção Estelar</b><br><small>Bênção Estelar &gt; Milagreiro &gt; Orbe Onírico</small></td><td>Suporte/controle</td><td>49</td></tr><tr data-name="terrastudo" data-tier="C" data-element="Terra" data-pos="Frente" data-role="DPS frente/bruiser"><td class="ranknum">49</td><td><span class="tier tier-C">C</span></td><td><img src="images/Terrastudo_4006.png" class="mini" alt="Terrastudo"></td><td><b>Terrastudo</b><br><small></small></td><td>Terra<br><small>forte Eletrico · fraco Fogo</small></td><td>Frente</td><td>Slot 1 - Frente esquerda</td><td><b>Giro Tectônico</b><br><small>Giro Tectônico &gt; Furadura &gt; Cabeçada</small></td><td>DPS frente/bruiser</td><td>36</td></tr><tr data-name="maximito" data-tier="C" data-element="Agua" data-pos="Frente" data-role="Tank"><td class="ranknum">50</td><td><span class="tier tier-C">C</span></td><td><img src="images/Maximito_4008.png" class="mini" alt="Maximito"></td><td><b>Maximito</b><br><small></small></td><td>Agua<br><small>forte Fogo · fraco Eletrico</small></td><td>Frente</td><td>Slot 2 - Frente meio</td><td><b>Bênção Elefantina</b><br><small>Bênção Elefantina &gt; Grande Construtorzinho &gt; Trombada</small></td><td>Tank</td><td>48</td></tr><tr data-name="lendanear" data-tier="C" data-element="Terra" data-pos="Fundo" data-role="Suporte/controle"><td class="ranknum">51</td><td><span class="tier tier-C">C</span></td><td><img src="images/Lendanear_4010.png" class="mini" alt="Lendanear"></td><td><b>Lendanear</b><br><small></small></td><td>Terra<br><small>forte Eletrico · fraco Fogo</small></td><td>Fundo</td><td>Slot 4 - Fundo meio-esquerda</td><td><b>Rejuvenescer</b><br><small>Rejuvenescer &gt; Doces Cuidados &gt; Bombardeio de Amor</small></td><td>Suporte/controle</td><td>37</td></tr><tr data-name="spinchilla" data-tier="C" data-element="Terra" data-pos="Fundo" data-role="DPS fundo"><td class="ranknum">52</td><td><span class="tier tier-C">C</span></td><td><img src="images/Spinchilla_3204.png" class="mini" alt="Spinchilla"></td><td><b>Spinchilla</b><br><small></small></td><td>Terra<br><small>forte Eletrico · fraco Fogo</small></td><td>Fundo</td><td>Slot 5 - Fundo meio-direita</td><td><b>Folhas Rodopiantes</b><br><small>Folhas Rodopiantes &gt; Trapalhão de Sorte &gt; Pancada Atordoante </small></td><td>DPS fundo</td><td>53</td></tr><tr data-name="herculeaf" data-tier="C" data-element="Terra" data-pos="Frente" data-role="DPS frente/bruiser"><td class="ranknum">53</td><td><span class="tier tier-C">C</span></td><td><img src="images/Herculeaf_4014.png" class="mini" alt="Herculeaf"></td><td><b>Herculeaf</b><br><small></small></td><td>Terra<br><small>forte Eletrico · fraco Fogo</small></td><td>Frente</td><td>Slot 6 - Frente direita</td><td><b>Salto Selvagem</b><br><small>Salto Selvagem &gt; Força Ferina &gt; Ursataque</small></td><td>DPS frente/bruiser</td><td>58</td></tr><tr data-name="auktyke" data-tier="C" data-element="Agua" data-pos="Frente" data-role="DPS frente/bruiser"><td class="ranknum">54</td><td><span class="tier tier-C">C</span></td><td><img src="images/Auktyke_3206.png" class="mini" alt="Auktyke"></td><td><b>Auktyke</b><br><small></small></td><td>Agua<br><small>forte Fogo · fraco Eletrico</small></td><td>Frente</td><td>Slot 1 - Frente esquerda</td><td><b>Jato de Gêiser</b><br><small>Jato de Gêiser &gt; Resistir a Gelo &gt; Bicada Nobre</small></td><td>DPS frente/bruiser</td><td>57</td></tr><tr data-name="flouffant" data-tier="C" data-element="Terra" data-pos="Fundo" data-role="DPS fundo"><td class="ranknum">55</td><td><span class="tier tier-C">C</span></td><td><img src="images/Flouffant_3203.png" class="mini" alt="Flouffant"></td><td><b>Flouffant</b><br><small></small></td><td>Terra<br><small>forte Eletrico · fraco Fogo</small></td><td>Fundo</td><td>Slot 5 - Fundo meio-direita</td><td><b>Invocar Espinhos</b><br><small>Invocar Espinhos &gt; Bênção da Natureza &gt; Emaranhar</small></td><td>DPS fundo</td><td>54</td></tr><tr data-name="kilohopp" data-tier="C" data-element="Eletrico" data-pos="Fundo" data-role="DPS fundo"><td class="ranknum">56</td><td><span class="tier tier-C">C</span></td><td><img src="images/Kilohopp_3207.png" class="mini" alt="Kilohopp"></td><td><b>Kilohopp</b><br><small></small></td><td>Eletrico<br><small>forte Agua · fraco Terra</small></td><td>Fundo</td><td>Slot 5 - Fundo meio-direita</td><td><b>Pico de Energia</b><br><small>Pico de Energia &gt; Pelugem Estática &gt; Estática Peluda</small></td><td>DPS fundo</td><td>52</td></tr><tr data-name="graffitty" data-tier="C" data-element="Terra" data-pos="Fundo" data-role="DPS fundo"><td class="ranknum">57</td><td><span class="tier tier-C">C</span></td><td><img src="images/Graffitty_3201.png" class="mini" alt="Graffitty"></td><td><b>Graffitty</b><br><small></small></td><td>Terra<br><small>forte Eletrico · fraco Fogo</small></td><td>Fundo</td><td>Slot 7 - Fundo direita</td><td><b>Toque de Cor </b><br><small>Toque de Cor  &gt; Patinhas Ágeis &gt; Bola de Tinta</small></td><td>DPS fundo</td><td>56</td></tr><tr data-name="emboa" data-tier="C" data-element="Fogo" data-pos="Fundo" data-role="DPS fundo"><td class="ranknum">58</td><td><span class="tier tier-C">C</span></td><td><img src="images/Emboa_3205.png" class="mini" alt="Emboa"></td><td><b>Emboa</b><br><small></small></td><td>Fogo<br><small>forte Terra · fraco Agua</small></td><td>Fundo</td><td>Slot 7 - Fundo direita</td><td><b>Aquecimento </b><br><small>Aquecimento  &gt; Reciclagem Térmica &gt; Salto Mortal</small></td><td>DPS fundo</td><td>55</td></tr></tbody></table></div>
+</section>
+
+<section class="section" id="palmondex">
+  <h2>PalmonDex completa</h2>
+  <p class="lead">Cada ficha mostra forma base, evolução, elemento, fraqueza/vantagem, posição, perks recomendadas, skill para focar, stats do APK e todas as habilidades que extraímos.</p>
+  <div class="filters"><input id="cardSearch" placeholder="Buscar Palmon ou skill"><select id="cardTier"><option value="all">Todos tiers</option><option>SS</option><option>S</option><option>A</option><option>B</option><option>C</option></select><select id="cardElement"><option value="all">Todos elementos</option><option>Agua</option><option>Fogo</option><option>Terra</option><option>Eletrico</option></select><select id="cardPos"><option value="all">Frente/Fundo</option><option>Frente</option><option>Fundo</option></select><select id="cardRole"><option value="all">Todas funções</option><option>Tank</option><option>DPS fundo</option><option>DPS frente/bruiser</option><option>Suporte/controle</option></select></div>
+  <p class="toolbar-note"><span id="cardCount">58</span> Palmons visíveis.</p>
+  <div class="pal-grid" id="palGrid"><article class="pal-card" data-name="zapantis" data-tier="SS" data-element="Eletrico" data-pos="Frente" data-role="DPS frente/bruiser">
+<div class="card-media"><span class="rank-badge">#1</span><img src="images/Zapantis_5033.png" alt="Zapantis"><img class="evo" src="images/Shockmantis_5033_evolve.png" alt="Shockmantis"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Zapantis</h3><span class="tier tier-SS">SS</span></div>
+  <p class="evo-line">Evolução: <b>Shockmantis</b></p>
+  <div class="chips"><span>UR</span><span>Eletrico</span><span>Frente</span><span>DPS frente/bruiser</span></div>
+  <p><b>Função:</b> Tank/Bruiser de frente</p>
+  <p><b>Elemento:</b> forte contra Agua; fraco contra Terra.</p>
+  <p><b>Melhor slot:</b> Slot 6 - Frente direita<br><small>Frontliner agressivo: use no flanco para iniciar, controlar ou pressionar a backline sem ocupar o centro do tank. Alt.: Slot 1 - Frente esquerda</small></p>
+  <p class="perk"><b>Perks:</b> Warlike/Guerreiro ATK +10% | Belligerent/Beligerante ATK +7% | Robust/Robusto HP +7% | Vigorous/Vigoroso HP +10%<br><small>Alternativas: Steel Skull/Cranio de Aço ou Unyielding/Indomavel se morrer para burst/controle; Blessed se estiver muito seguro</small></p>
+  <p class="focus"><b>Skill para focar:</b> Salto Relâmpago<br>Salta para a linha de trás do inimigo e causa 1182% de dano a todos os inimigos da linha de trás, com 70% de chance de paralisá-los por 3 s (durante o que não poderão lançar Habilidades de Fúria).</p>
+  <p><b>Stats APK:</b> Power 74.700 · ATK 1.054 · DEF 86 · HP 26.350</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Foice da Tormenta</b> <small>Valor: 466.2% · Alvo APK: [18]</small><br>Ataca com suas garras para causar 126% de dano aos inimigos da linha de frente.</li><li><b>Salto Relâmpago</b> <small>Valor: 4373.4% · Alvo APK: [11]</small><br>Salta para a linha de trás do inimigo e causa 1182% de dano a todos os inimigos da linha de trás, com 70% de chance de paralisá-los por 3 s (durante o que não poderão lançar Habilidades de Fúria).</li><li><b>Velocidade Voltaica</b> <br>Aumenta a Esquiva em 10% e reduz o dano recebido por Palmon Elétricos aliados em 10% durante o combate.</li><li><b>Promissor</b> <br>Ganha +20% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="mammolith" data-tier="SS" data-element="Terra" data-pos="Frente" data-role="Tank">
+<div class="card-media"><span class="rank-badge">#2</span><img src="images/Mammolith_5024.png" alt="Mammolith"><img class="evo" src="images/Prismalith_5024_evolve.png" alt="Prismalith"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Mammolith</h3><span class="tier tier-SS">SS</span></div>
+  <p class="evo-line">Evolução: <b>Prismalith</b></p>
+  <div class="chips"><span>UR</span><span>Terra</span><span>Frente</span><span>Tank</span></div>
+  <p><b>Função:</b> Tank/Bruiser de frente</p>
+  <p><b>Elemento:</b> forte contra Eletrico; fraco contra Fogo.</p>
+  <p><b>Melhor slot:</b> Slot 2 - Frente meio<br><small>Tank principal/maior resistencia: melhor no centro para segurar a pressao frontal. Alt.: Slot 1 - Frente esquerda se outro tank melhor ja estiver no centro</small></p>
+  <p class="perk"><b>Perks:</b> Vigorous/Vigoroso HP +10% | Unshakeable/Inabalável DEF +10% | Robust/Robusto HP +7% | Steel Skull/Cranio de Aço Crit Dmg Reduction +8%<br><small>Alternativas: Unyielding/Indomavel, Steadfast/Firme, Clear-Headed/Lucido, Elusive/Evasivo</small></p>
+  <p class="focus"><b>Skill para focar:</b> Investida Avalanche<br>Avança na direção do inimigo mais distante, causando 650% de dano a todos os inimigos em seu caminho e atordoando-os por 2 s.</p>
+  <p><b>Stats APK:</b> Power 74.700 · ATK 1.025 · DEF 103 · HP 25.625</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Trombada</b> <small>Valor: 629% · Alvo APK: [1]</small><br>Balança sua poderosa tromba, causando 170% de dano a um único inimigo.</li><li><b>Investida Avalanche</b> <small>Valor: 2405% principal; 16835% total bruto se todos os hits conectarem · Alvo APK: [13, 500, 300]</small><br>Avança na direção do inimigo mais distante, causando 650% de dano a todos os inimigos em seu caminho e atordoando-os por 2 s.</li><li><b>Couro Rúnico</b> <br>Aumenta o dano final e a redução de dano em 20%. Cada vez que Investida Avalanche é lançada, ganha um adicional de 5% de dano final e redução de dano. Este efeito acumula até 3 vezes.</li><li><b>Promissor</b> <br>Ganha +20% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="embergeist" data-tier="SS" data-element="Fogo" data-pos="Frente" data-role="Tank">
+<div class="card-media"><span class="rank-badge">#3</span><img src="images/Embergeist_5026.png" alt="Embergeist"><img class="evo" src="images/Pyregeist_5026_evolve.png" alt="Pyregeist"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Embergeist</h3><span class="tier tier-SS">SS</span></div>
+  <p class="evo-line">Evolução: <b>Pyregeist</b></p>
+  <div class="chips"><span>UR</span><span>Fogo</span><span>Frente</span><span>Tank</span></div>
+  <p><b>Função:</b> Tank/Bruiser de frente</p>
+  <p><b>Elemento:</b> forte contra Terra; fraco contra Agua.</p>
+  <p><b>Melhor slot:</b> Slot 2 - Frente meio<br><small>Tank principal/maior resistencia: melhor no centro para segurar a pressao frontal. Alt.: Slot 1 - Frente esquerda se outro tank melhor ja estiver no centro</small></p>
+  <p class="perk"><b>Perks:</b> Vigorous/Vigoroso HP +10% | Unshakeable/Inabalável DEF +10% | Robust/Robusto HP +7% | Steel Skull/Cranio de Aço Crit Dmg Reduction +8%<br><small>Alternativas: Unyielding/Indomavel, Steadfast/Firme, Clear-Headed/Lucido, Elusive/Evasivo</small></p>
+  <p class="focus"><b>Skill para focar:</b> Proteção Infernal<br>Cria um Escudo de Chamas em volta de si que absorve 30% do dano recebido por 5 s. Quando o escudo expira, ele explode, causando 650% de dano a todos os inimigos.</p>
+  <p><b>Stats APK:</b> Power 74.700 · ATK 1.044 · DEF 116 · HP 26.100</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Tiro Flamejante</b> <small>Valor: 629% · Alvo APK: [1]</small><br>Desfere um ataque carregado, causando 170% de dano a um único alvo inimigo.</li><li><b>Proteção Infernal</b> <br>Cria um Escudo de Chamas em volta de si que absorve 30% do dano recebido por 5 s. Quando o escudo expira, ele explode, causando 650% de dano a todos os inimigos.</li><li><b>Fúria Insana</b> <br>Cada vez que este Palmon recebe dano em batalha, seu Ataque aumenta em 5% (acumula até 0.03% vezes).</li><li><b>Promissor</b> <br>Ganha +20% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="hexkit" data-tier="SS" data-element="Fogo" data-pos="Fundo" data-role="DPS fundo">
+<div class="card-media"><span class="rank-badge">#4</span><img src="images/Hexkit_5035.png" alt="Hexkit"><img class="evo" src="images/Cinderpurr_5035_evolve.png" alt="Cinderpurr"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Hexkit</h3><span class="tier tier-SS">SS</span></div>
+  <p class="evo-line">Evolução: <b>Cinderpurr</b></p>
+  <div class="chips"><span>UR</span><span>Fogo</span><span>Fundo</span><span>DPS fundo</span></div>
+  <p><b>Função:</b> DPS de fundo com suporte/buff</p>
+  <p><b>Elemento:</b> forte contra Terra; fraco contra Agua.</p>
+  <p><b>Melhor slot:</b> Slot 4 - Fundo meio-esquerda<br><small>Backline de alto valor: coloque protegido no meio para reduzir risco de cair cedo. Alt.: Slot 5 - Fundo meio-direita</small></p>
+  <p class="perk"><b>Perks:</b> Warlike/Guerreiro ATK +10% | Belligerent/Beligerante ATK +7% | Blessed/Abencoado Crit Rate +8% | Heartless/Impiedoso Crit Dmg +15%<br><small>Alternativas: Deadeye/Certeiro ou Sharpshooter/Franco-atirador se faltar acerto; Ruthless/Cruel ou Fortunate/Afortunado como substitutos inferiores; Robust se estiver morrendo</small></p>
+  <p class="focus"><b>Skill para focar:</b> Aperto Infernal<br>Hexkit invoca um familiar de fogo, formando uma mão gigantesca que agarra os inimigos. Causa 913% de dano a 4 alvos aleatórios e aplica uma Marca Ardente por 10 s: recebe +50% de dano de Queimadura e causa -10% de dano.</p>
+  <p><b>Stats APK:</b> Power 74.700 · ATK 1.020 · DEF 152 · HP 26.175</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Chama Arcana</b> <small>Valor: 584.6% · Alvo APK: [1]</small><br>Libera chamas azuis de seu cajado para causar 158% de dano a um único inimigo.</li><li><b>Aperto Infernal</b> <small>Valor: 3378.1% · Alvo APK: [6, 4]</small><br>Hexkit invoca um familiar de fogo, formando uma mão gigantesca que agarra os inimigos. Causa 913% de dano a 4 alvos aleatórios e aplica uma Marca Ardente por 10 s: recebe +50% de dano de Queimadura e causa -10% de dano.</li><li><b>Onda Ardente</b> <br>Ganha 10% de velocidade de ataque normal e aumenta o Ataque de Palmon Ígneos de aliados em 10% durante o combate.</li><li><b>Promissor</b> <br>Ganha +20% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="rootwarden" data-tier="SS" data-element="Terra" data-pos="Fundo" data-role="DPS fundo">
+<div class="card-media"><span class="rank-badge">#5</span><img src="images/Rootwarden_5034.png" alt="Rootwarden"><img class="evo" src="images/Thornkeeper_5034_evolve.png" alt="Thornkeeper"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Rootwarden</h3><span class="tier tier-SS">SS</span></div>
+  <p class="evo-line">Evolução: <b>Thornkeeper</b></p>
+  <div class="chips"><span>UR</span><span>Terra</span><span>Fundo</span><span>DPS fundo</span></div>
+  <p><b>Função:</b> DPS de fundo</p>
+  <p><b>Elemento:</b> forte contra Eletrico; fraco contra Fogo.</p>
+  <p><b>Melhor slot:</b> Slot 5 - Fundo meio-direita<br><small>DPS/controle de fundo: fica protegido e entrega AOE/controle sem ocupar a lateral. Alt.: Slot 4 - Fundo meio-esquerda</small></p>
+  <p class="perk"><b>Perks:</b> Warlike/Guerreiro ATK +10% | Belligerent/Beligerante ATK +7% | Blessed/Abencoado Crit Rate +8% | Heartless/Impiedoso Crit Dmg +15%<br><small>Alternativas: Deadeye/Certeiro ou Sharpshooter/Franco-atirador se faltar acerto; Ruthless/Cruel ou Fortunate/Afortunado como substitutos inferiores; Robust se estiver morrendo</small></p>
+  <p class="focus"><b>Skill para focar:</b> Armadilha Verde<br>Invoca até 3 vinhas que emaranham 3 inimigos aleatórios, causando 794% de dano a cada alvo, com 70% de chance de infligir Emaranhado por 3 s.</p>
+  <p><b>Stats APK:</b> Power 74.700 · ATK 1.020 · DEF 152 · HP 26.175</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Onda Energética</b> <small>Valor: 584.6% · Alvo APK: [1]</small><br>Ataca com o Cajado Vinhaterra para causar 158% de dano a um único inimigo.</li><li><b>Armadilha Verde</b> <small>Valor: 2937.8% · Alvo APK: [6, 3]</small><br>Invoca até 3 vinhas que emaranham 3 inimigos aleatórios, causando 794% de dano a cada alvo, com 70% de chance de infligir Emaranhado por 3 s.</li><li><b>Força Primitiva</b> <br>Ganha 10% de Precisão e 10% de Dano Final durante o combate.</li><li><b>Promissor</b> <br>Ganha +20% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="glacewing" data-tier="SS" data-element="Agua" data-pos="Fundo" data-role="DPS fundo">
+<div class="card-media"><span class="rank-badge">#6</span><img src="images/Glacewing_5023.png" alt="Glacewing"><img class="evo" src="images/Cryovern_5023_evolve.png" alt="Cryovern"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Glacewing</h3><span class="tier tier-SS">SS</span></div>
+  <p class="evo-line">Evolução: <b>Cryovern</b></p>
+  <div class="chips"><span>UR</span><span>Agua</span><span>Fundo</span><span>DPS fundo</span></div>
+  <p><b>Função:</b> DPS de fundo com suporte/buff</p>
+  <p><b>Elemento:</b> forte contra Fogo; fraco contra Eletrico.</p>
+  <p><b>Melhor slot:</b> Slot 5 - Fundo meio-direita<br><small>DPS/controle de fundo: fica protegido e entrega AOE/controle sem ocupar a lateral. Alt.: Slot 4 - Fundo meio-esquerda</small></p>
+  <p class="perk"><b>Perks:</b> Warlike/Guerreiro ATK +10% | Belligerent/Beligerante ATK +7% | Blessed/Abencoado Crit Rate +8% | Heartless/Impiedoso Crit Dmg +15%<br><small>Alternativas: Deadeye/Certeiro ou Sharpshooter/Franco-atirador se faltar acerto; Ruthless/Cruel ou Fortunate/Afortunado como substitutos inferiores; Robust se estiver morrendo</small></p>
+  <p class="focus"><b>Skill para focar:</b> Explosão Asa Gélida<br>Ativa uma explosão de gelo que causa 675% de dano a inimigos próximos, além de infligir Congelamento Profundo por 2s.</p>
+  <p><b>Stats APK:</b> Power 74.700 · ATK 1.073 · DEF 115 · HP 26.825</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Barragem de Gelo</b> <small>Valor: 777% · Alvo APK: [1]</small><br>Lança uma série de espinhos de gelo, causando 210% de dano a um único inimigo.</li><li><b>Explosão Asa Gélida</b> <small>Valor: 2497.5% · Alvo APK: [6, 7]</small><br>Ativa uma explosão de gelo que causa 675% de dano a inimigos próximos, além de infligir Congelamento Profundo por 2s.</li><li><b>Rugido do Dragão</b> <br>A Fúria aumenta 15% mais rápido.</li><li><b>Promissor</b> <br>Ganha +20% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="thundertooth" data-tier="SS" data-element="Eletrico" data-pos="Fundo" data-role="DPS fundo">
+<div class="card-media"><span class="rank-badge">#7</span><img src="images/Thundertooth_5025.png" alt="Thundertooth"><img class="evo" src="images/Thundermane_5025_evolve.png" alt="Thundermane"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Thundertooth</h3><span class="tier tier-SS">SS</span></div>
+  <p class="evo-line">Evolução: <b>Thundermane</b></p>
+  <div class="chips"><span>UR</span><span>Eletrico</span><span>Fundo</span><span>DPS fundo</span></div>
+  <p><b>Função:</b> DPS de fundo com suporte/buff</p>
+  <p><b>Elemento:</b> forte contra Agua; fraco contra Terra.</p>
+  <p><b>Melhor slot:</b> Slot 4 - Fundo meio-esquerda<br><small>Backline de alto valor: coloque protegido no meio para reduzir risco de cair cedo. Alt.: Slot 5 - Fundo meio-direita</small></p>
+  <p class="perk"><b>Perks:</b> Warlike/Guerreiro ATK +10% | Belligerent/Beligerante ATK +7% | Blessed/Abencoado Crit Rate +8% | Heartless/Impiedoso Crit Dmg +15%<br><small>Alternativas: Deadeye/Certeiro ou Sharpshooter/Franco-atirador se faltar acerto; Ruthless/Cruel ou Fortunate/Afortunado como substitutos inferiores; Robust se estiver morrendo</small></p>
+  <p class="focus"><b>Skill para focar:</b> Rajada Fantasma<br>Lança uma saraivada de 12 golpes contra inimigos aleatórios, cada um causando 220.5% de dano. Thundertooth fica invencível durante esse tempo. Cada golpe tem 50% de chance de atingir o inimigo com o Ataque mais alto.</p>
+  <p><b>Stats APK:</b> Power 74.700 · ATK 1.032 · DEF 117 · HP 25.800</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Garras da Tempestade</b> <small>Valor: 314.5% principal; 629% total bruto se todos os hits conectarem · Alvo APK: [1]</small><br>Golpeia duas vezes com suas garras, causando um total de 170% de dano a um único inimigo.</li><li><b>Rajada Fantasma</b> <small>Valor: 815.85% principal; 9790.2% total bruto se todos os hits conectarem · Alvo APK: [14, 5000]</small><br>Lança uma saraivada de 12 golpes contra inimigos aleatórios, cada um causando 220.5% de dano. Thundertooth fica invencível durante esse tempo. Cada golpe tem 50% de chance de atingir o inimigo com o Ataque mais alto.</li><li><b>Raio Energizado</b> <br>Aumenta a velocidade do ataque normal em 15% e ganha +1.69% de PV em combate.</li><li><b>Promissor</b> <br>Ganha +20% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="plunderjaw" data-tier="SS" data-element="Agua" data-pos="Fundo" data-role="DPS fundo">
+<div class="card-media"><span class="rank-badge">#8</span><img src="images/Plunderjaw_5032.png" alt="Plunderjaw"><img class="evo" src="images/Dreadmaw_5032_evolve.png" alt="Dreadmaw"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Plunderjaw</h3><span class="tier tier-SS">SS</span></div>
+  <p class="evo-line">Evolução: <b>Dreadmaw</b></p>
+  <div class="chips"><span>UR</span><span>Agua</span><span>Fundo</span><span>DPS fundo</span></div>
+  <p><b>Função:</b> DPS de fundo com suporte/buff</p>
+  <p><b>Elemento:</b> forte contra Fogo; fraco contra Eletrico.</p>
+  <p><b>Melhor slot:</b> Slot 4 - Fundo meio-esquerda<br><small>Backline de alto valor: coloque protegido no meio para reduzir risco de cair cedo. Alt.: Slot 5 - Fundo meio-direita</small></p>
+  <p class="perk"><b>Perks:</b> Warlike/Guerreiro ATK +10% | Belligerent/Beligerante ATK +7% | Blessed/Abencoado Crit Rate +8% | Heartless/Impiedoso Crit Dmg +15%<br><small>Alternativas: Deadeye/Certeiro ou Sharpshooter/Franco-atirador se faltar acerto; Ruthless/Cruel ou Fortunate/Afortunado como substitutos inferiores; Robust se estiver morrendo</small></p>
+  <p class="focus"><b>Skill para focar:</b> Perdição Devoradora<br>Irrompe do subsolo e morde um único inimigo para causar 2936% de dano e aplicar 3 acúmulos de Marca de Ruptura.</p>
+  <p><b>Stats APK:</b> Power 74.700 · ATK 1.030 · DEF 85 · HP 25.750</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Golpe de Gancho</b> <small>Valor: 495.8% · Alvo APK: [1]</small><br>Ataca com o gancho de pirata para causar 134% de dano a um único inimigo e aplicar 2 acúmulos de Marca de Ruptura.</li><li><b>Perdição Devoradora</b> <small>Valor: 10863.2% · Alvo APK: [1]</small><br>Irrompe do subsolo e morde um único inimigo para causar 2936% de dano e aplicar 3 acúmulos de Marca de Ruptura.</li><li><b>Vantagem do Predador</b> <br>Causa 10% a mais de dano por cada acúmulo de Marca de Ruptura no alvo (acumula até 10 vezes). Enquanto em combate, aumenta o acúmulo de Fúria em 10% e a Taxa de Crítico em 10%.</li><li><b>Promissor</b> <br>Ganha +20% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="ghillant" data-tier="S" data-element="Terra" data-pos="Frente" data-role="Tank">
+<div class="card-media"><span class="rank-badge">#9</span><img src="images/Ghillant_5005.png" alt="Ghillant"><img class="evo" src="images/Chefeuillier_5005_evolve.png" alt="Chefeuillier"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Ghillant</h3><span class="tier tier-S">S</span></div>
+  <p class="evo-line">Evolução: <b>Chefeuillier</b></p>
+  <div class="chips"><span>UR</span><span>Terra</span><span>Frente</span><span>Tank</span></div>
+  <p><b>Função:</b> Tank/Bruiser de frente</p>
+  <p><b>Elemento:</b> forte contra Eletrico; fraco contra Fogo.</p>
+  <p><b>Melhor slot:</b> Slot 2 - Frente meio<br><small>Tank principal/maior resistencia: melhor no centro para segurar a pressao frontal. Alt.: Slot 1 - Frente esquerda se outro tank melhor ja estiver no centro</small></p>
+  <p class="perk"><b>Perks:</b> Vigorous/Vigoroso HP +10% | Unshakeable/Inabalável DEF +10% | Robust/Robusto HP +7% | Steel Skull/Cranio de Aço Crit Dmg Reduction +8%<br><small>Alternativas: Unyielding/Indomavel, Steadfast/Firme, Clear-Headed/Lucido, Elusive/Evasivo</small></p>
+  <p class="focus"><b>Skill para focar:</b> Ímpeto Umbral<br>Atinge um inimigo com 1261% de dano e recebe 20% do dano destinado aos aliados pelos próximos 8 s.</p>
+  <p><b>Stats APK:</b> Power 49.700 · ATK 538 · DEF 100 · HP 21.520</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Blitz</b> <small>Valor: 377.4% · Alvo APK: [1]</small><br>Desfere um poderoso golpe em um alvo próximo, causando 102% de dano.</li><li><b>Ímpeto Umbral</b> <small>Valor: 2332.85% principal; 4665.71% total bruto se todos os hits conectarem · Alvo APK: [1]</small><br>Atinge um inimigo com 1261% de dano e recebe 20% do dano destinado aos aliados pelos próximos 8 s.</li><li><b>Guardião da Natureza</b> <br>Palmon Terrestres aliados na linha de trás recebem menos 20% de dano em combate.</li><li><b>Promissor</b> <br>Ganha +20% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="statchew" data-tier="S" data-element="Terra" data-pos="Frente" data-role="Tank">
+<div class="card-media"><span class="rank-badge">#10</span><img src="images/Statchew_5008.png" alt="Statchew"><img class="evo" src="images/Anubeast_5008_evolve.png" alt="Anubeast"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Statchew</h3><span class="tier tier-S">S</span></div>
+  <p class="evo-line">Evolução: <b>Anubeast</b></p>
+  <div class="chips"><span>UR</span><span>Terra</span><span>Frente</span><span>Tank</span></div>
+  <p><b>Função:</b> Tank/Bruiser de frente</p>
+  <p><b>Elemento:</b> forte contra Eletrico; fraco contra Fogo.</p>
+  <p><b>Melhor slot:</b> Slot 2 - Frente meio<br><small>Tank principal/maior resistencia: melhor no centro para segurar a pressao frontal. Alt.: Slot 1 - Frente esquerda se outro tank melhor ja estiver no centro</small></p>
+  <p class="perk"><b>Perks:</b> Vigorous/Vigoroso HP +10% | Unshakeable/Inabalável DEF +10% | Robust/Robusto HP +7% | Steel Skull/Cranio de Aço Crit Dmg Reduction +8%<br><small>Alternativas: Unyielding/Indomavel, Steadfast/Firme, Clear-Headed/Lucido, Elusive/Evasivo</small></p>
+  <p class="focus"><b>Skill para focar:</b> Rugido Protetor<br>Solta um rugido aterrorizante, causando 335% de dano a todos os inimigos e reduzindo o dano causado por eles em 30% por 5 s.</p>
+  <p><b>Stats APK:</b> Power 49.700 · ATK 486 · DEF 104 · HP 19.440</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Abocanhar</b> <small>Valor: 259% principal; 518% total bruto se todos os hits conectarem · Alvo APK: [1]</small><br>Morde um inimigo próximo, causando 140% de dano.</li><li><b>Rugido Protetor</b> <small>Valor: 1239.5% · Alvo APK: [6, 7]</small><br>Solta um rugido aterrorizante, causando 335% de dano a todos os inimigos e reduzindo o dano causado por eles em 30% por 5 s.</li><li><b>Sentinela</b> <br>Os Palmon aliados na linha da frente recebem -12.5% de dano enquanto estão em combate.</li><li><b>Promissor</b> <br>Ganha +20% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="regalion" data-tier="S" data-element="Agua" data-pos="Frente" data-role="DPS frente/bruiser">
+<div class="card-media"><span class="rank-badge">#11</span><img src="images/Regalion_5019.png" alt="Regalion"><img class="evo" src="images/Lionarch_5019_evolve.png" alt="Lionarch"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Regalion</h3><span class="tier tier-S">S</span></div>
+  <p class="evo-line">Evolução: <b>Lionarch</b></p>
+  <div class="chips"><span>UR</span><span>Agua</span><span>Frente</span><span>DPS frente/bruiser</span></div>
+  <p><b>Função:</b> Frente / controle ou bruiser</p>
+  <p><b>Elemento:</b> forte contra Fogo; fraco contra Eletrico.</p>
+  <p><b>Melhor slot:</b> Slot 1 - Frente esquerda<br><small>Brigador/controle de frente: funciona melhor como off-tank lateral, deixando o meio para o tank mais resistente. Alt.: Slot 6 - Frente direita</small></p>
+  <p class="perk"><b>Perks:</b> Warlike/Guerreiro ATK +10% | Belligerent/Beligerante ATK +7% | Robust/Robusto HP +7% | Vigorous/Vigoroso HP +10%<br><small>Alternativas: Steel Skull/Cranio de Aço ou Unyielding/Indomavel se morrer para burst/controle; Blessed se estiver muito seguro</small></p>
+  <p class="focus"><b>Skill para focar:</b> Maré Revolta<br>Regalion invoca a fúria dos mares, causando 447% de dano a todos os inimigos.</p>
+  <p><b>Stats APK:</b> Power 49.700 · ATK 532 · DEF 51 · HP 13.300</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Fúria dos Mares</b> <small>Valor: 555% · Alvo APK: [1]</small><br>Regalion dispara um jato de água em um único inimigo, causando 150% de dano.</li><li><b>Maré Revolta</b> <small>Valor: 1653.9% · Alvo APK: [6, 7]</small><br>Regalion invoca a fúria dos mares, causando 447% de dano a todos os inimigos.</li><li><b>Rei das Ondas</b> <br>Palmon Aquáticos aliados causam mais 12.5% de dano em combate.</li><li><b>Promissor</b> <br>Ganha +20% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="fulgairy" data-tier="S" data-element="Eletrico" data-pos="Frente" data-role="DPS frente/bruiser">
+<div class="card-media"><span class="rank-badge">#12</span><img src="images/Fulgairy_5016.png" alt="Fulgairy"><img class="evo" src="images/Keraunosaur_5016_evolve.png" alt="Keraunosaur"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Fulgairy</h3><span class="tier tier-S">S</span></div>
+  <p class="evo-line">Evolução: <b>Keraunosaur</b></p>
+  <div class="chips"><span>UR</span><span>Eletrico</span><span>Frente</span><span>DPS frente/bruiser</span></div>
+  <p><b>Função:</b> Frente / controle ou bruiser</p>
+  <p><b>Elemento:</b> forte contra Agua; fraco contra Terra.</p>
+  <p><b>Melhor slot:</b> Slot 1 - Frente esquerda<br><small>Brigador/controle de frente: funciona melhor como off-tank lateral, deixando o meio para o tank mais resistente. Alt.: Slot 6 - Frente direita</small></p>
+  <p class="perk"><b>Perks:</b> Warlike/Guerreiro ATK +10% | Belligerent/Beligerante ATK +7% | Robust/Robusto HP +7% | Vigorous/Vigoroso HP +10%<br><small>Alternativas: Steel Skull/Cranio de Aço ou Unyielding/Indomavel se morrer para burst/controle; Blessed se estiver muito seguro</small></p>
+  <p class="focus"><b>Skill para focar:</b> Contravoltaico<br>Carrega seu corpo eletricamente para ganhar um Escudo de Contra-ataque que causa 413% de dano a atacantes. Aciona até 5 vezes.</p>
+  <p><b>Stats APK:</b> Power 49.700 · ATK 520 · DEF 42 · HP 13.000</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Eletroestouro</b> <small>Valor: 518% · Alvo APK: [1]</small><br>Lança um relâmpago contra um inimigo, causando 140% de dano.</li><li><b>Contravoltaico</b> <br>Carrega seu corpo eletricamente para ganhar um Escudo de Contra-ataque que causa 413% de dano a atacantes. Aciona até 5 vezes.</li><li><b>Bônus Trovejante</b> <br>Palmon Elétricos aliados recebem menos 12.5% de dano em combate.</li><li><b>Promissor</b> <br>Ganha +20% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="gnashley" data-tier="S" data-element="Agua" data-pos="Frente" data-role="DPS frente/bruiser">
+<div class="card-media"><span class="rank-badge">#13</span><img src="images/Gnashley_5027.png" alt="Gnashley"><img class="evo" src="images/Gnashfin_5027_evolve.png" alt="Gnashfin"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Gnashley</h3><span class="tier tier-S">S</span></div>
+  <p class="evo-line">Evolução: <b>Gnashfin</b></p>
+  <div class="chips"><span>UR</span><span>Agua</span><span>Frente</span><span>DPS frente/bruiser</span></div>
+  <p><b>Função:</b> Frente / controle ou bruiser</p>
+  <p><b>Elemento:</b> forte contra Fogo; fraco contra Eletrico.</p>
+  <p><b>Melhor slot:</b> Slot 6 - Frente direita<br><small>Frontliner agressivo: use no flanco para iniciar, controlar ou pressionar a backline sem ocupar o centro do tank. Alt.: Slot 1 - Frente esquerda</small></p>
+  <p class="perk"><b>Perks:</b> Warlike/Guerreiro ATK +10% | Belligerent/Beligerante ATK +7% | Robust/Robusto HP +7% | Vigorous/Vigoroso HP +10%<br><small>Alternativas: Steel Skull/Cranio de Aço ou Unyielding/Indomavel se morrer para burst/controle; Blessed se estiver muito seguro</small></p>
+  <p class="focus"><b>Skill para focar:</b> Balançada de Cauda<br>Balança sua poderosa cauda 3 vezes, causando um total de 1553% de dano a um único inimigo.</p>
+  <p><b>Stats APK:</b> Power 49.700 · ATK 440 · DEF 75 · HP 17.600</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Chicote</b> <small>Valor: 518% · Alvo APK: [1]</small><br>Balança sua poderosa cauda, causando 140% de dano a um único inimigo.</li><li><b>Balançada de Cauda</b> <small>Valor: 2873.05% principal; 5746.11% total bruto se todos os hits conectarem · Alvo APK: [1]</small><br>Balança sua poderosa cauda 3 vezes, causando um total de 1553% de dano a um único inimigo.</li><li><b>Bênção do Oceano</b> <br>Palmon Aquáticos aliados recebem menos 12.5% de dano em combate.</li><li><b>Promissor</b> <br>Ganha +20% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="hoofrit" data-tier="S" data-element="Fogo" data-pos="Fundo" data-role="DPS fundo">
+<div class="card-media"><span class="rank-badge">#14</span><img src="images/Hoofrit_5017.png" alt="Hoofrit"><img class="evo" src="images/Flaries_5017_evolve.png" alt="Flaries"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Hoofrit</h3><span class="tier tier-S">S</span></div>
+  <p class="evo-line">Evolução: <b>Flaries</b></p>
+  <div class="chips"><span>UR</span><span>Fogo</span><span>Fundo</span><span>DPS fundo</span></div>
+  <p><b>Função:</b> DPS de fundo</p>
+  <p><b>Elemento:</b> forte contra Terra; fraco contra Agua.</p>
+  <p><b>Melhor slot:</b> Slot 5 - Fundo meio-direita<br><small>DPS/controle de fundo: fica protegido e entrega AOE/controle sem ocupar a lateral. Alt.: Slot 4 - Fundo meio-esquerda</small></p>
+  <p class="perk"><b>Perks:</b> Warlike/Guerreiro ATK +10% | Belligerent/Beligerante ATK +7% | Blessed/Abencoado Crit Rate +8% | Heartless/Impiedoso Crit Dmg +15%<br><small>Alternativas: Deadeye/Certeiro ou Sharpshooter/Franco-atirador se faltar acerto; Ruthless/Cruel ou Fortunate/Afortunado como substitutos inferiores; Robust se estiver morrendo</small></p>
+  <p class="focus"><b>Skill para focar:</b> Rajada Ardente<br>Causa 780% de dano a todos os inimigos da linha de trás. Se o alvo já está com queimadura, ele também fica atordoado por 2 s.</p>
+  <p><b>Stats APK:</b> Power 49.700 · ATK 475 · DEF 76 · HP 19.000</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Investida Ardente</b> <small>Valor: 791.8% · Alvo APK: [1]</small><br>Atropela um único inimigo, causando 214% de dano.</li><li><b>Rajada Ardente</b> <small>Valor: 2886% · Alvo APK: [11]</small><br>Causa 780% de dano a todos os inimigos da linha de trás. Se o alvo já está com queimadura, ele também fica atordoado por 2 s.</li><li><b>Intensificação Ardente</b> <br>Ganha +20% de Taxa de Crítico em combate.</li><li><b>Promissor</b> <br>Ganha +20% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="salamantis" data-tier="S" data-element="Terra" data-pos="Fundo" data-role="DPS fundo">
+<div class="card-media"><span class="rank-badge">#15</span><img src="images/Salamantis_5015.png" alt="Salamantis"><img class="evo" src="images/Silvaurus_5015_evolve.png" alt="Silvaurus"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Salamantis</h3><span class="tier tier-S">S</span></div>
+  <p class="evo-line">Evolução: <b>Silvaurus</b></p>
+  <div class="chips"><span>UR</span><span>Terra</span><span>Fundo</span><span>DPS fundo</span></div>
+  <p><b>Função:</b> DPS de fundo</p>
+  <p><b>Elemento:</b> forte contra Eletrico; fraco contra Fogo.</p>
+  <p><b>Melhor slot:</b> Slot 5 - Fundo meio-direita<br><small>DPS/controle de fundo: fica protegido e entrega AOE/controle sem ocupar a lateral. Alt.: Slot 4 - Fundo meio-esquerda</small></p>
+  <p class="perk"><b>Perks:</b> Warlike/Guerreiro ATK +10% | Belligerent/Beligerante ATK +7% | Blessed/Abencoado Crit Rate +8% | Heartless/Impiedoso Crit Dmg +15%<br><small>Alternativas: Deadeye/Certeiro ou Sharpshooter/Franco-atirador se faltar acerto; Ruthless/Cruel ou Fortunate/Afortunado como substitutos inferiores; Robust se estiver morrendo</small></p>
+  <p class="focus"><b>Skill para focar:</b> Vórtice de Lâminas<br>Lança 5 dardos em 5 inimigos aleatórios, causando 516% de dano a cada um.</p>
+  <p><b>Stats APK:</b> Power 49.700 · ATK 426 · DEF 87 · HP 17.040</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Voador Fatal</b> <small>Valor: 518% · Alvo APK: [1]</small><br>Lança um dardo, causando 140% de dano a um único inimigo.</li><li><b>Vórtice de Lâminas</b> <small>Valor: 0.04% · Alvo APK: [6, 5]</small><br>Lança 5 dardos em 5 inimigos aleatórios, causando 516% de dano a cada um.</li><li><b>Instintos de Predador</b> <br>Palmon Terrestres aliados causam mais 12.5% de dano em combate.</li><li><b>Promissor</b> <br>Ganha +20% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="battereina" data-tier="S" data-element="Eletrico" data-pos="Fundo" data-role="DPS fundo">
+<div class="card-media"><span class="rank-badge">#16</span><img src="images/Battereina_5020.png" alt="Battereina"><img class="evo" src="images/Ampereina_5020_evolve.png" alt="Ampereina"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Battereina</h3><span class="tier tier-S">S</span></div>
+  <p class="evo-line">Evolução: <b>Ampereina</b></p>
+  <div class="chips"><span>UR</span><span>Eletrico</span><span>Fundo</span><span>DPS fundo</span></div>
+  <p><b>Função:</b> DPS de fundo</p>
+  <p><b>Elemento:</b> forte contra Agua; fraco contra Terra.</p>
+  <p><b>Melhor slot:</b> Slot 4 - Fundo meio-esquerda<br><small>Backline de alto valor: coloque protegido no meio para reduzir risco de cair cedo. Alt.: Slot 5 - Fundo meio-direita</small></p>
+  <p class="perk"><b>Perks:</b> Warlike/Guerreiro ATK +10% | Belligerent/Beligerante ATK +7% | Blessed/Abencoado Crit Rate +8% | Heartless/Impiedoso Crit Dmg +15%<br><small>Alternativas: Deadeye/Certeiro ou Sharpshooter/Franco-atirador se faltar acerto; Ruthless/Cruel ou Fortunate/Afortunado como substitutos inferiores; Robust se estiver morrendo</small></p>
+  <p class="focus"><b>Skill para focar:</b> Descarga Dinâmica<br>Libera uma imensa onda de energia de seu eletropólen, causando 837.1% de dano a 2 inimigos aleatórios da linha de trás.</p>
+  <p><b>Stats APK:</b> Power 49.700 · ATK 526 · DEF 48 · HP 13.150</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Golpe Fulminante</b> <small>Valor: 436.6% · Alvo APK: [15, 2]</small><br>Libera uma poderosa corrente do eletropólen em sua mão, causando 118% de dano a 2 inimigos aleatórios da linha de trás.</li><li><b>Descarga Dinâmica</b> <small>Valor: 3097.27% · Alvo APK: [15, 2]</small><br>Libera uma imensa onda de energia de seu eletropólen, causando 837.1% de dano a 2 inimigos aleatórios da linha de trás.</li><li><b>Saúdem a Rainha</b> <br>Palmon Elétricos aliados causam mais 12.5% de dano em combate.</li><li><b>Promissor</b> <br>Ganha +20% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="revontulet" data-tier="S" data-element="Fogo" data-pos="Fundo" data-role="DPS fundo">
+<div class="card-media"><span class="rank-badge">#17</span><img src="images/Revontulet_5021.png" alt="Revontulet"><img class="evo" src="images/Vulpyrean_5021_evolve.png" alt="Vulpyrean"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Revontulet</h3><span class="tier tier-S">S</span></div>
+  <p class="evo-line">Evolução: <b>Vulpyrean</b></p>
+  <div class="chips"><span>UR</span><span>Fogo</span><span>Fundo</span><span>DPS fundo</span></div>
+  <p><b>Função:</b> DPS de fundo</p>
+  <p><b>Elemento:</b> forte contra Terra; fraco contra Agua.</p>
+  <p><b>Melhor slot:</b> Slot 5 - Fundo meio-direita<br><small>DPS/controle de fundo: fica protegido e entrega AOE/controle sem ocupar a lateral. Alt.: Slot 4 - Fundo meio-esquerda</small></p>
+  <p class="perk"><b>Perks:</b> Warlike/Guerreiro ATK +10% | Belligerent/Beligerante ATK +7% | Blessed/Abencoado Crit Rate +8% | Heartless/Impiedoso Crit Dmg +15%<br><small>Alternativas: Deadeye/Certeiro ou Sharpshooter/Franco-atirador se faltar acerto; Ruthless/Cruel ou Fortunate/Afortunado como substitutos inferiores; Robust se estiver morrendo</small></p>
+  <p class="focus"><b>Skill para focar:</b> Caudas Incendiárias<br>Dispara de 3 a 5 bolas de fogo, cada uma causando 426.8% de dano a um inimigo e queimando-o para causar 920% de dano adicional ao decorrer de 10 s.</p>
+  <p><b>Stats APK:</b> Power 49.700 · ATK 545 · DEF 67 · HP 13.625</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Fogo da Raposa</b> <small>Valor: 518% · Alvo APK: [1]</small><br>Lança uma bola de fogo de sua cauda flamejante, causando 140% de dano a um único inimigo.</li><li><b>Caudas Incendiárias</b> <small>Valor: 1579.16% principal; 7895.8% total bruto se todos os hits conectarem · Alvo APK: [17, 3, 5000, 2]</small><br>Dispara de 3 a 5 bolas de fogo, cada uma causando 426.8% de dano a um inimigo e queimando-o para causar 920% de dano adicional ao decorrer de 10 s.</li><li><b>Chamas Espectrais</b> <br>Palmon Ígneos aliados causam mais 12.5% de dano em combate.</li><li><b>Promissor</b> <br>Ganha +20% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="spookaboo" data-tier="S" data-element="Fogo" data-pos="Fundo" data-role="DPS fundo">
+<div class="card-media"><span class="rank-badge">#18</span><img src="images/Spookaboo_5030.png" alt="Spookaboo"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Spookaboo</h3><span class="tier tier-S">S</span></div>
+  <p class="evo-line">Evolução: <b>não confirmada</b></p>
+  <div class="chips"><span>UR</span><span>Fogo</span><span>Fundo</span><span>DPS fundo</span></div>
+  <p><b>Função:</b> DPS de fundo com suporte/buff</p>
+  <p><b>Elemento:</b> forte contra Terra; fraco contra Agua.</p>
+  <p><b>Melhor slot:</b> Slot 5 - Fundo meio-direita<br><small>DPS/controle de fundo: fica protegido e entrega AOE/controle sem ocupar a lateral. Alt.: Slot 4 - Fundo meio-esquerda</small></p>
+  <p class="perk"><b>Perks:</b> Warlike/Guerreiro ATK +10% | Belligerent/Beligerante ATK +7% | Blessed/Abencoado Crit Rate +8% | Heartless/Impiedoso Crit Dmg +15%<br><small>Alternativas: Deadeye/Certeiro ou Sharpshooter/Franco-atirador se faltar acerto; Ruthless/Cruel ou Fortunate/Afortunado como substitutos inferiores; Robust se estiver morrendo</small></p>
+  <p class="focus"><b>Skill para focar:</b> Abóbora Esmagadora<br>Solta uma lanterna de abóbora do alto, causando 635% de dano a 3 inimigos aleatórios.</p>
+  <p><b>Stats APK:</b> Power 49.700 · ATK 508 · DEF 54 · HP 12.700</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Chama de Vela</b> <small>Valor: 584.6% · Alvo APK: [1]</small><br>Lança uma bola de fogo fantasmagórica, causando 158% de dano a um único inimigo.</li><li><b>Abóbora Esmagadora</b> <small>Valor: 2349.5% · Alvo APK: [6, 3]</small><br>Solta uma lanterna de abóbora do alto, causando 635% de dano a 3 inimigos aleatórios.</li><li><b>Poder Fantasmagórico</b> <br>Aumenta o Ataque de todos os Palmon em 20% (mesmo quando não estão alocados).</li><li><b>Promissor</b> <br>Ganha +20% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="dolphriend" data-tier="A" data-element="Agua" data-pos="Frente" data-role="DPS frente/bruiser">
+<div class="card-media"><span class="rank-badge">#19</span><img src="images/Dolphriend_5006.png" alt="Dolphriend"><img class="evo" src="images/Adolphonis_5006_evolve.png" alt="Adolphonis"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Dolphriend</h3><span class="tier tier-A">A</span></div>
+  <p class="evo-line">Evolução: <b>Adolphonis</b></p>
+  <div class="chips"><span>UR</span><span>Agua</span><span>Frente</span><span>DPS frente/bruiser</span></div>
+  <p><b>Função:</b> Frente / controle ou bruiser</p>
+  <p><b>Elemento:</b> forte contra Fogo; fraco contra Eletrico.</p>
+  <p><b>Melhor slot:</b> Slot 1 - Frente esquerda<br><small>Brigador/controle de frente: funciona melhor como off-tank lateral, deixando o meio para o tank mais resistente. Alt.: Slot 6 - Frente direita</small></p>
+  <p class="perk"><b>Perks:</b> Warlike/Guerreiro ATK +10% | Belligerent/Beligerante ATK +7% | Robust/Robusto HP +7% | Vigorous/Vigoroso HP +10%<br><small>Alternativas: Steel Skull/Cranio de Aço ou Unyielding/Indomavel se morrer para burst/controle; Blessed se estiver muito seguro</small></p>
+  <p class="focus"><b>Skill para focar:</b> Onda Impetuosa<br>Acerta um inimigo violentamente, causando 1213% de dano, com 70% de chance de atordoar o inimigo por 3 s.</p>
+  <p><b>Stats APK:</b> Power 49.700 · ATK 399 · DEF 75 · HP 15.960</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Esmagamento</b> <small>Valor: 347.8% · Alvo APK: [1]</small><br>Desfere um poderoso golpe em um inimigo próximo, causando 94% de dano.</li><li><b>Onda Impetuosa</b> <small>Valor: 1795.24% principal; 4488.14% total bruto se todos os hits conectarem · Alvo APK: [1]</small><br>Acerta um inimigo violentamente, causando 1213% de dano, com 70% de chance de atordoar o inimigo por 3 s.</li><li><b>Guarda das Marés</b> <br>Ganha +20% de PV máximo enquanto está em combate.</li><li><b>Promissor</b> <br>Ganha +20% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="magmolin" data-tier="A" data-element="Fogo" data-pos="Frente" data-role="DPS frente/bruiser">
+<div class="card-media"><span class="rank-badge">#20</span><img src="images/Magmolin_5011.png" alt="Magmolin"><img class="evo" src="images/Obsidrake_5011_evolve.png" alt="Obsidrake"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Magmolin</h3><span class="tier tier-A">A</span></div>
+  <p class="evo-line">Evolução: <b>Obsidrake</b></p>
+  <div class="chips"><span>UR</span><span>Fogo</span><span>Frente</span><span>DPS frente/bruiser</span></div>
+  <p><b>Função:</b> Frente / controle ou bruiser</p>
+  <p><b>Elemento:</b> forte contra Terra; fraco contra Agua.</p>
+  <p><b>Melhor slot:</b> Slot 1 - Frente esquerda<br><small>Brigador/controle de frente: funciona melhor como off-tank lateral, deixando o meio para o tank mais resistente. Alt.: Slot 6 - Frente direita</small></p>
+  <p class="perk"><b>Perks:</b> Warlike/Guerreiro ATK +10% | Belligerent/Beligerante ATK +7% | Robust/Robusto HP +7% | Vigorous/Vigoroso HP +10%<br><small>Alternativas: Steel Skull/Cranio de Aço ou Unyielding/Indomavel se morrer para burst/controle; Blessed se estiver muito seguro</small></p>
+  <p class="focus"><b>Skill para focar:</b> Erupção de Lava<br>Bate no chão, fazendo com que espigões vulcânicos acertem 3 inimigos aleatórios para causar 397% de dano e infligir queimadura, que causa 1000% de dano adicional ao decorrer de 10 s.</p>
+  <p><b>Stats APK:</b> Power 49.700 · ATK 483 · DEF 77 · HP 19.320</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Arranhão</b> <small>Valor: 347.8% · Alvo APK: [1]</small><br>Causa 94% de dano a um único inimigo.</li><li><b>Erupção de Lava</b> <small>Valor: 1468.9% · Alvo APK: [6, 3]</small><br>Bate no chão, fazendo com que espigões vulcânicos acertem 3 inimigos aleatórios para causar 397% de dano e infligir queimadura, que causa 1000% de dano adicional ao decorrer de 10 s.</li><li><b>Aço Temperado</b> <br>Aumenta a produção de Aço de todas as Fornalhas na Base em +100%.</li><li><b>Promissor</b> <br>Ganha +20% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="kungpaw" data-tier="A" data-element="Agua" data-pos="Frente" data-role="DPS frente/bruiser">
+<div class="card-media"><span class="rank-badge">#21</span><img src="images/Kungpaw_5031.png" alt="Kungpaw"><img class="evo" src="images/Kungfury_5031_evolve.png" alt="Kungfury"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Kungpaw</h3><span class="tier tier-A">A</span></div>
+  <p class="evo-line">Evolução: <b>Kungfury</b></p>
+  <div class="chips"><span>UR</span><span>Agua</span><span>Frente</span><span>DPS frente/bruiser</span></div>
+  <p><b>Função:</b> Frente / controle ou bruiser</p>
+  <p><b>Elemento:</b> forte contra Fogo; fraco contra Eletrico.</p>
+  <p><b>Melhor slot:</b> Slot 1 - Frente esquerda<br><small>Brigador/controle de frente: funciona melhor como off-tank lateral, deixando o meio para o tank mais resistente. Alt.: Slot 6 - Frente direita</small></p>
+  <p class="perk"><b>Perks:</b> Warlike/Guerreiro ATK +10% | Belligerent/Beligerante ATK +7% | Robust/Robusto HP +7% | Vigorous/Vigoroso HP +10%<br><small>Alternativas: Steel Skull/Cranio de Aço ou Unyielding/Indomavel se morrer para burst/controle; Blessed se estiver muito seguro</small></p>
+  <p class="focus"><b>Skill para focar:</b> Vórtice da Maré<br>Carrega e libera Qi, causando 658% de dano a 3 inimigos aleatórios. Nos próximos 5 s, Kungpaw tem 25% de chance de ignorar o dano ao ser atacado.</p>
+  <p><b>Stats APK:</b> Power 49.700 · ATK 508 · DEF 54 · HP 12.700</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Soco Hidráulico</b> <small>Valor: 584.6% · Alvo APK: [1]</small><br>Canaliza Qi para condensar um fluxo de água em seu punho, causando 158% de dano a um único inimigo.</li><li><b>Vórtice da Maré</b> <small>Valor: 2434.6% · Alvo APK: [6, 3]</small><br>Carrega e libera Qi, causando 658% de dano a 3 inimigos aleatórios. Nos próximos 5 s, Kungpaw tem 25% de chance de ignorar o dano ao ser atacado.</li><li><b>Orientação do Shifu</b> <br>Estejam alocados ou não, Palmon na linha de trás da sua equipe recebem 12.5% a menos de dano de Habilidade de Fúria por 0.1% s no início da batalha.</li><li><b>Promissor</b> <br>Ganha +20% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="blazeal" data-tier="A" data-element="Fogo" data-pos="Fundo" data-role="DPS fundo">
+<div class="card-media"><span class="rank-badge">#22</span><img src="images/Blazeal_5009.png" alt="Blazeal"><img class="evo" src="images/Wildfuror_5009_evolve.png" alt="Wildfuror"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Blazeal</h3><span class="tier tier-A">A</span></div>
+  <p class="evo-line">Evolução: <b>Wildfuror</b></p>
+  <div class="chips"><span>UR</span><span>Fogo</span><span>Fundo</span><span>DPS fundo</span></div>
+  <p><b>Função:</b> DPS de fundo</p>
+  <p><b>Elemento:</b> forte contra Terra; fraco contra Agua.</p>
+  <p><b>Melhor slot:</b> Slot 5 - Fundo meio-direita<br><small>Controle/AOE de fundo: protegido e com boa cobertura. Alt.: Slot 4 - Fundo meio-esquerda</small></p>
+  <p class="perk"><b>Perks:</b> Warlike/Guerreiro ATK +10% | Belligerent/Beligerante ATK +7% | Blessed/Abencoado Crit Rate +8% | Heartless/Impiedoso Crit Dmg +15%<br><small>Alternativas: Deadeye/Certeiro ou Sharpshooter/Franco-atirador se faltar acerto; Ruthless/Cruel ou Fortunate/Afortunado como substitutos inferiores; Robust se estiver morrendo</small></p>
+  <p class="focus"><b>Skill para focar:</b> Huuuah!<br>Carrega e lança uma grande bola de fogo, causando 376% de dano a todos os inimigos em seu caminho. Causa 1,5x de dano a inimigos que já estão com queimadura.</p>
+  <p><b>Stats APK:</b> Power 49.700 · ATK 465 · DEF 72 · HP 18.600</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Hyah!</b> <small>Valor: 518% · Alvo APK: [1]</small><br>Causa 140% de dano a um único inimigo.</li><li><b>Huuuah!</b> <small>Valor: 1391.2% · Alvo APK: [6, 7]</small><br>Carrega e lança uma grande bola de fogo, causando 376% de dano a todos os inimigos em seu caminho. Causa 1,5x de dano a inimigos que já estão com queimadura.</li><li><b>Aço Temperado</b> <br>Ganha +20% de Ataque enquanto está em combate.</li><li><b>Promissor</b> <br>Ganha +20% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="abuzzinian" data-tier="A" data-element="Eletrico" data-pos="Frente" data-role="DPS frente/bruiser">
+<div class="card-media"><span class="rank-badge">#23</span><img src="images/Abuzzinian_5007.png" alt="Abuzzinian"><img class="evo" src="images/Servolt_5007_evolve.png" alt="Servolt"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Abuzzinian</h3><span class="tier tier-A">A</span></div>
+  <p class="evo-line">Evolução: <b>Servolt</b></p>
+  <div class="chips"><span>UR</span><span>Eletrico</span><span>Frente</span><span>DPS frente/bruiser</span></div>
+  <p><b>Função:</b> Frente / controle ou bruiser</p>
+  <p><b>Elemento:</b> forte contra Agua; fraco contra Terra.</p>
+  <p><b>Melhor slot:</b> Slot 6 - Frente direita<br><small>Frontliner agressivo: use no flanco para iniciar, controlar ou pressionar a backline sem ocupar o centro do tank. Alt.: Slot 1 - Frente esquerda</small></p>
+  <p class="perk"><b>Perks:</b> Warlike/Guerreiro ATK +10% | Belligerent/Beligerante ATK +7% | Robust/Robusto HP +7% | Vigorous/Vigoroso HP +10%<br><small>Alternativas: Steel Skull/Cranio de Aço ou Unyielding/Indomavel se morrer para burst/controle; Blessed se estiver muito seguro</small></p>
+  <p class="focus"><b>Skill para focar:</b> Tempestade Noturna<br>Invoca 2 relâmpagos que eletrocutam os 2 inimigos com menos PV, causando 1315% de dano.</p>
+  <p><b>Stats APK:</b> Power 49.700 · ATK 520 · DEF 68 · HP 13.000</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Surto Elétrico</b> <small>Valor: 451.4% · Alvo APK: [1]</small><br>Causa 122% de dano a um único inimigo.</li><li><b>Tempestade Noturna</b> <small>Valor: 4865.5% · Alvo APK: [12, 2]</small><br>Invoca 2 relâmpagos que eletrocutam os 2 inimigos com menos PV, causando 1315% de dano.</li><li><b>Passo Fantasma</b> <br>Ganha +20% de Esquiva em combate.</li><li><b>Promissor</b> <br>Ganha +20% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="pipistrigoi" data-tier="A" data-element="Fogo" data-pos="Fundo" data-role="DPS fundo">
+<div class="card-media"><span class="rank-badge">#24</span><img src="images/Pipistrigoi_5028.png" alt="Pipistrigoi"><img class="evo" src="images/Azurostrigoi_5028_evolve.png" alt="Azurostrigoi"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Pipistrigoi</h3><span class="tier tier-A">A</span></div>
+  <p class="evo-line">Evolução: <b>Azurostrigoi</b></p>
+  <div class="chips"><span>UR</span><span>Fogo</span><span>Fundo</span><span>DPS fundo</span></div>
+  <p><b>Função:</b> DPS de fundo</p>
+  <p><b>Elemento:</b> forte contra Terra; fraco contra Agua.</p>
+  <p><b>Melhor slot:</b> Slot 5 - Fundo meio-direita<br><small>Controle/AOE de fundo: protegido e com boa cobertura. Alt.: Slot 4 - Fundo meio-esquerda</small></p>
+  <p class="perk"><b>Perks:</b> Warlike/Guerreiro ATK +10% | Belligerent/Beligerante ATK +7% | Blessed/Abencoado Crit Rate +8% | Heartless/Impiedoso Crit Dmg +15%<br><small>Alternativas: Deadeye/Certeiro ou Sharpshooter/Franco-atirador se faltar acerto; Ruthless/Cruel ou Fortunate/Afortunado como substitutos inferiores; Robust se estiver morrendo</small></p>
+  <p class="focus"><b>Skill para focar:</b> Ciclone Fantasma<br>Dispara um tornado de fogo azul, causando 422% de dano a todos os inimigos.</p>
+  <p><b>Stats APK:</b> Power 49.700 · ATK 522 · DEF 41 · HP 13.050</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Chama Infernal</b> <small>Valor: 518% · Alvo APK: [1]</small><br>Dispara uma bola de fogo azul, causando 140% de dano a um único inimigo.</li><li><b>Ciclone Fantasma</b> <small>Valor: 1561.4% · Alvo APK: [6, 7]</small><br>Dispara um tornado de fogo azul, causando 422% de dano a todos os inimigos.</li><li><b>Foco Noturno</b> <br>+20% de dano para Ciclone Fantasma.</li><li><b>Promissor</b> <br>Ganha +20% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="baboom" data-tier="A" data-element="Terra" data-pos="Fundo" data-role="DPS fundo">
+<div class="card-media"><span class="rank-badge">#25</span><img src="images/Baboom_5010.png" alt="Baboom"><img class="evo" src="images/Rumbkey_5010_evolve.png" alt="Rumbkey"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Baboom</h3><span class="tier tier-A">A</span></div>
+  <p class="evo-line">Evolução: <b>Rumbkey</b></p>
+  <div class="chips"><span>UR</span><span>Terra</span><span>Fundo</span><span>DPS fundo</span></div>
+  <p><b>Função:</b> DPS de fundo com suporte/buff</p>
+  <p><b>Elemento:</b> forte contra Eletrico; fraco contra Fogo.</p>
+  <p><b>Melhor slot:</b> Slot 5 - Fundo meio-direita<br><small>DPS/controle de fundo: fica protegido e entrega AOE/controle sem ocupar a lateral. Alt.: Slot 4 - Fundo meio-esquerda</small></p>
+  <p class="perk"><b>Perks:</b> Warlike/Guerreiro ATK +10% | Belligerent/Beligerante ATK +7% | Blessed/Abencoado Crit Rate +8% | Heartless/Impiedoso Crit Dmg +15%<br><small>Alternativas: Deadeye/Certeiro ou Sharpshooter/Franco-atirador se faltar acerto; Ruthless/Cruel ou Fortunate/Afortunado como substitutos inferiores; Robust se estiver morrendo</small></p>
+  <p class="focus"><b>Skill para focar:</b> Golpe Poderoso<br>Lança um ataque carregado, causando 980% de dano a um inimigo a distância de corpo-a-corpo. Possui 100% de chance de atordoar o inimigo por 2 s.</p>
+  <p><b>Stats APK:</b> Power 49.700 · ATK 451 · DEF 58 · HP 18.040</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Sufocar</b> <small>Valor: 347.8% · Alvo APK: [1]</small><br>Atinge um único inimigo com um bastão, causando 94% de dano.</li><li><b>Golpe Poderoso</b> <small>Valor: 1813% principal; 3626% total bruto se todos os hits conectarem · Alvo APK: [1]</small><br>Lança um ataque carregado, causando 980% de dano a um inimigo a distância de corpo-a-corpo. Possui 100% de chance de atordoar o inimigo por 2 s.</li><li><b>Neurônios de Aço</b> <br>Aumenta a produção de Tábua de todas as Serras de Bancada na Base em +100%.</li><li><b>Promissor</b> <br>Ganha +20% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="limudroid" data-tier="A" data-element="Eletrico" data-pos="Fundo" data-role="Suporte/controle">
+<div class="card-media"><span class="rank-badge">#26</span><img src="images/Limudroid_5018.png" alt="Limudroid"><img class="evo" src="images/Bunodroid_5018_evolve.png" alt="Bunodroid"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Limudroid</h3><span class="tier tier-A">A</span></div>
+  <p class="evo-line">Evolução: <b>Bunodroid</b></p>
+  <div class="chips"><span>UR</span><span>Eletrico</span><span>Fundo</span><span>Suporte/controle</span></div>
+  <p><b>Função:</b> DPS de fundo</p>
+  <p><b>Elemento:</b> forte contra Agua; fraco contra Terra.</p>
+  <p><b>Melhor slot:</b> Slot 5 - Fundo meio-direita<br><small>DPS/controle de fundo: fica protegido e entrega AOE/controle sem ocupar a lateral. Alt.: Slot 4 - Fundo meio-esquerda</small></p>
+  <p class="perk"><b>Perks:</b> Vigorous/Vigoroso HP +10% | Robust/Robusto HP +7% | Unshakeable/Inabalável DEF +10% | Iron Will/Determinação de Ferro Tenacity +8%<br><small>Alternativas: Clear-Headed/Lucido contra stun; Steel Skull/Cranio de Aço contra burst critico; Belligerent se o suporte tambem for carry de dano</small></p>
+  <p class="focus"><b>Skill para focar:</b> Raios Iônicos<br>Dispara três feixes de laser com os olhos, causando 517% de dano a todos os inimigos.</p>
+  <p><b>Stats APK:</b> Power 49.700 · ATK 506 · DEF 21 · HP 12.650</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Esfera de Energia</b> <small>Valor: 414.4% · Alvo APK: [1]</small><br>Lança uma esfera de energia em um único inimigo, causando 112% de dano.</li><li><b>Raios Iônicos</b> <small>Valor: 1912.9% · Alvo APK: [6, 7]</small><br>Dispara três feixes de laser com os olhos, causando 517% de dano a todos os inimigos.</li><li><b>Prodígio</b> <br>O digicérebro avançado do Limudroid concede +30% de velocidade de pesquisa tecnológica.</li><li><b>Promissor</b> <br>Ganha +20% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="ninjump" data-tier="A" data-element="Agua" data-pos="Fundo" data-role="DPS fundo">
+<div class="card-media"><span class="rank-badge">#27</span><img src="images/Ninjump_5002.png" alt="Ninjump"><img class="evo" src="images/Bufonobi_5002_evolve.png" alt="Bufonobi"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Ninjump</h3><span class="tier tier-A">A</span></div>
+  <p class="evo-line">Evolução: <b>Bufonobi</b></p>
+  <div class="chips"><span>UR</span><span>Agua</span><span>Fundo</span><span>DPS fundo</span></div>
+  <p><b>Função:</b> DPS de fundo</p>
+  <p><b>Elemento:</b> forte contra Fogo; fraco contra Eletrico.</p>
+  <p><b>Melhor slot:</b> Slot 5 - Fundo meio-direita<br><small>DPS/controle de fundo: fica protegido e entrega AOE/controle sem ocupar a lateral. Alt.: Slot 4 - Fundo meio-esquerda</small></p>
+  <p class="perk"><b>Perks:</b> Warlike/Guerreiro ATK +10% | Belligerent/Beligerante ATK +7% | Blessed/Abencoado Crit Rate +8% | Heartless/Impiedoso Crit Dmg +15%<br><small>Alternativas: Deadeye/Certeiro ou Sharpshooter/Franco-atirador se faltar acerto; Ruthless/Cruel ou Fortunate/Afortunado como substitutos inferiores; Robust se estiver morrendo</small></p>
+  <p class="focus"><b>Skill para focar:</b> Águas que Caem<br>Arremessa 3 shuriken que causam 412% de dano a todos os inimigos em um leque.</p>
+  <p><b>Stats APK:</b> Power 49.700 · ATK 375 · DEF 119 · HP 15.000</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Águas que Correm</b> <small>Valor: 310.8% principal; 621.6% total bruto se todos os hits conectarem · Alvo APK: [1]</small><br>Golpeia um único inimigo várias vezes com um ninjato, causando um total de 168% de dano.</li><li><b>Águas que Caem</b> <small>Valor: 1524.4% · Alvo APK: [5, 30, 2000]</small><br>Arremessa 3 shuriken que causam 412% de dano a todos os inimigos em um leque.</li><li><b>Ondas que Quebram</b> <br>Ganha +20% de Ataque enquanto está em combate.</li><li><b>Promissor</b> <br>Ganha +20% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="fingenue" data-tier="A" data-element="Agua" data-pos="Fundo" data-role="DPS fundo">
+<div class="card-media"><span class="rank-badge">#28</span><img src="images/Fingenue_5013.png" alt="Fingenue"><img class="evo" src="images/Finnabelle_5013_evolve.png" alt="Finnabelle"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Fingenue</h3><span class="tier tier-A">A</span></div>
+  <p class="evo-line">Evolução: <b>Finnabelle</b></p>
+  <div class="chips"><span>UR</span><span>Agua</span><span>Fundo</span><span>DPS fundo</span></div>
+  <p><b>Função:</b> DPS de fundo</p>
+  <p><b>Elemento:</b> forte contra Fogo; fraco contra Eletrico.</p>
+  <p><b>Melhor slot:</b> Slot 4 - Fundo meio-esquerda<br><small>Backline de alto valor: coloque protegido no meio para reduzir risco de cair cedo. Alt.: Slot 5 - Fundo meio-direita</small></p>
+  <p class="perk"><b>Perks:</b> Warlike/Guerreiro ATK +10% | Belligerent/Beligerante ATK +7% | Blessed/Abencoado Crit Rate +8% | Heartless/Impiedoso Crit Dmg +15%<br><small>Alternativas: Deadeye/Certeiro ou Sharpshooter/Franco-atirador se faltar acerto; Ruthless/Cruel ou Fortunate/Afortunado como substitutos inferiores; Robust se estiver morrendo</small></p>
+  <p class="focus"><b>Skill para focar:</b> Esguicho de Água<br>Invoca uma coluna de água giratória, causando 2276.4% de dano a um único inimigo.</p>
+  <p><b>Stats APK:</b> Power 49.700 · ATK 531 · DEF 39 · HP 13.275</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Esguicho</b> <small>Valor: 414.4% · Alvo APK: [1]</small><br>Dispara um projétil aquático, causando 112% de dano a um único inimigo.</li><li><b>Esguicho de Água</b> <small>Valor: 8422.68% · Alvo APK: [1]</small><br>Invoca uma coluna de água giratória, causando 2276.4% de dano a um único inimigo.</li><li><b>Presente do Oceano</b> <br>Causa +20% de dano durante a batalha.</li><li><b>Promissor</b> <br>Ganha +20% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="barkplug" data-tier="A" data-element="Eletrico" data-pos="Frente" data-role="DPS frente/bruiser">
+<div class="card-media"><span class="rank-badge">#29</span><img src="images/Barkplug_5001.png" alt="Barkplug"><img class="evo" src="images/Wattweiler_5001_evolve.png" alt="Wattweiler"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Barkplug</h3><span class="tier tier-A">A</span></div>
+  <p class="evo-line">Evolução: <b>Wattweiler</b></p>
+  <div class="chips"><span>UR</span><span>Eletrico</span><span>Frente</span><span>DPS frente/bruiser</span></div>
+  <p><b>Função:</b> Frente / controle ou bruiser</p>
+  <p><b>Elemento:</b> forte contra Agua; fraco contra Terra.</p>
+  <p><b>Melhor slot:</b> Slot 6 - Frente direita<br><small>Frontliner agressivo: use no flanco para iniciar, controlar ou pressionar a backline sem ocupar o centro do tank. Alt.: Slot 1 - Frente esquerda</small></p>
+  <p class="perk"><b>Perks:</b> Warlike/Guerreiro ATK +10% | Belligerent/Beligerante ATK +7% | Robust/Robusto HP +7% | Vigorous/Vigoroso HP +10%<br><small>Alternativas: Steel Skull/Cranio de Aço ou Unyielding/Indomavel se morrer para burst/controle; Blessed se estiver muito seguro</small></p>
+  <p class="focus"><b>Skill para focar:</b> Sobrecarga <br>Salta no ar e eletrocuta um único inimigo, causando 1768% de dano.</p>
+  <p><b>Stats APK:</b> Power 49.700 · ATK 403 · DEF 35 · HP 16.120</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Raio do Turbilhão</b> <small>Valor: 140.6% principal; 703% total bruto se todos os hits conectarem · Alvo APK: [3, 5]</small><br>Libera uma corrente de raios que atinge até 5 alvos inimigos, causando 38% de dano a cada alvo.</li><li><b>Sobrecarga </b> <small>Valor: 3270.8% principal; 6541.6% total bruto se todos os hits conectarem · Alvo APK: [1]</small><br>Salta no ar e eletrocuta um único inimigo, causando 1768% de dano.</li><li><b>Voltagem Concentrada</b> <br>Ganha +20% de PV máximo em combate.</li><li><b>Promissor</b> <br>Ganha +20% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="escarffier" data-tier="A" data-element="Fogo" data-pos="Frente" data-role="Suporte/controle">
+<div class="card-media"><span class="rank-badge">#30</span><img src="images/Escarffier_5022.png" alt="Escarffier"><img class="evo" src="images/Essaucier_5022_evolve.png" alt="Essaucier"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Escarffier</h3><span class="tier tier-A">A</span></div>
+  <p class="evo-line">Evolução: <b>Essaucier</b></p>
+  <div class="chips"><span>UR</span><span>Fogo</span><span>Frente</span><span>Suporte/controle</span></div>
+  <p><b>Função:</b> Frente / controle ou bruiser</p>
+  <p><b>Elemento:</b> forte contra Terra; fraco contra Agua.</p>
+  <p><b>Melhor slot:</b> Slot 6 - Frente direita<br><small>Frontliner agressivo: use no flanco para iniciar, controlar ou pressionar a backline sem ocupar o centro do tank. Alt.: Slot 1 - Frente esquerda</small></p>
+  <p class="perk"><b>Perks:</b> Vigorous/Vigoroso HP +10% | Robust/Robusto HP +7% | Unshakeable/Inabalável DEF +10% | Iron Will/Determinação de Ferro Tenacity +8%<br><small>Alternativas: Clear-Headed/Lucido contra stun; Steel Skull/Cranio de Aço contra burst critico; Belligerent se o suporte tambem for carry de dano</small></p>
+  <p class="focus"><b>Skill para focar:</b> Bom Apetite<br>Bom apetite, meus amigos! Joga um hambúrguer perfeitamente no ponto ao Palmon aliado com o maior Ataque, reforçando o Ataque dele em 20% por 10 s.</p>
+  <p><b>Stats APK:</b> Power 49.700 · ATK 550 · DEF 33 · HP 13.750</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Punição Picante</b> <small>Valor: 1724.2% · Alvo APK: [1]</small><br>Arremessa uma pimenta ardida (literalmente), causando 466% de dano a um único inimigo.</li><li><b>Bom Apetite</b> <br>Bom apetite, meus amigos! Joga um hambúrguer perfeitamente no ponto ao Palmon aliado com o maior Ataque, reforçando o Ataque dele em 20% por 10 s.</li><li><b>Ignição Furiosa</b> <br>A Fúria aumenta 20% mais rápido.</li><li><b>Promissor</b> <br>Ganha +20% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="mantleray" data-tier="A" data-element="Eletrico" data-pos="Fundo" data-role="DPS fundo">
+<div class="card-media"><span class="rank-badge">#31</span><img src="images/Mantleray_5004.png" alt="Mantleray"><img class="evo" src="images/Sorceray_5004_evolve.png" alt="Sorceray"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Mantleray</h3><span class="tier tier-A">A</span></div>
+  <p class="evo-line">Evolução: <b>Sorceray</b></p>
+  <div class="chips"><span>UR</span><span>Eletrico</span><span>Fundo</span><span>DPS fundo</span></div>
+  <p><b>Função:</b> DPS de fundo</p>
+  <p><b>Elemento:</b> forte contra Agua; fraco contra Terra.</p>
+  <p><b>Melhor slot:</b> Slot 4 - Fundo meio-esquerda<br><small>Backline de alto valor: coloque protegido no meio para reduzir risco de cair cedo. Alt.: Slot 5 - Fundo meio-direita</small></p>
+  <p class="perk"><b>Perks:</b> Warlike/Guerreiro ATK +10% | Belligerent/Beligerante ATK +7% | Blessed/Abencoado Crit Rate +8% | Heartless/Impiedoso Crit Dmg +15%<br><small>Alternativas: Deadeye/Certeiro ou Sharpshooter/Franco-atirador se faltar acerto; Ruthless/Cruel ou Fortunate/Afortunado como substitutos inferiores; Robust se estiver morrendo</small></p>
+  <p class="focus"><b>Skill para focar:</b> Explosão Elétrica<br>Dispara 3 bombas elétricas aleatoriamente em inimigos, e cada uma causa 756% de dano (as bombas podem atingir o mesmo inimigo).</p>
+  <p><b>Stats APK:</b> Power 49.700 · ATK 550 · DEF 99 · HP 13.750</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Relâmpago</b> <small>Valor: 584.6% · Alvo APK: [15, 1]</small><br>Lança raios à distância, causando 158% de dano a inimigos aleatórios da linha de trás.</li><li><b>Explosão Elétrica</b> <small>Valor: 2797.2% principal; 8391.6% total bruto se todos os hits conectarem · Alvo APK: [10, 3]</small><br>Dispara 3 bombas elétricas aleatoriamente em inimigos, e cada uma causa 756% de dano (as bombas podem atingir o mesmo inimigo).</li><li><b>Ferroada Elétrica</b> <br>Ganha +20% de Taxa de Crítico enquanto está em combate.</li><li><b>Promissor</b> <br>Ganha +20% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="surveilynx" data-tier="A" data-element="Terra" data-pos="Fundo" data-role="DPS fundo">
+<div class="card-media"><span class="rank-badge">#32</span><img src="images/Surveilynx_5012.png" alt="Surveilynx"><img class="evo" src="images/Camouflynx_5012_evolve.png" alt="Camouflynx"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Surveilynx</h3><span class="tier tier-A">A</span></div>
+  <p class="evo-line">Evolução: <b>Camouflynx</b></p>
+  <div class="chips"><span>UR</span><span>Terra</span><span>Fundo</span><span>DPS fundo</span></div>
+  <p><b>Função:</b> DPS de fundo</p>
+  <p><b>Elemento:</b> forte contra Eletrico; fraco contra Fogo.</p>
+  <p><b>Melhor slot:</b> Slot 5 - Fundo meio-direita<br><small>Controle/AOE de fundo: protegido e com boa cobertura. Alt.: Slot 4 - Fundo meio-esquerda</small></p>
+  <p class="perk"><b>Perks:</b> Warlike/Guerreiro ATK +10% | Belligerent/Beligerante ATK +7% | Blessed/Abencoado Crit Rate +8% | Heartless/Impiedoso Crit Dmg +15%<br><small>Alternativas: Deadeye/Certeiro ou Sharpshooter/Franco-atirador se faltar acerto; Ruthless/Cruel ou Fortunate/Afortunado como substitutos inferiores; Robust se estiver morrendo</small></p>
+  <p class="focus"><b>Skill para focar:</b> Passo Umbral<br>Surveilynx se teleporta para 3 locais próximos e causa 594% de dano a todos os inimigos em um área em leque.</p>
+  <p><b>Stats APK:</b> Power 49.700 · ATK 521 · DEF 39 · HP 20.840</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Tiro Preciso</b> <small>Valor: 273.8% · Alvo APK: [1]</small><br>Um ataque de longo alcance que causa 74% de dano a um único inimigo.</li><li><b>Passo Umbral</b> <small>Valor: 1098.9% principal; 2197.8% total bruto se todos os hits conectarem · Alvo APK: [5, 20, 1000]</small><br>Surveilynx se teleporta para 3 locais próximos e causa 594% de dano a todos os inimigos em um área em leque.</li><li><b>Exercícios Táticos</b> <br>Surveilynx pode treinar rapidamente até 10% Armigo por dia.</li><li><b>Promissor</b> <br>Ganha +20% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="oleana" data-tier="A" data-element="Terra" data-pos="Fundo" data-role="DPS fundo">
+<div class="card-media"><span class="rank-badge">#33</span><img src="images/Oleana_5029.png" alt="Oleana"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Oleana</h3><span class="tier tier-A">A</span></div>
+  <p class="evo-line">Evolução: <b>não confirmada</b></p>
+  <div class="chips"><span>UR</span><span>Terra</span><span>Fundo</span><span>DPS fundo</span></div>
+  <p><b>Função:</b> DPS de fundo com suporte/buff</p>
+  <p><b>Elemento:</b> forte contra Eletrico; fraco contra Fogo.</p>
+  <p><b>Melhor slot:</b> Slot 5 - Fundo meio-direita<br><small>DPS/controle de fundo: fica protegido e entrega AOE/controle sem ocupar a lateral. Alt.: Slot 4 - Fundo meio-esquerda</small></p>
+  <p class="perk"><b>Perks:</b> Warlike/Guerreiro ATK +10% | Belligerent/Beligerante ATK +7% | Blessed/Abencoado Crit Rate +8% | Heartless/Impiedoso Crit Dmg +15%<br><small>Alternativas: Deadeye/Certeiro ou Sharpshooter/Franco-atirador se faltar acerto; Ruthless/Cruel ou Fortunate/Afortunado como substitutos inferiores; Robust se estiver morrendo</small></p>
+  <p class="focus"><b>Skill para focar:</b> Arremesso de Guirlanda<br>Invoca uma guirlanda de oliveira sobre sua cabeça. Lança várias azeitonas na linha de frente inimiga, causando 753% de dano a cada inimigo.</p>
+  <p><b>Stats APK:</b> Power 49.700 · ATK 507 · DEF 44 · HP 12.675</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Barragem de Oliva</b> <small>Valor: 518% · Alvo APK: [1]</small><br>Lança uma azeitona, causando 140% de dano a um único inimigo.</li><li><b>Arremesso de Guirlanda</b> <small>Valor: 2786.1% · Alvo APK: [18]</small><br>Invoca uma guirlanda de oliveira sobre sua cabeça. Lança várias azeitonas na linha de frente inimiga, causando 753% de dano a cada inimigo.</li><li><b>Abraço Folhoso</b> <br>Aumenta o PV de todos os Palmon em 6000% (mesmo quando não estão alocados).</li><li><b>Promissor</b> <br>Ganha +20% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="lucidina" data-tier="B" data-element="Agua" data-pos="Fundo" data-role="DPS fundo">
+<div class="card-media"><span class="rank-badge">#34</span><img src="images/Lucidina_5003.png" alt="Lucidina"><img class="evo" src="images/Oneirina_5003_evolve.png" alt="Oneirina"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Lucidina</h3><span class="tier tier-B">B</span></div>
+  <p class="evo-line">Evolução: <b>Oneirina</b></p>
+  <div class="chips"><span>UR</span><span>Agua</span><span>Fundo</span><span>DPS fundo</span></div>
+  <p><b>Função:</b> DPS de fundo</p>
+  <p><b>Elemento:</b> forte contra Fogo; fraco contra Eletrico.</p>
+  <p><b>Melhor slot:</b> Slot 5 - Fundo meio-direita<br><small>DPS/controle de fundo: fica protegido e entrega AOE/controle sem ocupar a lateral. Alt.: Slot 4 - Fundo meio-esquerda</small></p>
+  <p class="perk"><b>Perks:</b> Warlike/Guerreiro ATK +10% | Belligerent/Beligerante ATK +7% | Blessed/Abencoado Crit Rate +8% | Heartless/Impiedoso Crit Dmg +15%<br><small>Alternativas: Deadeye/Certeiro ou Sharpshooter/Franco-atirador se faltar acerto; Ruthless/Cruel ou Fortunate/Afortunado como substitutos inferiores; Robust se estiver morrendo</small></p>
+  <p class="focus"><b>Skill para focar:</b> Tormento<br>Puxa um inimigo para um sonho por 3 s. Quando o sonho se desfaz, causa 2057.35% de dano a esse inimigo (ignora Esquiva e Invencibilidade).</p>
+  <p><b>Stats APK:</b> Power 49.700 · ATK 520 · DEF 73 · HP 13.000</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Fantasma </b> <small>Valor: 518% · Alvo APK: [1]</small><br>Lança um orbe de poder onírico, causando 140% de dano a um único inimigo.</li><li><b>Tormento</b> <small>Valor: 0.04% · Alvo APK: [1]</small><br>Puxa um inimigo para um sonho por 3 s. Quando o sonho se desfaz, causa 2057.35% de dano a esse inimigo (ignora Esquiva e Invencibilidade).</li><li><b>Sombra Onírica</b> <br>Ganha +20% de Taxa de Crítico enquanto está em combate.</li><li><b>Promissor</b> <br>Ganha +20% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="woozard" data-tier="B" data-element="Terra" data-pos="Fundo" data-role="Suporte/controle">
+<div class="card-media"><span class="rank-badge">#35</span><img src="images/Woozard_5014.png" alt="Woozard"><img class="evo" src="images/Fleurizard_5014_evolve.png" alt="Fleurizard"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Woozard</h3><span class="tier tier-B">B</span></div>
+  <p class="evo-line">Evolução: <b>Fleurizard</b></p>
+  <div class="chips"><span>UR</span><span>Terra</span><span>Fundo</span><span>Suporte/controle</span></div>
+  <p><b>Função:</b> DPS de fundo com suporte/buff</p>
+  <p><b>Elemento:</b> forte contra Eletrico; fraco contra Fogo.</p>
+  <p><b>Melhor slot:</b> Slot 5 - Fundo meio-direita<br><small>DPS/controle de fundo: fica protegido e entrega AOE/controle sem ocupar a lateral. Alt.: Slot 4 - Fundo meio-esquerda</small></p>
+  <p class="perk"><b>Perks:</b> Vigorous/Vigoroso HP +10% | Robust/Robusto HP +7% | Unshakeable/Inabalável DEF +10% | Iron Will/Determinação de Ferro Tenacity +8%<br><small>Alternativas: Clear-Headed/Lucido contra stun; Steel Skull/Cranio de Aço contra burst critico; Belligerent se o suporte tambem for carry de dano</small></p>
+  <p class="focus"><b>Skill para focar:</b> Fungestouro<br>Dispara 6 cogumelos contra o inimigo com o maior Ataque, causando 831% de dano total e reduzindo o Ataque dele em 35% por 10 s.</p>
+  <p><b>Stats APK:</b> Power 49.700 · ATK 501 · DEF 69 · HP 12.525</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Fungitiro</b> <small>Valor: 414.4% · Alvo APK: [1]</small><br>Dispara um esporo tóxico, causando 112% de dano a um único inimigo.</li><li><b>Fungestouro</b> <small>Valor: 512.45% principal; 3074.7% total bruto se todos os hits conectarem · Alvo APK: [16, 1]</small><br>Dispara 6 cogumelos contra o inimigo com o maior Ataque, causando 831% de dano total e reduzindo o Ataque dele em 35% por 10 s.</li><li><b>Dracônico</b> <br>Causa +20% de dano durante a batalha.</li><li><b>Promissor</b> <br>Ganha +20% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="rotorlotor" data-tier="C" data-element="Eletrico" data-pos="Fundo" data-role="DPS fundo">
+<div class="card-media"><span class="rank-badge">#36</span><img src="images/Rotorlotor_4011.png" alt="Rotorlotor"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Rotorlotor</h3><span class="tier tier-C">C</span></div>
+  <p class="evo-line">Evolução: <b>não confirmada</b></p>
+  <div class="chips"><span>Epico</span><span>Eletrico</span><span>Fundo</span><span>DPS fundo</span></div>
+  <p><b>Função:</b> DPS de fundo</p>
+  <p><b>Elemento:</b> forte contra Agua; fraco contra Terra.</p>
+  <p><b>Melhor slot:</b> Slot 7 - Fundo direita<br><small>DPS secundario de fundo: lado direito libera o miolo para o carry/buffer principal. Alt.: Slot 3 - Fundo esquerda</small></p>
+  <p class="perk"><b>Perks:</b> Warlike/Guerreiro ATK +10% | Belligerent/Beligerante ATK +7% | Blessed/Abencoado Crit Rate +8% | Heartless/Impiedoso Crit Dmg +15%<br><small>Alternativas: Deadeye/Certeiro ou Sharpshooter/Franco-atirador se faltar acerto; Ruthless/Cruel ou Fortunate/Afortunado como substitutos inferiores; Robust se estiver morrendo</small></p>
+  <p class="focus"><b>Skill para focar:</b> Tempestade de Raios<br>Invoca uma tempestade que causa 480% de dano a 2 alvos aleatórios. Tem 20% de chance de paralisar os alvos por 2 s.</p>
+  <p><b>Stats APK:</b> Power 19.820 · ATK 378 · DEF 55 · HP 9.450</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Ataque Carregado</b> <small>Valor: 325% · Alvo APK: [1]</small><br>Lança um relâmpago, causando 130% de dano a um único inimigo.</li><li><b>Tempestade de Raios</b> <small>Valor: 1370% · Alvo APK: [6, 2]</small><br>Invoca uma tempestade que causa 480% de dano a 2 alvos aleatórios. Tem 20% de chance de paralisar os alvos por 2 s.</li><li><b>Riquezas do Vento</b> <br>+30% de produção de Ouro ao trabalhar em uma Loja.</li><li><b>Robusto</b> <br>Ganha +10% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="voltbolt" data-tier="C" data-element="Eletrico" data-pos="Frente" data-role="DPS frente/bruiser">
+<div class="card-media"><span class="rank-badge">#37</span><img src="images/Voltbolt_4015.png" alt="Voltbolt"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Voltbolt</h3><span class="tier tier-C">C</span></div>
+  <p class="evo-line">Evolução: <b>não confirmada</b></p>
+  <div class="chips"><span>Epico</span><span>Eletrico</span><span>Frente</span><span>DPS frente/bruiser</span></div>
+  <p><b>Função:</b> Frente / controle ou bruiser</p>
+  <p><b>Elemento:</b> forte contra Agua; fraco contra Terra.</p>
+  <p><b>Melhor slot:</b> Slot 6 - Frente direita<br><small>Frontliner agressivo: use no flanco para iniciar, controlar ou pressionar a backline sem ocupar o centro do tank. Alt.: Slot 1 - Frente esquerda</small></p>
+  <p class="perk"><b>Perks:</b> Warlike/Guerreiro ATK +10% | Belligerent/Beligerante ATK +7% | Robust/Robusto HP +7% | Vigorous/Vigoroso HP +10%<br><small>Alternativas: Steel Skull/Cranio de Aço ou Unyielding/Indomavel se morrer para burst/controle; Blessed se estiver muito seguro</small></p>
+  <p class="focus"><b>Skill para focar:</b> Mergulho da Tormenta<br>Sobe rapidamente ao ar e mergulha de volta, carregado de eletricidade. Causa 180% de dano a alvos dentro do alcance, com 20% de chance de atordoá-los por 1,5 s.</p>
+  <p><b>Stats APK:</b> Power 19.820 · ATK 259 · DEF 24 · HP 6.475</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Chute Rápido</b> <small>Valor: 260% · Alvo APK: [1]</small><br>Dá um chute rápido em um único inimigo, causando 104% de dano.</li><li><b>Mergulho da Tormenta</b> <small>Valor: 632.5% · Alvo APK: [6, 5]</small><br>Sobe rapidamente ao ar e mergulha de volta, carregado de eletricidade. Causa 180% de dano a alvos dentro do alcance, com 20% de chance de atordoá-los por 1,5 s.</li><li><b>Estudo Rápido</b> <br>Ao pesquisar uma tecnologia, reduz o tempo final de pesquisa em 0.34% min.</li><li><b>Robusto</b> <br>Ganha +10% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="platyputz" data-tier="C" data-element="Agua" data-pos="Frente" data-role="Tank">
+<div class="card-media"><span class="rank-badge">#38</span><img src="images/Platyputz_4003.png" alt="Platyputz"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Platyputz</h3><span class="tier tier-C">C</span></div>
+  <p class="evo-line">Evolução: <b>não confirmada</b></p>
+  <div class="chips"><span>Epico</span><span>Agua</span><span>Frente</span><span>Tank</span></div>
+  <p><b>Função:</b> Frente / controle ou bruiser</p>
+  <p><b>Elemento:</b> forte contra Fogo; fraco contra Eletrico.</p>
+  <p><b>Melhor slot:</b> Slot 2 - Frente meio<br><small>Tank principal/maior resistencia: melhor no centro para segurar a pressao frontal. Alt.: Slot 1 - Frente esquerda se outro tank melhor ja estiver no centro</small></p>
+  <p class="perk"><b>Perks:</b> Vigorous/Vigoroso HP +10% | Unshakeable/Inabalável DEF +10% | Robust/Robusto HP +7% | Steel Skull/Cranio de Aço Crit Dmg Reduction +8%<br><small>Alternativas: Unyielding/Indomavel, Steadfast/Firme, Clear-Headed/Lucido, Elusive/Evasivo</small></p>
+  <p class="focus"><b>Skill para focar:</b> Escudo de Bolhas<br>Concede um escudo igual a 15% de seu PV máximo ao aliado com menos PV por 0.04% s.</p>
+  <p><b>Stats APK:</b> Power 19.820 · ATK 265 · DEF 81 · HP 10.600</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Sei do Que Precisa</b> <small>Valor: 325% · Alvo APK: [1]</small><br>O Platyputz retira uma variedade de tesouros de sua bolsa e os arremessa em um único inimigo, causando um total de 130% de dano.</li><li><b>Escudo de Bolhas</b> <br>Concede um escudo igual a 15% de seu PV máximo ao aliado com menos PV por 0.04% s.</li><li><b>Dessensibilizado</b> <br>A mente entorpecida de Platyputz atenua a dor. Ele recebe -12.5% de dano.</li><li><b>Robusto</b> <br>Ganha +10% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="axollium" data-tier="C" data-element="Terra" data-pos="Frente" data-role="DPS frente/bruiser">
+<div class="card-media"><span class="rank-badge">#39</span><img src="images/Axollium_4016.png" alt="Axollium"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Axollium</h3><span class="tier tier-C">C</span></div>
+  <p class="evo-line">Evolução: <b>não confirmada</b></p>
+  <div class="chips"><span>Epico</span><span>Terra</span><span>Frente</span><span>DPS frente/bruiser</span></div>
+  <p><b>Função:</b> Frente / controle ou bruiser</p>
+  <p><b>Elemento:</b> forte contra Eletrico; fraco contra Fogo.</p>
+  <p><b>Melhor slot:</b> Slot 1 - Frente esquerda<br><small>Brigador/controle de frente: funciona melhor como off-tank lateral, deixando o meio para o tank mais resistente. Alt.: Slot 6 - Frente direita</small></p>
+  <p class="perk"><b>Perks:</b> Warlike/Guerreiro ATK +10% | Belligerent/Beligerante ATK +7% | Robust/Robusto HP +7% | Vigorous/Vigoroso HP +10%<br><small>Alternativas: Steel Skull/Cranio de Aço ou Unyielding/Indomavel se morrer para burst/controle; Blessed se estiver muito seguro</small></p>
+  <p class="focus"><b>Skill para focar:</b> Choque Verde<br>Golpeia o chão com sua cauda, criando uma fissura que causa 300% de dano a todos os inimigos em seu caminho. Os alvos perdem 20% de Precisão por 3 s.</p>
+  <p><b>Stats APK:</b> Power 19.820 · ATK 255 · DEF 23 · HP 7.140</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Horticultura Letal</b> <small>Valor: 325% · Alvo APK: [1]</small><br>Arremessa uma folha afiada como uma navalha, causando 130% de dano a um único inimigo.</li><li><b>Choque Verde</b> <small>Valor: 812.5% · Alvo APK: [8, 300, 2000]</small><br>Golpeia o chão com sua cauda, criando uma fissura que causa 300% de dano a todos os inimigos em seu caminho. Os alvos perdem 20% de Precisão por 3 s.</li><li><b>Corrida Onírica</b> <br>+30% de velocidade de produção de Onírium ao trabalhar em um Filtro de Onírium.</li><li><b>Robusto</b> <br>Ganha +10% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="incineraptor" data-tier="C" data-element="Fogo" data-pos="Fundo" data-role="DPS fundo">
+<div class="card-media"><span class="rank-badge">#40</span><img src="images/Incineraptor_4007.png" alt="Incineraptor"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Incineraptor</h3><span class="tier tier-C">C</span></div>
+  <p class="evo-line">Evolução: <b>não confirmada</b></p>
+  <div class="chips"><span>Epico</span><span>Fogo</span><span>Fundo</span><span>DPS fundo</span></div>
+  <p><b>Função:</b> DPS de fundo</p>
+  <p><b>Elemento:</b> forte contra Terra; fraco contra Agua.</p>
+  <p><b>Melhor slot:</b> Slot 5 - Fundo meio-direita<br><small>Controle/AOE de fundo: protegido e com boa cobertura. Alt.: Slot 4 - Fundo meio-esquerda</small></p>
+  <p class="perk"><b>Perks:</b> Warlike/Guerreiro ATK +10% | Belligerent/Beligerante ATK +7% | Blessed/Abencoado Crit Rate +8% | Heartless/Impiedoso Crit Dmg +15%<br><small>Alternativas: Deadeye/Certeiro ou Sharpshooter/Franco-atirador se faltar acerto; Ruthless/Cruel ou Fortunate/Afortunado como substitutos inferiores; Robust se estiver morrendo</small></p>
+  <p class="focus"><b>Skill para focar:</b> Queda Flamejante<br>Causa 550% de dano a todos os inimigos em uma linha reta.</p>
+  <p><b>Stats APK:</b> Power 19.820 · ATK 360 · DEF 39 · HP 9.000</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Onda de Calor</b> <small>Valor: 325% · Alvo APK: [1]</small><br>Causa 130% de dano a um único inimigo.</li><li><b>Queda Flamejante</b> <small>Valor: 632.5% · Alvo APK: [8, 300, 5000]</small><br>Causa 550% de dano a todos os inimigos em uma linha reta.</li><li><b>Olho de Águia</b> <br>O Incineraptor sempre consegue encontrar tesouros escondidos. Fornece tesouro extra (limite de 0.32% por dia) ao concluir uma Missão de Reconhecimento.</li><li><b>Robusto</b> <br>Ganha +10% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="wyvierno" data-tier="C" data-element="Fogo" data-pos="Fundo" data-role="DPS fundo">
+<div class="card-media"><span class="rank-badge">#41</span><img src="images/Wyvierno_4001.png" alt="Wyvierno"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Wyvierno</h3><span class="tier tier-C">C</span></div>
+  <p class="evo-line">Evolução: <b>não confirmada</b></p>
+  <div class="chips"><span>Epico</span><span>Fogo</span><span>Fundo</span><span>DPS fundo</span></div>
+  <p><b>Função:</b> DPS de fundo</p>
+  <p><b>Elemento:</b> forte contra Terra; fraco contra Agua.</p>
+  <p><b>Melhor slot:</b> Slot 5 - Fundo meio-direita<br><small>Controle/AOE de fundo: protegido e com boa cobertura. Alt.: Slot 4 - Fundo meio-esquerda</small></p>
+  <p class="perk"><b>Perks:</b> Warlike/Guerreiro ATK +10% | Belligerent/Beligerante ATK +7% | Blessed/Abencoado Crit Rate +8% | Heartless/Impiedoso Crit Dmg +15%<br><small>Alternativas: Deadeye/Certeiro ou Sharpshooter/Franco-atirador se faltar acerto; Ruthless/Cruel ou Fortunate/Afortunado como substitutos inferiores; Robust se estiver morrendo</small></p>
+  <p class="focus"><b>Skill para focar:</b> Varredura Ardente <br>Causa 462% de dano a todos os inimigos em um leque e os queima, causando 20% de dano por segundo durante 0.04% s.</p>
+  <p><b>Stats APK:</b> Power 19.820 · ATK 281 · DEF 85 · HP 11.240</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Bola de Fogo</b> <small>Valor: 325% · Alvo APK: [1]</small><br>Dispara uma bola de fogo em um único inimigo, causando 130% de dano.</li><li><b>Varredura Ardente </b> <small>Valor: 434% principal; 868% total bruto se todos os hits conectarem · Alvo APK: [5, 20, 1000]</small><br>Causa 462% de dano a todos os inimigos em um leque e os queima, causando 20% de dano por segundo durante 0.04% s.</li><li><b>Coração Ardente</b> <br>+30% de velocidade de produção de Temperita ao trabalhar em um Laboratório Alquímico.</li><li><b>Robusto</b> <br>Ganha +10% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="cerverdant" data-tier="C" data-element="Terra" data-pos="Frente" data-role="Suporte/controle">
+<div class="card-media"><span class="rank-badge">#42</span><img src="images/Cerverdant_4012.png" alt="Cerverdant"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Cerverdant</h3><span class="tier tier-C">C</span></div>
+  <p class="evo-line">Evolução: <b>não confirmada</b></p>
+  <div class="chips"><span>Epico</span><span>Terra</span><span>Frente</span><span>Suporte/controle</span></div>
+  <p><b>Função:</b> Frente / controle ou bruiser</p>
+  <p><b>Elemento:</b> forte contra Eletrico; fraco contra Fogo.</p>
+  <p><b>Melhor slot:</b> Slot 1 - Frente esquerda<br><small>Brigador/controle de frente: funciona melhor como off-tank lateral, deixando o meio para o tank mais resistente. Alt.: Slot 6 - Frente direita</small></p>
+  <p class="perk"><b>Perks:</b> Vigorous/Vigoroso HP +10% | Robust/Robusto HP +7% | Unshakeable/Inabalável DEF +10% | Iron Will/Determinação de Ferro Tenacity +8%<br><small>Alternativas: Clear-Headed/Lucido contra stun; Steel Skull/Cranio de Aço contra burst critico; Belligerent se o suporte tambem for carry de dano</small></p>
+  <p class="focus"><b>Skill para focar:</b> Graça Verdejante <br>Palmon Terrestres aliados ganham +20% de Ataque por 5 s.</p>
+  <p><b>Stats APK:</b> Power 19.820 · ATK 240 · DEF 21 · HP 5.280</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Força da Natureza</b> <small>Valor: 325% · Alvo APK: [1]</small><br>Causa 130% de dano a um único inimigo.</li><li><b>Graça Verdejante </b> <br>Palmon Terrestres aliados ganham +20% de Ataque por 5 s.</li><li><b>Fartura Verdejante</b> <br>+30% de produção de Madeira ao trabalhar em uma tarefa de Lenharia.</li><li><b>Robusto</b> <br>Ganha +10% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="thunderclawd" data-tier="C" data-element="Eletrico" data-pos="Fundo" data-role="DPS fundo">
+<div class="card-media"><span class="rank-badge">#43</span><img src="images/Thunderclawd_4005.png" alt="Thunderclawd"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Thunderclawd</h3><span class="tier tier-C">C</span></div>
+  <p class="evo-line">Evolução: <b>não confirmada</b></p>
+  <div class="chips"><span>Epico</span><span>Eletrico</span><span>Fundo</span><span>DPS fundo</span></div>
+  <p><b>Função:</b> DPS de fundo</p>
+  <p><b>Elemento:</b> forte contra Agua; fraco contra Terra.</p>
+  <p><b>Melhor slot:</b> Slot 5 - Fundo meio-direita<br><small>Controle/AOE de fundo: protegido e com boa cobertura. Alt.: Slot 4 - Fundo meio-esquerda</small></p>
+  <p class="perk"><b>Perks:</b> Warlike/Guerreiro ATK +10% | Belligerent/Beligerante ATK +7% | Blessed/Abencoado Crit Rate +8% | Heartless/Impiedoso Crit Dmg +15%<br><small>Alternativas: Deadeye/Certeiro ou Sharpshooter/Franco-atirador se faltar acerto; Ruthless/Cruel ou Fortunate/Afortunado como substitutos inferiores; Robust se estiver morrendo</small></p>
+  <p class="focus"><b>Skill para focar:</b> Nuvem Escura<br>Ergue-se no ar e libera uma tempestade, atingindo 4 inimigos aleatórios e causando 216% de dano.</p>
+  <p><b>Stats APK:</b> Power 19.820 · ATK 250 · DEF 23 · HP 5.500</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Trovejada</b> <small>Valor: 151.25% · Alvo APK: [2, 120]</small><br>Causa 60.5% de dano ao inimigo alvo mais próximo e a todos os inimigos perto dele.</li><li><b>Nuvem Escura</b> <small>Valor: 937.5% · Alvo APK: [6, 4]</small><br>Ergue-se no ar e libera uma tempestade, atingindo 4 inimigos aleatórios e causando 216% de dano.</li><li><b>Ionizado </b> <br>+30% de produção de Eletricidade ao trabalhar em uma tarefa de Carga.</li><li><b>Robusto</b> <br>Ganha +10% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="snowkami" data-tier="C" data-element="Agua" data-pos="Fundo" data-role="DPS fundo">
+<div class="card-media"><span class="rank-badge">#44</span><img src="images/Snowkami_4004.png" alt="Snowkami"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Snowkami</h3><span class="tier tier-C">C</span></div>
+  <p class="evo-line">Evolução: <b>não confirmada</b></p>
+  <div class="chips"><span>Epico</span><span>Agua</span><span>Fundo</span><span>DPS fundo</span></div>
+  <p><b>Função:</b> DPS de fundo</p>
+  <p><b>Elemento:</b> forte contra Fogo; fraco contra Eletrico.</p>
+  <p><b>Melhor slot:</b> Slot 5 - Fundo meio-direita<br><small>Controle/AOE de fundo: protegido e com boa cobertura. Alt.: Slot 4 - Fundo meio-esquerda</small></p>
+  <p class="perk"><b>Perks:</b> Warlike/Guerreiro ATK +10% | Belligerent/Beligerante ATK +7% | Blessed/Abencoado Crit Rate +8% | Heartless/Impiedoso Crit Dmg +15%<br><small>Alternativas: Deadeye/Certeiro ou Sharpshooter/Franco-atirador se faltar acerto; Ruthless/Cruel ou Fortunate/Afortunado como substitutos inferiores; Robust se estiver morrendo</small></p>
+  <p class="focus"><b>Skill para focar:</b> Uivo Glacial<br>Snowkami libera a ira do inverno, causando 540% de dano a um único inimigo. Tem 70% de chance de Congelar o alvo por 2,5 s.</p>
+  <p><b>Stats APK:</b> Power 19.820 · ATK 272 · DEF 83 · HP 10.880</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Garragélida</b> <small>Valor: 325% · Alvo APK: [1]</small><br>Morde um único inimigo várias vezes, causando um total de 130% de dano.</li><li><b>Uivo Glacial</b> <small>Valor: 1862.5% · Alvo APK: [1]</small><br>Snowkami libera a ira do inverno, causando 540% de dano a um único inimigo. Tem 70% de chance de Congelar o alvo por 2,5 s.</li><li><b>Vontade Lupina</b> <br>Ganha +12.5% de Ataque enquanto está em combate.</li><li><b>Robusto</b> <br>Ganha +10% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="vulcanid" data-tier="C" data-element="Fogo" data-pos="Frente" data-role="DPS frente/bruiser">
+<div class="card-media"><span class="rank-badge">#45</span><img src="images/Vulcanid_4013.png" alt="Vulcanid"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Vulcanid</h3><span class="tier tier-C">C</span></div>
+  <p class="evo-line">Evolução: <b>não confirmada</b></p>
+  <div class="chips"><span>Epico</span><span>Fogo</span><span>Frente</span><span>DPS frente/bruiser</span></div>
+  <p><b>Função:</b> Frente / controle ou bruiser</p>
+  <p><b>Elemento:</b> forte contra Terra; fraco contra Agua.</p>
+  <p><b>Melhor slot:</b> Slot 1 - Frente esquerda<br><small>Brigador/controle de frente: funciona melhor como off-tank lateral, deixando o meio para o tank mais resistente. Alt.: Slot 6 - Frente direita</small></p>
+  <p class="perk"><b>Perks:</b> Warlike/Guerreiro ATK +10% | Belligerent/Beligerante ATK +7% | Robust/Robusto HP +7% | Vigorous/Vigoroso HP +10%<br><small>Alternativas: Steel Skull/Cranio de Aço ou Unyielding/Indomavel se morrer para burst/controle; Blessed se estiver muito seguro</small></p>
+  <p class="focus"><b>Skill para focar:</b> Prova de Fogo<br>Causa 600% de dano a um único inimigo.</p>
+  <p><b>Stats APK:</b> Power 19.820 · ATK 259 · DEF 24 · HP 6.475</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Mordida Ardida </b> <small>Valor: 325% · Alvo APK: [1]</small><br>Causa 130% de dano a um único inimigo.</li><li><b>Prova de Fogo</b> <small>Valor: 1862.5% · Alvo APK: [1]</small><br>Causa 600% de dano a um único inimigo.</li><li><b>Cachorro Quente</b> <br>+30% de produção de Aço ao trabalhar em uma tarefa de Fundição.</li><li><b>Robusto</b> <br>Ganha +10% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="bruiseberry" data-tier="C" data-element="Terra" data-pos="Frente" data-role="DPS frente/bruiser">
+<div class="card-media"><span class="rank-badge">#46</span><img src="images/Bruiseberry_4009.png" alt="Bruiseberry"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Bruiseberry</h3><span class="tier tier-C">C</span></div>
+  <p class="evo-line">Evolução: <b>não confirmada</b></p>
+  <div class="chips"><span>Epico</span><span>Terra</span><span>Frente</span><span>DPS frente/bruiser</span></div>
+  <p><b>Função:</b> Frente / controle ou bruiser</p>
+  <p><b>Elemento:</b> forte contra Eletrico; fraco contra Fogo.</p>
+  <p><b>Melhor slot:</b> Slot 1 - Frente esquerda<br><small>Brigador/controle de frente: funciona melhor como off-tank lateral, deixando o meio para o tank mais resistente. Alt.: Slot 6 - Frente direita</small></p>
+  <p class="perk"><b>Perks:</b> Warlike/Guerreiro ATK +10% | Belligerent/Beligerante ATK +7% | Robust/Robusto HP +7% | Vigorous/Vigoroso HP +10%<br><small>Alternativas: Steel Skull/Cranio de Aço ou Unyielding/Indomavel se morrer para burst/controle; Blessed se estiver muito seguro</small></p>
+  <p class="focus"><b>Skill para focar:</b> Pancada de Frutas<br>Causa 600% de dano a um inimigo próximo.</p>
+  <p><b>Stats APK:</b> Power 19.820 · ATK 224 · DEF 19 · HP 4.928</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Golpe Frutífero </b> <small>Valor: 162.5% principal; 325% total bruto se todos os hits conectarem · Alvo APK: [1]</small><br>Causa 130% de dano a um único inimigo.</li><li><b>Pancada de Frutas</b> <small>Valor: 931.25% principal; 1862.51% total bruto se todos os hits conectarem · Alvo APK: [1]</small><br>Causa 600% de dano a um inimigo próximo.</li><li><b>Aquecimento Flamejante</b> <br>+30% de velocidade de treinamento ao trabalhar em uma Cabana de Armigo.</li><li><b>Robusto</b> <br>Ganha +10% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="squeezel" data-tier="C" data-element="Agua" data-pos="Fundo" data-role="DPS fundo">
+<div class="card-media"><span class="rank-badge">#47</span><img src="images/Squeezel_3202.png" alt="Squeezel"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Squeezel</h3><span class="tier tier-C">C</span></div>
+  <p class="evo-line">Evolução: <b>não confirmada</b></p>
+  <div class="chips"><span>Epico</span><span>Agua</span><span>Fundo</span><span>DPS fundo</span></div>
+  <p><b>Função:</b> DPS de fundo com suporte/buff</p>
+  <p><b>Elemento:</b> forte contra Fogo; fraco contra Eletrico.</p>
+  <p><b>Melhor slot:</b> Slot 7 - Fundo direita<br><small>DPS secundario de fundo: lado direito libera o miolo para o carry/buffer principal. Alt.: Slot 3 - Fundo esquerda</small></p>
+  <p class="perk"><b>Perks:</b> Warlike/Guerreiro ATK +10% | Belligerent/Beligerante ATK +7% | Blessed/Abencoado Crit Rate +8% | Heartless/Impiedoso Crit Dmg +15%<br><small>Alternativas: Deadeye/Certeiro ou Sharpshooter/Franco-atirador se faltar acerto; Ruthless/Cruel ou Fortunate/Afortunado como substitutos inferiores; Robust se estiver morrendo</small></p>
+  <p class="focus"><b>Skill para focar:</b> Aquartilharia<br>Ataca um único inimigo 3 vezes seguidas, causando 204% de dano total.</p>
+  <p><b>Stats APK:</b> Power 19.820 · ATK 255 · DEF 23 · HP 7.140</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Jato Aquático</b> <small>Valor: 325% · Alvo APK: [1]</small><br>Causa 130% de dano a um único inimigo.</li><li><b>Aquartilharia</b> <small>Valor: 620.85% principal; 1862.55% total bruto se todos os hits conectarem · Alvo APK: [1]</small><br>Ataca um único inimigo 3 vezes seguidas, causando 204% de dano total.</li><li><b>Explosão Aquática</b> <br>Reforço de Aquartilharia: aumenta o dano em 30%.</li><li><b>Robusto</b> <br>Ganha +10% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="meowdame" data-tier="C" data-element="Agua" data-pos="Fundo" data-role="Suporte/controle">
+<div class="card-media"><span class="rank-badge">#48</span><img src="images/Meowdame_4002.png" alt="Meowdame"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Meowdame</h3><span class="tier tier-C">C</span></div>
+  <p class="evo-line">Evolução: <b>não confirmada</b></p>
+  <div class="chips"><span>Epico</span><span>Agua</span><span>Fundo</span><span>Suporte/controle</span></div>
+  <p><b>Função:</b> DPS de fundo com suporte/buff</p>
+  <p><b>Elemento:</b> forte contra Fogo; fraco contra Eletrico.</p>
+  <p><b>Melhor slot:</b> Slot 4 - Fundo meio-esquerda<br><small>Backline de alto valor: coloque protegido no meio para reduzir risco de cair cedo. Alt.: Slot 5 - Fundo meio-direita</small></p>
+  <p class="perk"><b>Perks:</b> Vigorous/Vigoroso HP +10% | Robust/Robusto HP +7% | Unshakeable/Inabalável DEF +10% | Iron Will/Determinação de Ferro Tenacity +8%<br><small>Alternativas: Clear-Headed/Lucido contra stun; Steel Skull/Cranio de Aço contra burst critico; Belligerent se o suporte tambem for carry de dano</small></p>
+  <p class="focus"><b>Skill para focar:</b> Bênção Estelar<br>Concede a um Palmon aliado aleatório um bônus de 10% de dano por 5 s.</p>
+  <p><b>Stats APK:</b> Power 19.820 · ATK 310 · DEF 44 · HP 7.440</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Orbe Onírico</b> <small>Valor: 325% · Alvo APK: [1]</small><br>Causa 130% de dano a um único inimigo.</li><li><b>Bênção Estelar</b> <br>Concede a um Palmon aliado aleatório um bônus de 10% de dano por 5 s.</li><li><b>Milagreiro</b> <br>Meowdame tem uma tendência a fazer milagres acontecerem. Aumenta as recompensas de Ouro, Tábua e Aço em 50% quando derrota um Bulhamon ou um Bulhachefe.</li><li><b>Robusto</b> <br>Ganha +10% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="terrastudo" data-tier="C" data-element="Terra" data-pos="Frente" data-role="DPS frente/bruiser">
+<div class="card-media"><span class="rank-badge">#49</span><img src="images/Terrastudo_4006.png" alt="Terrastudo"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Terrastudo</h3><span class="tier tier-C">C</span></div>
+  <p class="evo-line">Evolução: <b>não confirmada</b></p>
+  <div class="chips"><span>Epico</span><span>Terra</span><span>Frente</span><span>DPS frente/bruiser</span></div>
+  <p><b>Função:</b> Frente / controle ou bruiser</p>
+  <p><b>Elemento:</b> forte contra Eletrico; fraco contra Fogo.</p>
+  <p><b>Melhor slot:</b> Slot 1 - Frente esquerda<br><small>Brigador/controle de frente: funciona melhor como off-tank lateral, deixando o meio para o tank mais resistente. Alt.: Slot 6 - Frente direita</small></p>
+  <p class="perk"><b>Perks:</b> Warlike/Guerreiro ATK +10% | Belligerent/Beligerante ATK +7% | Robust/Robusto HP +7% | Vigorous/Vigoroso HP +10%<br><small>Alternativas: Steel Skull/Cranio de Aço ou Unyielding/Indomavel se morrer para burst/controle; Blessed se estiver muito seguro</small></p>
+  <p class="focus"><b>Skill para focar:</b> Giro Tectônico<br>Transforma-se em uma bola mortal que gira muito rápido e causa 450% de dano a todos os alvos inimigos próximos.</p>
+  <p><b>Stats APK:</b> Power 19.820 · ATK 215 · DEF 17 · HP 4.730</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Cabeçada</b> <small>Valor: 325% · Alvo APK: [1]</small><br>Causa 130% de dano a um único inimigo.</li><li><b>Giro Tectônico</b> <small>Valor: 316.25% principal; 632.51% total bruto se todos os hits conectarem · Alvo APK: [7, 350]</small><br>Transforma-se em uma bola mortal que gira muito rápido e causa 450% de dano a todos os alvos inimigos próximos.</li><li><b>Furadura</b> <br>+30% de produção de Minério ao trabalhar em uma tarefa de Mineração.</li><li><b>Robusto</b> <br>Ganha +10% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="maximito" data-tier="C" data-element="Agua" data-pos="Frente" data-role="Tank">
+<div class="card-media"><span class="rank-badge">#50</span><img src="images/Maximito_4008.png" alt="Maximito"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Maximito</h3><span class="tier tier-C">C</span></div>
+  <p class="evo-line">Evolução: <b>não confirmada</b></p>
+  <div class="chips"><span>Epico</span><span>Agua</span><span>Frente</span><span>Tank</span></div>
+  <p><b>Função:</b> Frente / controle ou bruiser</p>
+  <p><b>Elemento:</b> forte contra Fogo; fraco contra Eletrico.</p>
+  <p><b>Melhor slot:</b> Slot 2 - Frente meio<br><small>Tank principal/maior resistencia: melhor no centro para segurar a pressao frontal. Alt.: Slot 1 - Frente esquerda se outro tank melhor ja estiver no centro</small></p>
+  <p class="perk"><b>Perks:</b> Vigorous/Vigoroso HP +10% | Unshakeable/Inabalável DEF +10% | Robust/Robusto HP +7% | Steel Skull/Cranio de Aço Crit Dmg Reduction +8%<br><small>Alternativas: Unyielding/Indomavel, Steadfast/Firme, Clear-Headed/Lucido, Elusive/Evasivo</small></p>
+  <p class="focus"><b>Skill para focar:</b> Bênção Elefantina<br>O Palmon aliado com menos PV recebe -12.5% de dano pelos próximos 5 s.</p>
+  <p><b>Stats APK:</b> Power 19.820 · ATK 282 · DEF 86 · HP 11.280</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Trombada</b> <small>Valor: 325% · Alvo APK: [1]</small><br>Causa 130% de dano a um único inimigo.</li><li><b>Bênção Elefantina</b> <br>O Palmon aliado com menos PV recebe -12.5% de dano pelos próximos 5 s.</li><li><b>Grande Construtorzinho</b> <br>Ao construir, o tempo final de construção é reduzido em 0.34% min.</li><li><b>Robusto</b> <br>Ganha +10% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="lendanear" data-tier="C" data-element="Terra" data-pos="Fundo" data-role="Suporte/controle">
+<div class="card-media"><span class="rank-badge">#51</span><img src="images/Lendanear_4010.png" alt="Lendanear"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Lendanear</h3><span class="tier tier-C">C</span></div>
+  <p class="evo-line">Evolução: <b>não confirmada</b></p>
+  <div class="chips"><span>Epico</span><span>Terra</span><span>Fundo</span><span>Suporte/controle</span></div>
+  <p><b>Função:</b> DPS de fundo com suporte/buff</p>
+  <p><b>Elemento:</b> forte contra Eletrico; fraco contra Fogo.</p>
+  <p><b>Melhor slot:</b> Slot 4 - Fundo meio-esquerda<br><small>Backline de alto valor: coloque protegido no meio para reduzir risco de cair cedo. Alt.: Slot 5 - Fundo meio-direita</small></p>
+  <p class="perk"><b>Perks:</b> Vigorous/Vigoroso HP +10% | Robust/Robusto HP +7% | Unshakeable/Inabalável DEF +10% | Iron Will/Determinação de Ferro Tenacity +8%<br><small>Alternativas: Clear-Headed/Lucido contra stun; Steel Skull/Cranio de Aço contra burst critico; Belligerent se o suporte tambem for carry de dano</small></p>
+  <p class="focus"><b>Skill para focar:</b> Rejuvenescer<br>Concede bônus a 1 Palmon aliado aleatório, reduzindo o dano recebido em 12.5%.</p>
+  <p><b>Stats APK:</b> Power 19.820 · ATK 215 · DEF 17 · HP 4.730</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Bombardeio de Amor</b> <small>Valor: 325% · Alvo APK: [1]</small><br>Causa 130% de dano a um único inimigo.</li><li><b>Rejuvenescer</b> <br>Concede bônus a 1 Palmon aliado aleatório, reduzindo o dano recebido em 12.5%.</li><li><b>Doces Cuidados</b> <br>O bondoso Lendanear possui poderes mágicos de cura. +15% de velocidade de cura ao trabalhar em um Hospital.</li><li><b>Robusto</b> <br>Ganha +10% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="spinchilla" data-tier="C" data-element="Terra" data-pos="Fundo" data-role="DPS fundo">
+<div class="card-media"><span class="rank-badge">#52</span><img src="images/Spinchilla_3204.png" alt="Spinchilla"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Spinchilla</h3><span class="tier tier-C">C</span></div>
+  <p class="evo-line">Evolução: <b>não confirmada</b></p>
+  <div class="chips"><span>Raro</span><span>Terra</span><span>Fundo</span><span>DPS fundo</span></div>
+  <p><b>Função:</b> DPS de fundo</p>
+  <p><b>Elemento:</b> forte contra Eletrico; fraco contra Fogo.</p>
+  <p><b>Melhor slot:</b> Slot 5 - Fundo meio-direita<br><small>Controle/AOE de fundo: protegido e com boa cobertura. Alt.: Slot 4 - Fundo meio-esquerda</small></p>
+  <p class="perk"><b>Perks:</b> Warlike/Guerreiro ATK +10% | Belligerent/Beligerante ATK +7% | Blessed/Abencoado Crit Rate +8% | Heartless/Impiedoso Crit Dmg +15%<br><small>Alternativas: Deadeye/Certeiro ou Sharpshooter/Franco-atirador se faltar acerto; Ruthless/Cruel ou Fortunate/Afortunado como substitutos inferiores; Robust se estiver morrendo</small></p>
+  <p class="focus"><b>Skill para focar:</b> Folhas Rodopiantes<br>Causa 480% de dano a um único inimigo.</p>
+  <p><b>Stats APK:</b> Power 9.910 · ATK 178 · DEF 19 · HP 3.916</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Pancada Atordoante </b> <small>Valor: 208% · Alvo APK: [1]</small><br>Causa 104% de dano a um único inimigo.</li><li><b>Folhas Rodopiantes</b> <small>Valor: 559% principal; 1118% total bruto se todos os hits conectarem · Alvo APK: [1]</small><br>Causa 480% de dano a um único inimigo.</li><li><b>Trapalhão de Sorte</b> <br>+20% de produção de Minério ao trabalhar em uma tarefa de Mineração.</li><li><b>Notável</b> <br>Ganha +5% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="herculeaf" data-tier="C" data-element="Terra" data-pos="Frente" data-role="DPS frente/bruiser">
+<div class="card-media"><span class="rank-badge">#53</span><img src="images/Herculeaf_4014.png" alt="Herculeaf"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Herculeaf</h3><span class="tier tier-C">C</span></div>
+  <p class="evo-line">Evolução: <b>não confirmada</b></p>
+  <div class="chips"><span>Raro</span><span>Terra</span><span>Frente</span><span>DPS frente/bruiser</span></div>
+  <p><b>Função:</b> Frente / controle ou bruiser</p>
+  <p><b>Elemento:</b> forte contra Eletrico; fraco contra Fogo.</p>
+  <p><b>Melhor slot:</b> Slot 6 - Frente direita<br><small>Frontliner agressivo: use no flanco para iniciar, controlar ou pressionar a backline sem ocupar o centro do tank. Alt.: Slot 1 - Frente esquerda</small></p>
+  <p class="perk"><b>Perks:</b> Warlike/Guerreiro ATK +10% | Belligerent/Beligerante ATK +7% | Robust/Robusto HP +7% | Vigorous/Vigoroso HP +10%<br><small>Alternativas: Steel Skull/Cranio de Aço ou Unyielding/Indomavel se morrer para burst/controle; Blessed se estiver muito seguro</small></p>
+  <p class="focus"><b>Skill para focar:</b> Salto Selvagem<br>Dá uma boa surra em um inimigo próximo, causando 480% de dano.</p>
+  <p><b>Stats APK:</b> Power 9.910 · ATK 305 · DEF 47 · HP 7.625</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Ursataque</b> <small>Valor: 208% · Alvo APK: [1]</small><br>Causa 104% de dano a um único inimigo.</li><li><b>Salto Selvagem</b> <small>Valor: 1118% · Alvo APK: [1]</small><br>Dá uma boa surra em um inimigo próximo, causando 480% de dano.</li><li><b>Força Ferina</b> <br>+20% de produção de Tábua ao trabalhar em uma tarefa de Serragem.</li><li><b>Notável</b> <br>Ganha +5% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="auktyke" data-tier="C" data-element="Agua" data-pos="Frente" data-role="DPS frente/bruiser">
+<div class="card-media"><span class="rank-badge">#54</span><img src="images/Auktyke_3206.png" alt="Auktyke"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Auktyke</h3><span class="tier tier-C">C</span></div>
+  <p class="evo-line">Evolução: <b>não confirmada</b></p>
+  <div class="chips"><span>Raro</span><span>Agua</span><span>Frente</span><span>DPS frente/bruiser</span></div>
+  <p><b>Função:</b> Frente / controle ou bruiser</p>
+  <p><b>Elemento:</b> forte contra Fogo; fraco contra Eletrico.</p>
+  <p><b>Melhor slot:</b> Slot 1 - Frente esquerda<br><small>Brigador/controle de frente: funciona melhor como off-tank lateral, deixando o meio para o tank mais resistente. Alt.: Slot 6 - Frente direita</small></p>
+  <p class="perk"><b>Perks:</b> Warlike/Guerreiro ATK +10% | Belligerent/Beligerante ATK +7% | Robust/Robusto HP +7% | Vigorous/Vigoroso HP +10%<br><small>Alternativas: Steel Skull/Cranio de Aço ou Unyielding/Indomavel se morrer para burst/controle; Blessed se estiver muito seguro</small></p>
+  <p class="focus"><b>Skill para focar:</b> Jato de Gêiser<br>Causa 336% de dano a um único inimigo.</p>
+  <p><b>Stats APK:</b> Power 9.910 · ATK 226 · DEF 64 · HP 9.040</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Bicada Nobre</b> <small>Valor: 208% · Alvo APK: [1]</small><br>Causa 104% de dano a um único inimigo.</li><li><b>Jato de Gêiser</b> <small>Valor: 558% · Alvo APK: [1]</small><br>Causa 336% de dano a um único inimigo.</li><li><b>Resistir a Gelo</b> <br>Ganha +10% de PV máximo enquanto está em combate.</li><li><b>Notável</b> <br>Ganha +5% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="flouffant" data-tier="C" data-element="Terra" data-pos="Fundo" data-role="DPS fundo">
+<div class="card-media"><span class="rank-badge">#55</span><img src="images/Flouffant_3203.png" alt="Flouffant"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Flouffant</h3><span class="tier tier-C">C</span></div>
+  <p class="evo-line">Evolução: <b>não confirmada</b></p>
+  <div class="chips"><span>Raro</span><span>Terra</span><span>Fundo</span><span>DPS fundo</span></div>
+  <p><b>Função:</b> DPS de fundo</p>
+  <p><b>Elemento:</b> forte contra Eletrico; fraco contra Fogo.</p>
+  <p><b>Melhor slot:</b> Slot 5 - Fundo meio-direita<br><small>Controle/AOE de fundo: protegido e com boa cobertura. Alt.: Slot 4 - Fundo meio-esquerda</small></p>
+  <p class="perk"><b>Perks:</b> Warlike/Guerreiro ATK +10% | Belligerent/Beligerante ATK +7% | Blessed/Abencoado Crit Rate +8% | Heartless/Impiedoso Crit Dmg +15%<br><small>Alternativas: Deadeye/Certeiro ou Sharpshooter/Franco-atirador se faltar acerto; Ruthless/Cruel ou Fortunate/Afortunado como substitutos inferiores; Robust se estiver morrendo</small></p>
+  <p class="focus"><b>Skill para focar:</b> Invocar Espinhos<br>Causa 480% de dano a um único inimigo.</p>
+  <p><b>Stats APK:</b> Power 9.910 · ATK 186 · DEF 20 · HP 4.092</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Emaranhar</b> <small>Valor: 208% · Alvo APK: [1]</small><br>Causa 104% de dano a um único inimigo.</li><li><b>Invocar Espinhos</b> <small>Valor: 186.34% principal; 1304.38% total bruto se todos os hits conectarem · Alvo APK: [1]</small><br>Causa 480% de dano a um único inimigo.</li><li><b>Bênção da Natureza</b> <br>+20% de produção agrícola ao trabalhar em uma tarefa de Plantio.</li><li><b>Notável</b> <br>Ganha +5% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="kilohopp" data-tier="C" data-element="Eletrico" data-pos="Fundo" data-role="DPS fundo">
+<div class="card-media"><span class="rank-badge">#56</span><img src="images/Kilohopp_3207.png" alt="Kilohopp"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Kilohopp</h3><span class="tier tier-C">C</span></div>
+  <p class="evo-line">Evolução: <b>não confirmada</b></p>
+  <div class="chips"><span>Raro</span><span>Eletrico</span><span>Fundo</span><span>DPS fundo</span></div>
+  <p><b>Função:</b> DPS de fundo</p>
+  <p><b>Elemento:</b> forte contra Agua; fraco contra Terra.</p>
+  <p><b>Melhor slot:</b> Slot 5 - Fundo meio-direita<br><small>Controle/AOE de fundo: protegido e com boa cobertura. Alt.: Slot 4 - Fundo meio-esquerda</small></p>
+  <p class="perk"><b>Perks:</b> Warlike/Guerreiro ATK +10% | Belligerent/Beligerante ATK +7% | Blessed/Abencoado Crit Rate +8% | Heartless/Impiedoso Crit Dmg +15%<br><small>Alternativas: Deadeye/Certeiro ou Sharpshooter/Franco-atirador se faltar acerto; Ruthless/Cruel ou Fortunate/Afortunado como substitutos inferiores; Robust se estiver morrendo</small></p>
+  <p class="focus"><b>Skill para focar:</b> Pico de Energia<br>Causa 360% de dano a todos os inimigos próximos.</p>
+  <p><b>Stats APK:</b> Power 9.910 · ATK 169 · DEF 18 · HP 3.718</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Estática Peluda</b> <small>Valor: 208% · Alvo APK: [1]</small><br>Causa 104% de dano a um único inimigo.</li><li><b>Pico de Energia</b> <small>Valor: 279% principal; 558% total bruto se todos os hits conectarem · Alvo APK: [7, 200]</small><br>Causa 360% de dano a todos os inimigos próximos.</li><li><b>Pelugem Estática</b> <br>+20% de produção de Eletricidade ao trabalhar em uma tarefa de Carga.</li><li><b>Notável</b> <br>Ganha +5% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="graffitty" data-tier="C" data-element="Terra" data-pos="Fundo" data-role="DPS fundo">
+<div class="card-media"><span class="rank-badge">#57</span><img src="images/Graffitty_3201.png" alt="Graffitty"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Graffitty</h3><span class="tier tier-C">C</span></div>
+  <p class="evo-line">Evolução: <b>não confirmada</b></p>
+  <div class="chips"><span>Raro</span><span>Terra</span><span>Fundo</span><span>DPS fundo</span></div>
+  <p><b>Função:</b> DPS de fundo</p>
+  <p><b>Elemento:</b> forte contra Eletrico; fraco contra Fogo.</p>
+  <p><b>Melhor slot:</b> Slot 7 - Fundo direita<br><small>DPS secundario de fundo: lado direito libera o miolo para o carry/buffer principal. Alt.: Slot 3 - Fundo esquerda</small></p>
+  <p class="perk"><b>Perks:</b> Warlike/Guerreiro ATK +10% | Belligerent/Beligerante ATK +7% | Blessed/Abencoado Crit Rate +8% | Heartless/Impiedoso Crit Dmg +15%<br><small>Alternativas: Deadeye/Certeiro ou Sharpshooter/Franco-atirador se faltar acerto; Ruthless/Cruel ou Fortunate/Afortunado como substitutos inferiores; Robust se estiver morrendo</small></p>
+  <p class="focus"><b>Skill para focar:</b> Toque de Cor <br>Um ataque de longo alcance que causa 480% de dano a um único inimigo.</p>
+  <p><b>Stats APK:</b> Power 9.910 · ATK 222 · DEF 26 · HP 4.884</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Bola de Tinta</b> <small>Valor: 104% principal; 208% total bruto se todos os hits conectarem · Alvo APK: [1]</small><br>Causa 104% de dano a um único inimigo.</li><li><b>Toque de Cor </b> <small>Valor: 559% principal; 1118% total bruto se todos os hits conectarem · Alvo APK: [9, 1]</small><br>Um ataque de longo alcance que causa 480% de dano a um único inimigo.</li><li><b>Patinhas Ágeis</b> <br>+20% de produção de Minério ao trabalhar em uma tarefa de Mineração.</li><li><b>Notável</b> <br>Ganha +5% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article><article class="pal-card" data-name="emboa" data-tier="C" data-element="Fogo" data-pos="Fundo" data-role="DPS fundo">
+<div class="card-media"><span class="rank-badge">#58</span><img src="images/Emboa_3205.png" alt="Emboa"></div>
+<div class="card-body">
+  <div class="card-title"><h3>Emboa</h3><span class="tier tier-C">C</span></div>
+  <p class="evo-line">Evolução: <b>não confirmada</b></p>
+  <div class="chips"><span>Raro</span><span>Fogo</span><span>Fundo</span><span>DPS fundo</span></div>
+  <p><b>Função:</b> DPS de fundo</p>
+  <p><b>Elemento:</b> forte contra Terra; fraco contra Agua.</p>
+  <p><b>Melhor slot:</b> Slot 7 - Fundo direita<br><small>DPS secundario de fundo: lado direito libera o miolo para o carry/buffer principal. Alt.: Slot 3 - Fundo esquerda</small></p>
+  <p class="perk"><b>Perks:</b> Warlike/Guerreiro ATK +10% | Belligerent/Beligerante ATK +7% | Blessed/Abencoado Crit Rate +8% | Heartless/Impiedoso Crit Dmg +15%<br><small>Alternativas: Deadeye/Certeiro ou Sharpshooter/Franco-atirador se faltar acerto; Ruthless/Cruel ou Fortunate/Afortunado como substitutos inferiores; Robust se estiver morrendo</small></p>
+  <p class="focus"><b>Skill para focar:</b> Aquecimento <br>Ganha +40% de Ataque por 0.07% s.</p>
+  <p><b>Stats APK:</b> Power 9.910 · ATK 204 · DEF 23 · HP 4.488</p>
+  <details><summary>Habilidades completas</summary><ul><li><b>Salto Mortal</b> <small>Valor: 208% · Alvo APK: [1]</small><br>Causa 104% de dano a um único inimigo.</li><li><b>Aquecimento </b> <br>Ganha +40% de Ataque por 0.07% s.</li><li><b>Reciclagem Térmica</b> <br>+20% de produção de Aço ao trabalhar em uma tarefa de Fundição.</li><li><b>Notável</b> <br>Ganha +5% de Ataque, Defesa e PV totais.</li></ul></details>
+</div>
+</article></div>
+</section>
+
+<section class="section" id="estrategias">
+  <h2>Estratégias práticas</h2>
+  <div class="grid-3">
+    <article class="info-card"><h3>Iniciante</h3><ul><li>Não gaste recurso raro em filler C/B.</li><li>Use qualquer tank decente no Slot 2 e proteja DPS no 4/5.</li><li>Guarde Palmons com trait S mesmo se forem fracos.</li></ul></article>
+    <article class="info-card"><h3>Meio de jogo</h3><ul><li>Feche 4 perks do carry e do tank antes de espalhar evolução.</li><li>Monte 3+ do mesmo elemento se o bônus não sacrificar função.</li><li>Atualize skill principal antes de passivas fracas.</li></ul></article>
+    <article class="info-card"><h3>Avançado/competitivo</h3><ul><li>Troque slots 4/5 conforme inimigo mira lateral/centro.</li><li>Use counter elemental quando a diferença de power não for absurda.</li><li>Tenha variações: burst, controle, mono-elemento e anti-backline.</li></ul></article>
+  </div>
+  <div class="grid-2">
+    <article class="info-card"><h3>Free-to-play</h3><ul><li>Escolha poucos Palmons para investir.</li><li>Use guilda, eventos e breeding para multiplicar valor.</li><li>Moeda premium deve priorizar gargalos reais, não reroll impulsivo.</li></ul></article>
+    <article class="info-card"><h3>Pagante leve</h3><ul><li>Compre aceleração apenas quando fechar evento/objetivo.</li><li>Não compre poder em Palmon sem perks boas.</li><li>Priorize recursos que destravam evolução/skill do core.</li></ul></article>
+  </div>
+</section>
+
+<section class="section" id="screenshots">
+  <h2>Guia para analisar prints</h2>
+  <div class="grid-2">
+    <article class="info-card"><h3>O que olhar primeiro</h3><ul><li>Tela: formação, trait filter, skill, evolução, evento, base ou recompensa.</li><li>Moedas raras visíveis: Pallite, tokens, skillfruit, essence, eggs.</li><li>Alertas: botão vermelho, recompensa pendente, upgrade disponível, tempo acabando.</li><li>Se há risco de gastar premium em ação reversível ou irreversível.</li></ul></article>
+    <article class="info-card"><h3>Como responder decisão</h3><ul><li>Identificar o Palmon e função.</li><li>Comparar com rank, slot, elemento e perks recomendadas.</li><li>Dizer: faça primeiro, evite, vale/não vale gastar.</li><li>Se faltar dado: marcar como não confirmado em fonte 2026/APK.</li></ul></article>
+  </div>
+</section>
+
+<section class="section" id="lacunas">
+  <h2>Incertezas e lacunas</h2>
+  <ul class="lead">
+    <li>Fórmula completa de dano, defesa, crítico e tenacity não foi confirmada em fonte pública de 2026.</li>
+    <li>Drop rates oficiais de Hatchery/Aurora e custos completos de todos os prédios não estão consolidados nesta Pedia.</li>
+    <li>O APK confirma 7 posições, mas o lado exato como alvo preferencial depende de AI/targeting e matchup; tratamos como recomendação prática.</li>
+    <li>Guias individuais de perks por Palmon estão parcialmente travados ou não são todos de 2026; usamos perfis por função.</li>
+    <li>Eventos mudam por servidor/temporada; sempre valide prazo e recompensa no print/evento atual.</li>
+  </ul>
+</section>
+<footer>Gerado em 2026-06-06 a partir de dados locais analisados em 2026. Esta Pedia separa dado confirmado, inferência prática e lacuna para evitar invenção de mecânica.</footer>
+</main>
+</div>
+<script>
+function matchFilters(el, prefix) {
+  const q = document.getElementById(prefix+'Search')?.value.trim().toLowerCase() || '';
+  const tier = document.getElementById(prefix+'Tier')?.value || 'all';
+  const element = document.getElementById(prefix+'Element')?.value || 'all';
+  const pos = document.getElementById(prefix+'Pos')?.value || 'all';
+  const role = document.getElementById(prefix+'Role')?.value || 'all';
+  const text = el.textContent.toLowerCase();
+  return (!q || text.includes(q)) && (tier==='all'||el.dataset.tier===tier) && (element==='all'||el.dataset.element===element) && (pos==='all'||el.dataset.pos===pos) && (role==='all'||el.dataset.role===role);
+}
+function filterTable() {
+  document.querySelectorAll('#rankTable tbody tr').forEach(tr => tr.classList.toggle('hidden', !matchFilters(tr,'table')));
+}
+function filterCards() {
+  let count = 0;
+  document.querySelectorAll('#palGrid .pal-card').forEach(card => { const show = matchFilters(card,'card'); card.classList.toggle('hidden', !show); if (show) count++; });
+  document.getElementById('cardCount').textContent = count;
+}
+['tableSearch','tableTier','tableElement','tablePos','tableRole'].forEach(id => document.getElementById(id)?.addEventListener('input', filterTable));
+['cardSearch','cardTier','cardElement','cardPos','cardRole'].forEach(id => document.getElementById(id)?.addEventListener('input', filterCards));
+</script>
+</body>
+</html>
