@@ -44,6 +44,59 @@ function Get-SafeToken([string]$Text) {
     return $safe
 }
 
+function Test-ShopImageName([string]$Name) {
+    $Ext = [System.IO.Path]::GetExtension($Name).ToLowerInvariant()
+    return @(".png", ".jpg", ".jpeg", ".webp") -contains $Ext
+}
+
+function Get-ZipImageEntryCount([string]$ZipFile) {
+    Add-Type -AssemblyName System.IO.Compression.FileSystem -ErrorAction SilentlyContinue
+    $Archive = $null
+    try {
+        $Archive = [System.IO.Compression.ZipFile]::OpenRead($ZipFile)
+        $Images = @($Archive.Entries | Where-Object { Test-ShopImageName $_.FullName })
+        return $Images.Count
+    }
+    finally {
+        if ($null -ne $Archive) {
+            $Archive.Dispose()
+        }
+    }
+}
+
+function Get-EmptyZipHint([string]$ExtractDir, [string]$ZipName) {
+    $SummaryFiles = @(Get-ChildItem -Path $ExtractDir -Recurse -Filter "shop_session_summary.txt" -File -ErrorAction SilentlyContinue)
+    if ($SummaryFiles.Count -eq 0) {
+        return "Esse ZIP nao tem imagens PNG/JPG/JPEG/WEBP. Confira se voce exportou o pacote completo, nao apenas um resumo."
+    }
+
+    $Hints = New-Object System.Collections.Generic.List[string]
+    foreach ($Summary in $SummaryFiles) {
+        $Text = Get-Content -Path $Summary.FullName -Raw -Encoding UTF8
+        $CaptureMatch = [regex]::Match($Text, "Capturas:\s*(\d+)")
+        if ($CaptureMatch.Success -and [int]$CaptureMatch.Groups[1].Value -eq 0) {
+            $Hints.Add("O ZIP selecionado ($ZipName) e de uma sessao com Capturas: 0.")
+        }
+
+        $SavedZipMatches = [regex]::Matches($Text, "pacote zip salvo:\s*(?<path>[^;]+);\s*capturas=(?<count>\d+)")
+        foreach ($Match in $SavedZipMatches) {
+            $Count = [int]$Match.Groups["count"].Value
+            if ($Count -gt 0) {
+                $SavedPath = $Match.Groups["path"].Value.Trim()
+                $SavedName = Split-Path -Leaf $SavedPath
+                $Hints.Add("O resumo aponta um ZIP correto com $Count capturas: $SavedName")
+                $Hints.Add("No celular, procure em Download/AngroidHelper e coloque esse ZIP na pasta COLOQUE_O_ZIP_AQUI.")
+            }
+        }
+    }
+
+    if ($Hints.Count -eq 0) {
+        return "Esse ZIP foi extraido, mas nao possui imagens. Confira se o arquivo exportado contem capturas da loja."
+    }
+
+    return (($Hints | Select-Object -Unique) -join [Environment]::NewLine)
+}
+
 function Import-ShopZip([string]$CandidateZip, [string]$ZipDropDir, [string]$PrintsDir) {
     New-Item -ItemType Directory -Path $ZipDropDir -Force | Out-Null
     New-Item -ItemType Directory -Path $PrintsDir -Force | Out-Null
@@ -59,7 +112,22 @@ function Import-ShopZip([string]$CandidateZip, [string]$ZipDropDir, [string]$Pri
     else {
         $ZipFiles = @(Get-ChildItem -Path $ZipDropDir -Filter "*.zip" -File -ErrorAction SilentlyContinue | Sort-Object LastWriteTime -Descending)
         if ($ZipFiles.Count -gt 0) {
-            $SelectedZip = $ZipFiles[0]
+            $ZipWithImages = $null
+            foreach ($ZipFile in $ZipFiles) {
+                if ((Get-ZipImageEntryCount $ZipFile.FullName) -gt 0) {
+                    $ZipWithImages = $ZipFile
+                    break
+                }
+            }
+            if ($null -ne $ZipWithImages) {
+                if ($ZipWithImages.FullName -ne $ZipFiles[0].FullName) {
+                    Write-Warning "O ZIP mais novo nao tem imagens. Usando o ZIP mais recente que contem imagens: $($ZipWithImages.Name)"
+                }
+                $SelectedZip = $ZipWithImages
+            }
+            else {
+                $SelectedZip = $ZipFiles[0]
+            }
         }
     }
 
@@ -81,11 +149,10 @@ function Import-ShopZip([string]$CandidateZip, [string]$ZipDropDir, [string]$Pri
 
     Expand-Archive -LiteralPath $SelectedZip.FullName -DestinationPath $ExtractDir -Force
 
-    $AllowedExtensions = @(".png", ".jpg", ".jpeg", ".webp")
-    $Images = @(Get-ChildItem -Path $ExtractDir -Recurse -File | Where-Object { $AllowedExtensions -contains $_.Extension.ToLowerInvariant() })
+    $Images = @(Get-ChildItem -Path $ExtractDir -Recurse -File | Where-Object { Test-ShopImageName $_.Name })
     if ($Images.Count -eq 0) {
-        Write-Warning "ZIP extraido, mas nenhuma imagem PNG/JPG/JPEG/WEBP foi encontrada dentro dele."
-        return 0
+        $Hint = Get-EmptyZipHint $ExtractDir $SelectedZip.Name
+        Fail $Hint
     }
 
     $Index = 0

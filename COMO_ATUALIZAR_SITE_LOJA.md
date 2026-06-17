@@ -12,6 +12,8 @@ Depois volte para a pasta principal e clique em:
 
 Tambem funciona arrastar o ZIP diretamente em cima do arquivo `.bat`.
 
+O ZIP certo precisa ter capturas dentro. Se o script disser `Capturas: 0`, esse ZIP e apenas um resumo vazio. Nesse caso, leia a mensagem do erro: ela mostra o nome do ZIP correto que o Android Helper salvou em `Download/AngroidHelper` no celular.
+
 ## O Que O Clique Faz
 
 1. Importa o ZIP da pasta `COLOQUE_O_ZIP_AQUI`, se existir.
