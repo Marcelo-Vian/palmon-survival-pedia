@@ -1,0 +1,727 @@
+{
+  "captured_at": "2026-06-16 16:42-16:47",
+  "source": "Prints do Android Helper em D:/Linkedin/palmon_survival_prints/loja/prints",
+  "source_note": "Tabela extraida por leitura visual dos prints. Quando o overlay cobriu parte da oferta, a linha fica marcada como parcial.",
+  "offers": [
+    {
+      "id": "finguenue_small_490",
+      "name": "Finguenue / Hegemon offer - pacote pequeno",
+      "section": "Passes",
+      "type": "bundle",
+      "status": "ativo",
+      "price_brl": 4.90,
+      "currency_bonus": 10,
+      "limit": "visivel no print; limite exato nao confirmado",
+      "confidence": "media",
+      "source_caps": "loja1 cap1-2",
+      "items": [
+        {"name": "Pallite/Gema rosa", "qty": 100, "unit": "un", "category": "Pallite"},
+        {"name": "Fragmento/Ficha Finguenue", "qty": 1, "unit": "un", "category": "Palmon"},
+        {"name": "Skillfruit dourada", "qty": 200, "unit": "un", "category": "Skillfruit"},
+        {"name": "Chave vermelha", "qty": 1, "unit": "un", "category": "Chave"},
+        {"name": "Presente verde", "qty": 1, "unit": "un", "category": "Baú/Presente"}
+      ],
+      "recommendation": "Pacote barato para completar compra pontual; nao parece melhor valor para Pallite pura."
+    },
+    {
+      "id": "finguenue_medium_1090",
+      "name": "Finguenue / Hegemon offer - pacote medio",
+      "section": "Passes",
+      "type": "bundle",
+      "status": "ativo",
+      "price_brl": 10.90,
+      "currency_bonus": 20,
+      "confidence": "media",
+      "source_caps": "loja1 cap1-2",
+      "items": [
+        {"name": "Pallite/Gema rosa", "qty": 200, "unit": "un", "category": "Pallite"},
+        {"name": "Fragmento/Ficha Finguenue", "qty": 3, "unit": "un", "category": "Palmon"},
+        {"name": "Skillfruit dourada", "qty": 400, "unit": "un", "category": "Skillfruit"},
+        {"name": "Chave vermelha", "qty": 1, "unit": "un", "category": "Chave"},
+        {"name": "Presente verde", "qty": 1, "unit": "un", "category": "Baú/Presente"}
+      ],
+      "recommendation": "Melhor que o pacote de R$4,90 se voce precisa especificamente da ficha/fragmento do Palmon."
+    },
+    {
+      "id": "finguenue_large_2290",
+      "name": "Finguenue / Hegemon offer - pacote grande",
+      "section": "Passes",
+      "type": "bundle",
+      "status": "ativo",
+      "price_brl": 22.90,
+      "currency_bonus": 40,
+      "confidence": "media",
+      "source_caps": "loja1 cap2",
+      "items": [
+        {"name": "Pallite/Gema rosa", "qty": 400, "unit": "un", "category": "Pallite"},
+        {"name": "Fragmento/Ficha Finguenue", "qty": 6, "unit": "un", "category": "Palmon"},
+        {"name": "Skillfruit dourada", "qty": 800, "unit": "un", "category": "Skillfruit"},
+        {"name": "Chave vermelha", "qty": 1, "unit": "un", "category": "Chave"},
+        {"name": "Presente verde/azul", "qty": 1, "unit": "un", "category": "Baú/Presente"}
+      ],
+      "recommendation": "So vale se voce esta focando esse Palmon; para Pallite pura existem pacotes melhores."
+    },
+    {
+      "id": "daily_value_palcatcher",
+      "name": "Value Palcatcher",
+      "section": "Daily Essentials",
+      "type": "bundle",
+      "status": "ativo",
+      "price_brl": 27.90,
+      "currency_bonus": 50,
+      "limit": "Daily Limit 1/1",
+      "confidence": "media",
+      "source_caps": "loja1 cap3-4",
+      "items": [
+        {"name": "Pallite/Gema rosa", "qty": 520, "unit": "un", "category": "Pallite"},
+        {"name": "Item roxo de captura/palcatcher", "qty": 10, "unit": "un", "category": "Captura"},
+        {"name": "Baú azul", "qty": 5, "unit": "un", "category": "Baú/Presente"},
+        {"name": "Baú prateado", "qty": 5, "unit": "un", "category": "Baú/Presente"}
+      ],
+      "recommendation": "Bom se voce precisa de itens de captura; valor parcial porque parte do conteudo ficou coberta em alguns prints."
+    },
+    {
+      "id": "daily_mount_upgrade",
+      "name": "Mount Upgrade",
+      "section": "Daily Essentials",
+      "type": "bundle",
+      "status": "ativo",
+      "price_brl": 27.90,
+      "currency_bonus": 50,
+      "limit": "Daily Limit 1/1",
+      "confidence": "alta",
+      "source_caps": "loja1 cap3-4",
+      "items": [
+        {"name": "Pallite/Gema rosa", "qty": 520, "unit": "un", "category": "Pallite"},
+        {"name": "Material de montaria", "qty": 25000, "unit": "un", "category": "Montaria"},
+        {"name": "Baú azul", "qty": 5, "unit": "un", "category": "Baú/Presente"},
+        {"name": "Baú prateado", "qty": 5, "unit": "un", "category": "Baú/Presente"}
+      ],
+      "recommendation": "Priorize so se montaria for gargalo. Bom pacote especifico, ruim para recurso geral."
+    },
+    {
+      "id": "daily_lumber_bundle",
+      "name": "Lumber Bundle",
+      "section": "Daily Essentials",
+      "type": "bundle",
+      "status": "ativo",
+      "price_brl": 27.90,
+      "currency_bonus": 50,
+      "limit": "Daily Limit 1/1",
+      "confidence": "alta",
+      "source_caps": "loja1 cap4-8",
+      "items": [
+        {"name": "Pallite/Gema rosa", "qty": 520, "unit": "un", "category": "Pallite"},
+        {"name": "Baú de madeira", "qty": 8, "unit": "un", "category": "Baú/Presente"},
+        {"name": "Baú azul de madeira", "qty": 8, "unit": "un", "category": "Baú/Presente"},
+        {"name": "Presente verde", "qty": 1, "unit": "un", "category": "Baú/Presente"}
+      ],
+      "recommendation": "Compra situacional para recurso/base; nao e prioridade se seu gargalo e combate."
+    },
+    {
+      "id": "daily_electricity_bundle",
+      "name": "Electricity Bundle",
+      "section": "Daily Essentials",
+      "type": "bundle",
+      "status": "ativo",
+      "price_brl": 27.90,
+      "currency_bonus": 50,
+      "limit": "Daily Limit 1/1",
+      "confidence": "alta",
+      "source_caps": "loja1 cap5-8",
+      "items": [
+        {"name": "Pallite/Gema rosa", "qty": 520, "unit": "un", "category": "Pallite"},
+        {"name": "Baú de eletricidade", "qty": 8, "unit": "un", "category": "Baú/Presente"},
+        {"name": "Baú azul de eletricidade", "qty": 8, "unit": "un", "category": "Baú/Presente"},
+        {"name": "Presente verde", "qty": 1, "unit": "un", "category": "Baú/Presente"}
+      ],
+      "recommendation": "Compra situacional. Nao priorize sobre acelerador/Palmon se voce esta travado em combate."
+    },
+    {
+      "id": "weekly_camp_upgrade",
+      "name": "Camp Upgrade",
+      "section": "Weekly Wonders",
+      "type": "bundle",
+      "status": "ativo",
+      "price_brl": 109.99,
+      "currency_bonus": 200,
+      "limit": "Limit Per Event 5/5",
+      "confidence": "alta",
+      "source_caps": "loja1 cap9-11",
+      "items": [
+        {"name": "Pallite/Gema rosa", "qty": 2100, "unit": "un", "category": "Pallite"},
+        {"name": "Acelerador 5 min", "qty": 300, "unit": "un", "category": "Acelerador", "metric_qty": 1500, "metric_unit": "min"},
+        {"name": "Baú azul", "qty": 12, "unit": "un", "category": "Baú/Presente"},
+        {"name": "Baú prateado", "qty": 12, "unit": "un", "category": "Baú/Presente"},
+        {"name": "Baú dourado", "qty": 12, "unit": "un", "category": "Baú/Presente"},
+        {"name": "Presente rosa", "qty": 1, "unit": "un", "category": "Baú/Presente"}
+      ],
+      "recommendation": "Melhor pacote visivel para acelerador 5 min por quantidade absoluta; bom se voce vai gastar acima de R$100."
+    },
+    {
+      "id": "weekly_power_evolution",
+      "name": "Power of Evolution",
+      "section": "Weekly Wonders",
+      "type": "bundle",
+      "status": "ativo",
+      "price_brl": 27.90,
+      "currency_bonus": 50,
+      "limit": "Limit Per Event 1/1",
+      "confidence": "media",
+      "source_caps": "loja1 cap9",
+      "items": [
+        {"name": "Pallite/Gema rosa", "qty": 520, "unit": "un", "category": "Pallite"},
+        {"name": "Material dourado de evolução", "qty": 5, "unit": "un", "category": "Evolução"},
+        {"name": "Baú azul", "qty": 1, "unit": "un", "category": "Baú/Presente"},
+        {"name": "Presente verde", "qty": 1, "unit": "un", "category": "Baú/Presente"}
+      ],
+      "recommendation": "Vale se evolução for gargalo; pacote barato e focado."
+    },
+    {
+      "id": "weekly_one_big_happy_family",
+      "name": "One Big Happy Family",
+      "section": "Weekly Wonders",
+      "type": "bundle",
+      "status": "ativo",
+      "price_brl": 54.90,
+      "currency_bonus": 100,
+      "limit": "Limit Per Event 1/1",
+      "confidence": "alta",
+      "source_caps": "loja1 cap13-15",
+      "items": [
+        {"name": "Pallite/Gema rosa", "qty": 1000, "unit": "un", "category": "Pallite"},
+        {"name": "Ninho/material familiar dourado", "qty": 1, "unit": "un", "category": "Palmon"},
+        {"name": "Baú rosa", "qty": 1, "unit": "un", "category": "Baú/Presente"},
+        {"name": "Acelerador 1h", "qty": 5, "unit": "un", "category": "Acelerador", "metric_qty": 300, "metric_unit": "min"},
+        {"name": "Presente rosa", "qty": 1, "unit": "un", "category": "Baú/Presente"}
+      ],
+      "recommendation": "Compra híbrida. Boa para evento/familia, nao e melhor acelerador puro."
+    },
+    {
+      "id": "weekly_blessings_palantis",
+      "name": "Blessings of Palantis",
+      "section": "Weekly Wonders",
+      "type": "bundle",
+      "status": "ativo",
+      "price_brl": 279.90,
+      "currency_bonus": 500,
+      "limit": "Limit Per Event 5/5",
+      "confidence": "media",
+      "source_caps": "loja1 cap13-15",
+      "items": [
+        {"name": "Pallite/Gema rosa", "qty": 5500, "unit": "un", "category": "Pallite"},
+        {"name": "Material roxo/dourado", "qty": 50, "unit": "un", "category": "Evento"},
+        {"name": "Material laranja de criatura", "qty": 50, "unit": "un", "category": "Evento"},
+        {"name": "Presente rosa", "qty": 1, "unit": "un", "category": "Baú/Presente"}
+      ],
+      "recommendation": "Valor alto e específico. So vale se os materiais de evento forem o gargalo principal."
+    },
+    {
+      "id": "choice_monthly_pass",
+      "name": "Choice Monthly Pass / Guild Airship Privilege",
+      "section": "Explorer Passes",
+      "type": "passe",
+      "status": "ativo",
+      "price_brl": 44.90,
+      "currency_bonus": 80,
+      "limit": "Validity 9d no print",
+      "confidence": "alta",
+      "source_caps": "loja1 cap19-22",
+      "items": [
+        {"name": "Instantâneo: passe 30d", "qty": 1, "unit": "un", "category": "Passe"},
+        {"name": "Pallite/Gema rosa", "qty": 1000, "unit": "un", "category": "Pallite"},
+        {"name": "Ticket vermelho", "qty": 2, "unit": "un", "category": "Ticket"},
+        {"name": "Diário: Baú azul", "qty": 5, "unit": "un", "category": "Baú/Presente"},
+        {"name": "Diário: Skillfruit dourada", "qty": 500, "unit": "un", "category": "Skillfruit"},
+        {"name": "Diário: moeda dourada", "qty": 10, "unit": "un", "category": "Moeda"},
+        {"name": "Diário: Pallite/Gema rosa", "qty": 100, "unit": "un", "category": "Pallite"}
+      ],
+      "recommendation": "Bom se voce entra todo dia para coletar. Se nao coletar diario, perde valor."
+    },
+    {
+      "id": "weekly_pass_animated_emoji",
+      "name": "Weekly Pass / Animated Emoji Privilege",
+      "section": "Explorer Passes",
+      "type": "passe",
+      "status": "ativo",
+      "price_brl": 22.90,
+      "currency_bonus": 40,
+      "limit": "Validity 3d no print",
+      "confidence": "alta",
+      "source_caps": "loja1 cap19-22",
+      "items": [
+        {"name": "Instantâneo: item emoji/privilegio", "qty": 5, "unit": "un", "category": "Passe"},
+        {"name": "Pallite/Gema rosa", "qty": 400, "unit": "un", "category": "Pallite"},
+        {"name": "Ticket vermelho", "qty": 5, "unit": "un", "category": "Ticket"},
+        {"name": "Diário: Baús variados", "qty": 15, "unit": "un", "category": "Baú/Presente"},
+        {"name": "Diário: Acelerador 1h", "qty": 10, "unit": "un", "category": "Acelerador", "metric_qty": 600, "metric_unit": "min"}
+      ],
+      "recommendation": "Interessante para acelerador diário, mas depende de coletar as recompensas do passe."
+    },
+    {
+      "id": "weekly_camp_supply",
+      "name": "Weekly Camp Supply",
+      "section": "Weekly Camp Supply",
+      "type": "passe",
+      "status": "ativo",
+      "price_brl": 54.90,
+      "currency_bonus": 100,
+      "confidence": "media",
+      "source_caps": "loja1 cap23-26",
+      "items": [
+        {"name": "Desbloqueio/extend Weekly Camp Supply", "qty": 1, "unit": "un", "category": "Passe"}
+      ],
+      "recommendation": "Valor depende do quanto da trilha voce vai coletar. Nao comparar como bundle simples."
+    },
+    {
+      "id": "supply_7d_pallite",
+      "name": "7d Pallite Supply",
+      "section": "Weekly Camp Supply",
+      "type": "assinatura",
+      "status": "ativo",
+      "price_brl": 16.90,
+      "currency_bonus": 30,
+      "confidence": "media",
+      "source_caps": "loja1 cap23",
+      "items": [
+        {"name": "Instantâneo: Pallite/Gema rosa", "qty": 300, "unit": "un", "category": "Pallite"},
+        {"name": "Diário: Pallite/Gema rosa", "qty": 3500, "unit": "total 7d", "category": "Pallite"}
+      ],
+      "recommendation": "Melhor baixo custo para Pallite se voce coletar todos os 7 dias."
+    },
+    {
+      "id": "supply_7d_palmon_egg",
+      "name": "7d Palmon Egg Supply",
+      "section": "Weekly Camp Supply",
+      "type": "assinatura",
+      "status": "ativo",
+      "price_brl": 16.90,
+      "currency_bonus": 30,
+      "confidence": "alta",
+      "source_caps": "loja1 cap24-26",
+      "items": [
+        {"name": "Instantâneo: Pallite/Gema rosa", "qty": 300, "unit": "un", "category": "Pallite"},
+        {"name": "Ovos de Palmon", "qty": 70, "unit": "total 7d", "category": "Summon/Ovo"}
+      ],
+      "recommendation": "Muito bom se seu foco e abrir ovos/summon com gasto baixo."
+    },
+    {
+      "id": "supply_7d_temperite",
+      "name": "7d Temperite Supply",
+      "section": "Weekly Camp Supply",
+      "type": "assinatura",
+      "status": "ativo",
+      "price_brl": 16.90,
+      "currency_bonus": 30,
+      "confidence": "alta",
+      "source_caps": "loja1 cap23-26",
+      "items": [
+        {"name": "Instantâneo: Pallite/Gema rosa", "qty": 300, "unit": "un", "category": "Pallite"},
+        {"name": "Temperite", "qty": 7000, "unit": "total 7d", "category": "Recurso"}
+      ],
+      "recommendation": "Bom pacote barato se Temperite estiver travando upgrade."
+    },
+    {
+      "id": "supply_7d_speedup",
+      "name": "7d Speedup Supply",
+      "section": "Weekly Camp Supply",
+      "type": "assinatura",
+      "status": "comprado/indisponivel no print",
+      "price_brl": null,
+      "currency_bonus": null,
+      "confidence": "media",
+      "source_caps": "loja1 cap24-26",
+      "items": [
+        {"name": "Aceleradores", "qty": 84, "unit": "total 7d", "category": "Acelerador"}
+      ],
+      "recommendation": "Parece forte para acelerador, mas o preço nao ficou visivel porque ja estava marcado como comprado."
+    },
+    {
+      "id": "bundle_rapid_development",
+      "name": "Rapid Development Bundle",
+      "section": "Bundle Store",
+      "type": "bundle",
+      "status": "ativo",
+      "price_brl": 27.90,
+      "currency_bonus": 50,
+      "confidence": "alta",
+      "source_caps": "loja1 cap27-33",
+      "items": [
+        {"name": "Pallite/Gema rosa", "qty": 520, "unit": "un", "category": "Pallite"},
+        {"name": "Acelerador 5 min", "qty": 60, "unit": "un", "category": "Acelerador", "metric_qty": 300, "metric_unit": "min"},
+        {"name": "Baú azul", "qty": 2, "unit": "un", "category": "Baú/Presente"},
+        {"name": "Baú prateado", "qty": 2, "unit": "un", "category": "Baú/Presente"}
+      ],
+      "recommendation": "Faça primeiro se voce quer acelerador barato sem gastar R$109,99."
+    },
+    {
+      "id": "bundle_triumph_badges",
+      "name": "Triumph Badges",
+      "section": "Bundle Store",
+      "type": "bundle",
+      "status": "ativo",
+      "price_brl": 27.90,
+      "currency_bonus": 50,
+      "confidence": "alta",
+      "source_caps": "loja1 cap27-33",
+      "items": [
+        {"name": "Pallite/Gema rosa", "qty": 520, "unit": "un", "category": "Pallite"},
+        {"name": "Badge/Triumph token", "qty": 50, "unit": "un", "category": "Evento"},
+        {"name": "Acelerador 5 min", "qty": 60, "unit": "un", "category": "Acelerador", "metric_qty": 300, "metric_unit": "min"},
+        {"name": "Baú azul", "qty": 2, "unit": "un", "category": "Baú/Presente"}
+      ],
+      "recommendation": "Bom quando voce tambem precisa de badges; como acelerador empata com Rapid Development."
+    },
+    {
+      "id": "bundle_equipment",
+      "name": "Equipment Bundle",
+      "section": "Bundle Store",
+      "type": "bundle",
+      "status": "ativo",
+      "price_brl": 27.90,
+      "currency_bonus": 50,
+      "confidence": "alta",
+      "source_caps": "loja1 cap27-34",
+      "items": [
+        {"name": "Pallite/Gema rosa", "qty": 520, "unit": "un", "category": "Pallite"},
+        {"name": "Temperite/Cristal roxo", "qty": 500, "unit": "un", "category": "Recurso"},
+        {"name": "Baú azul", "qty": 10, "unit": "un", "category": "Baú/Presente"},
+        {"name": "Baú prateado", "qty": 10, "unit": "un", "category": "Baú/Presente"}
+      ],
+      "recommendation": "Bom para equipamento/baus. Nao e pacote de acelerador."
+    },
+    {
+      "id": "bundle_pearl_power",
+      "name": "Pearl Power",
+      "section": "Bundle Store",
+      "type": "bundle",
+      "status": "ativo",
+      "price_brl": 54.90,
+      "currency_bonus": 100,
+      "confidence": "media",
+      "source_caps": "loja1 cap34-39",
+      "items": [
+        {"name": "Pallite/Gema rosa", "qty": 1000, "unit": "un", "category": "Pallite"},
+        {"name": "Pérola/Orbe azul", "qty": 10, "unit": "un", "category": "Recurso"},
+        {"name": "Baú azul", "qty": 20, "unit": "un", "category": "Baú/Presente"},
+        {"name": "Baú prateado", "qty": 20, "unit": "un", "category": "Baú/Presente"}
+      ],
+      "recommendation": "Pacote medio para baus/recurso. Compare com Pallite Store se seu objetivo for só Pallite."
+    },
+    {
+      "id": "bundle_energy_prime",
+      "name": "Energy Prime",
+      "section": "Bundle Store",
+      "type": "bundle",
+      "status": "ativo",
+      "price_brl": 54.90,
+      "currency_bonus": 100,
+      "confidence": "media",
+      "source_caps": "loja1 cap35",
+      "items": [
+        {"name": "Pallite/Gema rosa", "qty": 1000, "unit": "un", "category": "Pallite"},
+        {"name": "Baú Choice", "qty": 50, "unit": "un", "category": "Baú/Presente"},
+        {"name": "Baú azul", "qty": 4, "unit": "un", "category": "Baú/Presente"},
+        {"name": "Baú prateado", "qty": 4, "unit": "un", "category": "Baú/Presente"}
+      ],
+      "recommendation": "Situacional. Valor depende do item Choice."
+    },
+    {
+      "id": "bundle_mount",
+      "name": "Mount Bundle",
+      "section": "Bundle Store",
+      "type": "bundle",
+      "status": "ativo",
+      "price_brl": 27.90,
+      "currency_bonus": 50,
+      "confidence": "media",
+      "source_caps": "loja1 cap35",
+      "items": [
+        {"name": "Pallite/Gema rosa", "qty": 520, "unit": "un", "category": "Pallite"},
+        {"name": "Ferradura", "qty": 10, "unit": "un", "category": "Montaria"},
+        {"name": "Material de montaria", "qty": 4000, "unit": "un", "category": "Montaria"},
+        {"name": "Presente verde", "qty": 1, "unit": "un", "category": "Baú/Presente"}
+      ],
+      "recommendation": "Bom se montaria for o gargalo atual."
+    },
+    {
+      "id": "bundle_skillfruits",
+      "name": "Skillfruits",
+      "section": "Bundle Store",
+      "type": "bundle",
+      "status": "ativo",
+      "price_brl": 27.90,
+      "currency_bonus": 50,
+      "confidence": "alta",
+      "source_caps": "loja1 cap36-37",
+      "items": [
+        {"name": "Pallite/Gema rosa", "qty": 520, "unit": "un", "category": "Pallite"},
+        {"name": "Skillfruit dourada", "qty": 1000, "unit": "un", "category": "Skillfruit"},
+        {"name": "Baú azul", "qty": 2, "unit": "un", "category": "Baú/Presente"},
+        {"name": "Presente verde", "qty": 1, "unit": "un", "category": "Baú/Presente"}
+      ],
+      "recommendation": "Bom pacote barato se voce vai upar skills agora."
+    },
+    {
+      "id": "bundle_research_speedup",
+      "name": "Research Speedup",
+      "section": "Bundle Store",
+      "type": "bundle",
+      "status": "ativo",
+      "price_brl": 27.90,
+      "currency_bonus": 50,
+      "confidence": "media",
+      "source_caps": "loja1 cap36-39",
+      "items": [
+        {"name": "Acelerador 5 min", "qty": 60, "unit": "un", "category": "Acelerador", "metric_qty": 300, "metric_unit": "min"},
+        {"name": "Baú azul", "qty": 2, "unit": "un", "category": "Baú/Presente"},
+        {"name": "Baú prateado", "qty": 2, "unit": "un", "category": "Baú/Presente"}
+      ],
+      "recommendation": "Bom para acelerar pesquisa; valor de acelerador semelhante ao Rapid Development."
+    },
+    {
+      "id": "bundle_palcatcher_world",
+      "name": "Palcatcher (World)",
+      "section": "Bundle Store",
+      "type": "bundle",
+      "status": "ativo",
+      "price_brl": 27.90,
+      "currency_bonus": 50,
+      "confidence": "alta",
+      "source_caps": "loja1 cap37-39",
+      "items": [
+        {"name": "Pallite/Gema rosa", "qty": 520, "unit": "un", "category": "Pallite"},
+        {"name": "Ticket/Scroll de captura", "qty": 2, "unit": "un", "category": "Captura"},
+        {"name": "Baú azul", "qty": 5, "unit": "un", "category": "Baú/Presente"},
+        {"name": "Baú prateado", "qty": 5, "unit": "un", "category": "Baú/Presente"}
+      ],
+      "recommendation": "Bom se voce precisa de captura mundial; nao priorize se falta acelerador/skill."
+    },
+    {
+      "id": "bundle_elite_trainer",
+      "name": "Elite Trainer Bundle",
+      "section": "Bundle Store",
+      "type": "bundle",
+      "status": "ativo",
+      "price_brl": 27.90,
+      "currency_bonus": 50,
+      "confidence": "media",
+      "source_caps": "loja1 cap38-39",
+      "items": [
+        {"name": "Acelerador 5 min", "qty": 60, "unit": "un", "category": "Acelerador", "metric_qty": 300, "metric_unit": "min"},
+        {"name": "Baú azul", "qty": 2, "unit": "un", "category": "Baú/Presente"},
+        {"name": "Baú prateado", "qty": 2, "unit": "un", "category": "Baú/Presente"}
+      ],
+      "recommendation": "Pacote com acelerador e baus; conteudo parcialmente coberto."
+    },
+    {
+      "id": "bundle_assistant",
+      "name": "Assistant Bundle",
+      "section": "Bundle Store",
+      "type": "bundle",
+      "status": "ativo",
+      "price_brl": 54.90,
+      "currency_bonus": 100,
+      "confidence": "alta",
+      "source_caps": "loja1 cap38-39",
+      "items": [
+        {"name": "Pallite/Gema rosa", "qty": 1000, "unit": "un", "category": "Pallite"},
+        {"name": "Cupom/insignia vermelha", "qty": 10, "unit": "un", "category": "Evento"},
+        {"name": "Baú azul", "qty": 2, "unit": "un", "category": "Baú/Presente"},
+        {"name": "Baú prateado", "qty": 2, "unit": "un", "category": "Baú/Presente"}
+      ],
+      "recommendation": "Situacional para o recurso vermelho; nao e melhor pacote geral."
+    },
+    {
+      "id": "growth_fund_ii",
+      "name": "Growth Fund II",
+      "section": "Growth Fund",
+      "type": "fundo",
+      "status": "ativo",
+      "price_brl": 139.90,
+      "currency_bonus": 250,
+      "confidence": "alta",
+      "source_caps": "loja1 cap40-43",
+      "items": [
+        {"name": "Recompensas por nivel", "qty": null, "unit": "trilha", "category": "Passe"},
+        {"name": "Pallite/Gema rosa", "qty": 15000, "unit": "visivel em alguns niveis", "category": "Pallite"}
+      ],
+      "recommendation": "So vale se voce vai pegar muitos niveis da trilha. Nao compare com bundle imediato."
+    },
+    {
+      "id": "pallite_100_490",
+      "name": "Pallite Store - 100 Pallite",
+      "section": "Pallite Store",
+      "type": "moeda",
+      "status": "ativo",
+      "price_brl": 4.90,
+      "currency_bonus": 10,
+      "confidence": "alta",
+      "source_caps": "loja1 cap44-47",
+      "items": [{"name": "Pallite", "qty": 100, "unit": "un", "category": "Pallite"}],
+      "recommendation": "Pior custo/beneficio de Pallite pura entre os pacotes visiveis; use so para completar saldo."
+    },
+    {
+      "id": "pallite_1040_2790",
+      "name": "Pallite Store - 520+520 Pallite",
+      "section": "Pallite Store",
+      "type": "moeda",
+      "status": "ativo",
+      "price_brl": 27.90,
+      "currency_bonus": 50,
+      "confidence": "alta",
+      "source_caps": "loja1 cap44-47",
+      "items": [{"name": "Pallite", "qty": 1040, "unit": "un", "category": "Pallite"}],
+      "recommendation": "Bom salto de valor contra R$4,90, mas ainda abaixo dos pacotes maiores."
+    },
+    {
+      "id": "pallite_2100_5490",
+      "name": "Pallite Store - 1050+1050 Pallite",
+      "section": "Pallite Store",
+      "type": "moeda",
+      "status": "ativo",
+      "price_brl": 54.90,
+      "currency_bonus": 100,
+      "confidence": "alta",
+      "source_caps": "loja1 cap44-47",
+      "items": [{"name": "Pallite", "qty": 2100, "unit": "un", "category": "Pallite"}],
+      "recommendation": "Melhor faixa para pagante leve quando precisa de Pallite direta."
+    },
+    {
+      "id": "pallite_4300_10999",
+      "name": "Pallite Store - 2150+2150 Pallite",
+      "section": "Pallite Store",
+      "type": "moeda",
+      "status": "ativo",
+      "price_brl": 109.99,
+      "currency_bonus": 200,
+      "confidence": "alta",
+      "source_caps": "loja1 cap44-47",
+      "items": [{"name": "Pallite", "qty": 4300, "unit": "un", "category": "Pallite"}],
+      "recommendation": "Valor por real quase igual ao R$279,90; bom se nao quiser subir para pacote caro."
+    },
+    {
+      "id": "pallite_11000_27990",
+      "name": "Pallite Store - 5500+5500 Pallite",
+      "section": "Pallite Store",
+      "type": "moeda",
+      "status": "ativo",
+      "price_brl": 279.90,
+      "currency_bonus": 500,
+      "confidence": "alta",
+      "source_caps": "loja1 cap44-47",
+      "items": [{"name": "Pallite", "qty": 11000, "unit": "un", "category": "Pallite"}],
+      "recommendation": "Bom valor por real, mas ticket alto."
+    },
+    {
+      "id": "pallite_24000_54990",
+      "name": "Pallite Store - 12000+12000 Pallite",
+      "section": "Pallite Store",
+      "type": "moeda",
+      "status": "ativo",
+      "price_brl": 549.90,
+      "currency_bonus": 1000,
+      "confidence": "alta",
+      "source_caps": "loja1 cap44-47",
+      "items": [{"name": "Pallite", "qty": 24000, "unit": "un", "category": "Pallite"}],
+      "recommendation": "Melhor Pallite por real nos prints, mas so faz sentido para gasto alto."
+    },
+    {
+      "id": "event_carnival_wheel",
+      "name": "Carnival Wheel - Unlock Carnival Cache",
+      "section": "Events",
+      "type": "passe de evento",
+      "status": "ativo",
+      "price_brl": 109.99,
+      "currency_bonus": 200,
+      "confidence": "alta",
+      "source_caps": "loja1 cap48-52",
+      "items": [{"name": "Desbloqueio Carnival Cache", "qty": 1, "unit": "trilha", "category": "Passe"}],
+      "recommendation": "So compre se voce pretende completar pontos da trilha do evento; valor depende de desbloquear recompensas."
+    },
+    {
+      "id": "palmon_mammolith_arrival",
+      "name": "Mammolith's Arrival",
+      "section": "Palmon Popup",
+      "type": "palmon",
+      "status": "ativo",
+      "price_brl": 279.90,
+      "currency_bonus": 500,
+      "limit": "Account Limit 1",
+      "confidence": "alta",
+      "source_caps": "loja2 cap53-56",
+      "items": [
+        {"name": "Pallite", "qty": 5500, "unit": "un", "category": "Pallite"},
+        {"name": "Mammolith Token", "qty": 100, "unit": "un", "category": "Palmon"},
+        {"name": "Common Palmon XP Chest", "qty": 15, "unit": "un", "category": "Baú/Presente"}
+      ],
+      "recommendation": "Compre apenas se Mammolith for prioridade real no seu time. Como Pallite pura, nao supera Pallite Store."
+    },
+    {
+      "id": "palmon_meet_gnashley",
+      "name": "Meet Gnashley",
+      "section": "Palmon Popup",
+      "type": "palmon",
+      "status": "ativo",
+      "price_brl": 54.90,
+      "currency_bonus": 100,
+      "limit": "Account Limit 1",
+      "confidence": "alta",
+      "source_caps": "loja2 cap57-59",
+      "items": [
+        {"name": "Pallite", "qty": 1050, "unit": "un", "category": "Pallite"},
+        {"name": "Gnashley Token", "qty": 20, "unit": "un", "category": "Palmon"},
+        {"name": "Common Palmon XP Chest", "qty": 4, "unit": "un", "category": "Baú/Presente"}
+      ],
+      "recommendation": "Bom pacote barato se voce usa ou quer Gnashley; caso contrario, melhor comprar recurso universal."
+    },
+    {
+      "id": "event_froggy_gaiden",
+      "name": "Froggy Gaiden",
+      "section": "Deals",
+      "type": "palmon/evento",
+      "status": "ativo",
+      "price_brl": 54.90,
+      "currency_bonus": 100,
+      "limit": "Account Limit 1",
+      "confidence": "baixa",
+      "source_caps": "loja3 cap83-85",
+      "items": [
+        {"name": "Itens de evento/Palmon parcialmente cobertos", "qty": null, "unit": "parcial", "category": "Evento"},
+        {"name": "Baú azul", "qty": 2, "unit": "un", "category": "Baú/Presente"},
+        {"name": "Presente rosa", "qty": 1, "unit": "un", "category": "Baú/Presente"}
+      ],
+      "recommendation": "Nao decidir so por essa tabela: o overlay cobriu parte importante do conteudo."
+    },
+    {
+      "id": "custom_weekly_pass_pending",
+      "name": "Custom Weekly Pass",
+      "section": "Deals",
+      "type": "passe",
+      "status": "pendente/amanha",
+      "price_brl": null,
+      "currency_bonus": null,
+      "confidence": "media",
+      "source_caps": "loja3 cap86-89",
+      "items": [
+        {"name": "Recompensas de claim tomorrow", "qty": null, "unit": "pendente", "category": "Passe"},
+        {"name": "Acelerador 5 min", "qty": 150, "unit": "un", "category": "Acelerador", "metric_qty": 750, "metric_unit": "min"},
+        {"name": "Recurso 3M", "qty": 12, "unit": "un", "category": "Recurso"}
+      ],
+      "recommendation": "Ainda nao comparar: o preço nao apareceu e a tela indica voltar amanha."
+    },
+    {
+      "id": "event_mariners_hoard",
+      "name": "Mariner's Hoard",
+      "section": "Deals",
+      "type": "passe de evento",
+      "status": "ativo",
+      "price_brl": 109.99,
+      "currency_bonus": 200,
+      "confidence": "alta",
+      "source_caps": "loja3 cap93-97",
+      "items": [{"name": "Desbloqueio Mariner's Hoard", "qty": 1, "unit": "trilha", "category": "Passe"}],
+      "recommendation": "So compre se voce vai completar a trilha/pontos. Nao e pacote direto de item."
+    }
+  ]
+}
