@@ -1,3 +1,4 @@
+import os
 import pathlib
 import re
 from typing import Dict, Tuple
@@ -9,6 +10,7 @@ ROOT = pathlib.Path(r"D:\Linkedin")
 PRINTS_DIR = ROOT / "palmon_survival_prints" / "loja" / "prints"
 OUT_DIR = ROOT / "palmon_survival_pedia" / "assets" / "shop_offer_thumbs"
 OUT_SIZE = (420, 165)
+FORCE_REGENERATE = os.environ.get("PALMON_FORCE_REGENERATE_THUMBS") == "1"
 
 Box = Tuple[int, int, int, int]
 ThumbMap = Dict[str, Tuple[int, Box]]
@@ -84,13 +86,22 @@ def make_thumb(source: pathlib.Path, box: Box, target: pathlib.Path) -> None:
 def main() -> None:
     caps = cap_index()
     missing = []
+    skipped = []
+    generated = 0
     for offer_id, (cap_no, box) in THUMBS.items():
+        target = OUT_DIR / f"{offer_id}.jpg"
+        if target.exists() and not FORCE_REGENERATE:
+            skipped.append(offer_id)
+            continue
         source = caps.get(cap_no)
         if source is None:
             missing.append(f"{offer_id}: cap{cap_no}")
             continue
-        make_thumb(source, box, OUT_DIR / f"{offer_id}.jpg")
-    print(f"Generated {len(THUMBS) - len(missing)} thumbnails in {OUT_DIR}")
+        make_thumb(source, box, target)
+        generated += 1
+    print(f"Generated {generated} thumbnails in {OUT_DIR}")
+    if skipped:
+        print(f"Skipped existing thumbnails: {len(skipped)}")
     if missing:
         print("Missing:")
         for item in missing:
