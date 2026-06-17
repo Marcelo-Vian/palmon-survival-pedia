@@ -1,0 +1,14 @@
+Coloque aqui o ZIP exportado pelo Android Helper.
+
+Depois execute:
+
+1. Volte para a pasta principal palmon_survival_pedia.
+2. Clique em ATUALIZAR_SITE_LOJA_1_CLIQUE.bat.
+
+Alternativa:
+
+Arraste o ZIP diretamente em cima do arquivo ATUALIZAR_SITE_LOJA_1_CLIQUE.bat.
+
+Observacao:
+
+A rotina importa as imagens do ZIP para a pasta de prints, reconstrói o site com a base atual, valida e publica. Se o ZIP tiver pacotes novos que ainda nao foram transformados em dados da loja, o script avisa no log.

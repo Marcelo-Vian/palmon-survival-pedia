@@ -1,18 +1,28 @@
-# Atualizar site da loja em 1 clique
+# Atualizar Site Da Loja Em 1 Clique
 
-Use este arquivo:
+## Onde Colocar O ZIP
 
-`ATUALIZAR_SITE_LOJA_1_CLIQUE.bat`
+Coloque o ZIP exportado pelo Android Helper nesta pasta:
 
-O que ele faz:
+`D:\Linkedin\palmon_survival_pedia\COLOQUE_O_ZIP_AQUI`
 
-1. Usa o `shop_active_offers_*.json` mais recente.
-2. Gera as miniaturas dos pacotes.
-3. Reconstrói `palmon_shop_captures.html`.
-4. Atualiza o preview da página inicial.
-5. Valida se existem ofertas, miniaturas e se não voltou print completo antigo.
-6. Faz `git add`, `git commit` e `git push`.
-7. Publica no GitHub Pages.
+Depois volte para a pasta principal e clique em:
+
+`D:\Linkedin\palmon_survival_pedia\ATUALIZAR_SITE_LOJA_1_CLIQUE.bat`
+
+Tambem funciona arrastar o ZIP diretamente em cima do arquivo `.bat`.
+
+## O Que O Clique Faz
+
+1. Importa o ZIP da pasta `COLOQUE_O_ZIP_AQUI`, se existir.
+2. Copia as imagens para `D:\Linkedin\palmon_survival_prints\loja\prints`.
+3. Usa o `shop_active_offers_*.json` mais recente.
+4. Gera as miniaturas dos pacotes.
+5. Reconstrói `palmon_shop_captures.html`.
+6. Atualiza o preview da página inicial.
+7. Valida ofertas, miniaturas e links.
+8. Faz `git add`, `git commit` e `git push`.
+9. Publica no GitHub Pages.
 
 Link final:
 
@@ -20,10 +30,10 @@ Link final:
 
 Logs:
 
-`logs/update-shop-YYYYMMDD-HHMMSS.log`
+`D:\Linkedin\palmon_survival_pedia\logs`
 
-Importante:
+## Importante
 
-- Se você apenas tirar prints novos, o botão consegue republicar a base atual, mas não inventa dados novos.
-- Quando aparecer pacote novo, preço novo ou item novo, primeiro precisamos transformar os prints em linhas no `shop_active_offers_*.json` e ajustar recortes quando necessário.
-- Depois disso, o clique publica tudo sozinho.
+Se o ZIP tiver pacotes novos, a rotina importa os prints, mas esses pacotes ainda precisam ser transformados em linhas da base de dados antes de aparecerem como ofertas calculadas no site.
+
+Se clicar e parecer que nada aconteceu, confira se voce clicou no `.bat`, nao no `.ps1`. O `.bat` deixa a janela aberta e mostra o caminho do log.

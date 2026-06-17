@@ -2,3 +2,7 @@
 __pycache__/
 *.pyc
 logs/
+COLOQUE_O_ZIP_AQUI/*.zip
+COLOQUE_O_ZIP_AQUI/*.7z
+COLOQUE_O_ZIP_AQUI/*.rar
+COLOQUE_O_ZIP_AQUI/extracted/
