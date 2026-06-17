@@ -6,10 +6,19 @@ ROOT = pathlib.Path(r"D:\Linkedin")
 PEDIA_DIR = ROOT / "palmon_survival_pedia"
 DATA_FILE = PEDIA_DIR / "shop_active_offers_20260616.json"
 OUT_HTML = PEDIA_DIR / "palmon_shop_captures.html"
+THUMB_DIR = PEDIA_DIR / "assets" / "shop_offer_thumbs"
 
 
 def load_data() -> dict:
-    return json.loads(DATA_FILE.read_text(encoding="utf-8"))
+    data = json.loads(DATA_FILE.read_text(encoding="utf-8"))
+    for offer in data.get("offers", []):
+        offer_id = offer.get("id")
+        if not offer_id:
+            continue
+        thumb_path = THUMB_DIR / f"{offer_id}.jpg"
+        if thumb_path.exists():
+            offer["thumbnail"] = f"assets/shop_offer_thumbs/{offer_id}.jpg"
+    return data
 
 
 def html_page(data: dict) -> str:
@@ -29,7 +38,7 @@ def html_page(data: dict) -> str:
 h1{{font-size:clamp(30px,4.4vw,54px);line-height:1.02;margin:0}}p{{color:var(--muted);line-height:1.55;margin:0}}.hero-actions{{display:flex;gap:10px;flex-wrap:wrap}}.btn{{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:0 14px;border-radius:11px;border:1px solid var(--line);background:#fff;font-weight:900;cursor:pointer}}.btn.primary{{background:#172033;color:#fff;border-color:#172033}}.btn.active{{background:#dbeafe;border-color:#93c5fd;color:#174ea6}}
 .stats{{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}}.stat{{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:13px;box-shadow:0 1px 2px #0000000a}}.stat span{{display:block;color:var(--muted);font-size:12px;font-weight:900;text-transform:uppercase}}.stat strong{{display:block;font-size:25px;margin-top:6px}}.stat small{{color:var(--muted);font-weight:700}}
 .panel{{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;margin-top:16px;box-shadow:var(--shadow)}}.panel h2{{margin:0 0 12px;font-size:22px}}.filters{{display:grid;grid-template-columns:2fr repeat(4,minmax(145px,1fr));gap:10px;margin-top:12px}}.filters input,.filters select{{width:100%;border:1px solid #c8d5e6;border-radius:10px;background:#fff;padding:11px;color:var(--ink)}}.hint{{font-size:13px;color:var(--muted)}}.cards{{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}}.score-card{{border:1px solid var(--line);border-radius:13px;padding:12px;background:#f8fbff}}.score-card b{{display:block;margin-bottom:6px}}.score-card strong{{font-size:22px}}.score-card small{{display:block;color:var(--muted);margin-top:3px}}
-.table-wrap{{overflow:auto;border:1px solid #e5edf7;border-radius:12px}}table{{width:100%;border-collapse:collapse;font-size:13px;background:#fff}}th,td{{border-bottom:1px solid #e5edf7;padding:9px 10px;text-align:left;vertical-align:top}}th{{position:sticky;top:0;background:#f8fbff;color:#34445d;z-index:1}}tr:hover td{{background:#fbfdff}}.offer-name{{font-weight:900;font-size:14px}}.muted{{color:var(--muted)}}.mono{{font-family:ui-monospace,Consolas,monospace}}.pill{{display:inline-flex;align-items:center;border-radius:999px;padding:4px 7px;font-size:12px;font-weight:900;border:1px solid #d4e0ef;background:#f7fbff;color:#34445d;margin:1px 3px 1px 0;white-space:nowrap}}.pill.ok{{background:#edfdf5;color:#086444;border-color:#b9ebd2}}.pill.warn{{background:#fff7ed;color:#8b3f04;border-color:#fed7aa}}.pill.bad{{background:#fff1f1;color:#991b1b;border-color:#fecaca}}.pill.blue{{background:#eff6ff;color:#1d4ed8;border-color:#bfdbfe}}.items{{display:flex;gap:5px;flex-wrap:wrap;max-width:560px}}.decision{{min-width:230px}}.foot{{margin-top:14px;color:var(--muted);font-size:13px;line-height:1.55}}
+.table-wrap{{overflow:auto;border:1px solid #e5edf7;border-radius:12px}}table{{width:100%;border-collapse:collapse;font-size:13px;background:#fff}}th,td{{border-bottom:1px solid #e5edf7;padding:9px 10px;text-align:left;vertical-align:top}}th{{position:sticky;top:0;background:#f8fbff;color:#34445d;z-index:1}}tr:hover td{{background:#fbfdff}}.visual-col{{width:190px}}.offer-thumb{{display:block;width:178px;height:70px;border-radius:10px;border:1px solid #c9d8ea;object-fit:cover;background:#eef6ff;box-shadow:0 2px 8px #00000012}}.no-thumb{{width:178px;height:70px;border-radius:10px;border:1px dashed #c9d8ea;display:flex;align-items:center;justify-content:center;background:#f8fbff;color:var(--muted);font-weight:900;font-size:12px}}.offer-name{{font-weight:900;font-size:14px}}.muted{{color:var(--muted)}}.mono{{font-family:ui-monospace,Consolas,monospace}}.pill{{display:inline-flex;align-items:center;border-radius:999px;padding:4px 7px;font-size:12px;font-weight:900;border:1px solid #d4e0ef;background:#f7fbff;color:#34445d;margin:1px 3px 1px 0;white-space:nowrap}}.pill.ok{{background:#edfdf5;color:#086444;border-color:#b9ebd2}}.pill.warn{{background:#fff7ed;color:#8b3f04;border-color:#fed7aa}}.pill.bad{{background:#fff1f1;color:#991b1b;border-color:#fecaca}}.pill.blue{{background:#eff6ff;color:#1d4ed8;border-color:#bfdbfe}}.items{{display:flex;gap:5px;flex-wrap:wrap;max-width:560px}}.decision{{min-width:230px}}.foot{{margin-top:14px;color:var(--muted);font-size:13px;line-height:1.55}}
 @media(max-width:900px){{.filters{{grid-template-columns:1fr 1fr}}h1{{font-size:34px}}}}
 @media(max-width:560px){{.wrap{{width:min(100% - 18px,1440px)}}.filters{{grid-template-columns:1fr}}}}
 </style>
@@ -45,7 +54,7 @@ h1{{font-size:clamp(30px,4.4vw,54px);line-height:1.02;margin:0}}p{{color:var(--m
       </div>
     </div>
     <h1>Tabela de pacotes, itens e preços extraída dos prints</h1>
-    <p>Sem publicar prints no site: esta página usa os prints só como fonte de leitura e transforma as ofertas ativas em tabela filtrável. Itens com ícone sem texto oficial ficam com nome funcional e confiança marcada.</p>
+    <p>Sem publicar telas completas: esta página usa os prints como fonte, mostra só recortes pequenos dos pacotes e transforma as ofertas ativas em tabela filtrável. Itens com ícone sem texto oficial ficam com nome funcional e confiança marcada.</p>
     <div class="stats" id="stats"></div>
   </section>
 
@@ -83,6 +92,7 @@ h1{{font-size:clamp(30px,4.4vw,54px);line-height:1.02;margin:0}}p{{color:var(--m
       <table>
         <thead>
           <tr>
+            <th class="visual-col">Visual</th>
             <th>Pacote</th>
             <th>Preço</th>
             <th>Itens</th>
@@ -221,6 +231,10 @@ function itemsHtml(offer) {{
     return `<span class="pill blue" title="${{esc(item.category)}}">${{esc(item.name)}}${{qty}}${{unit}}</span>`;
   }}).join('')}}</div>`;
 }}
+function thumbHtml(offer) {{
+  if (!offer.thumbnail) return '<div class="no-thumb">sem recorte</div>';
+  return `<a href="${{esc(offer.thumbnail)}}" target="_blank" rel="noopener"><img class="offer-thumb" src="${{esc(offer.thumbnail)}}" alt="Recorte do pacote ${{esc(offer.name)}}"></a>`;
+}}
 function scoreHtml(offer) {{
   const category = els.resource.value;
   if (!category) return '<span class="muted">Escolha recurso para calcular.</span>';
@@ -231,6 +245,7 @@ function scoreHtml(offer) {{
 }}
 function rowHtml(offer) {{
   return `<tr>
+    <td>${{thumbHtml(offer)}}</td>
     <td>
       <div class="offer-name">${{esc(offer.name)}}</div>
       <span class="pill">${{esc(offer.section)}}</span>
@@ -250,7 +265,7 @@ function render() {{
   els.count.textContent = `(${{rows.length}} de ${{OFFERS.length}})`;
   const res = els.resource.value;
   els.hint.textContent = res ? `Ordenando por melhor custo de ${{res}} por real. Linhas sem quantidade comparável ficam embaixo.` : 'Escolha um recurso em "Ordenar por recurso" para comparar custo/benefício.';
-  els.rows.innerHTML = rows.length ? rows.map(rowHtml).join('') : '<tr><td colspan="6"><span class="muted">Nenhuma oferta para este filtro.</span></td></tr>';
+  els.rows.innerHTML = rows.length ? rows.map(rowHtml).join('') : '<tr><td colspan="7"><span class="muted">Nenhuma oferta para este filtro.</span></td></tr>';
 }}
 optionList();
 statCards();
