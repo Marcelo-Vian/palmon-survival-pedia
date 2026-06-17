@@ -1,10 +1,11 @@
 import json
+import os
 import pathlib
 
 
 ROOT = pathlib.Path(r"D:\Linkedin")
 PEDIA_DIR = ROOT / "palmon_survival_pedia"
-DATA_FILE = PEDIA_DIR / "shop_active_offers_20260616.json"
+DATA_FILE = PEDIA_DIR / os.environ.get("PALMON_SHOP_DATA", "shop_active_offers_20260616.json")
 OUT_HTML = PEDIA_DIR / "palmon_shop_captures.html"
 THUMB_DIR = PEDIA_DIR / "assets" / "shop_offer_thumbs"
 
