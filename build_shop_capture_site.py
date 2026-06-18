@@ -803,7 +803,7 @@ const TEXT = {
     active: "Ativo",
     pending: "Pendente",
     unavailable: "Comprado/indisponível",
-    sortBest: "Melhor custo-benefício",
+    sortBest: "Menor custo por unidade",
     sortPriceLow: "Menor preço",
     sortPriceHigh: "Maior preço",
     sortName: "Nome",
@@ -817,8 +817,8 @@ const TEXT = {
     chooseGoal: "Objetivo atual",
     scoreEmpty: "Sem quantidade comparável",
     noThumb: "sem foto",
-    bestHint: "Escolha um objetivo acima para reorganizar as recomendações.",
-    libraryHint: "Cards grandes para reconhecer o pacote no jogo. A tabela fica logo abaixo para checagem fina.",
+    bestHint: "Ranking pelo menor custo do recurso selecionado. Se escolher uma categoria no filtro, ela vira o alvo do cálculo.",
+    libraryHint: "Cards grandes para reconhecer o pacote no jogo. A ordenação usa menor custo por unidade do recurso-alvo.",
     selected: "Selecionado",
     limit: "Limite",
     confidence: "Confiança",
@@ -871,7 +871,7 @@ const TEXT = {
     active: "Active",
     pending: "Pending",
     unavailable: "Bought/unavailable",
-    sortBest: "Best value",
+    sortBest: "Lowest unit cost",
     sortPriceLow: "Lowest price",
     sortPriceHigh: "Highest price",
     sortName: "Name",
@@ -885,8 +885,8 @@ const TEXT = {
     chooseGoal: "Current goal",
     scoreEmpty: "No comparable quantity",
     noThumb: "no image",
-    bestHint: "Choose a goal above to reorganize recommendations.",
-    libraryHint: "Large cards help you recognize the package in-game. The table below is for precise checking.",
+    bestHint: "Ranking uses the lowest unit cost for the selected resource. If you choose a category filter, it becomes the calculation target.",
+    libraryHint: "Large cards help you recognize the package in-game. Sorting uses lowest unit cost for the target resource.",
     selected: "Selected",
     limit: "Limit",
     confidence: "Confidence",
@@ -962,6 +962,12 @@ function fmt(value) {
   const n = Number(value);
   return Number.isFinite(n) ? n.toLocaleString("pt-BR", { maximumFractionDigits: 2 }) : "-";
 }
+function fmtCost(value) {
+  const n = Number(value);
+  if (!Number.isFinite(n)) return "-";
+  const digits = n < 0.01 ? 4 : n < 1 ? 3 : 2;
+  return n.toLocaleString("pt-BR", { minimumFractionDigits: digits, maximumFractionDigits: digits });
+}
 function categories() {
   return Array.from(new Set(OFFERS.flatMap((offer) => (offer.items || []).map((item) => item.category)).filter(Boolean))).sort();
 }
@@ -992,6 +998,15 @@ function valueScore(offer, category = state.goal) {
   const p = price(offer);
   if (!total || !p || p <= 0) return null;
   return total / p;
+}
+function unitCost(offer, category = activeMetric()) {
+  const total = totalFor(offer, category);
+  const p = price(offer);
+  if (!total || !p || p <= 0) return null;
+  return p / total;
+}
+function activeMetric() {
+  return els.category.value || state.goal;
 }
 function statusType(offer) {
   const value = norm(offer.status);
@@ -1033,7 +1048,8 @@ function sortedOffers(rows) {
   if (mode === "price-low") return copy.sort((a, b) => (price(a) ?? 999999) - (price(b) ?? 999999));
   if (mode === "price-high") return copy.sort((a, b) => (price(b) ?? -1) - (price(a) ?? -1));
   if (mode === "name") return copy.sort((a, b) => String(a.name).localeCompare(String(b.name)));
-  return copy.sort((a, b) => (valueScore(b) ?? -1) - (valueScore(a) ?? -1));
+  const metric = activeMetric();
+  return copy.sort((a, b) => (unitCost(a, metric) ?? 999999) - (unitCost(b, metric) ?? 999999));
 }
 function filteredOffers() {
   return sortedOffers(OFFERS.filter(searchMatches));
@@ -1051,16 +1067,18 @@ function shortItems(offer, limit = 3) {
   const more = items.length > limit ? `<span class="pill">+${items.length - limit}</span>` : "";
   return `<div class="pill-line">${visible}${more}</div>`;
 }
-function scoreLabel(offer, category = state.goal) {
+function scoreLabel(offer, category = activeMetric()) {
   const score = valueScore(offer, category);
-  if (!score) return t("scoreEmpty");
-  return `${fmt(score)} ${unitFor(offer, category)}/R$`;
+  const cost = unitCost(offer, category);
+  if (!score || !cost) return t("scoreEmpty");
+  const unit = unitFor(offer, category);
+  return `R$ ${fmtCost(cost)}/${unit} · ${fmt(score)} ${unit}/R$`;
 }
 function buyRead(offer) {
   const type = statusType(offer);
   if (type === "pending") return state.lang === "en" ? "Wait" : "Esperar";
   if (type === "unavailable") return state.lang === "en" ? "Unavailable" : "Indisponível";
-  const score = valueScore(offer);
+  const score = valueScore(offer, activeMetric());
   if (!score) return state.lang === "en" ? "Situational" : "Situacional";
   return state.lang === "en" ? "Compare by goal" : "Compare pelo objetivo";
 }
@@ -1076,6 +1094,11 @@ function applyCopy() {
   els.sourceLine.innerHTML = `${esc(DATA.captured_at || "__CAPTURED__")}<br><span class="muted">${esc(t("sourceNote"))}: ${esc(DATA.source_note || "__SOURCE_NOTE__")}</span>`;
 }
 function fillSelects() {
+  const current = {
+    category: els.category.value,
+    status: els.status.value,
+    sort: els.sort.value || "best",
+  };
   els.category.innerHTML = `<option value="">${esc(t("allCategories"))}</option>` + categories().map((cat) => `<option value="${esc(cat)}">${esc(cat)}</option>`).join("");
   els.status.innerHTML = `
     <option value="">${esc(t("allStatus"))}</option>
@@ -1089,6 +1112,12 @@ function fillSelects() {
     <option value="price-high">${esc(t("sortPriceHigh"))}</option>
     <option value="name">${esc(t("sortName"))}</option>
   `;
+  els.category.value = current.category;
+  if (els.category.value !== current.category) els.category.value = "";
+  els.status.value = current.status;
+  if (els.status.value !== current.status) els.status.value = "";
+  els.sort.value = current.sort;
+  if (els.sort.value !== current.sort) els.sort.value = "best";
   const confs = [
     ["", t("confAll")],
     ["alta", t("confHigh")],
@@ -1140,14 +1169,15 @@ function bestOffersForGoal(goalId, limit = 3) {
 }
 function renderBest() {
   els.bestHint.textContent = t("bestHint");
-  const best = bestOffersForGoal(state.goal, 3);
+  const metric = activeMetric();
+  const best = bestOffersForGoal(metric, 3);
   els.bestGrid.innerHTML = best.length ? best.map((offer) => `
     <article class="best-card" role="button" tabindex="0" data-select="${esc(offer.id)}">
       ${thumb(offer)}
       <div class="best-body">
-        <small>${esc(t("chooseGoal"))}: ${esc(state.goal)}</small>
+        <small>${esc(t("chooseGoal"))}: ${esc(metric)}</small>
         <b>${esc(offer.name)}</b>
-        <strong>${esc(scoreLabel(offer))}</strong>
+        <strong>${esc(scoreLabel(offer, metric))}</strong>
         <span class="muted">${esc(brl(offer.price_brl))}</span>
       </div>
     </article>
@@ -1218,8 +1248,8 @@ function offerCard(offer) {
           <span>${esc(offer.section || "-")} · ${esc(offer.source_caps || "-")}</span>
         </div>
         ${shortItems(offer)}
-        <div class="card-metric">
-          <div class="metric-box"><span>${esc(t("score"))}</span><b>${esc(scoreLabel(offer))}</b></div>
+      <div class="card-metric">
+          <div class="metric-box"><span>${esc(activeMetric())}</span><b>${esc(scoreLabel(offer))}</b></div>
           <div class="metric-box"><span>${esc(t("confidence"))}</span><b>${esc(offer.confidence || "-")}</b></div>
         </div>
         <p class="recommend">${esc(offer.recommendation || "")}</p>
@@ -1278,7 +1308,7 @@ function renderTable(rows) {
       <td><b>${esc(offer.name)}</b><br><span class="muted">${esc(offer.section || "-")} · ${esc(offer.type || "-")}</span></td>
       <td><b>${esc(brl(offer.price_brl))}</b><br><span class="muted">${offer.currency_bonus ? "+" + esc(offer.currency_bonus) : "-"}</span></td>
       <td>${itemsCell(offer)}</td>
-      <td><b>${esc(scoreLabel(offer))}</b><br><span class="muted">${esc(state.goal)}</span></td>
+      <td><b>${esc(scoreLabel(offer))}</b><br><span class="muted">${esc(activeMetric())}</span></td>
       <td>${esc(offer.recommendation || "")}</td>
       <td><span class="mono">${esc(offer.source_caps || "-")}</span></td>
     </tr>
