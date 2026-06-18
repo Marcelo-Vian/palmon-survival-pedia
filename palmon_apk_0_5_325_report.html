@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Palmon Survival - Relatorio APK 0.5.325</title>
+  <style>
+    :root {
+      --bg: #f4f8ff;
+      --panel: #ffffff;
+      --soft: #eef6ff;
+      --ink: #142b45;
+      --muted: #5d7188;
+      --line: #c9dbf2;
+      --blue: #2d73d2;
+      --cyan: #5bd4ff;
+      --green: #1f9f67;
+      --orange: #cf7b23;
+      --red: #c44545;
+      --shadow: 0 14px 34px rgba(28, 65, 116, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 0%, rgba(91, 212, 255, 0.28), transparent 28%),
+        radial-gradient(circle at 88% 4%, rgba(31, 159, 103, 0.14), transparent 25%),
+        var(--bg);
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .wrap {
+      width: min(1180px, calc(100% - 30px));
+      margin: 0 auto;
+      padding: 24px 0 48px;
+    }
+
+    .topnav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 0 16px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: #fff;
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .btn-primary {
+      border-color: transparent;
+      color: #fff;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      box-shadow: 0 10px 20px rgba(45, 115, 210, 0.22);
+    }
+
+    .hero, .section {
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.92);
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      display: grid;
+      gap: 18px;
+      padding: 28px;
+      background: linear-gradient(135deg, #fff, #edf6ff);
+      margin-bottom: 24px;
+    }
+
+    .eyebrow {
+      width: fit-content;
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid #bcd7fb;
+      background: #e8f2ff;
+      color: var(--blue);
+      font-weight: 800;
+      font-size: 13px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(32px, 5vw, 54px);
+      line-height: 1.02;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: 26px;
+    }
+
+    h3 {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .hero p { max-width: 900px; font-size: 17px; }
+
+    .quick, .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+    }
+
+    .stat, .card, .step {
+      display: grid;
+      gap: 8px;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #fff;
+    }
+
+    .stat strong {
+      font-size: 28px;
+      line-height: 1;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    .section {
+      margin-top: 22px;
+      padding: 22px;
+    }
+
+    .card.ok { border-color: rgba(31, 159, 103, 0.35); background: #f1fff8; }
+    .card.warn { border-color: rgba(207, 123, 35, 0.35); background: #fff8ec; }
+    .card.no { border-color: rgba(196, 69, 69, 0.28); background: #fff3f3; }
+
+    .tagrow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 0 10px;
+      border-radius: 999px;
+      background: #e8f2ff;
+      border: 1px solid #bdd8fb;
+      color: #214b78;
+      font-weight: 800;
+      font-size: 12px;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #fff;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 720px;
+    }
+
+    th, td {
+      padding: 12px;
+      border-bottom: 1px solid #e4eef9;
+      text-align: left;
+      vertical-align: top;
+      font-size: 14px;
+    }
+
+    th {
+      background: #eef6ff;
+      color: #183451;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0;
+    }
+
+    tr:last-child td { border-bottom: 0; }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .step { min-height: 112px; }
+    .step b { display: block; margin-bottom: 4px; }
+
+    .note {
+      padding: 14px;
+      border-left: 5px solid var(--orange);
+      border-radius: 12px;
+      background: #fff8ec;
+      color: #654013;
+      line-height: 1.5;
+      margin-top: 14px;
+    }
+
+    .mono {
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 13px;
+    }
+
+    ul {
+      margin: 10px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    li + li { margin-top: 5px; }
+
+    @media (max-width: 680px) {
+      .wrap { width: min(100% - 18px, 1180px); padding-top: 14px; }
+      .hero, .section { padding: 18px; }
+      h1 { font-size: 32px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav class="topnav">
+      <a class="btn" href="index.html">Voltar ao hub</a>
+      <a class="btn btn-primary" href="palmon_survival_pedia_completa.html">Abrir Pedia</a>
+    </nav>
+
+    <header class="hero">
+      <span class="eyebrow">Relatorio tecnico local - APK/XAPK 2026</span>
+      <h1>Palmon Survival 0.5.325: o que mudou e como o jogo esta montado</h1>
+      <p>
+        Este relatorio consolida o que foi confirmado no novo XAPK 0.5.325, comparado com a base anterior 0.5.277.
+        Ele serve para atualizar nossa Pedia, orientar o simulador e aprender arquitetura de jogo mobile sem copiar
+        codigo, assets, formulas proprietarias ou fluxo privado de servidor.
+      </p>
+      <div class="quick">
+        <div class="stat"><strong>0.5.325</strong><span>version_name confirmado</span></div>
+        <div class="stat"><strong>325</strong><span>ResourceVersion novo</span></div>
+        <div class="stat"><strong>664</strong><span>configs logicos mapeados</span></div>
+        <div class="stat"><strong>48</strong><span>configs logicos novos</span></div>
+      </div>
+    </header>
+
+    <section class="section">
+      <h2>Resumo executivo</h2>
+      <div class="grid">
+        <div class="card ok">
+          <h3>Confirmado</h3>
+          <p>O pacote novo subiu recurso, temporada, idioma e codigo Unity. A maior mudanca esta no assetLibrary, onde ficam configs de gameplay.</p>
+        </div>
+        <div class="card warn">
+          <h3>Provavel impacto no gameplay</h3>
+          <p>Hero, skill, card_skill_pal, card_buff_pal, shop, recharge, building, tech e season mudaram. Ranking e skills precisam de nova decodificacao antes de atualizar numeros.</p>
+        </div>
+        <div class="card no">
+          <h3>Limite seguro</h3>
+          <p>Podemos mapear arquitetura, compras e protecoes em alto nivel. Nao documentamos bypass de compra, quebra de protecao nem acesso nao autorizado a servidor.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Delta de versao</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Campo</th><th>0.5.277 antigo</th><th>0.5.325 novo</th><th>Leitura pratica</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>version_name</td><td>0.5.277</td><td>0.5.325</td><td>Nova build publica analisada.</td></tr>
+            <tr><td>version_code</td><td>236</td><td>241</td><td>Subiu codigo Android.</td></tr>
+            <tr><td>ResourceVersion</td><td>277</td><td>325</td><td>Atualizacao grande de assets/configs.</td></tr>
+            <tr><td>SeasonVersion[0]</td><td>272</td><td>320</td><td>Indicador forte de pacote sazonal novo.</td></tr>
+            <tr><td>LanVer</td><td>394</td><td>424</td><td>Textos/idiomas tambem mudaram.</td></tr>
+            <tr><td>target_sdk</td><td>nao consolidado aqui</td><td>36</td><td>Build Android moderna.</td></tr>
+            <tr><td>package</td><td>com.funfizz.palmon.gp</td><td>com.funfizz.palmon.gp</td><td>Mesmo pacote global Android.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Arquitetura do pacote</h2>
+      <div class="flow">
+        <div class="step"><b>Base APK</b><p>Manifest, Android, SDKs, arquivos de ambiente, Firebase/Huawei/Google e bootstrap Unity.</p></div>
+        <div class="step"><b>config.arm64_v8a</b><p>Bibliotecas nativas: Unity, IL2CPP, XLua, SDK, assinatura/check e criptografia.</p></div>
+        <div class="step"><b>assetLibrary</b><p>AssetBundles, UI, modelos, audio, cenas e configs luabyte.</p></div>
+        <div class="step"><b>Servidor</b><p>Conta, eventos, validacao de compra, estado online e dados ativos do dia.</p></div>
+      </div>
+      <div class="tagrow">
+        <span class="tag">Unity</span>
+        <span class="tag">IL2CPP</span>
+        <span class="tag">XLua</span>
+        <span class="tag">Google Billing</span>
+        <span class="tag">Lilith/Farlight SDK</span>
+        <span class="tag">AssetBundles</span>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Configs novos e alterados</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Comparacao</th><th>Resultado</th><th>O que significa</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Arquivos .ua brutos</td><td>1130 antigo -> 1210 novo</td><td>80 arquivos novos no assetLibrary.</td></tr>
+            <tr><td>Configs logicos</td><td>620 antigo -> 664 novo</td><td>48 configs novos mapeados por nome logico.</td></tr>
+            <tr><td>Configs alterados</td><td>134 logicos</td><td>Mudancas em sistemas centrais e eventos.</td></tr>
+            <tr><td>Configs removidos</td><td>4 logicos</td><td>Alguns nomes antigos sairam ou foram reorganizados.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 style="margin-top:18px">Novos nomes importantes</h3>
+      <div class="tagrow">
+        <span class="tag">gem</span>
+        <span class="tag">gem_power</span>
+        <span class="tag">gem_skill</span>
+        <span class="tag">gem_window</span>
+        <span class="tag">tech_desert</span>
+        <span class="tag">tech_desert_level</span>
+        <span class="tag">desert_reward</span>
+        <span class="tag">desert_pk_preview</span>
+        <span class="tag">s03_resources_worldarea</span>
+        <span class="tag">s03_server_resources_bigworldmap</span>
+        <span class="tag">s03_till_land_gem</span>
+        <span class="tag">decoration_shop</span>
+        <span class="tag">guild_badge_run_npc</span>
+        <span class="tag">guild_badge_run_stage</span>
+        <span class="tag">recharge_gift_window_smart</span>
+      </div>
+
+      <h3 style="margin-top:18px">Configs criticos que mudaram</h3>
+      <div class="tagrow">
+        <span class="tag">hero</span>
+        <span class="tag">hero_evolve</span>
+        <span class="tag">hero_evolve_potency</span>
+        <span class="tag">hero_inborn</span>
+        <span class="tag">skill</span>
+        <span class="tag">card_skill_pal</span>
+        <span class="tag">card_buff_pal</span>
+        <span class="tag">building</span>
+        <span class="tag">boss_levelup</span>
+        <span class="tag">boss_skill</span>
+        <span class="tag">boss_talent</span>
+        <span class="tag">shop</span>
+        <span class="tag">recharge</span>
+        <span class="tag">season_recruit</span>
+        <span class="tag">season_open</span>
+        <span class="tag">tech</span>
+      </div>
+      <div class="note">
+        Regra para a Pedia: como os configs novos ainda estao codificados, nao devemos trocar ranking, dano, skills ou custos numericos ate decodificar e parsear os novos arquivos.
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>S02, S03, desert e gemas</h2>
+      <p>
+        O APK 0.5.325 tem conteudo de S02 e S03 ao mesmo tempo. O ponto importante e separar nome interno,
+        conteudo preparado no cliente e conteudo realmente ativo no servidor.
+      </p>
+      <div class="grid">
+        <div class="card ok">
+          <h3>S02 confirmada no APK</h3>
+          <p>Existe arquivo de dados com token legivel <b>S2CurseData</b>. Portanto, o nome interno mais forte encontrado para a S02 e <b>Curse</b>.</p>
+        </div>
+        <div class="card ok">
+          <h3>S03 confirmada no APK</h3>
+          <p>Existe arquivo novo com token legivel <b>S3DesertData</b>. Portanto, o nome interno mais forte encontrado para a S03 e <b>Desert</b>.</p>
+        </div>
+        <div class="card warn">
+          <h3>Ativacao depende do servidor</h3>
+          <p>O cliente pode carregar S02 e S03, mas calendario, abertura real e regras finais dependem de config remota/server-side.</p>
+        </div>
+      </div>
+      <div class="table-wrap" style="margin-top:14px">
+        <table>
+          <thead>
+            <tr><th>Area</th><th>Confirmado no 0.5.325</th><th>Leitura pratica</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>S02</td><td><code>S2CurseData</code>, <code>s02_city_data</code>, partes <code>s02_city_data_part1/part2/reuse</code></td><td>A S02 continua presente e reorganizada. Nome interno encontrado: Curse.</td></tr>
+            <tr><td>S03</td><td><code>S3DesertData</code>, <code>s03_city_data</code>, <code>s03_guild_furnace</code>, <code>s03_home_decor</code>, <code>s03_pyramids_data</code></td><td>A S03 aparece bem mais concreta nesta versao. Nome interno encontrado: Desert.</td></tr>
+            <tr><td>Deserto</td><td><code>tech_desert</code>, <code>tech_desert_level</code>, <code>desert_reward</code>, <code>desert_pk_task</code>, <code>desert_pk_preview</code>, <code>desert_officials</code></td><td>Indica arvore/tecnologia de deserto, recompensas, tarefas e possivel competicao/PK de deserto.</td></tr>
+            <tr><td>Gemas</td><td><code>gem</code>, <code>gem_power</code>, <code>gem_skill</code>, <code>gem_window</code>, <code>s03_till_land_gem</code></td><td>Indica sistema novo ou expandido de gemas, poder por gemas e skill vinculada a gemas.</td></tr>
+            <tr><td>Piramides</td><td><code>pyramids_war_pointreward</code>, <code>pyramids_war_points_way</code>, <code>s03_pyramids_data</code>, texturas <code>ipyramidbattle</code></td><td>Indica evento/sistema de guerra ou pontuacao em piramides.</td></tr>
+            <tr><td>UI/painel</td><td><code>desertcompetition</code>, <code>desertmapcity</code>, <code>desertstormbattlefield</code>, <code>uidesertofficer</code>, texturas <code>uigem</code></td><td>Existem telas especificas para competicao, mapa/cidade de deserto, battlefield, oficiais e gemas.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">
+        Conclusao segura: nao era "so S02" nem "so S03". O APK carrega base S02 e conteudo S03. A S03 Desert parece preparada/expandida no 0.5.325, mas dizer que ela ja esta aberta no jogo exige print ou resposta do servidor.
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Servidor e compras: como funciona em alto nivel</h2>
+      <p>
+        O cliente inclui configs de ambiente prod/QC, endpoints de conta/SDK, CDNs de asset, login social, QR/H5, diagnostico,
+        Google Billing e modulos de pagamento. Isso nao significa que a compra acontece so no APK: em jogo online correto,
+        a posse do item deve ser validada e concedida pelo servidor.
+      </p>
+      <div class="table-wrap" style="margin-top:14px">
+        <table>
+          <thead>
+            <tr><th>Area</th><th>Confirmado no cliente</th><th>Como devemos fazer no nosso app</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Catalogo/loja</td><td>Configs `shop`, `recharge`, `gift`, `recharge_gift_window` e variantes.</td><td>Catalogo proprio no backend/admin, com inicio/fim, moeda, preco e limites.</td></tr>
+            <tr><td>Compra mobile</td><td>`com.android.vending.BILLING`, `GooglePayModuleLoader`, `PaymentModuleLoader`, `CashierModuleLoader`.</td><td>Usar Google Play Billing/App Store oficial e validar recibo no servidor.</td></tr>
+            <tr><td>Entitlement</td><td>Cliente tem SDK e flags, mas estado real deve ser servidor.</td><td>Servidor grava compra idempotente, concede item uma vez e audita transacao.</td></tr>
+            <tr><td>Anti-fraude</td><td>Libs de assinatura/check, libsodium, SDK e troca de rede aparecem no pacote.</td><td>Nunca confiar em moeda/item vindo do cliente; servidor autoritativo e logs.</td></tr>
+            <tr><td>Eventos ativos</td><td>APK contem varios eventos, mas ativo do dia depende de server/config remota.</td><td>Servidor decide evento ativo e cliente so renderiza o que recebeu.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="flow">
+        <div class="step"><b>1. App mostra oferta</b><p>Oferta vem de catalogo local/cache ou backend.</p></div>
+        <div class="step"><b>2. Loja oficial cobra</b><p>Google/Apple gera purchase token/receipt.</p></div>
+        <div class="step"><b>3. Backend valida</b><p>Servidor consulta API oficial e checa assinatura, produto e usuario.</p></div>
+        <div class="step"><b>4. Servidor concede</b><p>Item entra no inventario com transacao idempotente e auditavel.</p></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>O que da para atualizar agora</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Item</th><th>Status</th><th>Acao recomendada</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Versao/base tecnica</td><td>Confirmado</td><td>Marcar a Pedia como ciente do XAPK 0.5.325.</td></tr>
+            <tr><td>Novos sistemas</td><td>Confirmado por nome</td><td>Adicionar lacunas/observacoes: gemas, desert, s03, tech_desert.</td></tr>
+            <tr><td>Ranking de Palmons</td><td>Pendente</td><td>Manter ranking 0.5.277 ate decodificar `hero` e `card_skill_pal` 0.5.325.</td></tr>
+            <tr><td>Skills e dano</td><td>Pendente</td><td>Nao atualizar numeros sem parse novo.</td></tr>
+            <tr><td>Shop ativo do dia</td><td>Pendente por servidor/print</td><td>Continuar usando prints da loja; APK mostra estruturas, nao disponibilidade diaria real.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Arquivos locais gerados</h2>
+      <ul>
+        <li><span class="mono">D:\Linkedin\palmon_survival_apk\xapk_0_5_325</span> - XAPK novo extraido.</li>
+        <li><span class="mono">D:\Linkedin\palmon_survival_apk\main_0_5_325_extracted</span> - APK principal extraido.</li>
+        <li><span class="mono">D:\Linkedin\palmon_survival_apk\asset_0_5_325_extracted</span> - assets/configs do assetLibrary.</li>
+        <li><span class="mono">D:\Linkedin\palmon_survival_apk\config_arm64_0_5_325_extracted</span> - libs nativas arm64.</li>
+        <li><span class="mono">D:\Linkedin\palmon_survival_apk\analysis_0_5_325\logical_config_diff_0_5_277_to_0_5_325.json</span> - diff logico de configs.</li>
+      </ul>
+    </section>
+  </div>
+  <script src="palmon_i18n.js"></script>
+</body>
+</html>

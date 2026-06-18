@@ -202,6 +202,40 @@
       background: #dfeeff;
     }
 
+    .card-visual {
+      min-height: 0;
+      aspect-ratio: 16 / 9;
+      display: grid;
+      place-items: center;
+      padding: 18px;
+      background:
+        linear-gradient(135deg, rgba(44, 115, 210, 0.16), rgba(95, 208, 255, 0.22)),
+        #eaf4ff;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .apk-diagram {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      align-items: center;
+    }
+
+    .apk-box {
+      min-height: 58px;
+      border: 1px solid #9fc5f4;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.82);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      color: #173552;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 8px;
+    }
+
     .card-body {
       padding: 16px;
       display: grid;
@@ -332,6 +366,25 @@
             </div>
           </div>
         </a>
+
+        <a class="card" href="palmon_apk_0_5_325_report.html">
+          <div class="card-visual" role="img" aria-label="Preview do relatorio APK 0.5.325" data-i18n-aria="imgApkAlt">
+            <div class="apk-diagram">
+              <div class="apk-box">APK<br>0.5.325</div>
+              <div class="apk-box">664<br>configs</div>
+              <div class="apk-box">server<br>safe map</div>
+            </div>
+          </div>
+          <div class="card-body">
+            <h3 data-i18n="cardApkTitle">Relatorio APK 0.5.325</h3>
+            <p data-i18n="cardApkCopy">Delta tecnico do novo XAPK: season, gemas, deserto, configs alterados, arquitetura de servidor e compras em nivel seguro.</p>
+            <div class="meta">
+              <span class="chip" data-i18n="chipApk1">0.5.325</span>
+              <span class="chip" data-i18n="chipApk2">Season</span>
+              <span class="chip" data-i18n="chipApk3">Engenharia</span>
+            </div>
+          </div>
+        </a>
       </div>
     </section>
 
@@ -374,11 +427,17 @@
         chipShop1: 'Tabela',
         chipShop2: 'Bundles',
         chipShop3: 'Loja',
+        cardApkTitle: 'Relatorio APK 0.5.325',
+        cardApkCopy: 'Delta tecnico do novo XAPK: season, gemas, deserto, configs alterados, arquitetura de servidor e compras em nivel seguro.',
+        chipApk1: '0.5.325',
+        chipApk2: 'Season',
+        chipApk3: 'Engenharia',
         footerWrap: 'Publicação preparada para GitHub Pages. Alguns dados vêm do cliente/APK e outros de fontes oficiais e da comunidade verificadas em 2026.',
         imgPediaAlt: 'Preview da Pedia Completa',
         imgBuilderAlt: 'Preview do Montador de Time',
         imgBattleAlt: 'Preview do Simulador de Batalha',
-        imgShopAlt: 'Preview do Shop Analyzer'
+        imgShopAlt: 'Preview do Shop Analyzer',
+        imgApkAlt: 'Preview do relatorio APK 0.5.325'
       },
       en: {
         pageTitle: 'Palmon Survival Hub 2026',
@@ -412,11 +471,17 @@
         chipShop1: 'Table',
         chipShop2: 'Bundles',
         chipShop3: 'Shop',
+        cardApkTitle: 'APK 0.5.325 Report',
+        cardApkCopy: 'Technical delta from the new XAPK: season, gems, desert, changed configs, server architecture, and payments at a safe level.',
+        chipApk1: '0.5.325',
+        chipApk2: 'Season',
+        chipApk3: 'Engineering',
         footerWrap: 'Publication prepared for GitHub Pages. Some data comes from the client/APK and other parts come from official and community sources verified in 2026.',
         imgPediaAlt: 'Full Pedia preview',
         imgBuilderAlt: 'Team Builder preview',
         imgBattleAlt: 'Battle Simulator preview',
-        imgShopAlt: 'Shop Analyzer preview'
+        imgShopAlt: 'Shop Analyzer preview',
+        imgApkAlt: 'APK 0.5.325 report preview'
       }
     };
 
@@ -434,6 +499,12 @@
         const key = element.dataset.i18nAlt;
         if (dict[key]) {
           element.alt = dict[key];
+        }
+      });
+      document.querySelectorAll('[data-i18n-aria]').forEach((element) => {
+        const key = element.dataset.i18nAria;
+        if (dict[key]) {
+          element.setAttribute('aria-label', dict[key]);
         }
       });
     }
