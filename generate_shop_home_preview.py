@@ -1,3 +1,4 @@
+import json
 from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFont
@@ -6,6 +7,7 @@ from PIL import Image, ImageDraw, ImageFont
 ROOT = Path(r"D:\Linkedin\palmon_survival_pedia")
 THUMB_DIR = ROOT / "assets" / "shop_offer_thumbs"
 OUT = ROOT / "shop_analyzer_screenshot_wide.png"
+DATA = ROOT / "shop_active_offers_20260617.json"
 
 
 def font(name: str, size: int):
@@ -55,6 +57,19 @@ def card(canvas, draw, thumb, x, y, title, meta, score, price):
 
 
 def main():
+    data = json.loads(DATA.read_text(encoding="utf-8"))
+    offers = data.get("offers", [])
+    priced = sum(1 for offer in offers if offer.get("price_brl") is not None)
+    categories = {
+        item.get("category")
+        for offer in offers
+        for item in offer.get("items", [])
+        if item.get("category")
+    }
+    prices = [offer.get("price_brl") for offer in offers if offer.get("price_brl") is not None]
+    lowest = min(prices) if prices else 0
+    thumbs = sum(1 for offer in offers if (THUMB_DIR / f"{offer.get('id')}.jpg").exists())
+
     width, height = 1366, 900
     img = Image.new("RGB", (width, height), "#eef5fb")
     draw = ImageDraw.Draw(img)
@@ -78,7 +93,13 @@ def main():
         TEXT,
     )
 
-    stats = [("Ofertas", "42"), ("Fotos", "42"), ("Com preco", "40"), ("Categorias", "15"), ("Menor ticket", "R$ 4,90")]
+    stats = [
+        ("Ofertas", str(len(offers))),
+        ("Fotos", str(thumbs)),
+        ("Com preco", str(priced)),
+        ("Categorias", str(len(categories))),
+        ("Menor ticket", f"R$ {lowest:.2f}".replace(".", ",")),
+    ]
     for i, (label, value) in enumerate(stats):
         x = 38 + i * 260
         box(draw, x, 308, x + 230, 392, "#ffffff", "#d2deed", 12)
