@@ -15,101 +15,97 @@ def font(name: str, size: int):
         return ImageFont.load_default()
 
 
-FONT_BOLD = font("arialbd.ttf", 28)
-FONT_TITLE = font("arialbd.ttf", 34)
-FONT = font("arial.ttf", 18)
+TITLE = font("arialbd.ttf", 44)
+H2 = font("arialbd.ttf", 28)
+BOLD = font("arialbd.ttf", 18)
+TEXT = font("arial.ttf", 17)
 SMALL = font("arial.ttf", 14)
-TINY_BOLD = font("arialbd.ttf", 13)
+TINY_BOLD = font("arialbd.ttf", 12)
 
 
-def box(draw, x1, y1, x2, y2, fill="#ffffff", outline="#c9d8ea", radius=14):
+def box(draw, x1, y1, x2, y2, fill="#ffffff", outline="#d2deed", radius=14):
     draw.rounded_rectangle([x1, y1, x2, y2], radius=radius, fill=fill, outline=outline, width=1)
 
 
-def paste_thumb(canvas, draw, name, x, y, size=(150, 59)):
+def text(draw, xy, value, fill="#10233b", font_obj=TEXT):
+    draw.text(xy, value, fill=fill, font=font_obj)
+
+
+def paste_thumb(canvas, draw, name, x, y, size=(270, 106)):
     path = THUMB_DIR / f"{name}.jpg"
     if not path.exists():
+        box(draw, x, y, x + size[0], y + size[1], "#eef6ff", "#c8d8ec", 10)
+        text(draw, (x + 82, y + 42), "sem foto", "#667a93", SMALL)
         return
     thumb = Image.open(path).convert("RGB").resize(size)
     canvas.paste(thumb, (x, y))
-    draw.rounded_rectangle([x, y, x + size[0], y + size[1]], radius=8, outline="#9fb8d8", width=1)
+    draw.rounded_rectangle([x, y, x + size[0], y + size[1]], radius=10, outline="#9fb7d3", width=1)
+
+
+def card(canvas, draw, thumb, x, y, title, meta, score, price):
+    box(draw, x, y, x + 292, y + 278, "#ffffff", "#cedcec", 12)
+    paste_thumb(canvas, draw, thumb, x + 10, y + 10)
+    text(draw, (x + 16, y + 132), title, "#10233b", BOLD)
+    text(draw, (x + 16, y + 158), meta, "#52687f", SMALL)
+    box(draw, x + 16, y + 186, x + 138, y + 226, "#eafaf2", "#b9e8d1", 8)
+    text(draw, (x + 28, y + 198), score, "#08794f", BOLD)
+    box(draw, x + 150, y + 186, x + 274, y + 226, "#f7fbff", "#d7e4f2", 8)
+    text(draw, (x + 174, y + 198), price, "#10233b", BOLD)
+    text(draw, (x + 16, y + 242), "ver detalhes / comparar", "#1769e0", SMALL)
 
 
 def main():
     width, height = 1366, 900
-    img = Image.new("RGB", (width, height), "#eef6ff")
+    img = Image.new("RGB", (width, height), "#eef5fb")
     draw = ImageDraw.Draw(img)
 
-    box(draw, 18, 18, width - 18, 96, "#ffffff", "#d4e1f0", 10)
-    draw.text((36, 34), "Palmon Survival - Shop Table Analyzer", fill="#08213f", font=FONT_BOLD)
-    draw.text(
-        (36, 66),
-        "Tabela extraida dos prints: pacotes, itens, precos, miniaturas e custo-beneficio.",
-        fill="#49617e",
-        font=SMALL,
-    )
-    for i, text in enumerate(["Pedia", "Montador", "Simulador"]):
-        x = width - 280 + i * 88
-        box(draw, x, 34, x + 78, 75, "#f8fbff", "#cddbf0", 8)
-        draw.text((x + 15, 50), text, fill="#08213f", font=SMALL)
+    box(draw, 18, 20, width - 18, 92, "#ffffff", "#d2deed", 12)
+    text(draw, (38, 38), "Palmon Survival - Shop Desk 2026", "#10233b", H2)
+    for i, label in enumerate(["Hub", "Pedia", "Simulador"]):
+        x = width - 316 + i * 94
+        box(draw, x, 36, x + 82, 76, "#f8fbff", "#c8d8ec", 8)
+        text(draw, (x + 20, 48), label, "#123154", SMALL)
 
-    box(draw, 20, 116, width - 20, 242, "#f8fbff", "#cbdcf3", 16)
-    draw.text((42, 138), "Tabela com foto do pacote, itens e preco", fill="#09274a", font=FONT_TITLE)
-    draw.text(
-        (42, 184),
-        "Os prints viraram dados pesquisaveis; cada oferta tem recorte pequeno para localizar o bundle no jogo.",
-        fill="#26435f",
-        font=FONT,
+    box(draw, 18, 112, width - 18, 286, "#ffffff", "#d2deed", 16)
+    box(draw, 38, 132, 220, 165, "#e9f3ff", "#bcd4f5", 16)
+    text(draw, (54, 141), "Loja reconstruida do zero", "#135fc8", TINY_BOLD)
+    text(draw, (38, 184), "Comprar melhor, esperar melhor, gastar menos", "#0b2442", TITLE)
+    text(
+        draw,
+        (40, 242),
+        "Foto do pacote + filtro por recurso + custo-beneficio em uma tela nova para decidir o que vale comprar.",
+        "#35516d",
+        TEXT,
     )
 
-    stats = [("Ofertas", "42"), ("Miniaturas", "42"), ("Com preco", "39"), ("Categorias", "15"), ("Menor ticket", "R$ 4,90")]
+    stats = [("Ofertas", "42"), ("Fotos", "42"), ("Com preco", "40"), ("Categorias", "15"), ("Menor ticket", "R$ 4,90")]
     for i, (label, value) in enumerate(stats):
-        x = 42 + i * 250
-        box(draw, x, 260, x + 220, 345, "#ffffff", "#d5e0ef", 12)
-        draw.text((x + 16, 276), label.upper(), fill="#64748b", font=TINY_BOLD)
-        draw.text((x + 16, 302), value, fill="#0b2442", font=FONT_BOLD)
+        x = 38 + i * 260
+        box(draw, x, 308, x + 230, 392, "#ffffff", "#d2deed", 12)
+        text(draw, (x + 14, 324), label.upper(), "#64748b", TINY_BOLD)
+        text(draw, (x + 14, 350), value, "#10233b", H2)
 
-    box(draw, 20, 370, width - 20, 470, "#ffffff", "#d5e0ef", 14)
-    draw.text((42, 392), "Filtros", fill="#0b2442", font=FONT_BOLD)
-    labels = ["Buscar pacote, item ou cap", "Todas categorias", "Todos status", "Ordenar por recurso", "Toda confianca"]
-    for i, label in enumerate(labels):
-        x = 42 + i * 255
-        box(draw, x, 425, x + 235, 455, "#ffffff", "#b9c9df", 8)
-        draw.text((x + 12, 433), label, fill="#63758d", font=SMALL)
+    box(draw, 18, 416, width - 18, 520, "#ffffff", "#d2deed", 14)
+    text(draw, (38, 436), "Objetivo atual", "#10233b", H2)
+    goals = ["Pallite", "Acelerador", "Skillfruit", "Palmon", "Captura", "Passe"]
+    for i, goal in enumerate(goals):
+        x = 240 + i * 178
+        fill = "#eaf3ff" if i == 0 else "#ffffff"
+        box(draw, x, 438, x + 158, 490, fill, "#c8d8ec", 10)
+        text(draw, (x + 18, 455), goal, "#10233b", BOLD)
 
-    box(draw, 20, 492, width - 20, 610, "#ffffff", "#d5e0ef", 14)
-    draw.text((42, 512), "Melhores decisoes rapidas", fill="#0b2442", font=FONT_BOLD)
-    cards = [
-        ("Melhor Pallite/R$", "Pallite Store - 12000+12000", "43,6 un/R$"),
-        ("Melhor acelerador/R$", "Weekly Pass", "26,2 min/R$"),
-        ("Skillfruit/R$", "Skillfruits", "35,8 un/R$"),
-        ("Baixo gasto util", "7d Pallite Supply", "R$ 16,90"),
-    ]
-    for i, (title, offer, score) in enumerate(cards):
-        x = 42 + i * 320
-        box(draw, x, 548, x + 294, 595, "#f8fbff", "#d8e4f2", 10)
-        draw.text((x + 12, 557), title, fill="#334155", font=TINY_BOLD)
-        draw.text((x + 12, 575), offer + " - " + score, fill="#0f2d4d", font=SMALL)
-
-    box(draw, 20, 632, width - 20, 872, "#ffffff", "#d5e0ef", 14)
-    draw.text((42, 650), "Ofertas extraidas", fill="#0b2442", font=FONT_BOLD)
-    headers = ["Visual", "Pacote", "Preco", "Itens", "Score", "Decisao", "Fonte"]
-    xs = [42, 215, 430, 520, 790, 930, 1190]
-    for x, header in zip(xs, headers):
-        draw.text((x, 690), header.upper(), fill="#475569", font=TINY_BOLD)
+    box(draw, 18, 544, width - 18, height - 24, "#ffffff", "#d2deed", 14)
+    text(draw, (38, 566), "Biblioteca visual de ofertas", "#10233b", H2)
+    text(draw, (38, 602), "Cards grandes para reconhecer o bundle no jogo e comparar score por objetivo.", "#52687f", TEXT)
 
     rows = [
-        ("weekly_pass_animated_emoji", "Weekly Pass", "R$ 22,90", "Acelerador 1h x10", "26,2 min/R$", "bom se coletar diario", "loja1 cap19-22"),
-        ("bundle_rapid_development", "Rapid Development", "R$ 27,90", "Acelerador 5 min x60", "10,8 min/R$", "acelerador barato", "loja1 cap27-33"),
-        ("supply_7d_pallite", "7d Pallite Supply", "R$ 16,90", "Pallite 300 + 3500/7d", "224,9 un/R$", "melhor baixo custo", "loja1 cap23"),
-        ("bundle_skillfruits", "Skillfruits", "R$ 27,90", "Skillfruit dourada x1000", "35,8 un/R$", "upar skill agora", "loja1 cap36-37"),
+        ("supply_7d_pallite", 38, 638, "7d Pallite Supply", "Weekly Camp Supply", "224,85/R$", "R$ 16,90"),
+        ("growth_fund_ii", 354, 638, "Growth Fund II", "Growth Fund", "107,22/R$", "R$ 139,90"),
+        ("pallite_24000_54990", 670, 638, "Pallite 12000+12000", "Pallite Store", "43,64/R$", "R$ 549,90"),
+        ("bundle_skillfruits", 986, 638, "Skillfruits", "Bundle Store", "35,84/R$", "R$ 27,90"),
     ]
-    for idx, row in enumerate(rows):
-        y = 722 + idx * 36
-        draw.line((42, y - 10, width - 42, y - 10), fill="#e4edf7")
-        paste_thumb(img, draw, row[0], 42, y - 4)
-        for x, text in zip(xs[1:], row[1:]):
-            draw.text((x, y), text, fill="#0f2742", font=SMALL)
+    for row in rows:
+        card(img, draw, *row)
 
     img.save(OUT)
     print(f"Generated {OUT} ({OUT.stat().st_size} bytes)")
