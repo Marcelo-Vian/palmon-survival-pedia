@@ -10,6 +10,41 @@ Regra de atualização: toda entrada nova deve responder:
 - Fonte e confiança
 - O que ainda não está confirmado
 
+## 2026-07-11 — Season 2 / Classes, Explorer Level e Skill Points
+
+**O que entrou**
+
+- Sistema de classes da season mapeado pelo APK/XAPK: **Builder** e **Fighter**.
+- Explorer Level da season confirmado até **70**.
+- Árvore de skills separada em skills comuns e extensões **Season 2**.
+- Texto do jogo confirma que o jogador ganha Explorer XP derrotando Wild Palmon, capturando **Sanctums** e **Sacred Springs**, e melhorando construções exclusivas da season.
+- Print live confirmou: **Fighter Lv49**, XP **180.717 / 1.500.000**, **Available Skill Points 0/55**.
+
+**Impacto prático**
+
+- `0/55` quer dizer **0 pontos livres de 55 totais**, não zero pontos na classe.
+- Os pontos pertencem ao Explorer Level. Builder e Fighter usam o mesmo banco de pontos; ao trocar classe, o jogo reseta skills e reembolsa pontos.
+- Fighter é a classe de PvP/rally/Sanctum. Builder é a classe de crescimento, construção, pesquisa, coleta e suporte.
+
+**Faça primeiro**
+
+1. Se for jogar agressivo: manter Fighter.
+2. Em Fighter Lv49, garantir o pacote de XP para subir até Lv55/60 e o pacote de combate: Morale Boost, Fierce Assault, Defensive Tactics e Rallying Cry.
+3. Ao chegar Lv50, priorizar **Offensive Tactics 5/5**.
+4. Ao chegar Lv55, se tiver Morale Boost 5/5, priorizar **Hyper Frenzy 5/5**.
+5. Se o foco for crescer sem guerra pesada, considerar Builder com Builder's Passion, Scholarly Passion, Instant Build, Instant Research, Cost Cutter e Thrifty Science.
+
+**Fontes**
+
+- APK/XAPK local 0.5.325: `season_job.lua`, `season_job_level.lua`, `season_job_tree.lua`, `season_job_skill.lua`.
+- Localização do APK: `language_en.lua`.
+- Prints do jogo enviados em 2026-07-11.
+
+**Não confirmado**
+
+- A fórmula completa `Explorer Level -> total de Skill Points`; o APK local mostra XP por nível e skill trees, mas não expôs uma tabela clara de pontos por nível.
+- Por enquanto, usar sempre o total exibido no jogo em `Available Skill Points: livre/total`.
+
 ## 2026-07-11 — Season 2 / Boss Palmon no squad
 
 **O que entrou**
