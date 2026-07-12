@@ -15,6 +15,7 @@
 .slots{display:grid;grid-template-columns:repeat(7,minmax(120px,1fr));gap:8px}.slot-card b{display:block}.slot-card span{display:block;font-weight:900;margin:4px 0}.slot-card.front{background:#fff7ed;border-color:#fdba74}.slot-card.back{background:#eff6ff;border-color:#93c5fd}.elements{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.element-card.water{border-color:#7dd3fc;background:#f0f9ff}.element-card.fire{border-color:#fca5a5;background:#fff5f5}.element-card.earth{border-color:#d6c17b;background:#fffbea}.element-card.electric{border-color:#fde047;background:#fffde8}.bars{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.barbox{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:12px}.bar-row{display:grid;grid-template-columns:88px 1fr 28px;align-items:center;gap:8px;margin:8px 0;font-size:13px}.bar{height:8px;background:#e6edf5;border-radius:999px;overflow:hidden}.bar i{display:block;height:100%;background:#2563eb;border-radius:999px}.kbd{font-family:ui-monospace,Consolas,monospace;background:#eef2f7;border:1px solid #d4dce8;padding:1px 5px;border-radius:4px}.hidden{display:none!important}footer{padding:22px 28px;color:#667085;font-size:13px}
 @media(max-width:1100px){.layout{grid-template-columns:1fr}aside{position:static;height:auto}nav{display:grid;grid-template-columns:repeat(3,1fr)}.stat-grid{grid-template-columns:repeat(3,1fr)}.grid-2,.grid-3,.bars{grid-template-columns:1fr}.elements{grid-template-columns:repeat(2,1fr)}.slots{grid-template-columns:repeat(2,1fr)}.filters{grid-template-columns:1fr 1fr}}
 @media(max-width:680px){.hero,.section{padding:18px 14px}.hero h1{font-size:26px}.stat-grid{grid-template-columns:repeat(2,1fr)}nav{grid-template-columns:1fr 1fr}.pal-grid{grid-template-columns:1fr}.pal-card{grid-template-columns:110px 1fr}.card-media img{max-width:105px}.filters{grid-template-columns:1fr}.elements{grid-template-columns:1fr}}
+.planner{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:14px;margin:14px 0;box-shadow:0 1px 2px #0000000c}.planner-controls{display:grid;grid-template-columns:repeat(4,minmax(140px,1fr));gap:10px}.planner label{display:grid;gap:5px;font-size:12px;font-weight:900;color:#344054}.planner-output{display:grid;grid-template-columns:1.1fr 1fr;gap:12px;margin-top:12px}.planner-summary{background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:10px;line-height:1.45}.planner-summary b{color:#0f2c5c}.planner-actions{background:#f0fff4;border:1px solid #bbf7d0;border-radius:8px;padding:10px}.planner-chip{display:inline-flex;align-items:center;border:1px solid #ccd6e4;background:#f8fafc;border-radius:999px;padding:3px 8px;margin:2px;font-size:12px;font-weight:900}.planner-warning{background:#fff7ed;border-left:4px solid #f59e0b;border-radius:6px;padding:8px 10px;margin-top:10px}.planner-low{color:#64748b}.planner-max{color:#166534;font-weight:900}@media(max-width:900px){.planner-controls,.planner-output{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -22,7 +23,7 @@
 <aside>
   <div class="brand">Palmon Pedia<small>Base consolidada 2026</small></div>
   <nav>
-    <a href="#resumo">Resumo</a><a href="#updates">Updates</a><a href="palmon_battle_simulator.html?mode=builder">Montador de time</a><a href="palmon_battle_simulator.html">Simulador de batalha</a><a href="#fontes">Fontes</a><a href="#loop">Loop e progressão</a><a href="#class-skills">Classes S2</a><a href="#combate">Combate</a><a href="#boss-palmon">Boss Palmon</a><a href="#elementos">Elementos</a><a href="#slots">7 posições</a><a href="#perks">Perks e breeding</a><a href="#tier">Tier list</a><a href="#palmondex">PalmonDex</a><a href="#estrategias">Estratégias</a><a href="#screenshots">Prints</a><a href="#lacunas">Lacunas</a>
+    <a href="#resumo">Resumo</a><a href="#updates">Updates</a><a href="palmon_battle_simulator.html?mode=builder">Montador de time</a><a href="palmon_battle_simulator.html">Simulador de batalha</a><a href="#fontes">Fontes</a><a href="#loop">Loop e progressão</a><a href="#class-skills">Classes S2</a><a href="#achievements">Achievements</a><a href="#combate">Combate</a><a href="#boss-palmon">Boss Palmon</a><a href="#elementos">Elementos</a><a href="#slots">7 posições</a><a href="#perks">Perks e breeding</a><a href="#tier">Tier list</a><a href="#palmondex">PalmonDex</a><a href="#estrategias">Estratégias</a><a href="#screenshots">Prints</a><a href="#lacunas">Lacunas</a>
   </nav>
 </aside>
 <main>
@@ -48,6 +49,8 @@
   <h2>Updates recentes: o que mudou ou entrou</h2>
   <p class="lead">Esta seção é o ponto de entrada para qualquer patch, season ou descoberta nova. Sempre que houver update, a entrada mais recente fica no topo com o impacto prático para jogar melhor.</p>
   <div class="table-wrap"><table><thead><tr><th>Data da revisão</th><th>Update / season</th><th>O que entrou ou mudou</th><th>Impacto prático</th><th>Ação recomendada</th><th>Fonte / confiança</th></tr></thead><tbody>
+    <tr><td><b>2026-07-12</b></td><td>Achievements / fichas excedentes</td><td>Adicionada regra real de investimento em Palmon Achievements: reset, Omni-Token Refund, prioridade de tiers e quais achievements aceitam fichas UR excedentes.</td><td>Resolve a dúvida do reset: Super Voltaic Trio e a maioria dos achievements usam Omni-Token normal/refund; fichas excedentes só entram nos tiers configurados como <span class="kbd">consume1</span>.</td><td>Gaste primeiro em bônus universais e no elemento do seu time. Use ficha excedente somente em Elemental Guardian e só se os Palmons UR exigidos já estiverem 5 estrelas com sobra.</td><td>XAPK local 0.5.346 + <span class="kbd">hero_fate.lua</span> e <span class="kbd">language_en.lua</span>; confiança alta para regra/custo.</td></tr>
+    <tr><td><b>2026-07-12</b></td><td>Classes / distribuidor automático</td><td>A seção de Classes ganhou calculadora: escolha Builder/Fighter, objetivo, Explorer Level e pontos totais; a página distribui os pontos automaticamente.</td><td>Não precisa mais seguir uma tabela fixa de 55 pontos. A recomendação muda conforme seu nível, pontos e objetivo.</td><td>No seu caso padrão, use Fighter Lv49 e 55 pontos; ao subir para Lv50, a ferramenta já puxa Offensive Tactics como próximo investimento de combate.</td><td>Árvore S2 do APK + prints live; confiança alta para nomes/efeitos, média para pontos por level fora do número mostrado no jogo.</td></tr>
     <tr><td><b>2026-07-11</b></td><td>Season 2 / Classes Builder e Fighter</td><td>Adicionado o sistema de Explorer Level, Classes e Class Skills. O APK confirma max level 70, duas classes, árvore comum + extensões Season 2 e reset/reembolso de pontos ao trocar classe.</td><td>Agora dá para decidir quando escolher Builder ou Fighter e onde gastar pontos. No seu print, Fighter Lv49 mostra <b>0/55</b>: zero pontos livres de 55 totais, não zero pontos da classe.</td><td>Se quer crescer, use Builder; se quer PvP/Sanctum/rally, use Fighter. No Fighter Lv49, mantenha pacote de XP + Morale Boost/Fierce Assault; ao chegar Lv50, priorize Offensive Tactics.</td><td>APK/XAPK local: <span class="kbd">season_job</span>, <span class="kbd">season_job_level</span>, <span class="kbd">season_job_tree</span>, <span class="kbd">season_job_skill</span> + prints de 2026-07-11; confiança alta para nomes/efeitos, fórmula exata de pontos por level ainda não confirmada.</td></tr>
     <tr><td><b>2026-07-11</b></td><td>Season 2 / Boss Palmon no squad</td><td>Correção da leitura de Boss: o Boss Palmon entra no slot de Boss do squad, recebe upgrade/evolução/ascent/skills e buffa os Palmons do mesmo squad.</td><td>O melhor Boss agora deve ser escolhido pelo seu time real: elemento principal, composição, função e nível de investimento, não só por recompensa de evento.</td><td>Para seu servidor em Season 2: time Água usa Inkuisitor primeiro; Ophidillain vira top quando estiver liberado e bem investido; Electric usa Oinkohm; Earth/tank usa Bogolem; Fire/burn usa Flapnir.</td><td>APK local + Boss Guide 2026-06-25 + PalmonGuide/Titan Totem; confiança média-alta, com números finais da 0.5.325 ainda a validar por print live.</td></tr>
     <tr><td><b>2026-07-11</b></td><td>Rank de Boss corrigido</td><td>Rank prático ajustado para Boss no squad: Ophidillain, Inkuisitor/Oinkohm por elemento, Bogolem, Flapnir. Inclui prioridade de skills Lv.1-Lv.5 extraídas do APK decifrado.</td><td>Evita gastar Bloom Stones/Titan Seals no Boss errado e melhora dano real do squad atual.</td><td>Não espalhe material. Escolha 1 Boss principal para o time que você usa hoje e só depois pense no segundo squad.</td><td>boss_skill.lua decifrado + language_en/pt_BR + fontes 2026; confiança alta para estrutura e valores extraídos, média para balanceamento do servidor ativo.</td></tr>
@@ -66,14 +69,46 @@
     <article class="info-card"><h3>Qual classe escolher</h3><ul><li><b>Builder:</b> melhor para crescimento, economia, construção, pesquisa, coleta e suporte de guilda.</li><li><b>Fighter:</b> melhor para PvP, rallies, Sanctum, defesa/ataque de camp e buffs de Palmon.</li><li>Evite trocar sem motivo: o jogo reembolsa pontos, mas pode consumir item/moeda de reset.</li></ul></article>
   </div>
 
-  <h3>Distribuição recomendada com 55 pontos</h3>
-  <div class="table-wrap"><table><thead><tr><th>Classe / objetivo</th><th>Distribuição prática</th><th>Por que</th><th>Próxima mudança</th></tr></thead><tbody>
-    <tr><td><b>Fighter Lv49</b><br><small>PvP + continuar subindo Explorer</small></td><td>Wildborn 3/3, Builder Instincts 3/3, Medal of Valor 1/1, Warrior Instincts 3/3, XP Overload 5/5, Morale Boost 5/5, Fierce Assault 5/5, Defensive Tactics 5/5, Rallying Cry 5/5, The More the Merrier 5/5, Hospital Wing 5/5, Intensive Training 5/5, Class Rewards 5/5.</td><td>Fecha o pacote de XP sem abandonar combate. Morale Boost 5/5 prepara Hyper Frenzy no Lv55. Fierce Assault e Defensive Tactics dão valor real em rally/defesa.</td><td>Ao chegar <b>Lv50</b>, mova 5 pontos de Class Rewards ou de uma skill econômica para <b>Offensive Tactics 5/5</b>. Se guerreia muito no mapa S2, reserve pontos para Lost Wraith.</td></tr>
-    <tr><td><b>Fighter puro combate</b><br><small>rally, Sanctum, ataque/defesa</small></td><td>Morale Boost 5/5, Fierce Assault 5/5, Defensive Tactics 5/5, Rallying Cry 5/5, Offensive Tactics 5/5 quando liberar, Hyper Frenzy 5/5 no Lv55, Shield Wall 5/5 no Lv60, Desert Edge 5/5 no Lv65 e Shelled Armor 5/5 no Lv70.</td><td>Maximiza atributos e sobrevivência de Palmon. É a rota certa se seu objetivo é briga, não economia.</td><td>Prioridade futura: <b>Hyper Frenzy</b> depende de Morale Boost 5/5; <b>Expert Cheerer</b> depende de Cheerleader 1/1.</td></tr>
-    <tr><td><b>Fighter mapa S2</b><br><small>curse, Holy Tower, pressão territorial</small></td><td>Holy Radiance 5/5, Sacred Blessing 1/1, Umbra Batfire 5/5 e Lost Wraith 1/1 quando chegar Lv50. Combine com Morale Boost/Fierce Assault se também for lutar.</td><td>Esse pacote não aumenta DPS direto de squad, mas mexe com Curse Level, bênçãos e armadilhas de mapa da Season 2.</td><td>Use se sua guilda estiver disputando território. Para jogador solo, fica abaixo do pacote de combate.</td></tr>
-    <tr><td><b>Builder Lv49</b><br><small>crescimento e F2P</small></td><td>Wildborn 3/3, Builder Instincts 3/3, Medal of Valor 1/1, Warrior Instincts 3/3, XP Overload 5/5, Builder's Passion 5/5, Scholarly Passion 5/5, Instant Build 5/5, Instant Research 5/5, Cost Cutter 5/5, Thrifty Science 5/5, Treasure Hunter 5/5 e Class Rewards 5/5.</td><td>Melhor uso geral para acelerar base, pesquisa, XP de season e recursos sem depender de gastar dinheiro.</td><td>Se o gargalo for construção, troque Treasure Hunter/Class Rewards por Construction Aid, Research Aid e Resource Swap.</td></tr>
-    <tr><td><b>Builder S2 avançado</b><br><small>guilda, coleta e holy/curse</small></td><td>Aid Boost 5/5 no Lv55, Fast Harvest 5/5 no Lv60, Emergency Care 5/5 se houver guerra, Master Builder 5/5 no Lv65, Instant Harvest 1/1 e Swift Hunt 5/5 no Lv70.</td><td>É a continuação natural do Builder depois de fechar o crescimento base.</td><td>Holy Radiance/Sacred Blessing/Umbra/Lost Wraith entram se a guilda estiver explorando Curse/Holy Tower.</td></tr>
-  </tbody></table></div>
+  <h3>Distribuidor automático de pontos</h3>
+  <p class="lead">Use esta ferramenta em vez de seguir uma tabela fixa. Coloque sua classe, seu objetivo, seu Explorer Level e o total de pontos que aparece no jogo. A página monta a distribuição recomendada e mostra o próximo investimento.</p>
+  <div class="planner" id="classPlanner">
+    <div class="planner-controls">
+      <label>Classe
+        <select id="classPlannerClass">
+          <option value="fighter">Fighter</option>
+          <option value="builder">Builder</option>
+        </select>
+      </label>
+      <label>Objetivo
+        <select id="classPlannerGoal">
+          <option value="balanced">Equilibrado: XP + função principal</option>
+          <option value="combat">Combate/PvP/rally</option>
+          <option value="growth">Crescimento/F2P/base</option>
+          <option value="map">Mapa S2: Holy Tower/Curse</option>
+        </select>
+      </label>
+      <label>Explorer Level
+        <input id="classPlannerLevel" type="number" min="1" max="70" value="49">
+      </label>
+      <label>Pontos totais
+        <input id="classPlannerPoints" type="number" min="0" max="120" value="55">
+      </label>
+    </div>
+    <div class="planner-output">
+      <div>
+        <div class="planner-summary" id="classPlannerSummary">Calculando...</div>
+        <div class="planner-warning" id="classPlannerWarning"></div>
+      </div>
+      <div class="planner-actions" id="classPlannerNext">Calculando próxima prioridade...</div>
+    </div>
+    <div class="table-wrap" style="margin-top:12px">
+      <table>
+        <thead><tr><th>Ordem</th><th>Skill</th><th>Pontos</th><th>Grupo</th><th>Por que entrou</th></tr></thead>
+        <tbody id="classPlannerRows"></tbody>
+      </table>
+    </div>
+  </div>
+  <p class="callout ok"><b>Como usar no seu caso:</b> se a tela mostra <b>Available Skill Points 0/55</b>, coloque <b>55</b> em Pontos totais. O primeiro número é ponto livre; o segundo é o total que a ferramenta precisa.</p>
 
   <h3>Fighter: skills, efeito e prioridade</h3>
   <div class="table-wrap"><table><thead><tr><th>Skill</th><th>Desbloqueio</th><th>Efeito no nível máximo</th><th>Prioridade</th></tr></thead><tbody>
@@ -115,10 +150,47 @@
   <p class="callout"><b>Lacuna honesta:</b> o APK mostra XP por nível e todas as skills, mas não trouxe uma tabela clara de “Explorer Level -> total de pontos”. Por isso, a Pedia usa o número exibido no jogo. Confirmado pelo seu print: <b>Lv49 = 55 pontos totais</b>. Arquivo técnico: <a href="palmon_class_skills_season2.md">palmon_class_skills_season2.md</a>.</p>
 </section>
 
+<section class="section" id="achievements">
+  <h2>Achievements: onde investir Omni-Tokens</h2>
+  <p class="lead">Atualizado em 2026-07-12 com o XAPK 0.5.346. O sistema <b>Palmon | Achievements</b> dá bônus globais aos Palmons e não exige que os Palmons estejam no squad. A prioridade abaixo é para decidir onde gastar Omni-Token, quando resetar e quando aceitar gastar fichas UR excedentes.</p>
+  <div class="grid-3">
+    <article class="info-card"><h3>Faça primeiro</h3><ul><li><b>Critical Hit</b> para dano universal.</li><li><b>It’s Over 9000!</b> para ATK/DEF/HP universal e para liberar Meow Mashup/Fitness Icons.</li><li>O achievement do <b>elemento do seu time principal</b>: Child of the Sea para Água, Super Voltaic Trio para Elétrico, Surface Blitz Squad para Terra, Burn! My Cosmos! para Fogo.</li></ul></article>
+    <article class="info-card"><h3>Evite</h3><ul><li>Subir achievement de elemento que você quase não usa.</li><li>Resetar sem plano: só 1 achievement pode ser resetado por semana e custa 500 Pallite.</li><li>Gastar ficha UR excedente sem certeza, porque ficha específica usada em achievement não volta no reset.</li></ul></article>
+    <article class="info-card"><h3>Regra das fichas</h3><ul><li><b>Omni-Token/Refund</b> sobe a maioria dos achievements.</li><li><b>Ficha UR específica excedente</b> só vale em tiers configurados como <span class="kbd">consume1</span>.</li><li>No APK atual, o único grupo encontrado com <span class="kbd">consume1</span> é <b>Elemental Guardian</b>.</li></ul></article>
+  </div>
+
+  <h3>Prioridade prática de investimento</h3>
+  <div class="table-wrap"><table><thead><tr><th>Prioridade</th><th>Achievement</th><th>Quando vale</th><th>Por que investir</th><th>Ação recomendada</th></tr></thead><tbody>
+    <tr><td class="ranknum">1</td><td><b>Critical Hit</b></td><td>Qualquer conta, qualquer elemento.</td><td>Dano universal: melhora todos os Palmons e escala bem com carries.</td><td>Suba primeiro se você não sabe onde gastar. É o investimento mais difícil de se arrepender.</td></tr>
+    <tr><td class="ranknum">2</td><td><b>It’s Over 9000!</b></td><td>Qualquer conta; obrigatório para desbloquear Meow Mashup e Fitness Icons.</td><td>ATK/DEF/HP universal. Também funciona como porta de progressão para achievements dependentes.</td><td>Leve até tier 6 quando seu objetivo for liberar os dependentes. Antes disso, combine com Critical Hit e elemento principal.</td></tr>
+    <tr><td class="ranknum">3</td><td><b>Child of the Sea</b><br><small>Ninjump, Dolphriend, Fingenue</small></td><td>Time Água.</td><td>Bônus direto para Water Palmon. Muito bom se seu squad principal é Água.</td><td>No seu caso, costuma ser alta prioridade se Ninjump/Dolphriend/Fingenue/Glacewing/Lucidina estão no core.</td></tr>
+    <tr><td class="ranknum">3</td><td><b>Surface Blitz Squad</b><br><small>Surveilynx, Statchew, Baboom</small></td><td>Time Terra ou tank.</td><td>Fortalece Earth Palmon, bom para linhas mais resistentes.</td><td>Priorize se seu front principal e DPS usam Terra.</td></tr>
+    <tr><td class="ranknum">3</td><td><b>Super Voltaic Trio</b><br><small>Barkplug, Mantleray, Abuzzinian</small></td><td>Time Elétrico.</td><td>Fortalece Electric Palmon e composições de burst/paralyze.</td><td>Vale se você joga Electric. O print mostrou custo normal 60/60, então não espere usar ficha específica aqui.</td></tr>
+    <tr><td class="ranknum">3</td><td><b>Burn! My Cosmos!</b><br><small>Blazeal, Magmolin, Hoofrit</small></td><td>Time Fogo/burn.</td><td>Fortalece Fire Palmon.</td><td>Priorize só se seu time principal for Fogo ou se estiver preparando composição de burn.</td></tr>
+    <tr><td class="ranknum">4</td><td><b>Unmovable Mountain / Iron Resolve / Protection Detail</b></td><td>Quando o time morre cedo ou você quer PvP/defesa.</td><td>Mais HP, defesa, tenacity e redução de dano crítico.</td><td>Bom para tank e defesa. Não passe à frente de dano universal se seu problema é falta de DPS.</td></tr>
+    <tr><td class="ranknum">5</td><td><b>High-Energy Assault / A Mon of Ice and Fire / Prehistoric Party</b></td><td>Conta avançada com Palmons exigidos já prontos.</td><td>Bônus fortes, mas mais caros e com pré-requisitos mais altos.</td><td>Invista depois de fechar universal + elemento principal.</td></tr>
+    <tr><td class="ranknum">6</td><td><b>Fitness Icons / Meow Mashup / Mythbearer</b></td><td>Quando os pré-requisitos já estiverem abertos e o gargalo for Armigo ou Rage/utility.</td><td>Úteis, mas geralmente menos urgentes para dano direto do squad.</td><td>Não corra para eles antes de Critical Hit, It’s Over 9000 e seu elemento principal.</td></tr>
+    <tr><td class="ranknum">*</td><td><b>Elemental Guardian</b><br><small>Fingenue, Mantleray, Surveilynx, Magmolin</small></td><td>Quando esses UR não míticos já estão 5 estrelas e você tem fichas específicas sobrando.</td><td>É o único grupo do APK atual com custo por ficha UR excedente em todos os tiers.</td><td>Use como válvula para fichas excedentes, não como destino principal de Omni-Token. Lembre que ficha específica gasta aqui não é reembolsada.</td></tr>
+  </tbody></table></div>
+
+  <h3>Custos e bloqueios importantes</h3>
+  <div class="table-wrap"><table><thead><tr><th>Grupo</th><th>Custo por tier</th><th>Tipo de custo</th><th>Bloqueio / observação</th></tr></thead><tbody>
+    <tr><td><b>Elementos básicos</b><br><small>Child of the Sea, Super Voltaic Trio, Surface Blitz Squad, Burn! My Cosmos!</small></td><td>60, 125, 250, 500, 1000, 1000</td><td>Omni-Token/Refund</td><td>Bom custo inicial se esse é seu elemento principal.</td></tr>
+    <tr><td><b>It’s Over 9000!</b></td><td>75, 150, 350, 800, 1500, 1500</td><td>Omni-Token/Refund</td><td>Pré-requisito para Meow Mashup e Fitness Icons.</td></tr>
+    <tr><td><b>Critical Hit / Unmovable Mountain / Child of Twilight / Ball is Life</b></td><td>100, 240, 550, 1100, 2000, 2000</td><td>Omni-Token/Refund</td><td>Critical Hit é o melhor alvo universal desse grupo.</td></tr>
+    <tr><td><b>Late groups comuns</b></td><td>150, 300, 750, 1500, 2500, 2500</td><td>Omni-Token/Refund</td><td>Mais caros; investir depois de universal + elemento principal.</td></tr>
+    <tr><td><b>High-Energy Assault / Iron Resolve / Mythbearer</b></td><td>200, 400, 1000, 2000, 3200, 3200</td><td>Omni-Token/Refund</td><td>Alto custo. Só acelere quando a composição já justificar.</td></tr>
+    <tr><td><b>Elemental Guardian</b></td><td>150, 300, 750, 1500, 2500, 2500</td><td>Ficha UR específica excedente</td><td>Exige UR não mítico 5 estrelas com fichas sobrando. Fichas usadas assim não são reembolsadas.</td></tr>
+  </tbody></table></div>
+
+  <p class="callout ok"><b>Resposta curta para decisão:</b> se você está em dúvida, gaste em <b>Critical Hit</b>, depois <b>It’s Over 9000!</b>, depois no achievement do elemento do seu time principal. Só use ficha excedente em <b>Elemental Guardian</b> quando tiver certeza que aqueles Palmons já estão 5 estrelas e as fichas realmente sobram.</p>
+  <p class="callout"><b>Fontes:</b> XAPK local 0.5.346 analisado em 2026-07-12; <span class="kbd">hero_fate.lua</span> confirma custos, pré-requisitos e <span class="kbd">consume1</span>; <span class="kbd">language_en.lua</span> confirma regras de reset, Omni-Token Refund, 1 reset por semana e uso de fichas excedentes em certos tiers. O arquivo <span class="kbd">hero_fate</span> do 0.5.346 bate com o do 0.5.325, então essa regra não mudou nesse update.</p>
+</section>
+
 <section class="section" id="fontes">
   <h2>Fontes e confiabilidade</h2>
   <p class="lead">A Pedia prioriza APK/config local e fontes oficiais. Guias de comunidade entram como recomendação, não como regra oficial.</p>
-  <div class="table-wrap"><table><thead><tr><th>Fonte</th><th>Link/data</th><th>Tipo</th><th>Confiabilidade</th><th>Uso na Pedia</th></tr></thead><tbody><tr><td>XAPK/APK Palmon Survival 0.5.277</td><td>Arquivo local analisado em 2026-06-05</td><td>APK/config</td><td>Alta para dados internos da versão</td><td>hero, card_skill_pal, card_buff_pal, hero_evolve_potency, traits, scene_map e Boss skills decifradas</td></tr><tr><td>XAPK/APK Palmon Survival 0.5.325</td><td>Arquivo local analisado em 2026-07-11</td><td>APK/config</td><td>Alta para estrutura cliente</td><td>Classes Builder/Fighter, Explorer Level, XP por nível, árvore de skills comum + Season 2, nomes/descrições de skills e regras de reset/reembolso.</td></tr><tr><td>Prints do jogo do Marcelo</td><td>2026-07-11</td><td>Evidência visual live</td><td>Alta para tela exibida</td><td>Confirmou Season 2 ativa, Fighter Lv49, max explorer level 70, XP 180.717/1.500.000 e skill points 0/55.</td></tr><tr><td>AllClash - Important Rules for Breeding</td><td><a href="https://www.allclash.com/important-rules-for-breeding-in-palmon-survival/" target="_blank">abrir</a></td><td>Guia comunidade</td><td>Média</td><td>Publicado em 2026-04-30; usado para regras de breeding/perks</td></tr><tr><td>Site oficial Palmon Survival</td><td><a href="https://palmonsurvival-official.lilith.com/" target="_blank">abrir</a></td><td>Oficial</td><td>Alta</td><td>Usado para identidade/canais oficiais; pouco detalhe mecânico</td></tr><tr><td>Google Play</td><td><a href="https://play.google.com/store/apps/details?id=com.funfizz.palmon.gp" target="_blank">abrir</a></td><td>Loja oficial</td><td>Alta</td><td>Descrição do jogo, compras no app e dados de loja da pesquisa 2026</td></tr><tr><td>App Store</td><td><a href="https://apps.apple.com/us/app/palmon-survival/id6739345737" target="_blank">abrir</a></td><td>Loja oficial</td><td>Alta</td><td>Versão, categoria, loot boxes/compras e dados de loja</td></tr><tr><td>X oficial - patch 2026-01-27</td><td><a href="https://x.com/PalmonSurvival/status/2016058598250405897" target="_blank">abrir</a></td><td>Patch oficial</td><td>Alta</td><td>Guild Nursery, Electric Frenzy, Skin Hub, Monday Market, VIP Shop, Surging Snows e fixes</td></tr><tr><td>LDShop - Boss Guide</td><td><a href="https://www.ldshop.gg/blog/palmon-survival/boss-guide.html" target="_blank">2026-06-25</a></td><td>Guia comunidade/comercial</td><td>Média</td><td>Boss Palmon: nomes, elementos, rewards, materiais, upgrades e prioridades.</td></tr><tr><td>Reddit - Best boss palmon?</td><td><a href="https://www.reddit.com/r/PalmonSurvival/comments/1ucdpst/best_boss_palmon/" target="_blank">Julho/2026</a></td><td>Comunidade/forum</td><td>Baixa-média</td><td>Confirmação comunitária recente: focar 1 elemento; Ophidillain depende de progresso alto em Boss Palmon tech.</td></tr><tr><td>PalmonGuide 2026</td><td><a href="https://www.palmonguide.com/" target="_blank">abrir</a></td><td>Guia comunidade</td><td>Média</td><td>Evolution, traits, Titan Totem/Season 2, Palmanac e builds gerais; tratar como comunidade</td></tr><tr><td>Reddit guias 2026</td><td><a href="https://www.reddit.com/r/PalmonSurvival/" target="_blank">abrir</a></td><td>Comunidade/forum</td><td>Baixa-média</td><td>Usado como evidência de jogador; nunca como regra oficial isolada</td></tr></tbody></table></div>
+  <div class="table-wrap"><table><thead><tr><th>Fonte</th><th>Link/data</th><th>Tipo</th><th>Confiabilidade</th><th>Uso na Pedia</th></tr></thead><tbody><tr><td>XAPK/APK Palmon Survival 0.5.277</td><td>Arquivo local analisado em 2026-06-05</td><td>APK/config</td><td>Alta para dados internos da versão</td><td>hero, card_skill_pal, card_buff_pal, hero_evolve_potency, traits, scene_map e Boss skills decifradas</td></tr><tr><td>XAPK/APK Palmon Survival 0.5.325</td><td>Arquivo local analisado em 2026-07-11</td><td>APK/config</td><td>Alta para estrutura cliente</td><td>Classes Builder/Fighter, Explorer Level, XP por nível, árvore de skills comum + Season 2, nomes/descrições de skills e regras de reset/reembolso.</td></tr><tr><td>XAPK/APK Palmon Survival 0.5.346</td><td>Arquivo local analisado em 2026-07-12</td><td>APK/config</td><td>Alta para dados internos da versão</td><td>Palmon Achievements: custos por tier, pré-requisitos, reset semanal, Omni-Token Refund e regra de ficha UR excedente via <span class="kbd">consume1</span>.</td></tr><tr><td>Prints do jogo do Marcelo</td><td>2026-07-11 e 2026-07-12</td><td>Evidência visual live</td><td>Alta para tela exibida</td><td>Confirmou Season 2 ativa, Fighter Lv49, max explorer level 70, XP 180.717/1.500.000, skill points 0/55 e tela Palmon Achievements.</td></tr><tr><td>AllClash - Important Rules for Breeding</td><td><a href="https://www.allclash.com/important-rules-for-breeding-in-palmon-survival/" target="_blank">abrir</a></td><td>Guia comunidade</td><td>Média</td><td>Publicado em 2026-04-30; usado para regras de breeding/perks</td></tr><tr><td>Site oficial Palmon Survival</td><td><a href="https://palmonsurvival-official.lilith.com/" target="_blank">abrir</a></td><td>Oficial</td><td>Alta</td><td>Usado para identidade/canais oficiais; pouco detalhe mecânico</td></tr><tr><td>Google Play</td><td><a href="https://play.google.com/store/apps/details?id=com.funfizz.palmon.gp" target="_blank">abrir</a></td><td>Loja oficial</td><td>Alta</td><td>Descrição do jogo, compras no app e dados de loja da pesquisa 2026</td></tr><tr><td>App Store</td><td><a href="https://apps.apple.com/us/app/palmon-survival/id6739345737" target="_blank">abrir</a></td><td>Loja oficial</td><td>Alta</td><td>Versão, categoria, loot boxes/compras e dados de loja</td></tr><tr><td>X oficial - patch 2026-01-27</td><td><a href="https://x.com/PalmonSurvival/status/2016058598250405897" target="_blank">abrir</a></td><td>Patch oficial</td><td>Alta</td><td>Guild Nursery, Electric Frenzy, Skin Hub, Monday Market, VIP Shop, Surging Snows e fixes</td></tr><tr><td>LDShop - Boss Guide</td><td><a href="https://www.ldshop.gg/blog/palmon-survival/boss-guide.html" target="_blank">2026-06-25</a></td><td>Guia comunidade/comercial</td><td>Média</td><td>Boss Palmon: nomes, elementos, rewards, materiais, upgrades e prioridades.</td></tr><tr><td>Reddit - Best boss palmon?</td><td><a href="https://www.reddit.com/r/PalmonSurvival/comments/1ucdpst/best_boss_palmon/" target="_blank">Julho/2026</a></td><td>Comunidade/forum</td><td>Baixa-média</td><td>Confirmação comunitária recente: focar 1 elemento; Ophidillain depende de progresso alto em Boss Palmon tech.</td></tr><tr><td>PalmonGuide 2026</td><td><a href="https://www.palmonguide.com/" target="_blank">abrir</a></td><td>Guia comunidade</td><td>Média</td><td>Evolution, traits, Titan Totem/Season 2, Palmanac e builds gerais; tratar como comunidade</td></tr><tr><td>Reddit guias 2026</td><td><a href="https://www.reddit.com/r/PalmonSurvival/" target="_blank">abrir</a></td><td>Comunidade/forum</td><td>Baixa-média</td><td>Usado como evidência de jogador; nunca como regra oficial isolada</td></tr></tbody></table></div>
 </section>
 
 <section class="section" id="loop">
@@ -1090,10 +1162,128 @@
     <li>Eventos mudam por servidor/temporada; sempre valide prazo e recompensa no print/evento atual.</li>
   </ul>
 </section>
-<footer>Gerado em 2026-06-06 e atualizado em 2026-07-11 para Season 2/Boss Palmon no squad. Esta Pedia separa dado confirmado, inferência prática e lacuna para evitar invenção de mecânica.</footer>
+<footer>Gerado em 2026-06-06 e atualizado em 2026-07-12 para Season 2, Boss Palmon, Classes e Palmon Achievements. Esta Pedia separa dado confirmado, inferência prática e lacuna para evitar invenção de mecânica.</footer>
 </main>
 </div>
 <script>
+const classSkillData = [
+  {key:'Wildborn', name:'Wildborn', cls:'both', max:3, unlock:1, group:'XP', why:'+60% Explorer XP de Wild Palmon/Bullymon no máximo.'},
+  {key:'Builder Instincts', name:'Builder Instincts', cls:'both', max:3, unlock:5, group:'XP', why:'+15% Explorer XP ao upar construções da season no máximo.'},
+  {key:'Medal of Valor', name:'Medal of Valor', cls:'both', max:1, unlock:15, group:'XP', why:'+20% Explorer XP por participar de Sanctum Sieges.'},
+  {key:'Warrior Instincts', name:'Warrior Instincts', cls:'both', max:3, unlock:25, group:'XP', why:'+60% Explorer XP ao ocupar Sanctums no máximo.'},
+  {key:'XP Overload', name:'XP Overload', cls:'both', max:5, unlock:25, group:'XP ativo', why:'Gera XP ativa diária; ótimo enquanto você ainda busca unlocks 55/60/65/70.'},
+  {key:'Holy Radiance', name:'Holy Radiance', cls:'both', max:5, unlock:30, group:'Mapa S2', why:'Reduz Curse Level via Holy Tower; valor alto em guerra territorial.'},
+  {key:'Sacred Blessing', name:'Sacred Blessing', cls:'both', max:1, unlock:35, group:'Mapa S2', why:'+100% eficiência em Blessings; bom para suporte de guilda.'},
+  {key:'Umbra Batfire', name:'Umbra Batfire', cls:'both', max:5, unlock:40, group:'Mapa S2', why:'Aumenta Curse Level em camps inimigos na área; pressão territorial.'},
+  {key:'Lost Wraith', name:'Lost Wraith', cls:'both', max:1, unlock:50, group:'Mapa S2', why:'Armadilha de mapa para punir camp inimigo que entra na área.'},
+
+  {key:'Morale Boost', name:'Morale Boost', cls:'fighter', max:5, unlock:10, group:'Dano Fighter', why:'+5% dano em Frenzy no máximo; também libera Hyper Frenzy.', prereq:null},
+  {key:'Fierce Assault', name:'Fierce Assault', cls:'fighter', max:5, unlock:30, group:'Rally/PvP', why:'+5% Attack do squad ao iniciar ou entrar em rally.'},
+  {key:'Defensive Tactics', name:'Defensive Tactics', cls:'fighter', max:5, unlock:40, group:'Defesa', why:'+5% ATK/DEF/HP dos Palmons defendendo camp.'},
+  {key:'Rallying Cry', name:'Rallying Cry', cls:'fighter', max:5, unlock:45, group:'Guerra', why:'Reduz morte de Armigo em rallies PvP; bom para guilda ativa.'},
+  {key:'Offensive Tactics', name:'Offensive Tactics', cls:'fighter', max:5, unlock:50, group:'Ataque', why:'+5% ATK/DEF/HP dos Palmons atacando camp inimigo.'},
+  {key:'Hyper Frenzy', name:'Hyper Frenzy', cls:'fighter', max:5, unlock:55, group:'Dano S2', why:'+5% Palmon Attack em Frenzy e aumenta duração; top S2.', prereq:{key:'Morale Boost', points:5}},
+  {key:'Shield Wall', name:'Shield Wall', cls:'fighter', max:5, unlock:60, group:'Defesa S2', why:'+5% redução de dano dos Palmons; ótimo para tank e PvP.'},
+  {key:'Desert Edge', name:'Desert Edge', cls:'fighter', max:5, unlock:65, group:'Dano S2', why:'+5% Palmon Attack em batalhas de deserto.'},
+  {key:'Shelled Armor', name:'Shelled Armor', cls:'fighter', max:5, unlock:70, group:'Anti-crítico', why:'+5% Tenacity dos Palmons; bom contra composições de crítico.'},
+  {key:'The More the Merrier', name:'The More the Merrier', cls:'fighter', max:5, unlock:1, group:'Utilidade', why:'Filler útil quando os bônus de combate ainda não abriram.'},
+  {key:'Hospital Wing', name:'Hospital Wing', cls:'fighter', max:5, unlock:1, group:'Utilidade', why:'Filler de suporte para guerra/recuperação enquanto espera unlocks maiores.'},
+  {key:'Intensive Training', name:'Intensive Training', cls:'fighter', max:5, unlock:1, group:'Utilidade', why:'Filler de progresso quando as skills fortes ainda não abriram.'},
+  {key:'Class Rewards', name:'Class Rewards', cls:'both', max:5, unlock:1, group:'Recompensa', why:'Bom filler; remova primeiro se precisar abrir ponto para uma skill top.'},
+
+  {key:"Builder's Passion", name:"Builder's Passion", cls:'builder', max:5, unlock:10, group:'Construção', why:'+180 min de free Building Speedup no máximo.'},
+  {key:'Scholarly Passion', name:'Scholarly Passion', cls:'builder', max:5, unlock:10, group:'Pesquisa', why:'+180 min de free Research Speedup no máximo.'},
+  {key:'Instant Build', name:'Instant Build', cls:'builder', max:5, unlock:15, group:'Construção ativa', why:'Reduz 600 min de todas as filas de construção no máximo.'},
+  {key:'Instant Research', name:'Instant Research', cls:'builder', max:5, unlock:15, group:'Pesquisa ativa', why:'Reduz 600 min de todas as filas de pesquisa no máximo.'},
+  {key:'Construction Aid', name:'Construction Aid', cls:'builder', max:2, unlock:30, group:'Guilda', why:'+20% velocidade de construção para você e aliado no máximo.'},
+  {key:'Research Aid', name:'Research Aid', cls:'builder', max:2, unlock:30, group:'Guilda', why:'+20% velocidade de pesquisa para você e aliado no máximo.'},
+  {key:'Cost Cutter', name:'Cost Cutter', cls:'builder', max:5, unlock:35, group:'Economia', why:'-5% custo de recursos em upgrades de construção.'},
+  {key:'Thrifty Science', name:'Thrifty Science', cls:'builder', max:5, unlock:35, group:'Economia', why:'-5% custo de recursos em pesquisa.'},
+  {key:'Treasure Hunter', name:'Treasure Hunter', cls:'builder', max:5, unlock:1, group:'Recursos', why:'Mais valor de farm/recursos; bom para F2P.'},
+  {key:'Resource Swap', name:'Resource Swap', cls:'builder', max:1, unlock:30, group:'Economia', why:'Útil quando você tem gargalo de recurso específico.'},
+  {key:'Aid Boost', name:'Aid Boost', cls:'builder', max:5, unlock:55, group:'Guilda S2', why:'Ajudas reduzem mais tempo de fila; forte em guilda ativa.'},
+  {key:'Fast Harvest', name:'Fast Harvest', cls:'builder', max:5, unlock:60, group:'Coleta S2', why:'+25% velocidade de coleta; ótimo para economia.'},
+  {key:'Emergency Care', name:'Emergency Care', cls:'builder', max:5, unlock:60, group:'Guerra S2', why:'-20% morte de Armigo em combate; escolha se sua guilda briga muito.'},
+  {key:'Master Builder', name:'Master Builder', cls:'builder', max:5, unlock:65, group:'Construção S2', why:'+25% velocidade de construção; top Builder no fim da season.'},
+  {key:'Instant Harvest', name:'Instant Harvest', cls:'builder', max:1, unlock:70, group:'Coleta S2', why:'Coleta instantânea de node até o limite de carga.'},
+  {key:'Swift Hunt', name:'Swift Hunt', cls:'builder', max:5, unlock:70, group:'Farm S2', why:'+25% marcha contra NPC; acelera farm.'}
+];
+
+const classPlannerOrders = {
+  fighter: {
+    balanced: ['Wildborn','Builder Instincts','Medal of Valor','Warrior Instincts','XP Overload','Morale Boost','Fierce Assault','Defensive Tactics','Rallying Cry','The More the Merrier','Hospital Wing','Intensive Training','Class Rewards','Offensive Tactics','Hyper Frenzy','Shield Wall','Desert Edge','Shelled Armor'],
+    combat: ['Morale Boost','Fierce Assault','Defensive Tactics','Rallying Cry','Offensive Tactics','Hyper Frenzy','Shield Wall','Desert Edge','Shelled Armor','Wildborn','Builder Instincts','Medal of Valor','Warrior Instincts','XP Overload','The More the Merrier','Hospital Wing','Intensive Training','Class Rewards'],
+    growth: ['Wildborn','Builder Instincts','Medal of Valor','Warrior Instincts','XP Overload','Morale Boost','Fierce Assault','Defensive Tactics','Rallying Cry','Class Rewards','Offensive Tactics','Hyper Frenzy','Shield Wall','Desert Edge','Shelled Armor'],
+    map: ['Wildborn','Builder Instincts','Medal of Valor','Warrior Instincts','XP Overload','Holy Radiance','Sacred Blessing','Umbra Batfire','Lost Wraith','Morale Boost','Fierce Assault','Defensive Tactics','Rallying Cry','Offensive Tactics','Hyper Frenzy','Shield Wall','Class Rewards']
+  },
+  builder: {
+    balanced: ['Wildborn','Builder Instincts','Medal of Valor','Warrior Instincts','XP Overload',"Builder's Passion",'Scholarly Passion','Instant Build','Instant Research','Cost Cutter','Thrifty Science','Treasure Hunter','Class Rewards','Construction Aid','Research Aid','Aid Boost','Fast Harvest','Master Builder','Instant Harvest','Swift Hunt'],
+    growth: ['Wildborn','Builder Instincts','Medal of Valor','Warrior Instincts','XP Overload',"Builder's Passion",'Scholarly Passion','Instant Build','Instant Research','Cost Cutter','Thrifty Science','Treasure Hunter','Class Rewards','Construction Aid','Research Aid','Resource Swap','Aid Boost','Fast Harvest','Master Builder','Instant Harvest','Swift Hunt'],
+    combat: ['Wildborn','Builder Instincts','Medal of Valor','Warrior Instincts','XP Overload','Emergency Care','Holy Radiance','Sacred Blessing','Umbra Batfire','Lost Wraith',"Builder's Passion",'Instant Build','Cost Cutter','Class Rewards'],
+    map: ['Wildborn','Builder Instincts','Medal of Valor','Warrior Instincts','XP Overload','Holy Radiance','Sacred Blessing','Umbra Batfire','Lost Wraith','Construction Aid','Research Aid','Aid Boost',"Builder's Passion",'Scholarly Passion','Instant Build','Instant Research','Fast Harvest','Emergency Care','Class Rewards']
+  }
+};
+
+function runClassPlanner() {
+  const cls = document.getElementById('classPlannerClass')?.value || 'fighter';
+  const goal = document.getElementById('classPlannerGoal')?.value || 'balanced';
+  const level = Math.max(1, Math.min(70, Number(document.getElementById('classPlannerLevel')?.value || 1)));
+  const points = Math.max(0, Math.min(120, Number(document.getElementById('classPlannerPoints')?.value || 0)));
+  const byKey = Object.fromEntries(classSkillData.map(skill => [skill.key, skill]));
+  const order = (classPlannerOrders[cls] && classPlannerOrders[cls][goal]) || classPlannerOrders[cls].balanced;
+  const allocations = [];
+  const assigned = {};
+  const locked = [];
+  let remaining = points;
+
+  for (const key of order) {
+    const skill = byKey[key];
+    if (!skill || remaining <= 0) continue;
+    if (skill.cls !== 'both' && skill.cls !== cls) continue;
+    if (skill.unlock > level) {
+      locked.push(skill);
+      continue;
+    }
+    if (skill.prereq && (assigned[skill.prereq.key] || 0) < skill.prereq.points) continue;
+    const current = assigned[key] || 0;
+    const put = Math.min(skill.max - current, remaining);
+    if (put <= 0) continue;
+    assigned[key] = current + put;
+    remaining -= put;
+    allocations.push({...skill, points: put, total: assigned[key]});
+  }
+
+  const rows = document.getElementById('classPlannerRows');
+  const summary = document.getElementById('classPlannerSummary');
+  const warning = document.getElementById('classPlannerWarning');
+  const next = document.getElementById('classPlannerNext');
+  if (!rows || !summary || !warning || !next) return;
+
+  rows.innerHTML = allocations.map((skill, idx) => {
+    const status = skill.total >= skill.max ? '<span class="planner-max">fechado</span>' : '<span class="planner-low">parcial</span>';
+    return `<tr><td>${idx + 1}</td><td><b>${skill.name}</b><br><small>Lv ${skill.unlock} · ${status}</small></td><td>${skill.total}/${skill.max}</td><td>${skill.group}</td><td>${skill.why}</td></tr>`;
+  }).join('') || '<tr><td colspan="5">Coloque pontos acima de zero para gerar a distribuição.</td></tr>';
+
+  const used = points - remaining;
+  const classLabel = cls === 'fighter' ? 'Fighter' : 'Builder';
+  const goalLabel = {balanced:'equilibrado', combat:'combate/PvP', growth:'crescimento/F2P', map:'mapa S2'}[goal] || 'equilibrado';
+  summary.innerHTML = `<b>${classLabel} · objetivo ${goalLabel}</b><br>Usei <b>${used}</b> de <b>${points}</b> pontos no Explorer Level <b>${level}</b>. ${remaining > 0 ? `Sobraram <b>${remaining}</b> pontos porque as próximas skills fortes ainda estão bloqueadas por level ou pré-requisito.` : 'A distribuição fechou todos os pontos informados.'}`;
+
+  const nextAvailable = order.map(key => byKey[key]).find(skill => skill && (skill.cls === 'both' || skill.cls === cls) && skill.unlock <= level && (!skill.prereq || (assigned[skill.prereq.key] || 0) >= skill.prereq.points) && (assigned[skill.key] || 0) < skill.max);
+  const nextLocked = order.map(key => byKey[key]).filter(skill => skill && (skill.cls === 'both' || skill.cls === cls) && skill.unlock > level).sort((a, b) => a.unlock - b.unlock)[0];
+  next.innerHTML = `<b>Próxima ação</b><br>${nextAvailable ? `O próximo ponto deve ir em <span class="planner-chip">${nextAvailable.name}</span>.` : nextLocked ? `Ao chegar no Lv ${nextLocked.unlock}, comece <span class="planner-chip">${nextLocked.name}</span>.` : remaining > 0 ? 'Esta rota já fechou as prioridades principais; use a sobra em crescimento/guilda ou troque o objetivo para recalcular.' : 'Você fechou as prioridades principais desta rota.'}<br><small>Se trocar o objetivo, a ferramenta recalcula a ordem automaticamente.</small>`;
+
+  const warnings = [];
+  if (cls === 'fighter' && goal === 'growth') warnings.push('Fighter em modo crescimento ainda é pior que Builder para base/pesquisa; use só se você não quer resetar classe.');
+  if (cls === 'builder' && goal === 'combat') warnings.push('Builder não substitui Fighter em PvP. Esta rota só tenta reduzir perdas e manter mapa/guilda.');
+  if (level < 50 && goal === 'combat') warnings.push('Offensive Tactics só abre no Lv50; antes disso a ferramenta coloca pontos em defesa/rally/XP.');
+  if (points > 55 && level <= 49) warnings.push('Você informou mais de 55 pontos com level 49 ou menor. Como só confirmamos Lv49 = 55 por print, confira se o level/pontos batem com a tela do jogo.');
+  warning.innerHTML = warnings.length ? `<b>Atenção:</b> ${warnings.join(' ')}` : 'Sem alerta: a distribuição está coerente com classe, objetivo e level informados.';
+}
+
+['classPlannerClass','classPlannerGoal','classPlannerLevel','classPlannerPoints'].forEach(id => document.getElementById(id)?.addEventListener('input', runClassPlanner));
+runClassPlanner();
+
 function matchFilters(el, prefix) {
   const q = document.getElementById(prefix+'Search')?.value.trim().toLowerCase() || '';
   const tier = document.getElementById(prefix+'Tier')?.value || 'all';

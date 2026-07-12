@@ -10,6 +10,40 @@ Regra de atualização: toda entrada nova deve responder:
 - Fonte e confiança
 - O que ainda não está confirmado
 
+## 2026-07-12 — Achievements e distribuidor automático de Class Skills
+
+**O que entrou**
+
+- Seção nova de **Palmon Achievements** com prioridade de investimento, custos por tier, pré-requisitos e regra de reset.
+- Confirmação pelo XAPK local **0.5.346**: o arquivo `hero_fate` é igual ao da 0.5.325 para achievements.
+- Regra de fichas excedentes fechada: no APK atual, o caminho `consume1` aparece para **Elemental Guardian**.
+- A seção de Classes ganhou um **distribuidor automático de pontos**: classe, objetivo, Explorer Level e pontos totais.
+
+**Impacto prático**
+
+- Super Voltaic Trio, Child of the Sea, Surface Blitz Squad, Burn! My Cosmos!, Critical Hit e It’s Over 9000 usam Omni-Token/Refund normal, não ficha específica excedente.
+- Ficha UR específica excedente só deve ser usada quando o achievement/tier aceitar esse consumo. Na tabela atual, isso é **Elemental Guardian**.
+- A distribuição de classe deixa de ser uma tabela fixa de 55 pontos e passa a variar conforme seu nível e objetivo.
+
+**Faça primeiro**
+
+1. Em Achievements, priorize **Critical Hit**, depois **It’s Over 9000!**, depois o achievement do elemento do seu time principal.
+2. Use ficha excedente só em **Elemental Guardian** e somente se Fingenue, Mantleray, Surveilynx ou Magmolin já estiverem 5 estrelas com fichas sobrando.
+3. Na calculadora de classe, informe o segundo número da tela, por exemplo `0/55` significa usar **55 pontos totais**.
+4. Para Fighter Lv49/55 pontos, use objetivo equilibrado ou combate; ao Lv50, puxar **Offensive Tactics**.
+
+**Fontes**
+
+- XAPK/APK local 0.5.346 analisado em 2026-07-12.
+- `hero_fate.lua` para custos, pré-requisitos e `consume1`.
+- `language_en.lua` para regra de reset, Omni-Token Refund, fichas excedentes e limite de reset semanal.
+- Prints do jogo enviados em 2026-07-12.
+
+**Não confirmado**
+
+- A fórmula completa de pontos por Explorer Level fora dos valores mostrados no jogo.
+- Se o servidor pode alterar temporariamente disponibilidade/custo por evento sem mudar o APK.
+
 ## 2026-07-11 — Season 2 / Classes, Explorer Level e Skill Points
 
 **O que entrou**

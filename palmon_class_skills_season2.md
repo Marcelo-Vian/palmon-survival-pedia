@@ -32,6 +32,21 @@ Texto S2 do jogo: derrotar Wild Palmon, capturar Sanctums e Sacred Springs, e up
 | Guilda disputando mapa S2 | Depende | Adicionar Holy Radiance, Sacred Blessing, Umbra Batfire e Lost Wraith |
 | Seu caso do print | Fighter Lv49 | Não resetar por curiosidade. Ao Lv50, encaixar Offensive Tactics 5/5. |
 
+## Como usar a calculadora da Pedia
+
+A página principal agora tem um distribuidor automático de pontos em **Classes e Skill Points: Season 2**.
+
+Use assim:
+
+1. Escolha **Builder** ou **Fighter**.
+2. Escolha o objetivo: equilibrado, combate/PvP, crescimento/F2P ou mapa S2.
+3. Informe seu **Explorer Level**.
+4. Informe o total de pontos exibido no jogo.
+
+Exemplo: se a tela mostra `Available Skill Points 0/55`, use **55** como total de pontos. O primeiro número é ponto livre; o segundo é o total.
+
+Essa calculadora substitui a tabela fixa para tomada de decisão. As tabelas abaixo continuam como referência técnica e exemplo de leitura.
+
 ## Fighter — Plano com 55 pontos
 
 Plano híbrido para Lv49: combate sem travar ganho de Explorer XP.
