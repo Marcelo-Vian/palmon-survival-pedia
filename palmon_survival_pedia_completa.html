@@ -15,7 +15,7 @@
 .slots{display:grid;grid-template-columns:repeat(7,minmax(120px,1fr));gap:8px}.slot-card b{display:block}.slot-card span{display:block;font-weight:900;margin:4px 0}.slot-card.front{background:#fff7ed;border-color:#fdba74}.slot-card.back{background:#eff6ff;border-color:#93c5fd}.elements{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.element-card.water{border-color:#7dd3fc;background:#f0f9ff}.element-card.fire{border-color:#fca5a5;background:#fff5f5}.element-card.earth{border-color:#d6c17b;background:#fffbea}.element-card.electric{border-color:#fde047;background:#fffde8}.bars{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.barbox{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:12px}.bar-row{display:grid;grid-template-columns:88px 1fr 28px;align-items:center;gap:8px;margin:8px 0;font-size:13px}.bar{height:8px;background:#e6edf5;border-radius:999px;overflow:hidden}.bar i{display:block;height:100%;background:#2563eb;border-radius:999px}.kbd{font-family:ui-monospace,Consolas,monospace;background:#eef2f7;border:1px solid #d4dce8;padding:1px 5px;border-radius:4px}.hidden{display:none!important}footer{padding:22px 28px;color:#667085;font-size:13px}
 @media(max-width:1100px){.layout{grid-template-columns:1fr}aside{position:static;height:auto}nav{display:grid;grid-template-columns:repeat(3,1fr)}.stat-grid{grid-template-columns:repeat(3,1fr)}.grid-2,.grid-3,.bars{grid-template-columns:1fr}.elements{grid-template-columns:repeat(2,1fr)}.slots{grid-template-columns:repeat(2,1fr)}.filters{grid-template-columns:1fr 1fr}}
 @media(max-width:680px){.hero,.section{padding:18px 14px}.hero h1{font-size:26px}.stat-grid{grid-template-columns:repeat(2,1fr)}nav{grid-template-columns:1fr 1fr}.pal-grid{grid-template-columns:1fr}.pal-card{grid-template-columns:110px 1fr}.card-media img{max-width:105px}.filters{grid-template-columns:1fr}.elements{grid-template-columns:1fr}}
-.planner{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:14px;margin:14px 0;box-shadow:0 1px 2px #0000000c}.planner-controls{display:grid;grid-template-columns:repeat(4,minmax(140px,1fr));gap:10px}.planner label{display:grid;gap:5px;font-size:12px;font-weight:900;color:#344054}.planner-output{display:grid;grid-template-columns:1.1fr 1fr;gap:12px;margin-top:12px}.planner-summary{background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:10px;line-height:1.45}.planner-summary b{color:#0f2c5c}.planner-actions{background:#f0fff4;border:1px solid #bbf7d0;border-radius:8px;padding:10px}.planner-chip{display:inline-flex;align-items:center;border:1px solid #ccd6e4;background:#f8fafc;border-radius:999px;padding:3px 8px;margin:2px;font-size:12px;font-weight:900}.planner-warning{background:#fff7ed;border-left:4px solid #f59e0b;border-radius:6px;padding:8px 10px;margin-top:10px}.planner-low{color:#64748b}.planner-max{color:#166534;font-weight:900}@media(max-width:900px){.planner-controls,.planner-output{grid-template-columns:1fr}}
+.planner{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:14px;margin:14px 0;box-shadow:0 1px 2px #0000000c}.planner-controls{display:grid;grid-template-columns:repeat(4,minmax(140px,1fr));gap:10px}.planner label{display:grid;gap:5px;font-size:12px;font-weight:900;color:#344054}.planner-output{display:grid;grid-template-columns:1.1fr 1fr;gap:12px;margin-top:12px}.planner-summary{background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:10px;line-height:1.45}.planner-summary b{color:#0f2c5c}.planner-actions{background:#f0fff4;border:1px solid #bbf7d0;border-radius:8px;padding:10px}.planner-chip{display:inline-flex;align-items:center;border:1px solid #ccd6e4;background:#f8fafc;border-radius:999px;padding:3px 8px;margin:2px;font-size:12px;font-weight:900}.planner-warning{background:#fff7ed;border-left:4px solid #f59e0b;border-radius:6px;padding:8px 10px;margin-top:10px}.planner-low{color:#64748b}.planner-max{color:#166534;font-weight:900}.planner-color{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:2px 7px;font-size:12px;font-weight:900}.planner-color.orange{background:#fff7ed;border:1px solid #fdba74;color:#8a3b08}.planner-color.green{background:#ecfdf3;border:1px solid #86efac;color:#166534}.planner-row-zero{opacity:.72}.planner-priority{display:block;font-size:12px;color:#475467;margin-top:3px}.planner-effect{display:block;font-size:12px;color:#667085;margin-top:3px;line-height:1.35}.planner-lv{font-weight:900;color:#0f2c5c}.planner-pos{font-weight:800;color:#475467}@media(max-width:900px){.planner-controls,.planner-output{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -49,6 +49,7 @@
   <h2>Updates recentes: o que mudou ou entrou</h2>
   <p class="lead">Esta seção é o ponto de entrada para qualquer patch, season ou descoberta nova. Sempre que houver update, a entrada mais recente fica no topo com o impacto prático para jogar melhor.</p>
   <div class="table-wrap"><table><thead><tr><th>Data da revisão</th><th>Update / season</th><th>O que entrou ou mudou</th><th>Impacto prático</th><th>Ação recomendada</th><th>Fonte / confiança</th></tr></thead><tbody>
+    <tr><td><b>2026-07-13</b></td><td>Classes / árvore completa</td><td>Corrigida a calculadora de Class Skills para usar todos os nós do APK por classe, nível, posição e cor. A ferramenta agora considera skills amarelas/laranjas e verdes, mostra as 3 opções do Lv1 e distribui pontos por objetivo.</td><td>Resolve o erro de ordem: a recomendação não ignora mais nós de Level 1/5/10/15 e não confunde skill verde com única prioridade.</td><td>Use seu caso real: Builder ou Fighter, Explorer Level 50 e 57 pontos. Leia primeiro a linha Lv1 para ver exatamente onde cada ponto entra.</td><td>APK local: <span class="kbd">season_job_tree</span> + <span class="kbd">season_job_skill</span> + print live 2026-07-13; confiança alta para árvore/efeitos, média para prioridade estratégica.</td></tr>
     <tr><td><b>2026-07-12</b></td><td>Achievements / fichas excedentes</td><td>Adicionada regra real de investimento em Palmon Achievements: reset, Omni-Token Refund, prioridade de tiers e quais achievements aceitam fichas UR excedentes.</td><td>Resolve a dúvida do reset: Super Voltaic Trio e a maioria dos achievements usam Omni-Token normal/refund; fichas excedentes só entram nos tiers configurados como <span class="kbd">consume1</span>.</td><td>Gaste primeiro em bônus universais e no elemento do seu time. Use ficha excedente somente em Elemental Guardian e só se os Palmons UR exigidos já estiverem 5 estrelas com sobra.</td><td>XAPK local 0.5.346 + <span class="kbd">hero_fate.lua</span> e <span class="kbd">language_en.lua</span>; confiança alta para regra/custo.</td></tr>
     <tr><td><b>2026-07-12</b></td><td>Classes / distribuidor automático</td><td>A seção de Classes ganhou calculadora: escolha Builder/Fighter, objetivo, Explorer Level e pontos totais; a página distribui os pontos automaticamente.</td><td>Não precisa mais seguir uma tabela fixa de 55 pontos. A recomendação muda conforme seu nível, pontos e objetivo.</td><td>No seu caso padrão, use Fighter Lv49 e 55 pontos; ao subir para Lv50, a ferramenta já puxa Offensive Tactics como próximo investimento de combate.</td><td>Árvore S2 do APK + prints live; confiança alta para nomes/efeitos, média para pontos por level fora do número mostrado no jogo.</td></tr>
     <tr><td><b>2026-07-11</b></td><td>Season 2 / Classes Builder e Fighter</td><td>Adicionado o sistema de Explorer Level, Classes e Class Skills. O APK confirma max level 70, duas classes, árvore comum + extensões Season 2 e reset/reembolso de pontos ao trocar classe.</td><td>Agora dá para decidir quando escolher Builder ou Fighter e onde gastar pontos. No seu print, Fighter Lv49 mostra <b>0/55</b>: zero pontos livres de 55 totais, não zero pontos da classe.</td><td>Se quer crescer, use Builder; se quer PvP/Sanctum/rally, use Fighter. No Fighter Lv49, mantenha pacote de XP + Morale Boost/Fierce Assault; ao chegar Lv50, priorize Offensive Tactics.</td><td>APK/XAPK local: <span class="kbd">season_job</span>, <span class="kbd">season_job_level</span>, <span class="kbd">season_job_tree</span>, <span class="kbd">season_job_skill</span> + prints de 2026-07-11; confiança alta para nomes/efeitos, fórmula exata de pontos por level ainda não confirmada.</td></tr>
@@ -62,7 +63,7 @@
 
 <section class="section" id="class-skills">
   <h2>Classes e Skill Points: Season 2</h2>
-  <p class="lead">Sistema confirmado no APK/XAPK e nos seus prints. Existem duas classes, <b>Builder</b> e <b>Fighter</b>. O Explorer Level da season vai até <b>70</b>. O total de pontos não é separado por classe: ao trocar classe, o jogo reseta as skills e reembolsa os pontos gastos. No seu print atual: <b>Fighter Lv49, 180.717 / 1.500.000 XP, 0/55 pontos livres/totais</b>.</p>
+  <p class="lead">Sistema confirmado no APK/XAPK e nos seus prints. Existem duas classes, <b>Builder</b> e <b>Fighter</b>. O Explorer Level da season vai até <b>70</b>. O total de pontos não é separado por classe: ao trocar classe, o jogo reseta as skills e reembolsa os pontos gastos. O caso mais recente que você mostrou é <b>Lv50 com 57/57 pontos</b>.</p>
   <div class="grid-3">
     <article class="info-card"><h3>Como ler a tela</h3><ul><li><b>Available Skill Points 0/55</b> = 0 livres de 55 totais.</li><li>Os pontos totais vêm do Explorer Level; no seu caso Lv49 = 55 pontos confirmados por print.</li><li>O APK confirma que cada level up concede skill points, mas não expôs uma tabela clara de pontos por level.</li></ul></article>
     <article class="info-card"><h3>Como ganhar Explorer XP</h3><ul><li>Derrotar Wild Palmon.</li><li>Capturar Sanctums e Sacred Springs.</li><li>Upar construções exclusivas da season.</li><li>Usar skills de XP como Wildborn, Builder Instincts, Medal of Valor, Warrior Instincts e XP Overload.</li></ul></article>
@@ -70,28 +71,28 @@
   </div>
 
   <h3>Distribuidor automático de pontos</h3>
-  <p class="lead">Use esta ferramenta em vez de seguir uma tabela fixa. Coloque sua classe, seu objetivo, seu Explorer Level e o total de pontos que aparece no jogo. A página monta a distribuição recomendada e mostra o próximo investimento.</p>
+  <p class="lead">Use esta ferramenta em vez de seguir uma tabela fixa. Coloque sua classe, seu objetivo, seu Explorer Level e o total de pontos que aparece no jogo. A página considera <b>todos os nós do APK</b>: os amarelos/laranjas e os verdes, incluindo as 3 opções do Lv1.</p>
   <div class="planner" id="classPlanner">
     <div class="planner-controls">
       <label>Classe
         <select id="classPlannerClass">
-          <option value="fighter">Fighter</option>
           <option value="builder">Builder</option>
+          <option value="fighter">Fighter</option>
         </select>
       </label>
       <label>Objetivo
         <select id="classPlannerGoal">
+          <option value="growth">Crescimento/F2P/base</option>
           <option value="balanced">Equilibrado: XP + função principal</option>
           <option value="combat">Combate/PvP/rally</option>
-          <option value="growth">Crescimento/F2P/base</option>
           <option value="map">Mapa S2: Holy Tower/Curse</option>
         </select>
       </label>
       <label>Explorer Level
-        <input id="classPlannerLevel" type="number" min="1" max="70" value="49">
+        <input id="classPlannerLevel" type="number" min="1" max="70" value="50">
       </label>
       <label>Pontos totais
-        <input id="classPlannerPoints" type="number" min="0" max="120" value="55">
+        <input id="classPlannerPoints" type="number" min="0" max="140" value="57">
       </label>
     </div>
     <div class="planner-output">
@@ -103,12 +104,12 @@
     </div>
     <div class="table-wrap" style="margin-top:12px">
       <table>
-        <thead><tr><th>Ordem</th><th>Skill</th><th>Pontos</th><th>Grupo</th><th>Por que entrou</th></tr></thead>
+        <thead><tr><th>Nível</th><th>Posição</th><th>Cor</th><th>Skill</th><th>Pontos</th><th>Decisão</th></tr></thead>
         <tbody id="classPlannerRows"></tbody>
       </table>
     </div>
   </div>
-  <p class="callout ok"><b>Como usar no seu caso:</b> se a tela mostra <b>Available Skill Points 0/55</b>, coloque <b>55</b> em Pontos totais. O primeiro número é ponto livre; o segundo é o total que a ferramenta precisa.</p>
+  <p class="callout ok"><b>Como usar no seu caso:</b> se a tela mostra <b>Available Skill Points 57/57</b>, coloque <b>57</b> em Pontos totais. O primeiro número é ponto livre; o segundo é o total. Se aparecer <b>0/57</b>, ainda use 57: significa que os pontos já estão gastos.</p>
 
   <h3>Fighter: skills, efeito e prioridade</h3>
   <div class="table-wrap"><table><thead><tr><th>Skill</th><th>Desbloqueio</th><th>Efeito no nível máximo</th><th>Prioridade</th></tr></thead><tbody>
@@ -146,8 +147,8 @@
     <tr><td><b>Instant Harvest / Swift Hunt</b></td><td>Lv70 S2</td><td>Coleta instantânea no mapa; +25% marcha contra NPC.</td><td>Alta no fim da season.</td></tr>
   </tbody></table></div>
 
-  <p class="callout ok"><b>Recomendação direta para seu caso:</b> como você está Fighter Lv49 com 55 pontos totais, não resete só por curiosidade. Se o seu objetivo é brigar agora, confira se você tem Morale Boost 5/5, Fierce Assault 5/5, Defensive Tactics 5/5 e Rallying Cry 5/5. Ao bater Lv50, faça <b>Offensive Tactics 5/5</b> antes de investir em coisa econômica. Se o objetivo é crescer e destravar Lv55/60 rápido, mantenha o pacote de XP fechado.</p>
-  <p class="callout"><b>Lacuna honesta:</b> o APK mostra XP por nível e todas as skills, mas não trouxe uma tabela clara de “Explorer Level -> total de pontos”. Por isso, a Pedia usa o número exibido no jogo. Confirmado pelo seu print: <b>Lv49 = 55 pontos totais</b>. Arquivo técnico: <a href="palmon_class_skills_season2.md">palmon_class_skills_season2.md</a>.</p>
+  <p class="callout ok"><b>Recomendação direta para seu caso:</b> com Lv50 e 57 pontos, comece usando a calculadora em <b>Builder + Crescimento/F2P/base</b> se seu foco é evoluir conta, prédio, pesquisa e XP de season. Se trocar para Fighter, mude o objetivo para <b>Combate/PvP/rally</b>: aí a ferramenta puxa Morale Boost, Fierce Assault, Defensive Tactics, Rallying Cry e Offensive Tactics.</p>
+  <p class="callout"><b>Lacuna honesta:</b> o APK mostra XP por nível e todas as skills, mas não trouxe uma tabela clara de “Explorer Level -> total de pontos”. Por isso, a Pedia usa o número exibido no jogo. Confirmado por prints: <b>Lv49 = 55 pontos totais</b> e <b>Lv50 = 57 pontos totais</b>. Arquivo técnico: <a href="palmon_class_skills_season2.md">palmon_class_skills_season2.md</a>.</p>
 </section>
 
 <section class="section" id="achievements">
@@ -1304,6 +1305,7 @@ function filterCards() {
 ['tableSearch','tableTier','tableElement','tablePos','tableRole'].forEach(id => document.getElementById(id)?.addEventListener('input', filterTable));
 ['cardSearch','cardTier','cardElement','cardPos','cardRole'].forEach(id => document.getElementById(id)?.addEventListener('input', filterCards));
 </script>
+<script src="palmon_class_planner.js"></script>
 <script src="palmon_i18n.js"></script>
 </body>
 </html>

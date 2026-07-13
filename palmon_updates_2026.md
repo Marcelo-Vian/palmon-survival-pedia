@@ -10,6 +10,35 @@ Regra de atualização: toda entrada nova deve responder:
 - Fonte e confiança
 - O que ainda não está confirmado
 
+## 2026-07-13 — Correção da árvore de Classes
+
+**O que entrou**
+
+- A calculadora de Class Skills foi refeita para considerar a árvore completa do APK por classe, nível de desbloqueio, posição e cor.
+- Agora entram no cálculo os nós amarelos/laranjas e os verdes/S2.
+- O exemplo live usado foi **Builder Lv50 com 57/57 pontos**.
+
+**Impacto prático**
+
+- A ferramenta não joga mais pontos só em uma lista manual de prioridades.
+- Cada linha da árvore mostra todas as opções liberadas. No Lv1, por exemplo, aparecem as 3 skills e quantos pontos a rota recomenda em cada uma.
+- Para Season 2, os nós antigos de Season 1 foram ignorados/substituídos.
+
+**Faça primeiro**
+
+1. Coloque sua classe real, Explorer Level e pontos totais exatamente como aparece no jogo.
+2. Se estiver Builder Lv50/57 e quer crescer, use **Crescimento/F2P/base**.
+3. Leia a tabela por nível antes de gastar: ela mostra skills fortes, skills adiadas e skills situacionais.
+
+**Fontes**
+
+- APK local: `season_job_tree.lua` e `season_job_skill.lua`.
+- Print live de 2026-07-13: Builder Lv50, 57/57 pontos.
+
+**Não confirmado**
+
+- A prioridade estratégica ainda é inferência prática. O APK confirma árvore, max level e efeitos, mas não define uma ordem "melhor" oficial para cada perfil de jogador.
+
 ## 2026-07-12 — Achievements e distribuidor automático de Class Skills
 
 **O que entrou**

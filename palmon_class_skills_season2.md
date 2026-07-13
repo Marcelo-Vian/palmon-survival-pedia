@@ -2,14 +2,38 @@
 
 Fonte principal: APK/XAPK local 0.5.325 analisado em 2026-07-11 (`season_job`, `season_job_level`, `season_job_tree`, `season_job_skill`, `language_en`). Evidência visual: prints do Marcelo em 2026-07-11.
 
+Atualização 2026-07-13: revisão feita com print live de **Builder Lv50, 57/57 pontos**. A calculadora da Pedia agora usa a árvore completa de `season_job_tree` + `season_job_skill`, incluindo nós amarelos/laranjas e verdes. Para Season 2, os nós antigos exclusivos de Season 1 foram ignorados/substituídos.
+
 ## Resumo
 
 - Classes confirmadas: **Builder** e **Fighter**.
 - Max Explorer Level da season: **70**.
 - O print live mostra **Fighter Lv49**, XP **180.717 / 1.500.000** e **Available Skill Points 0/55**.
+- O print live mais recente mostra **Builder Lv50** e **Available Skill Points 57/57**.
 - Interpretação correta: `0/55` = 0 pontos livres de 55 totais.
+- Interpretação equivalente: `57/57` = 57 pontos livres de 57 totais; `0/57` = 0 livres, mas 57 totais já investidos.
 - Ao trocar classe, o jogo reseta as skills e reembolsa pontos gastos.
 - O APK confirma XP por nível, mas não trouxe uma tabela clara de total de pontos por nível. Use o total exibido no jogo.
+
+## Regra corrigida da calculadora
+
+A árvore não deve ser lida como "somente verdes". Cada linha de desbloqueio pode ter até três nós:
+
+| Linha | Como aparece | Como a Pedia trata |
+|---|---|---|
+| Posição 1 | Nó amarelo/laranja da esquerda | Entra no cálculo com peso próprio |
+| Posição 2 | Nó amarelo/laranja do meio | Entra no cálculo com peso próprio |
+| Posição 3 | Nó verde/season/S2 da direita | Entra no cálculo com peso próprio |
+
+Exemplo do seu print **Builder Lv50 / 57 pontos / objetivo crescimento**:
+
+| Linha Lv1 | Pontos recomendados | Motivo |
+|---|---:|---|
+| Supply Drop | 1/5 | Recebe ponto depois das prioridades maiores; próximo ponto novo vai aqui se continuar Builder crescimento. |
+| Amity Boost | 1/1 | Barato e útil para guilda/ajuda. |
+| Wildborn | 3/3 | Alta prioridade porque acelera Explorer XP. |
+
+O resultado acima é uma recomendação estratégica, não uma regra oficial do jogo. O fato confirmado pelo APK é a existência do nó, nível de unlock, posição, máximo de pontos e efeito máximo.
 
 ## Como ganhar Explorer XP
 
