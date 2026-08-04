@@ -118,7 +118,7 @@
       color: var(--ink);
     }
     textarea { min-height: 120px; resize: vertical; }
-    .controls { display: grid; grid-template-columns: repeat(4, minmax(120px, 1fr)); gap: 10px; }
+    .controls { display: grid; grid-template-columns: repeat(5, minmax(120px, 1fr)); gap: 10px; }
 
     .table-wrap { overflow: auto; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; }
     table { width: 100%; border-collapse: collapse; min-width: 1080px; font-size: 13px; }
@@ -204,8 +204,8 @@
           <span class="pill">3. Skill é automática</span>
           <span class="pill">4. Gere plano</span>
         </div>
-        <p class="callout ok" style="margin:0">Regra do APK local 0.5.346: a faixa de skill é `{29,49,69,99,100}`. Então a decisão nasce do Lv da montaria: Lv 30 libera Skill 2, Lv 50 libera Skill 3, Lv 70 libera Skill 4 e Lv 100 libera Skill 5.</p>
-        <p class="callout warn" style="margin:10px 0 0">Atenção: fontes públicas já indicam APK mais novo que o 0.5.346 local. O ranking abaixo está validado contra o APK que temos extraído, não contra uma versão 0.5.384 ainda não analisada.</p>
+        <p class="callout ok" style="margin:0">Regra do APK 0.5.384 validada: a faixa de skill é `{29,49,69,99,100}`. Então a decisão nasce do Lv da montaria: Lv 30 libera Skill 2, Lv 50 libera Skill 3, Lv 70 libera Skill 4 e Lv 100 libera Skill 5.</p>
+        <p class="callout warn" style="margin:10px 0 0">As tabelas locais `home_mount`, `home_mount_skill`, `home_mount_level`, `home_mount_rebirth` e `home_mount_rebirth_task` estão iguais entre 0.5.346 e 0.5.384. O meta abaixo cruza isso com guias externos de 2026.</p>
       </aside>
     </header>
 
@@ -219,6 +219,14 @@
             <option value="tank">Mais resistência / tank</option>
             <option value="growth">Economia / crescimento</option>
             <option value="balanced">Balanceado</option>
+          </select>
+        </label>
+        <label>Estágio do servidor
+          <select id="serverStage">
+            <option value="s2">S2 / antes da Bunny forte</option>
+            <option value="early">Início / antes da Night Mare</option>
+            <option value="late">Bunny liberada / fim de jogo</option>
+            <option value="all">Tenho todas / meta geral</option>
           </select>
         </label>
         <label>Comida livre agora
@@ -257,7 +265,7 @@
               <th>Montaria</th>
               <th>Skill do APK</th>
               <th>Seu estado</th>
-              <th>Fit no objetivo</th>
+              <th>Fit no objetivo/meta</th>
               <th>Leitura prática</th>
             </tr>
           </thead>
@@ -295,17 +303,35 @@
       <h2>4. Plano recomendado</h2>
       <div class="recommendations" id="recommendations"></div>
     </section>
+
+    <section class="section">
+      <h2>5. Fontes e validação</h2>
+      <div class="grid-3">
+        <div class="card">
+          <h3>APK local</h3>
+          <p>APK/XAPK 0.5.384 analisado em 04/08/2026. As tabelas `home_mount`, `home_mount_skill`, `home_mount_level`, `home_mount_rebirth` e `home_mount_rebirth_task` estão iguais à base 0.5.346. O cabeçalho do APK confirma campos de custo, retorno e break level.</p>
+        </div>
+        <div class="card">
+          <h3>Meta externo</h3>
+          <p><a href="https://www.allclash.com/mount-priority-in-palmon-survival/" target="_blank" rel="noopener">AllClash</a> atualizado em 01/04/2026: Bunny Runny, Skybound Patrol e Night Mare como S; Amourphibian A; Slacky/Swiftger B; Narfoal D.</p>
+        </div>
+        <div class="card">
+          <h3>Sequência por estágio</h3>
+          <p><a href="https://www.packsify.com/blogs/palmon-survival-mount-guide" target="_blank" rel="noopener">Packsify</a> publicado em 18/03/2026: antes do day 60 foque Swiftger; day 60-95 foque Night Mare; day 95+ Bunny Runny vira prioridade. <a href="https://www.reddit.com/r/PalmonSurvival/comments/1udjsyi/next_best_mount_investment/" target="_blank" rel="noopener">Reddit 2026</a> reforça Bunny como melhor quando liberada.</p>
+        </div>
+      </div>
+    </section>
   </div>
 
   <script>
     const mounts = [
-      { id: 1, name: "Narfoal", quality: "SR", basePower: 75000, skill: "Rainbow Rage", max: "Lv5: +9000 Attack para todos os Palmons aliados no começo da batalha.", role: "Buffer de ataque universal", apk: "home_mount id 1 · skill_group 1001-1005", weights: { pvp: 82, dps: 90, tank: 48, growth: 28, balanced: 78 } },
-      { id: 2, name: "Swiftger", quality: "UR", basePower: 450000, skill: "Terrifying Roar", max: "Lv5: 1.200.000 + 20.000 por nível da montaria de dano em todos os inimigos.", role: "Dano em área", apk: "home_mount id 2 · skill_group 2001-2005", weights: { pvp: 84, dps: 86, tank: 32, growth: 18, balanced: 72 } },
-      { id: 3, name: "Amourphibian", quality: "UR", basePower: 450000, skill: "Love Language", max: "Lv5: +30% redução de dano para Palmons aliados da frente nos primeiros 10s.", role: "Tank / proteção da frente", apk: "home_mount id 3 · skill_group 4001-4005", weights: { pvp: 92, dps: 42, tank: 100, growth: 20, balanced: 80 } },
-      { id: 4, name: "Slackycapy", quality: "UR", basePower: 450000, skill: "Capy Tackle", max: "Lv5: 20.000.000 de dano em inimigo aleatório aos 15s, 100% de chance de stun por 2s.", role: "Controle e burst", apk: "home_mount id 4 · skill_group 6001-6005", weights: { pvp: 90, dps: 88, tank: 54, growth: 18, balanced: 76 } },
-      { id: 5, name: "Night Mare", quality: "UR", basePower: 450000, skill: "Inferneighl Flame", max: "Lv5: inimigos recebem +10% de dano a cada hit por 15s.", role: "Amplificador de dano", apk: "home_mount id 5 · skill_group 5001-5005", weights: { pvp: 96, dps: 100, tank: 48, growth: 16, balanced: 84 } },
-      { id: 6, name: "Bunny Runny", quality: "UR", basePower: 450000, skill: "Ready to Roll", max: "Lv5: +10% All Palmon Armigo Capacity. Skill existe no APK; ligação skill_group precisa validar por print.", role: "Capacidade de Armigo", apk: "home_mount id 6 · skill 7001-7005 localizado", weights: { pvp: 70, dps: 56, tank: 62, growth: 54, balanced: 66 } },
-      { id: 7, name: "Skybound Patrol", quality: "UR", basePower: 450000, skill: "Guardian Hound", max: "Lv5: protege o Palmon aliado com maior Attack de dano fatal por 6,6s e recupera 70 Rage.", role: "Proteção de carry", apk: "home_mount id 7 · skill_group 8001-8005", weights: { pvp: 98, dps: 76, tank: 92, growth: 14, balanced: 86 } }
+      { id: 1, name: "Narfoal", quality: "SR", basePower: 75000, skill: "Rainbow Rage", max: "Lv5: +9000 Attack para todos os Palmons aliados no começo da batalha.", role: "Buffer de ataque universal", apk: "home_mount id 1 · skill_group 1001-1005", sourceRank: "D", weights: { pvp: 38, dps: 50, tank: 30, growth: 20, balanced: 36 }, stage: { early: 35, s2: 25, late: 20, all: 25 } },
+      { id: 2, name: "Swiftger", quality: "UR", basePower: 450000, skill: "Terrifying Roar", max: "Lv5: 1.200.000 + 20.000 por nível da montaria de dano em todos os inimigos.", role: "Dano fixo em área", apk: "home_mount id 2 · skill_group 2001-2005", sourceRank: "B / early", weights: { pvp: 74, dps: 76, tank: 30, growth: 15, balanced: 68 }, stage: { early: 94, s2: 78, late: 60, all: 68 } },
+      { id: 3, name: "Amourphibian", quality: "UR", basePower: 450000, skill: "Love Language", max: "Lv5: +30% redução de dano para Palmons aliados da frente nos primeiros 10s.", role: "Tank / proteção da frente", apk: "home_mount id 3 · skill_group 4001-4005", sourceRank: "A", weights: { pvp: 88, dps: 42, tank: 100, growth: 20, balanced: 85 }, stage: { early: 82, s2: 88, late: 88, all: 88 } },
+      { id: 4, name: "Slackycapy", quality: "UR", basePower: 450000, skill: "Capy Tackle", max: "Lv5: 20.000.000 de dano em inimigo aleatório aos 15s, 100% de chance de stun por 2s.", role: "Controle, burst e produção", apk: "home_mount id 4 · skill_group 6001-6005 + Cornucapya 3001-3005", sourceRank: "B / baixo combate", weights: { pvp: 58, dps: 52, tank: 42, growth: 90, balanced: 55 }, stage: { early: 50, s2: 45, late: 42, all: 50 } },
+      { id: 5, name: "Night Mare", quality: "UR", basePower: 450000, skill: "Inferneighl Flame", max: "Lv5: inimigos recebem +10% de dano a cada hit por 15s.", role: "Amplificador de dano", apk: "home_mount id 5 · skill_group 5001-5005", sourceRank: "S", weights: { pvp: 98, dps: 100, tank: 45, growth: 15, balanced: 94 }, stage: { early: 40, s2: 100, late: 96, all: 96 } },
+      { id: 6, name: "Bunny Runny", quality: "UR", basePower: 450000, skill: "Ready to Roll", max: "Lv5: +10% All Palmon Armigo Capacity.", role: "Capacidade de Armigo / escala de Morale", apk: "home_mount id 6 · skill_group 7001-7005", sourceRank: "S / #1 late", weights: { pvp: 100, dps: 96, tank: 78, growth: 65, balanced: 100 }, stage: { early: 20, s2: 62, late: 100, all: 100 } },
+      { id: 7, name: "Skybound Patrol", quality: "UR", basePower: 450000, skill: "Guardian Hound", max: "Lv5: protege o Palmon aliado com maior Attack de dano fatal por 6,6s e recupera 70 Rage.", role: "Proteção de carry", apk: "home_mount id 7 · skill_group 8001-8005", sourceRank: "S", weights: { pvp: 96, dps: 76, tank: 92, growth: 14, balanced: 92 }, stage: { early: 80, s2: 94, late: 92, all: 94 } }
     ];
 
     const state = {
@@ -321,6 +347,26 @@
 
     function currentGoal() {
       return document.getElementById("goal").value;
+    }
+
+    function currentStage() {
+      return document.getElementById("serverStage").value;
+    }
+
+    function stageLabel(stage) {
+      return ({
+        early: "início",
+        s2: "S2 / antes da Bunny forte",
+        late: "fim de jogo",
+        all: "meta geral"
+      })[stage] || stage;
+    }
+
+    function effectiveWeight(mount, goal = currentGoal(), stage = currentStage()) {
+      const base = mount.weights[goal] ?? mount.weights.balanced;
+      const stageScore = mount.stage?.[stage] ?? mount.stage?.all ?? base;
+      if (goal === "growth") return Math.round(base * 0.75 + stageScore * 0.25);
+      return Math.round(base * 0.55 + stageScore * 0.45);
     }
 
     function parseGameNumber(value) {
@@ -465,7 +511,7 @@
 
     function investmentScore(mount) {
       const goal = currentGoal();
-      const weight = mount.weights[goal] || mount.weights.balanced;
+      const weight = effectiveWeight(mount, goal);
       const owned = rowValue(mount.id, "owned", false);
       const locked = rowValue(mount.id, "locked", false);
       const level = Math.max(0, rowValue(mount.id, "level", 0));
@@ -480,6 +526,7 @@
 
     function renderRows() {
       const goal = currentGoal();
+      const stage = currentStage();
       const tbody = document.getElementById("mountRows");
       const previous = {};
       mounts.forEach((mount) => {
@@ -490,7 +537,7 @@
         };
       });
       tbody.innerHTML = mounts.map((mount) => {
-        const weight = mount.weights[goal] || mount.weights.balanced;
+        const weight = effectiveWeight(mount, goal, stage);
         const label = scoreLabel(weight);
         return `<tr>
           <td>
@@ -524,7 +571,7 @@
           <td>
             <span class="status ${label}">${statusText(weight)}</span>
             <div class="scorebar"><span style="width:${weight}%"></span></div>
-            <span class="muted">Score ${weight}/100 para ${goalLabel(goal)}</span>
+              <span class="muted">Score ${weight}/100 para ${goalLabel(goal)} · ${stageLabel(stage)}</span>
           </td>
           <td>${explainMount(mount, goal)}</td>
         </tr>`;
@@ -551,18 +598,18 @@
     function explainMount(mount, goal) {
       const map = {
         Narfoal: {
-          pvp: "Bom universal: aumenta Attack do time todo e combina com comps de DPS.",
-          dps: "Muito forte para dano porque buffa todos os Palmons desde o início.",
-          tank: "Ajuda menos o tank; entra depois de proteção real.",
-          growth: "Pouco valor econômico direto.",
-          balanced: "Ótima montaria geral se você ainda não sabe o matchup."
+          pvp: "Tutorial/baixo teto. Só mantenha se o custo for irrelevante.",
+          dps: "Buff fixo de Attack ajuda pouco quando o time escala; não coloque ferradura pesada aqui.",
+          tank: "Não protege a frente nem o carry.",
+          growth: "Sem valor econômico direto.",
+          balanced: "Última prioridade no meta 2026."
         },
         Swiftger: {
-          pvp: "Dano em área bom, mas cai se o inimigo tiver muita mitigação.",
-          dps: "Bom para burst bruto em todos os inimigos.",
+          pvp: "Muito bom no começo/S2 porque o dano fixo ainda pesa; cai quando o HP inimigo escala.",
+          dps: "Bom antes da Night Mare/Bunny. Depois vira peça secundária.",
           tank: "Não protege seu front.",
           growth: "Sem economia direta.",
-          balanced: "Boa se você precisa de power/dano rápido."
+          balanced: "Use para passar marcos 30/50 cedo, mas não enterre ferraduras se Night Mare já abriu."
         },
         Amourphibian: {
           pvp: "Excelente para segurar os 10s iniciais de PvP.",
@@ -572,25 +619,25 @@
           balanced: "Ótima se seu Slot 2 ou frente está morrendo cedo."
         },
         Slackycapy: {
-          pvp: "Controle forte: stun aos 15s pode virar luta.",
-          dps: "Dano alto em alvo aleatório, bom para pressão.",
+          pvp: "Stun pode ajudar, mas o alvo aleatório e dano fixo perdem valor contra times grandes.",
+          dps: "Dano fixo em alvo único; inferior a Night Mare/Bunny no longo prazo.",
           tank: "Controle ajuda, mas não substitui redução de dano.",
-          growth: "Sem economia direta.",
-          balanced: "Boa opção ofensiva com controle."
+          growth: "Tem valor econômico pela produção, mas não merece ferradura antes do top de combate.",
+          balanced: "Situacional. Invista só depois das peças meta."
         },
         "Night Mare": {
-          pvp: "Top para comps que batem muitas vezes durante 15s.",
-          dps: "Melhor amplificador de dano do pacote atual.",
+          pvp: "Top S2: amplifica o dano recebido pelos inimigos e escala com seu time.",
+          dps: "Melhor destino de dano antes da Bunny; continua top no fim.",
           tank: "Não protege diretamente.",
           growth: "Sem economia direta.",
           balanced: "Excelente se seu time já sobrevive o bastante."
         },
         "Bunny Runny": {
-          pvp: "Capacidade de Armigo melhora escala, mas validar skill_group por print.",
-          dps: "Dano indireto; menor prioridade que Night Mare/Narfoal.",
-          tank: "Pode ajudar por capacidade, mas não mitiga dano.",
+          pvp: "Top de fim de jogo: capacidade de Armigo aumenta Morale e escala o time inteiro.",
+          dps: "Dano indireto, mas no late pode superar buffs fixos por escalar com Morale/Armigos.",
+          tank: "Ajuda indiretamente por capacidade/atributos, mas não substitui Amourphibian.",
           growth: "Útil se seu gargalo é Armigo/capacidade.",
-          balanced: "Mediana até validarmos sua tela."
+          balanced: "Guarde ferraduras para ela quando estiver perto de liberar."
         },
         "Skybound Patrol": {
           pvp: "Top competitivo: salva o carry e devolve Rage.",
@@ -710,6 +757,7 @@
 
     function renderRecommendations(scored, budget, goal, mode, resetCandidates, free, refund) {
       const out = document.getElementById("recommendations");
+      const stage = currentStage();
       const ranked = [...scored].sort((a, b) => b.weight - a.weight || b.value - a.value);
       const ownedTargets = ranked.filter((x) => x.owned).slice(0, 3);
       const missingTop = ranked.filter((x) => !x.owned && x.weight >= 90).slice(0, 2);
@@ -717,13 +765,13 @@
       const cards = [];
 
       cards.push(`<div class="rec">
-        <strong>Regra do APK local aplicada</strong>
-        <p>Base de montarias validada no APK local 0.5.346: Skill da montaria é automática por faixa de nível: 1-29 = Skill 1, 30-49 = Skill 2, 50-69 = Skill 3, 70-99 = Skill 4, 100+ = Skill 5. O custo/retorno abaixo separa comida e ferraduras; comida entra em todo upgrade e ferradura entra nos degraus de 5 níveis, como no print Lv50 pedindo 45.</p>
+        <strong>Regra do APK 0.5.384 aplicada</strong>
+        <p>As tabelas de montaria/custo/reset do APK 0.5.384 batem byte a byte com a base 0.5.346. Skill da montaria é automática por faixa de nível: 1-29 = Skill 1, 30-49 = Skill 2, 50-69 = Skill 3, 70-99 = Skill 4, 100+ = Skill 5. A ferramenta separa comida e ferraduras; ferraduras aparecem nos gates de 5 níveis, como no seu print Lv50 pedindo 45.</p>
       </div>`);
 
       cards.push(`<div class="rec">
-        <strong>Plano em níveis para ${goalLabel(goal)}</strong>
-        <p>${planText(goal)}</p>
+        <strong>Plano em níveis para ${goalLabel(goal)} · ${stageLabel(stage)}</strong>
+        <p>${planText(goal, stage)}</p>
         ${ownedTargets.length ? `<div class="table-wrap"><table>
           <thead><tr><th>Ordem</th><th>Montaria</th><th>Agora</th><th>Depois do plano</th><th>Custo estimado</th><th>Ação</th></tr></thead>
           <tbody>${levelPlan.plan.map((x) => `<tr>
@@ -735,7 +783,7 @@
             <td>${levelAction(x)}</td>
           </tr>`).join("")}</tbody>
         </table></div>` : `<p class="muted">Marque quais montarias você tem e informe o Lv atual para eu calcular o plano em níveis.</p>`}
-        <p class="muted">Orçamento usado: ${formatResourceBundle(free)} livre + ${formatResourceBundle(refund)} de reset = ${formatResourceBundle(budget)}. O plano sobe com comida em todo nível e trava nas barreiras de ferradura a cada 5 níveis. O alvo prático é Lv 70 para Skill 4; depois Lv 100 para Skill 5.</p>
+        <p class="muted">Orçamento usado: ${formatResourceBundle(free)} livre + ${formatResourceBundle(refund)} de reset = ${formatResourceBundle(budget)}. O plano sobe com comida em todo nível e trava nas barreiras de ferradura a cada 5 níveis. Os marcos reais de decisão são Lv 30, 50, 70 e 100.</p>
         ${levelPlan.next ? `<p class="muted">Próximo marco: ${levelPlan.next.item.mount.name} de Lv ${levelPlan.next.item.target} para Lv ${levelPlan.next.milestone}. Falta cerca de ${formatResourceBundle(levelPlan.next.missing)} depois do orçamento atual.</p>` : ""}
       </div>`);
 
@@ -774,16 +822,30 @@
         <p>${mode === "none" ? "Você escolheu não resetar: a sugestão usa só recurso livre e preserva tudo." : "Agora a decisão é por nível: primeiro leve a melhor montaria do objetivo ao próximo marco de skill, depois a segunda, depois a terceira. Trave as montarias que você não quer resetar."}</p>
       </div>`);
 
+      cards.push(`<div class="rec">
+        <strong>Meta externo 2026 considerado</strong>
+        <p>AllClash coloca Bunny Runny, Skybound Patrol e Night Mare como S; Amourphibian como A; Swiftger/Slackycapy como B; Narfoal como D. Packsify coloca o endgame em Bunny Runny → Night Mare → Amourphibian → Swiftger, com Slackycapy/Narfoal só depois. Reddit recente reforça Bunny como prioridade quando ela está liberada.</p>
+      </div>`);
+
       out.innerHTML = cards.join("");
     }
 
-    function planText(goal) {
+    function planText(goal, stage = currentStage()) {
+      if (stage === "early") {
+        return "Antes da Night Mare, Swiftger é a melhor peça prática de dano. Pegue marcos 30/50 nela e em Amourphibian, mas evite gastar ferradura além do necessário se Night Mare estiver perto.";
+      }
+      if (stage === "s2") {
+        return "Na S2, Night Mare, Skybound Patrol e Amourphibian são os melhores destinos imediatos. Se Bunny Runny ainda não abriu no seu servidor, guarde ferraduras para ela em vez de empurrar Narfoal/Slackycapy.";
+      }
+      if (stage === "late") {
+        return "Com Bunny Runny liberada, o meta muda: Bunny vira prioridade principal, Night Mare continua top de dano, Skybound salva o carry e Amourphibian protege a frente.";
+      }
       return {
-        pvp: "Priorize sobrevivência do carry e multiplicador de dano. Skybound Patrol, Night Mare e Amourphibian tendem a render mais em luta real.",
-        dps: "Priorize multiplicador e buff de ataque antes de dano isolado. Night Mare e Narfoal são os destinos mais limpos para aumentar dano do time.",
+        pvp: "Priorize sobrevivência do carry e multiplicador de dano. Bunny Runny, Night Mare, Skybound Patrol e Amourphibian são o núcleo de longo prazo.",
+        dps: "Priorize multiplicador e escala antes de dano fixo. Night Mare e Bunny Runny rendem mais que Narfoal/Swiftger quando seu time já bate forte.",
         tank: "Priorize redução de dano na frente e proteção do carry. Amourphibian é a primeira peça; Skybound Patrol vem logo depois.",
-        growth: "Montaria de economia direta é rara no pacote atual. Se a sua tela confirmar Cornucapya/produção, foque nela; caso contrário, não resete poder de combate só por economia.",
-        balanced: "Distribua entre uma peça de dano, uma de proteção e uma universal para não perder valor em conteúdo diferente."
+        growth: "Slackycapy tem leitura econômica, mas ferradura continua sendo gargalo de combate. Não sacrifique Bunny/Night/Skybound só por produção.",
+        balanced: "Distribua entre escala de Armigo, amplificador de dano, proteção do carry e proteção da frente."
       }[goal] || "";
     }
 
@@ -857,6 +919,7 @@
         module: "mount_auditor",
         source: "manual_or_ocr_screenshot_plus_apk_home_mount",
         goal: currentGoal(),
+        serverStage: currentStage(),
         freeFood: document.getElementById("freeFood").value,
         freeShoes: document.getElementById("freeShoes").value,
         refundRate: Number(document.getElementById("refundRate").value || 100),
@@ -869,7 +932,7 @@
           skillLevelAuto: skillFromMountLevel(rowValue(mount.id, "level", 0)),
           locked: rowValue(mount.id, "locked", false),
           estimatedSpend: estimatedSpendFromLevel(rowValue(mount.id, "level", 0)),
-          objectiveWeight: mount.weights[currentGoal()] || mount.weights.balanced,
+          objectiveWeight: effectiveWeight(mount),
           role: mount.role,
           skill: mount.skill
         }))
@@ -897,6 +960,7 @@
       try {
         const data = JSON.parse(raw);
         if (data.goal) document.getElementById("goal").value = data.goal;
+        if (data.serverStage) document.getElementById("serverStage").value = data.serverStage;
         if (data.freeFood != null) document.getElementById("freeFood").value = data.freeFood;
         else if (data.freeResource != null) document.getElementById("freeFood").value = data.freeResource;
         if (data.freeShoes != null) document.getElementById("freeShoes").value = data.freeShoes;
@@ -912,6 +976,7 @@
     }
 
     document.getElementById("goal").addEventListener("change", () => { renderRows(); updateAll(); });
+    document.getElementById("serverStage").addEventListener("change", () => { renderRows(); updateAll(); });
     document.getElementById("mode").addEventListener("change", updateAll);
     document.getElementById("freeFood").addEventListener("input", updateAll);
     document.getElementById("freeShoes").addEventListener("input", updateAll);
