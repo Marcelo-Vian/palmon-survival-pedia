@@ -696,6 +696,39 @@
       return map[mount.name]?.[goal] || "Avaliar conforme seu time.";
     }
 
+    function lv100Priority(mount, goal = currentGoal()) {
+      const map = {
+        pvp: { "Bunny Runny": 100, "Night Mare": 98, "Skybound Patrol": 96, Amourphibian: 86, Swiftger: 55, Slackycapy: 38, Narfoal: 20 },
+        dps: { "Night Mare": 100, "Bunny Runny": 96, "Skybound Patrol": 90, Swiftger: 55, Amourphibian: 40, Slackycapy: 35, Narfoal: 18 },
+        tank: { Amourphibian: 100, "Skybound Patrol": 96, "Bunny Runny": 78, "Night Mare": 55, Swiftger: 25, Slackycapy: 25, Narfoal: 15 },
+        growth: { Slackycapy: 90, "Bunny Runny": 78, "Skybound Patrol": 65, "Night Mare": 55, Amourphibian: 45, Swiftger: 35, Narfoal: 20 },
+        balanced: { "Bunny Runny": 100, "Night Mare": 96, "Skybound Patrol": 94, Amourphibian: 88, Swiftger: 55, Slackycapy: 45, Narfoal: 20 }
+      };
+      return map[goal]?.[mount.name] ?? effectiveWeight(mount, goal);
+    }
+
+    function lv100Reason(mount, goal = currentGoal()) {
+      const text = {
+        pvp: {
+          "Bunny Runny": "Primeiro 100 no PvP/S2: escala Armigo/Morale e aumenta o teto do time inteiro.",
+          "Night Mare": "Segundo 100: amplificador de dano, rende quando o time já sobrevive.",
+          "Skybound Patrol": "Terceiro 100: protege carry e devolve Rage; ótimo, mas depois de escala/dano.",
+          Amourphibian: "Bom 100 defensivo, mas em PvP geral fica atrás do trio Bunny/Night/Skybound."
+        },
+        dps: {
+          "Night Mare": "Primeiro 100 para dano: aumenta o dano recebido pelos inimigos.",
+          "Bunny Runny": "Segundo 100: escala indireta por Armigo/Morale.",
+          "Skybound Patrol": "Terceiro 100: mantém carry vivo para bater mais."
+        },
+        tank: {
+          Amourphibian: "Primeiro 100 para tank/front: redução de dano direta.",
+          "Skybound Patrol": "Segundo 100 para tank: salva carry e compra tempo.",
+          "Bunny Runny": "Terceiro: ajuda por escala geral, não por mitigação direta."
+        }
+      };
+      return text[goal]?.[mount.name] || "Prioridade calculada pelo rank da montaria e objetivo selecionado.";
+    }
+
     function resetCandidatesFor(scored, mode) {
       if (mode === "none") return [];
       const ownedRanked = [...scored]
@@ -792,6 +825,47 @@
       return { plan, remaining };
     }
 
+    function netResourceIfRebuildTo(item, targetLevel, refundRate, refundPolicy) {
+      const refund = resetReturnFor(item, refundRate, refundPolicy);
+      const rebuild = targetLevel > 0 ? estimatedSpendFromLevel(targetLevel) : resource(0, 0);
+      return subtractResource(refund, rebuild);
+    }
+
+    function sacrificeOptionsForLv100(primary, candidates, budget, refundRate, refundPolicy) {
+      if (!primary || primary.level >= 100) return [];
+      const need = spendToReach(primary.level, 100);
+      const options = [];
+      candidates
+        .filter((x) => x.owned && x.mount.id !== primary.mount.id && x.level > 0)
+        .forEach((candidate) => {
+          if (candidate.level > 50) {
+            const net = netResourceIfRebuildTo(candidate, 50, refundRate, refundPolicy);
+            const newBudget = addResource(budget, net);
+            options.push({
+              candidate,
+              action: `baixar para Lv50`,
+              targetLevel: 50,
+              net,
+              newBudget,
+              missing: shortageFor(need, newBudget),
+              closes: canAfford(need, newBudget)
+            });
+          }
+          const net = netResourceIfRebuildTo(candidate, 0, refundRate, refundPolicy);
+          const newBudget = addResource(budget, net);
+          options.push({
+            candidate,
+            action: `resetar inteira`,
+            targetLevel: 0,
+            net,
+            newBudget,
+            missing: shortageFor(need, newBudget),
+            closes: canAfford(need, newBudget)
+          });
+        });
+      return options.sort((a, b) => Number(b.closes) - Number(a.closes) || b.net.equivalent - a.net.equivalent);
+    }
+
     function levelAction(item) {
       if (item.target > item.level) {
         return `Subir direto para Lv ${item.target}; fecha marco de Skill ${item.targetSkill}`;
@@ -850,12 +924,23 @@
       const ranked = [...scored].sort((a, b) => b.weight - a.weight || b.value - a.value);
       const resetIds = new Set(resetCandidates.map((x) => x.mount.id));
       const ownedTargets = ranked.filter((x) => x.owned && !resetIds.has(x.mount.id)).slice(0, 4);
+      const lv100Targets = scored
+        .filter((x) => x.owned && !resetIds.has(x.mount.id))
+        .sort((a, b) => lv100Priority(b.mount, goal) - lv100Priority(a.mount, goal) || b.weight - a.weight || b.value - a.value)
+        .slice(0, 4);
       const missingTop = ranked.filter((x) => !x.owned && x.weight >= 90).slice(0, 2);
       const levelPlan = buildLevelPlan(ownedTargets, budget);
       const partialPlan = buildPartialPlan(ownedTargets, budget);
       const refundPolicyText = refundPolicy === "food" ? "só comida" : "comida + ferradura";
       const movedByMilestone = levelPlan.plan.some((x) => x.target > x.level);
       const movedByPartial = partialPlan.plan.some((x) => x.target > x.level);
+      const firstLv100 = lv100Targets.find((x) => x.level < 100) || null;
+      const firstLv100Cost = firstLv100 ? spendToReach(firstLv100.level, 100) : resource(0, 0);
+      const firstLv100Missing = firstLv100 ? shortageFor(firstLv100Cost, budget) : resource(0, 0);
+      const firstLv100Ready = firstLv100 ? canAfford(firstLv100Cost, budget) : false;
+      const sacrificeOptions = firstLv100
+        ? sacrificeOptionsForLv100(firstLv100, ranked.filter((x) => x.owned && !resetIds.has(x.mount.id)), budget, refundRate, refundPolicy)
+        : [];
       const cards = [];
 
       cards.push(`<div class="rec">
@@ -867,6 +952,48 @@
         <strong>Resumo financeiro das montarias</strong>
         <p>Investido nas montarias marcadas: <b>${formatResourceBundle(investedTotal)}</b>. Reset sugerido: <b>${formatResourceBundle(refund)}</b>. Recurso livre informado: <b>${formatResourceBundle(free)}</b>. Orçamento para redistribuir: <b>${formatResourceBundle(budget)}</b>.</p>
       </div>`);
+
+      cards.push(`<div class="rec">
+        <strong>Quem deve ir para Lv100 primeiro</strong>
+        <p>${firstLv100 ? `Resposta direta: o primeiro alvo Lv100 para ${goalLabel(goal)} é <b>${firstLv100.mount.name}</b>. ${firstLv100Ready ? "Você já tem recurso para fechar esse 100 no orçamento simulado." : `Ainda falta <b>${formatResourceBundle(firstLv100Missing)}</b> depois do reset/recurso livre selecionado.`}` : "Todas as montarias principais selecionadas já estão no Lv100 ou nenhuma montaria alvo foi preservada pelo modo atual."}</p>
+        ${lv100Targets.length ? `<div class="table-wrap"><table>
+          <thead><tr><th>Ordem 100</th><th>Montaria</th><th>Agora</th><th>Custo até Lv100</th><th>Falta após orçamento</th><th>Decisão</th></tr></thead>
+          <tbody>${lv100Targets.map((x, idx) => {
+            const cost = x.level >= 100 ? resource(0, 0) : spendToReach(x.level, 100);
+            const missing = shortageFor(cost, budget);
+            const ready = x.level >= 100 || canAfford(cost, budget);
+            return `<tr>
+              <td>#${idx + 1}</td>
+              <td><b>${x.mount.name}</b><br><span class="muted">${lv100Reason(x.mount, goal)}</span></td>
+              <td>Lv ${x.level}<br><span class="muted">Skill ${x.skill}</span></td>
+              <td>${x.level >= 100 ? "Já está no 100" : formatResourceBundle(cost)}</td>
+              <td>${ready ? "0 comida + 0 ferraduras" : formatResourceBundle(missing)}</td>
+              <td>${x.level >= 100 ? "Manter no 100" : ready ? "FAÇA: subir para Lv100" : idx === 0 ? "Juntar para este primeiro; não desviar recurso" : "Depois do alvo acima"}</td>
+            </tr>`;
+          }).join("")}</tbody>
+        </table></div>` : `<p class="muted">Nenhum alvo 100 disponível no modo atual.</p>`}
+        ${firstLv100 && !firstLv100Ready ? `<p class="callout warn">Então a resposta para "reseto para quê?" é: no modo atual, <b>não resete ainda para Lv100</b>. O reset só faz sentido agora se você aceitar ganho parcial de poder bruto ou se juntar recurso suficiente para fechar o primeiro Lv100.</p>` : ""}
+      </div>`);
+
+      if (firstLv100 && !firstLv100Ready) {
+        const bestClose = sacrificeOptions.find((x) => x.closes);
+        cards.push(`<div class="rec">
+          <strong>Vale baixar secundária para levar ${firstLv100.mount.name} ao Lv100?</strong>
+          <p>Teste automático: pega o orçamento atual e simula sacrificar uma montaria secundária preservada. Isso responde se vale deixar uma Lv70 em Lv50 para fechar o primeiro Lv100.</p>
+          ${sacrificeOptions.length ? `<div class="table-wrap"><table>
+            <thead><tr><th>Secundária</th><th>Ação testada</th><th>Libera líquido</th><th>Orçamento após troca</th><th>Falta para ${firstLv100.mount.name} 100</th><th>Resposta</th></tr></thead>
+            <tbody>${sacrificeOptions.slice(0, 8).map((x) => `<tr>
+              <td><b>${x.candidate.mount.name}</b><br><span class="muted">Lv ${x.candidate.level} · Skill ${x.candidate.skill}</span></td>
+              <td>${x.action}</td>
+              <td>${formatResourceBundle(x.net)}</td>
+              <td>${formatResourceBundle(x.newBudget)}</td>
+              <td>${x.closes ? "0 comida + 0 ferraduras" : formatResourceBundle(x.missing)}</td>
+              <td>${x.closes ? `FECHA ${firstLv100.mount.name} Lv100` : "NÃO fecha; não sacrifique só por isso"}</td>
+            </tr>`).join("")}</tbody>
+          </table></div>` : `<p class="muted">Não há secundária preservada com nível investido para testar.</p>`}
+          <p class="${bestClose ? "callout ok" : "callout warn"}">${bestClose ? `Existe troca que fecha o Lv100: ${bestClose.candidate.mount.name} ${bestClose.action}. Só faça se aceitar perder essa secundária.` : `No orçamento atual, baixar/resetar uma secundária isolada ainda não fecha ${firstLv100.mount.name} Lv100. Portanto, a decisão correta é manter as Lv70 importantes e juntar recurso, ou usar ganho parcial conscientemente.`}</p>
+        </div>`);
+      }
 
       cards.push(`<div class="rec">
         <strong>Plano em níveis para ${goalLabel(goal)} · ${stageLabel(stage)}</strong>
@@ -907,9 +1034,10 @@
       }
 
       if (resetCandidates.length) {
+        const resetActionReady = movedByMilestone || firstLv100Ready;
         cards.push(`<div class="rec">
-          <strong>Resetar para financiar</strong>
-          <p>Estas são as candidatas pelo modo atual. Em PvP seguro, o núcleo recomendado fica protegido: Bunny Runny, Night Mare, Skybound Patrol e Amourphibian, quando você marcou que possui. Para simular o print antigo que incluía Amourphibian, use o modo "Simular reset fora do Top 3".</p>
+          <strong>${resetActionReady ? "Resetar para financiar agora" : "Candidatas futuras de reset"}</strong>
+          <p>${resetActionReady ? "Estas são as candidatas que financiam o plano atual." : "Estas montarias têm recurso preso, mas no orçamento atual o reset ainda não fecha o alvo importante. Não trate isto como ordem de reset imediato."} Em PvP seguro, o núcleo recomendado fica protegido: Bunny Runny, Night Mare, Skybound Patrol e Amourphibian, quando você marcou que possui. Para simular o print antigo que incluía Amourphibian, use o modo "Simular reset fora do Top 3".</p>
           <div class="table-wrap"><table>
             <thead><tr><th>Prioridade</th><th>Resetar</th><th>Lv/Skill</th><th>Investido estimado</th><th>Volta no reset</th><th>Motivo</th></tr></thead>
             <tbody>${resetCandidates.slice(0, 6).map((x, idx) => `<tr>
