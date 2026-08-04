@@ -118,7 +118,7 @@
       color: var(--ink);
     }
     textarea { min-height: 120px; resize: vertical; }
-    .controls { display: grid; grid-template-columns: repeat(5, minmax(120px, 1fr)); gap: 10px; }
+    .controls { display: grid; grid-template-columns: repeat(6, minmax(120px, 1fr)); gap: 10px; }
 
     .table-wrap { overflow: auto; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; }
     table { width: 100%; border-collapse: collapse; min-width: 1080px; font-size: 13px; }
@@ -221,13 +221,16 @@
             <option value="balanced">Balanceado</option>
           </select>
         </label>
-        <label>Estágio do servidor
+        <label>Season atual
           <select id="serverStage">
-            <option value="s2">S2 / antes da Bunny forte</option>
-            <option value="early">Início / antes da Night Mare</option>
-            <option value="late">Bunny liberada / fim de jogo</option>
-            <option value="all">Tenho todas / meta geral</option>
+            <option value="s2">Season 2 · começo/meio</option>
+            <option value="early">Season 1 · antes da S2</option>
+            <option value="late">Season 2 avançada · Bunny liberada</option>
+            <option value="all">Season 3+ / tenho todas</option>
           </select>
+        </label>
+        <label>Dia do servidor
+          <input id="serverDay" type="number" min="1" placeholder="opcional, ex: 62">
         </label>
         <label>Comida livre agora
           <input id="freeFood" type="text" value="0" placeholder="ex: 9.5M">
@@ -246,6 +249,8 @@
           </select>
         </label>
       </div>
+      <p class="callout ok" id="stageHint">Seu caso provável: Season 2 começo/meio. Use essa opção se a S2 acabou de iniciar no seu servidor. O dia do servidor refina a escolha: até dia 59 = S1/início; dia 60-94 = S2/Night Mare; dia 95+ = Bunny Runny liberada.</p>
+      <p class="callout" style="margin-top:10px">Onde olhar o dia do servidor: procure em telas de Season/Explorer, calendário de eventos, evento de abertura/servidor, Center/Eventos, ou mande print da tela de Season/Class Skills e da tela de eventos ativos. O número do servidor, tipo S123, sozinho não confirma a idade porque servidores abrem em ondas e podem ter calendário diferente.</p>
 
       <div class="summary-grid">
         <div class="metric"><span id="ownedCount">0</span><small>montarias marcadas</small></div>
@@ -353,13 +358,37 @@
       return document.getElementById("serverStage").value;
     }
 
+    function currentServerDay() {
+      const value = Number(document.getElementById("serverDay")?.value || 0);
+      return Number.isFinite(value) && value > 0 ? Math.floor(value) : 0;
+    }
+
+    function inferStageFromServerDay(day) {
+      if (!day) return currentStage();
+      if (day < 60) return "early";
+      if (day < 95) return "s2";
+      return "late";
+    }
+
     function stageLabel(stage) {
       return ({
-        early: "início",
-        s2: "S2 / antes da Bunny forte",
-        late: "fim de jogo",
-        all: "meta geral"
+        early: "Season 1 / antes da S2",
+        s2: "Season 2 começo/meio",
+        late: "Season 2 avançada / Bunny",
+        all: "Season 3+ / meta geral"
       })[stage] || stage;
+    }
+
+    function updateStageHint() {
+      const day = currentServerDay();
+      const stage = currentStage();
+      const hint = document.getElementById("stageHint");
+      if (!hint) return;
+      if (day) {
+        hint.textContent = `Pelo dia ${day}, a ferramenta está usando ${stageLabel(stage)}. Regra prática: dia 1-59 = antes da Night Mare; dia 60-94 = S2/Night Mare; dia 95+ = Bunny Runny liberada.`;
+      } else {
+        hint.textContent = "Seu caso provável: Season 2 começo/meio. Use essa opção se a S2 acabou de iniciar no seu servidor. O dia do servidor refina a escolha: até dia 59 = S1/início; dia 60-94 = S2/Night Mare; dia 95+ = Bunny Runny liberada.";
+      }
     }
 
     function effectiveWeight(mount, goal = currentGoal(), stage = currentStage()) {
@@ -747,6 +776,7 @@
       document.getElementById("currentPower").textContent = br.format(currentPower);
       document.getElementById("refundTotal").textContent = formatResourceBundle(refund);
       document.getElementById("budgetTotal").textContent = formatResourceBundle(budget);
+      updateStageHint();
       scored.forEach((item) => {
         const badge = document.querySelector(`[data-id="${item.mount.id}"][data-skill-auto]`);
         if (badge) badge.textContent = `Skill ${item.skill}`;
@@ -920,6 +950,7 @@
         source: "manual_or_ocr_screenshot_plus_apk_home_mount",
         goal: currentGoal(),
         serverStage: currentStage(),
+        serverDay: document.getElementById("serverDay").value,
         freeFood: document.getElementById("freeFood").value,
         freeShoes: document.getElementById("freeShoes").value,
         refundRate: Number(document.getElementById("refundRate").value || 100),
@@ -961,6 +992,7 @@
         const data = JSON.parse(raw);
         if (data.goal) document.getElementById("goal").value = data.goal;
         if (data.serverStage) document.getElementById("serverStage").value = data.serverStage;
+        if (data.serverDay != null) document.getElementById("serverDay").value = data.serverDay;
         if (data.freeFood != null) document.getElementById("freeFood").value = data.freeFood;
         else if (data.freeResource != null) document.getElementById("freeFood").value = data.freeResource;
         if (data.freeShoes != null) document.getElementById("freeShoes").value = data.freeShoes;
@@ -977,6 +1009,12 @@
 
     document.getElementById("goal").addEventListener("change", () => { renderRows(); updateAll(); });
     document.getElementById("serverStage").addEventListener("change", () => { renderRows(); updateAll(); });
+    document.getElementById("serverDay").addEventListener("input", () => {
+      const day = currentServerDay();
+      if (day) document.getElementById("serverStage").value = inferStageFromServerDay(day);
+      renderRows();
+      updateAll();
+    });
     document.getElementById("mode").addEventListener("change", updateAll);
     document.getElementById("freeFood").addEventListener("input", updateAll);
     document.getElementById("freeShoes").addEventListener("input", updateAll);
