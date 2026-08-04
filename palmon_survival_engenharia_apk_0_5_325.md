@@ -81,7 +81,7 @@ Conclusao segura: nao e "so S02" nem "so S03". O APK 0.5.325 contem base de S02 
 | Piramides | `pyramids_war_pointreward`, `pyramids_war_points_way`, `s03_pyramids_data`, texturas `ipyramidbattle` | Indica sistema/evento de guerra, pontos ou recompensas em piramides. |
 | UI de temporada | Paineis `desertcompetition`, `desertmapcity`, `desertstormbattlefield`, `uidesertofficer`; texturas `uigem` | Existem telas especificas para competicao, mapa/cidade de deserto, battlefield, oficiais e gemas. |
 
-Importante: `Curse` e `Desert` sao nomes internos encontrados nos dados do cliente, nao nome oficial publico confirmado. Abertura real da S02/S03, calendario e regras finais dependem de config remota/server-side ou print dentro do jogo.
+Importante: `Curse` e `Desert` sao nomes internos encontrados nos dados do cliente, nao nome oficial publico confirmado. Correcao 2026-08-04: o nome publico confirmado da S02 e **Season 2: Crimson Reign**; S1 e **Dawn of the Ice Age**; a season posterior aparece publicamente como **Conquest Season**. Abertura real da S02/S03, calendario e regras finais dependem de config remota/server-side ou print dentro do jogo.
 
 ## 4. Configs criticos alterados
 

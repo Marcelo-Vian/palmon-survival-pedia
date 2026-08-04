@@ -23,7 +23,7 @@
 <aside>
   <div class="brand">Palmon Pedia<small>Base consolidada 2026</small></div>
   <nav>
-    <a href="#resumo">Resumo</a><a href="#updates">Updates</a><a href="palmon_battle_simulator.html?mode=builder">Montador de time</a><a href="palmon_battle_simulator.html">Simulador de batalha</a><a href="palmon_mount_auditor.html">Auditor de Montarias</a><a href="#fontes">Fontes</a><a href="#loop">Loop e progressão</a><a href="#class-skills">Classes S2</a><a href="#achievements">Achievements</a><a href="#combate">Combate</a><a href="#boss-palmon">Boss Palmon</a><a href="#elementos">Elementos</a><a href="#slots">7 posições</a><a href="#perks">Perks e breeding</a><a href="#tier">Tier list</a><a href="#palmondex">PalmonDex</a><a href="#estrategias">Estratégias</a><a href="#screenshots">Prints</a><a href="#lacunas">Lacunas</a>
+    <a href="#resumo">Resumo</a><a href="#seasons">Seasons</a><a href="#updates">Updates</a><a href="palmon_battle_simulator.html?mode=builder">Montador de time</a><a href="palmon_battle_simulator.html">Simulador de batalha</a><a href="palmon_mount_auditor.html">Auditor de Montarias</a><a href="#fontes">Fontes</a><a href="#loop">Loop e progressão</a><a href="#class-skills">Classes S2</a><a href="#achievements">Achievements</a><a href="#combate">Combate</a><a href="#boss-palmon">Boss Palmon</a><a href="#elementos">Elementos</a><a href="#slots">7 posições</a><a href="#perks">Perks e breeding</a><a href="#tier">Tier list</a><a href="#palmondex">PalmonDex</a><a href="#estrategias">Estratégias</a><a href="#screenshots">Prints</a><a href="#lacunas">Lacunas</a>
   </nav>
 </aside>
 <main>
@@ -45,10 +45,22 @@
   <p class="callout"><b>Ferramentas novas:</b> use o <a href="palmon_battle_simulator.html?mode=builder">Montador de Time</a> para montar seu elenco com drag and drop e o <a href="palmon_battle_simulator.html">Simulador de Batalha</a> para testar matchups completos.</p>
 </section>
 
+<section class="section" id="seasons">
+  <h2>Seasons: nomes corretos e uso na Pedia</h2>
+  <p class="lead">Correção de 2026-08-04: a Pedia passa a usar o <b>nome exibido na tela de Season</b>, não uma régua genérica de dia do servidor. O print live do Marcelo confirma que o servidor atual está em <b>Season 2: Crimson Reign</b>, com Skybound Patrol/lobo já aparecendo como conteúdo dessa season.</p>
+  <div class="table-wrap"><table><thead><tr><th>Season</th><th>Nome confirmado</th><th>Fonte principal</th><th>Como usar na decisão</th></tr></thead><tbody>
+    <tr><td>S1</td><td><b>Dawn of the Ice Age</b></td><td>APK/localização: <span class="kbd">S1: Dawn of the Ice Age</span>; fonte oficial pública indexada.</td><td>Use apenas se a tela de Season ainda mostrar S1.</td></tr>
+    <tr><td>S2</td><td><b>Crimson Reign</b></td><td>Print live 2026-08-04 + APK/localização: <span class="kbd">Season 2: Crimson Reign</span> + vídeo oficial.</td><td>É o estado atual do servidor do Marcelo. Para montarias, use o inventário real: Bunny/Night/Skybound/Amour entram se você já tem.</td></tr>
+    <tr><td>S3</td><td><b>Conquest Season</b></td><td>Fonte oficial pública indexada + guias 2026; o APK antigo já tinha tokens internos <span class="kbd">S3DesertData</span>.</td><td>Não aplicar ao servidor atual enquanto a tela mostrar S2: Crimson Reign.</td></tr>
+  </tbody></table></div>
+  <p class="callout"><b>Importante:</b> nome interno do APK não é nome público. Exemplo: <span class="kbd">S2CurseData</span> descreve tema/sistema interno de S2, mas o nome público correto é <b>Season 2: Crimson Reign</b>.</p>
+</section>
+
 <section class="section" id="updates">
   <h2>Updates recentes: o que mudou ou entrou</h2>
   <p class="lead">Esta seção é o ponto de entrada para qualquer patch, season ou descoberta nova. Sempre que houver update, a entrada mais recente fica no topo com o impacto prático para jogar melhor.</p>
   <div class="table-wrap"><table><thead><tr><th>Data da revisão</th><th>Update / season</th><th>O que entrou ou mudou</th><th>Impacto prático</th><th>Ação recomendada</th><th>Fonte / confiança</th></tr></thead><tbody>
+    <tr><td><b>2026-08-04</b></td><td>Season 2: Crimson Reign / montarias</td><td>Corrigidos os nomes das seasons e removida a leitura antiga por dia 60/95. S1 = Dawn of the Ice Age; S2 = Crimson Reign; S3 = Conquest Season. O print live confirma Skybound Patrol/lobo na S2 atual.</td><td>O auditor de montarias agora usa nome da season + inventário real marcado como Tenho. Bunny, Night, Skybound e Amour entram no cálculo se você já tem; não ficam bloqueados por regra externa.</td><td>Escolha Season 2: Crimson Reign no Auditor de Montarias, marque suas montarias reais e calcule reset/nível por comida + ferradura.</td><td>Print live 2026-08-04 + APK/localização + fontes oficiais públicas; confiança alta para S1/S2 e estado atual, média para S3 no servidor futuro.</td></tr>
     <tr><td><b>2026-07-13</b></td><td>Classes / árvore completa</td><td>Corrigida a calculadora de Class Skills para usar todos os nós do APK por classe, nível, posição e cor. A ferramenta agora considera skills amarelas/laranjas e verdes, mostra as 3 opções do Lv1 e distribui pontos por objetivo.</td><td>Resolve o erro de ordem: a recomendação não ignora mais nós de Level 1/5/10/15 e não confunde skill verde com única prioridade.</td><td>Use seu caso real: Builder ou Fighter, Explorer Level 50 e 57 pontos. Leia primeiro a linha Lv1 para ver exatamente onde cada ponto entra.</td><td>APK local: <span class="kbd">season_job_tree</span> + <span class="kbd">season_job_skill</span> + print live 2026-07-13; confiança alta para árvore/efeitos, média para prioridade estratégica.</td></tr>
     <tr><td><b>2026-07-12</b></td><td>Achievements / fichas excedentes</td><td>Adicionada regra real de investimento em Palmon Achievements: reset, Omni-Token Refund, prioridade de tiers e quais achievements aceitam fichas UR excedentes.</td><td>Resolve a dúvida do reset: Super Voltaic Trio e a maioria dos achievements usam Omni-Token normal/refund; fichas excedentes só entram nos tiers configurados como <span class="kbd">consume1</span>.</td><td>Gaste primeiro em bônus universais e no elemento do seu time. Use ficha excedente somente em Elemental Guardian e só se os Palmons UR exigidos já estiverem 5 estrelas com sobra.</td><td>XAPK local 0.5.346 + <span class="kbd">hero_fate.lua</span> e <span class="kbd">language_en.lua</span>; confiança alta para regra/custo.</td></tr>
     <tr><td><b>2026-07-12</b></td><td>Classes / distribuidor automático</td><td>A seção de Classes ganhou calculadora: escolha Builder/Fighter, objetivo, Explorer Level e pontos totais; a página distribui os pontos automaticamente.</td><td>Não precisa mais seguir uma tabela fixa de 55 pontos. A recomendação muda conforme seu nível, pontos e objetivo.</td><td>No seu caso padrão, use Fighter Lv49 e 55 pontos; ao subir para Lv50, a ferramenta já puxa Offensive Tactics como próximo investimento de combate.</td><td>Árvore S2 do APK + prints live; confiança alta para nomes/efeitos, média para pontos por level fora do número mostrado no jogo.</td></tr>
@@ -1163,7 +1175,7 @@
     <li>Eventos mudam por servidor/temporada; sempre valide prazo e recompensa no print/evento atual.</li>
   </ul>
 </section>
-<footer>Gerado em 2026-06-06 e atualizado em 2026-07-12 para Season 2, Boss Palmon, Classes e Palmon Achievements. Esta Pedia separa dado confirmado, inferência prática e lacuna para evitar invenção de mecânica.</footer>
+<footer>Gerado em 2026-06-06 e atualizado em 2026-08-04 para Season 2: Crimson Reign, montarias, Boss Palmon, Classes e Palmon Achievements. Esta Pedia separa dado confirmado, inferência prática e lacuna para evitar invenção de mecânica.</footer>
 </main>
 </div>
 <script>

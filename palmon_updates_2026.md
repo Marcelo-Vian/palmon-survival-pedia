@@ -1,6 +1,6 @@
 # Palmon Survival — Updates e Mudanças 2026
 
-Este arquivo resume o que mudou ou entrou na nossa base. A leitura atual fica alinhada ao servidor do Marcelo: **Season 2 iniciada agora**.
+Este arquivo resume o que mudou ou entrou na nossa base. A leitura atual fica alinhada ao servidor do Marcelo: **Season 2: Crimson Reign**.
 
 Regra de atualização: toda entrada nova deve responder:
 
@@ -9,6 +9,42 @@ Regra de atualização: toda entrada nova deve responder:
 - O que fazer primeiro
 - Fonte e confiança
 - O que ainda não está confirmado
+
+## 2026-08-04 — Correção de seasons e montarias
+
+**O que entrou**
+
+- Correção oficial/local dos nomes de season:
+  - **S1: Dawn of the Ice Age**
+  - **Season 2: Crimson Reign**
+  - **Conquest Season / S3** como season posterior, não aplicável ao servidor atual se a tela mostra S2.
+- Print live confirmou `Season 2: Crimson Reign`, versão de tela `0.5.369 (394)`, eventos de S2 e aproximadamente 40 dias restantes.
+- A tela live também mostrou o lobo/Skybound Patrol como conteúdo da Season 2 atual do servidor.
+
+**Impacto prático**
+
+- A ferramenta de montarias não usa mais regra genérica de `dia 60/95` para decidir se Bunny/Skybound/Night estão liberadas.
+- O que manda é o nome da season na tela + as montarias marcadas como **Tenho**.
+- Guias externos por dia de servidor ficam como baixa confiança quando conflitam com print live.
+
+**Faça primeiro**
+
+1. Na tela Season/Eventos, use o nome do topo: `Season 2: Crimson Reign`.
+2. No Auditor de Montarias, escolha **Season 2: Crimson Reign**.
+3. Marque somente as montarias que você realmente tem; o otimizador redistribui recursos só entre elas.
+4. Para tank, priorize Amourphibian e Skybound Patrol; para dano/PvP, Bunny Runny, Night Mare e Skybound Patrol entram no núcleo se você já tem essas montarias.
+
+**Fontes**
+
+- Print live do Marcelo enviado em 2026-08-04: `Season 2: Crimson Reign`.
+- APK/localização extraída: `season2_preheating_1_title = "Season 2: Crimson Reign"`, `season_preheating_3_title = "S1: Dawn of the Ice Age"`, `home_mount_7_name = "Skybound Patrol"`.
+- Fonte oficial pública: vídeo/canal oficial `Palmon Survival | Season 2: Crimson Reign`.
+- Fonte oficial pública indexada: posts Palmon Survival citando `Season I: Dawn of the Ice Age` e `Conquest Season`.
+
+**Não confirmado**
+
+- Datas exatas de início/fim para todos os servidores.
+- Uma fórmula confiável para converter número do servidor em dia/season; servidores abrem em ondas e podem ter calendário próprio.
 
 ## 2026-07-13 — Correção da árvore de Classes
 
