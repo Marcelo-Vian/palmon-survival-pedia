@@ -380,7 +380,7 @@
 
     function nextShoeCostForLevel(level) {
       const lv = Math.max(1, Number(level) || 1);
-      return Math.max(0, Math.round(lv * 0.9));
+      return lv % 5 === 0 ? Math.max(0, Math.round(lv * 0.9)) : 0;
     }
 
     function nextLevelCost(level) {
@@ -655,12 +655,20 @@
         const need = spendToReach(item.target, milestone);
         return { item, milestone, need, missing: shortageFor(need, remaining) };
       }).filter(Boolean).sort((a, b) => a.priority - b.priority)[0] || null;
+      plan.forEach((item) => {
+        const cost = nextLevelCost(item.target);
+        item.nextLevelCost = cost;
+        item.nextLevelShortage = shortageFor(cost, remaining);
+      });
       return { plan, remaining, next };
     }
 
     function levelAction(item) {
       if (item.target > item.level) {
         return `Subir primeiro para Lv ${item.target}`;
+      }
+      if ((item.nextLevelShortage?.food || 0) > 0 || (item.nextLevelShortage?.shoes || 0) > 0) {
+        return `Travado no Lv ${item.target}; falta ${formatResourceBundle(item.nextLevelShortage)} para o próximo upgrade`;
       }
       const milestone = nextMilestoneForLevel(item.target);
       if (milestone) return `Manter; próximo marco Lv ${milestone}`;
@@ -710,7 +718,7 @@
 
       cards.push(`<div class="rec">
         <strong>Regra do APK local aplicada</strong>
-        <p>Base de montarias validada no APK local 0.5.346: Skill da montaria é automática por faixa de nível: 1-29 = Skill 1, 30-49 = Skill 2, 50-69 = Skill 3, 70-99 = Skill 4, 100+ = Skill 5. O custo/retorno abaixo separa comida e ferraduras, mas ainda é estimado até a curva completa de <span class="kbd">home_mount_level</span> ser decodificada.</p>
+        <p>Base de montarias validada no APK local 0.5.346: Skill da montaria é automática por faixa de nível: 1-29 = Skill 1, 30-49 = Skill 2, 50-69 = Skill 3, 70-99 = Skill 4, 100+ = Skill 5. O custo/retorno abaixo separa comida e ferraduras; comida entra em todo upgrade e ferradura entra nos degraus de 5 níveis, como no print Lv50 pedindo 45.</p>
       </div>`);
 
       cards.push(`<div class="rec">
@@ -727,7 +735,7 @@
             <td>${levelAction(x)}</td>
           </tr>`).join("")}</tbody>
         </table></div>` : `<p class="muted">Marque quais montarias você tem e informe o Lv atual para eu calcular o plano em níveis.</p>`}
-        <p class="muted">Orçamento usado: ${formatResourceBundle(free)} livre + ${formatResourceBundle(refund)} de reset = ${formatResourceBundle(budget)}. O plano só sobe nível quando há comida e ferradura suficientes. O alvo prático é Lv 70 para Skill 4; depois Lv 100 para Skill 5.</p>
+        <p class="muted">Orçamento usado: ${formatResourceBundle(free)} livre + ${formatResourceBundle(refund)} de reset = ${formatResourceBundle(budget)}. O plano sobe com comida em todo nível e trava nas barreiras de ferradura a cada 5 níveis. O alvo prático é Lv 70 para Skill 4; depois Lv 100 para Skill 5.</p>
         ${levelPlan.next ? `<p class="muted">Próximo marco: ${levelPlan.next.item.mount.name} de Lv ${levelPlan.next.item.target} para Lv ${levelPlan.next.milestone}. Falta cerca de ${formatResourceBundle(levelPlan.next.missing)} depois do orçamento atual.</p>` : ""}
       </div>`);
 
