@@ -203,7 +203,7 @@
           <span class="pill">3. Skill é automática</span>
           <span class="pill">4. Gere plano</span>
         </div>
-        <p class="callout ok" style="margin:0">Regra do APK: todas as montarias usam a mesma faixa de skill `{29,49,69,99,100}` e a mesma tabela de custo por nível. Então a decisão nasce do Lv da montaria, não de custo manual do próximo botão.</p>
+        <p class="callout ok" style="margin:0">Regra do APK: a faixa de skill é `{29,49,69,99,100}`. Então a decisão nasce do Lv da montaria: Lv 30 libera Skill 2, Lv 50 libera Skill 3, Lv 70 libera Skill 4 e Lv 100 libera Skill 5.</p>
       </aside>
     </header>
 
@@ -282,7 +282,7 @@
           <button class="btn primary" id="applyTextBtn" type="button">Aplicar texto nas montarias</button>
           <button class="btn" id="downloadBtn" type="button">Exportar snapshot JSON</button>
         </div>
-        <p class="callout" style="margin-bottom:0">O print principal que você mandou já serve: o Lv da montaria determina a skill e o gasto estimado. O botão Upgrade só confirma o custo do próximo passo, mas não precisa ser digitado aqui.</p>
+        <p class="callout" style="margin-bottom:0">O print principal que você mandou já serve: preencha o Lv atual de cada montaria e a ferramenta calcula a skill automática, o recurso estimado preso nela e o melhor destino em níveis.</p>
       </div>
     </section>
 
@@ -389,6 +389,27 @@
       return { food, shoes, equivalent: Math.round(food + shoes * 2400) };
     }
 
+    function spendEquivalentToReach(fromLevel, toLevel) {
+      const from = Math.max(0, Math.min(181, Number(fromLevel) || 0));
+      const to = Math.max(from, Math.min(181, Number(toLevel) || 0));
+      return Math.max(0, estimatedSpendFromLevel(to).equivalent - estimatedSpendFromLevel(from).equivalent);
+    }
+
+    function nextLevelCostEquivalent(level) {
+      const lv = Math.max(0, Math.min(180, Number(level) || 0));
+      return spendEquivalentToReach(lv, lv + 1);
+    }
+
+    function nextMilestoneForLevel(level) {
+      const lv = Math.max(0, Number(level) || 0);
+      if (lv < 30) return 30;
+      if (lv < 50) return 50;
+      if (lv < 70) return 70;
+      if (lv < 100) return 100;
+      if (lv < 181) return lv + 1;
+      return null;
+    }
+
     function formatResource(value) {
       const n = Math.round(Number(value) || 0);
       if (n >= 1000000) return `${(n / 1000000).toFixed(n >= 10000000 ? 1 : 2).replace(".", ",")}M`;
@@ -451,7 +472,7 @@
               <label>Travada
                 <span class="checkline"><input type="checkbox" data-id="${mount.id}" data-field="locked"> não resetar</span>
               </label>
-              <div class="muted" style="grid-column:1 / -1">Custo e retorno são calculados pelo Lv; todas as montarias usam a mesma curva de nível no APK.</div>
+              <div class="muted" style="grid-column:1 / -1">Custo e retorno são calculados pelo Lv informado; a faixa de Skill vem do APK.</div>
             </div>
           </td>
           <td>
@@ -536,6 +557,70 @@
       return map[mount.name]?.[goal] || "Avaliar conforme seu time.";
     }
 
+    function resetCandidatesFor(scored, mode) {
+      if (mode === "none") return [];
+      const ownedRanked = [...scored]
+        .filter((x) => x.owned)
+        .sort((a, b) => b.weight - a.weight || b.value - a.value);
+      const protectedIds = new Set(ownedRanked.slice(0, 3).map((x) => x.mount.id));
+      return scored
+        .filter((x) => x.owned && !x.locked && x.level > 0 && !protectedIds.has(x.mount.id))
+        .filter((x) => mode === "all" || x.weight < 75)
+        .sort((a, b) => a.weight - b.weight || b.level - a.level);
+    }
+
+    function raisePlanItemTo(item, desiredLevel, remainingBudget) {
+      let remaining = Math.max(0, remainingBudget);
+      const desired = Math.max(item.target, Math.min(181, desiredLevel));
+      while (item.target < desired) {
+        const cost = nextLevelCostEquivalent(item.target);
+        if (cost <= 0 || cost > remaining) break;
+        item.target += 1;
+        item.spent += cost;
+        remaining -= cost;
+      }
+      return remaining;
+    }
+
+    function buildLevelPlan(targets, budget) {
+      const plan = targets.map((x, idx) => ({
+        mount: x.mount,
+        priority: idx + 1,
+        level: x.level,
+        target: x.level,
+        skill: x.skill,
+        targetSkill: x.skill,
+        spent: 0,
+        weight: x.weight
+      }));
+      let remaining = Math.max(0, Number(budget) || 0);
+      const stages = [70, 100, 181];
+      stages.forEach((stage) => {
+        plan.forEach((item) => {
+          remaining = raisePlanItemTo(item, stage, remaining);
+        });
+      });
+      plan.forEach((item) => {
+        item.targetSkill = skillFromMountLevel(item.target);
+      });
+      const next = plan.map((item) => {
+        const milestone = nextMilestoneForLevel(item.target);
+        if (!milestone) return null;
+        const need = spendEquivalentToReach(item.target, milestone);
+        return { item, milestone, need, missing: Math.max(0, need - remaining) };
+      }).filter(Boolean).sort((a, b) => a.priority - b.priority)[0] || null;
+      return { plan, remaining, next };
+    }
+
+    function levelAction(item) {
+      if (item.target > item.level) {
+        return `Subir primeiro para Lv ${item.target}`;
+      }
+      const milestone = nextMilestoneForLevel(item.target);
+      if (milestone) return `Manter; próximo marco Lv ${milestone}`;
+      return "Manter no máximo";
+    }
+
     function updateAll() {
       const goal = currentGoal();
       const mode = document.getElementById("mode").value;
@@ -543,17 +628,14 @@
       const refundRate = Math.max(0, Math.min(100, Number(document.getElementById("refundRate").value || 100))) / 100;
       let owned = 0;
       let currentPower = 0;
-      let refund = 0;
       const scored = mounts.map((mount) => ({ mount, ...investmentScore(mount) }));
+      const resetCandidates = resetCandidatesFor(scored, mode);
+      const refund = resetCandidates.reduce((sum, item) => sum + item.refund * refundRate, 0);
 
       for (const item of scored) {
         if (!item.owned) continue;
         owned += 1;
         currentPower += item.power;
-        const shouldReset = mode === "all" ? !item.locked : mode === "bad" ? !item.locked && item.weight < 75 : false;
-        if (shouldReset) {
-          refund += item.refund * refundRate;
-        }
       }
 
       const budget = free + refund;
@@ -565,36 +647,60 @@
         const badge = document.querySelector(`[data-id="${item.mount.id}"][data-skill-auto]`);
         if (badge) badge.textContent = `Skill ${item.skill}`;
       });
-      renderRecommendations(scored, budget, goal, mode);
+      renderRecommendations(scored, budget, goal, mode, resetCandidates, free, refund);
       if (autosaveReady) saveLocal(false);
     }
 
-    function renderRecommendations(scored, budget, goal, mode) {
+    function renderRecommendations(scored, budget, goal, mode, resetCandidates, free, refund) {
       const out = document.getElementById("recommendations");
       const ranked = [...scored].sort((a, b) => b.weight - a.weight || b.value - a.value);
-      const top = ranked.slice(0, 3);
-      const weakInvested = scored.filter((x) => x.owned && x.refund > 0 && x.weight < 75 && !x.locked).sort((a, b) => a.weight - b.weight);
+      const ownedTargets = ranked.filter((x) => x.owned).slice(0, 3);
       const missingTop = ranked.filter((x) => !x.owned && x.weight >= 90).slice(0, 2);
-      const allocations = allocationSplit(top, goal);
+      const levelPlan = buildLevelPlan(ownedTargets, budget);
       const cards = [];
 
       cards.push(`<div class="rec">
         <strong>Regra do APK aplicada</strong>
-        <p>Skill da montaria é automática por faixa de nível: 1-29 = Skill 1, 30-49 = Skill 2, 50-69 = Skill 3, 70-99 = Skill 4, 100+ = Skill 5. A tabela de custo é comum entre montarias; o valor numérico abaixo ainda é estimativa até a curva completa de <span class="kbd">home_mount_level</span> ser decodificada.</p>
+        <p>Skill da montaria é automática por faixa de nível: 1-29 = Skill 1, 30-49 = Skill 2, 50-69 = Skill 3, 70-99 = Skill 4, 100+ = Skill 5. O valor numérico de custo/retorno abaixo ainda é estimativa até a curva completa de <span class="kbd">home_mount_level</span> ser decodificada.</p>
       </div>`);
 
       cards.push(`<div class="rec">
-        <strong>Plano principal para ${goalLabel(goal)}</strong>
+        <strong>Plano em níveis para ${goalLabel(goal)}</strong>
         <p>${planText(goal)}</p>
-        <div class="split">${top.map((x, idx) => `<span class="status ${scoreLabel(x.weight)}">#${idx + 1} ${x.mount.name} · ${allocations[idx]}%</span>`).join("")}</div>
-        <p class="muted">Orçamento de decisão: ${formatResource(budget)} em recurso equivalente. A skill usada no cálculo vem da faixa oficial do APK: 29/49/69/99/100.</p>
+        ${ownedTargets.length ? `<div class="table-wrap"><table>
+          <thead><tr><th>Ordem</th><th>Montaria</th><th>Agora</th><th>Depois do plano</th><th>Gasto estimado</th><th>Ação</th></tr></thead>
+          <tbody>${levelPlan.plan.map((x) => `<tr>
+            <td>#${x.priority}</td>
+            <td><b>${x.mount.name}</b><br><span class="muted">${x.mount.role}</span></td>
+            <td>Lv ${x.level}<br><span class="muted">Skill ${x.skill}</span></td>
+            <td><b>Lv ${x.target}</b><br><span class="status ${scoreLabel(x.weight)}">Skill ${x.targetSkill}</span></td>
+            <td>${formatResource(x.spent)}</td>
+            <td>${levelAction(x)}</td>
+          </tr>`).join("")}</tbody>
+        </table></div>` : `<p class="muted">Marque quais montarias você tem e informe o Lv atual para eu calcular o plano em níveis.</p>`}
+        <p class="muted">Orçamento usado: ${formatResource(free)} livre + ${formatResource(refund)} de reset = ${formatResource(budget)}. O alvo prático é Lv 70 para Skill 4; depois Lv 100 para Skill 5.</p>
+        ${levelPlan.next ? `<p class="muted">Próximo marco: ${levelPlan.next.item.mount.name} de Lv ${levelPlan.next.item.target} para Lv ${levelPlan.next.milestone}. Falta cerca de ${formatResource(levelPlan.next.missing)} depois do orçamento atual.</p>` : ""}
       </div>`);
 
-      if (weakInvested.length) {
+      if (resetCandidates.length) {
         cards.push(`<div class="rec">
-          <strong>Possível recurso mal alocado</strong>
-          <p>Estas montarias têm nível investido e baixo fit para o objetivo atual. Se você puder resetar sem perda grande, são candidatas a devolver recurso para as melhores.</p>
-          <div class="split">${weakInvested.map((x) => `<span class="status bad">${x.mount.name} · Lv ${x.level} · Skill ${x.skill}</span>`).join("")}</div>
+          <strong>Resetar para financiar</strong>
+          <p>Estas são as melhores candidatas a reset no modo atual porque estão fora do top do objetivo e têm recurso preso em nível.</p>
+          <div class="table-wrap"><table>
+            <thead><tr><th>Prioridade</th><th>Resetar</th><th>Lv/Skill</th><th>Recurso estimado</th><th>Motivo</th></tr></thead>
+            <tbody>${resetCandidates.slice(0, 6).map((x, idx) => `<tr>
+              <td>#${idx + 1}</td>
+              <td><b>${x.mount.name}</b></td>
+              <td>Lv ${x.level}<br><span class="muted">Skill ${x.skill}</span></td>
+              <td>${formatResource(x.refund)}</td>
+              <td>Score ${x.weight}/100 para ${goalLabel(goal)}; melhor mover para o top se o reset não tiver perda grande.</td>
+            </tr>`).join("")}</tbody>
+          </table></div>
+        </div>`);
+      } else {
+        cards.push(`<div class="rec">
+          <strong>Resetar para financiar</strong>
+          <p>${mode === "none" ? "Você escolheu não resetar nada; o plano usa apenas recurso livre." : "Nenhuma montaria fora do top apareceu como boa candidata a reset. Se quiser forçar análise ampla, use o modo resetar todas não travadas."}</p>
         </div>`);
       }
 
@@ -608,17 +714,10 @@
 
       cards.push(`<div class="rec">
         <strong>Regra de decisão</strong>
-        <p>${mode === "none" ? "Você escolheu não resetar: a sugestão usa só recurso livre e preserva tudo." : "Como o custo por nível é comum para todas as montarias, a prioridade é mover recurso de Lv alto em montaria ruim para Lv alto em montaria top. Trave as montarias que você não quer mexer."}</p>
+        <p>${mode === "none" ? "Você escolheu não resetar: a sugestão usa só recurso livre e preserva tudo." : "Agora a decisão é por nível: primeiro leve a melhor montaria do objetivo ao próximo marco de skill, depois a segunda, depois a terceira. Trave as montarias que você não quer resetar."}</p>
       </div>`);
 
       out.innerHTML = cards.join("");
-    }
-
-    function allocationSplit(top, goal) {
-      if (goal === "tank") return [55, 30, 15];
-      if (goal === "dps") return [60, 25, 15];
-      if (goal === "growth") return [70, 20, 10];
-      return [50, 30, 20];
     }
 
     function planText(goal) {
