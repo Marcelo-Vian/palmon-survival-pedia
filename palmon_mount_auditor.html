@@ -220,7 +220,7 @@
           </select>
         </label>
         <label>Recurso livre agora
-          <input id="freeResource" type="number" min="0" value="0">
+          <input id="freeResource" type="text" value="0" placeholder="ex: 9.5M">
         </label>
         <label>% retorno estimado
           <input id="refundRate" type="number" min="0" max="100" value="100">
@@ -544,7 +544,7 @@
     function updateAll() {
       const goal = currentGoal();
       const mode = document.getElementById("mode").value;
-      const free = Math.max(0, Number(document.getElementById("freeResource").value || 0));
+      const free = Math.max(0, parseGameNumber(document.getElementById("freeResource").value) || 0);
       const refundRate = Math.max(0, Math.min(100, Number(document.getElementById("refundRate").value || 100))) / 100;
       let owned = 0;
       let currentPower = 0;
@@ -716,7 +716,7 @@
         module: "mount_auditor",
         source: "manual_or_ocr_screenshot_plus_apk_home_mount",
         goal: currentGoal(),
-        freeResource: Number(document.getElementById("freeResource").value || 0),
+        freeResource: document.getElementById("freeResource").value,
         refundRate: Number(document.getElementById("refundRate").value || 100),
         refundSource: document.getElementById("refundSource").value,
         mode: document.getElementById("mode").value,
