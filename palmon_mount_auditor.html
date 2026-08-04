@@ -133,7 +133,7 @@
     .status.low { background: #f8fafc; color: #475467; border: 1px solid #d6dee9; }
     .status.bad { background: var(--red-soft); color: var(--red); border: 1px solid #fecaca; }
 
-    .mount-inputs { display: grid; grid-template-columns: 88px 82px 130px 92px; gap: 8px; align-items: end; }
+    .mount-inputs { display: grid; grid-template-columns: 82px 74px 82px 126px 96px; gap: 8px; align-items: end; }
     .mount-inputs label { font-size: 11px; }
     .checkline { display: flex; gap: 6px; align-items: center; font-weight: 800; font-size: 12px; color: #344054; }
     .checkline input { width: auto; }
@@ -192,18 +192,18 @@
     <header class="hero">
       <div>
         <span class="eyebrow">Auditor da conta · Montarias</span>
-        <h1>Resetar, somar retorno e redistribuir melhor</h1>
-        <p>Primeiro módulo do scanner da conta. Cadastre como estão suas montarias, informe o retorno que a tela de reset mostrar e escolha o objetivo. A ferramenta soma o que voltaria, aponta onde há recurso mal alocado e sugere a melhor ordem de reinvestimento usando dados do APK.</p>
+        <h1>Ler sua tela de montarias e decidir onde investir</h1>
+        <p>Primeiro módulo do scanner da conta. Preencha o que aparece na tela principal: montaria, Lv, Skill Lv e custo do próximo upgrade se quiser. O retorno real do reset é opcional; quando ele não aparece, a ferramenta usa uma estimativa marcada como não confirmada.</p>
       </div>
       <aside class="hero-panel">
         <b>Como usar sem depender de memória do jogo</b>
         <div class="pill-row">
           <span class="pill">1. Abra Montarias</span>
           <span class="pill">2. Preencha Lv/Skill</span>
-          <span class="pill">3. Informe retorno do reset</span>
+          <span class="pill">3. Retorno só se aparecer</span>
           <span class="pill">4. Gere plano</span>
         </div>
-        <p class="callout ok" style="margin:0">Fonte forte: `home_mount` e `home_mount_skill`. Custo exato por level ainda depende de decifrar `home_mount_level`; por isso o retorno do reset deve vir da tela do jogo ou print.</p>
+        <p class="callout ok" style="margin:0">A tela principal de montaria não mostra retorno de reset. O número exato só deve ser preenchido se o jogo abrir um popup de reset/reciclagem mostrando o que volta.</p>
       </aside>
     </header>
 
@@ -222,8 +222,14 @@
         <label>Recurso livre agora
           <input id="freeResource" type="number" min="0" value="0">
         </label>
-        <label>% retorno do reset
+        <label>% retorno estimado
           <input id="refundRate" type="number" min="0" max="100" value="100">
+        </label>
+        <label>Quando retorno estiver vazio
+          <select id="refundSource">
+            <option value="estimate">Usar estimativa por Lv/Skill</option>
+            <option value="manual">Considerar 0 até eu preencher</option>
+          </select>
         </label>
         <label>Modo
           <select id="mode">
@@ -237,14 +243,14 @@
       <div class="summary-grid">
         <div class="metric"><span id="ownedCount">0</span><small>montarias marcadas</small></div>
         <div class="metric"><span id="currentPower">0</span><small>poder base atual informado</small></div>
-        <div class="metric"><span id="refundTotal">0</span><small>retorno estimado do reset</small></div>
-        <div class="metric"><span id="budgetTotal">0</span><small>orçamento para redistribuir</small></div>
+        <div class="metric"><span id="refundTotal">0</span><small>retorno real/estimado</small></div>
+        <div class="metric"><span id="budgetTotal">0</span><small>orçamento de decisão</small></div>
       </div>
     </section>
 
     <section class="section">
       <h2>2. Preencha suas montarias</h2>
-      <p>Use a coluna “retorno no reset” com o número que o jogo mostrar. Se não souber, deixe vazio: a ferramenta ainda recomenda prioridade, mas marca o cálculo financeiro como incompleto.</p>
+      <p>No print normal da montaria, use: <b>Lvl</b> como nível, o número no círculo do retrato como <b>Skill Lv</b>, e a linha <b>Upgrade</b> como custo do próximo upgrade opcional. A coluna de retorno real só deve ser preenchida se você abrir um popup de reset/reciclagem que mostre o que será devolvido.</p>
       <div class="table-wrap">
         <table>
           <thead>
@@ -266,7 +272,7 @@
         <h2>3. Upload de prints/vídeo</h2>
         <div class="dropzone">
           <b>Arraste prints ou vídeos da tela de montaria</b>
-          <p style="margin:0">Nesta v1, o upload organiza evidências e gera preview. O OCR beta tenta achar nome da montaria e Lv, mas você sempre confere antes de usar.</p>
+          <p style="margin:0">Nesta v1, o upload organiza evidências e gera preview. O OCR beta tenta achar nome da montaria, Lv, Skill Lv e custos, mas você sempre confere antes de usar.</p>
           <input id="captureFiles" type="file" accept="image/*,video/*" multiple>
           <div class="nav">
             <button class="btn green" id="ocrBtn" type="button">Tentar OCR beta</button>
@@ -277,12 +283,12 @@
       </div>
       <div>
         <h2>Texto extraído / anotações</h2>
-        <textarea id="ocrText" placeholder="O texto do OCR aparece aqui. Também pode colar manualmente algo como: Swiftger Lv 72 skill 3 reset 12000."></textarea>
+        <textarea id="ocrText" placeholder="O texto do OCR aparece aqui. Também pode colar manualmente algo como: Skybound Patrol Lv 50 skill 3 custo 29.6K. Se aparecer popup: reset 12000."></textarea>
         <div class="nav" style="margin-top:10px">
           <button class="btn primary" id="applyTextBtn" type="button">Aplicar texto nas montarias</button>
           <button class="btn" id="downloadBtn" type="button">Exportar snapshot JSON</button>
         </div>
-        <p class="callout" style="margin-bottom:0">Para o cálculo real de gasto, o melhor print é a tela de confirmação de reset/rebirth, porque ela mostra o que volta. A Pedia usa esse valor como fonte mais confiável.</p>
+        <p class="callout" style="margin-bottom:0">O print principal que você mandou já serve para Lv, Skill e custo do próximo upgrade. Para cálculo real de retorno, só use número confirmado em popup de reset; sem popup, trate como estimativa.</p>
       </div>
     </section>
 
@@ -317,12 +323,42 @@
       return document.getElementById("goal").value;
     }
 
+    function parseGameNumber(value) {
+      let raw = String(value || "").trim().toUpperCase();
+      if (!raw) return NaN;
+      raw = raw.replace(/[^\d.,KMB]/g, "");
+      const suffix = raw.match(/[KMB]$/)?.[0] || "";
+      const multiplier = suffix === "K" ? 1000 : suffix === "M" ? 1000000 : suffix === "B" ? 1000000000 : 1;
+      let s = suffix ? raw.slice(0, -1) : raw;
+      const commaCount = (s.match(/,/g) || []).length;
+      const dotCount = (s.match(/\./g) || []).length;
+      if (commaCount && dotCount) {
+        s = s.lastIndexOf(",") > s.lastIndexOf(".") ? s.replace(/\./g, "").replace(",", ".") : s.replace(/,/g, "");
+      } else if (commaCount > 1) {
+        s = s.replace(/,/g, "");
+      } else if (dotCount > 1) {
+        s = s.replace(/\./g, "");
+      } else if (commaCount === 1) {
+        const parts = s.split(",");
+        s = parts[1]?.length === 3 && multiplier === 1 ? parts.join("") : s.replace(",", ".");
+      } else if (dotCount === 1) {
+        const parts = s.split(".");
+        s = parts[1]?.length === 3 && multiplier === 1 ? parts.join("") : s;
+      }
+      const n = Number(s);
+      return Number.isFinite(n) ? Math.round(n * multiplier) : NaN;
+    }
+
+    function rawRowValue(id, field) {
+      const el = document.querySelector(`[data-id="${id}"][data-field="${field}"]`);
+      return el ? String(el.value || "").trim() : "";
+    }
+
     function rowValue(id, field, fallback = 0) {
       const el = document.querySelector(`[data-id="${id}"][data-field="${field}"]`);
       if (!el) return fallback;
       if (el.type === "checkbox") return el.checked;
-      const raw = String(el.value || "").replace(/\./g, "").replace(",", ".");
-      const n = Number(raw);
+      const n = parseGameNumber(el.value);
       return Number.isFinite(n) ? n : fallback;
     }
 
@@ -333,6 +369,15 @@
       else el.value = value;
     }
 
+    function estimateRefund(mount, level, skill, nextCost) {
+      if (!level && !skill && !nextCost) return 0;
+      const qualityMultiplier = mount.quality === "UR" ? 1 : 0.45;
+      const levelPart = level * 900 + Math.pow(level, 2) * 95;
+      const skillPart = skill * (skill + 1) * 8500;
+      const nextCostHint = nextCost ? Math.min(nextCost * Math.max(1, level / 8), nextCost * 8) : 0;
+      return Math.round((levelPart + skillPart + nextCostHint) * qualityMultiplier);
+    }
+
     function investmentScore(mount) {
       const goal = currentGoal();
       const weight = mount.weights[goal] || mount.weights.balanced;
@@ -340,10 +385,16 @@
       const locked = rowValue(mount.id, "locked", false);
       const level = Math.max(0, rowValue(mount.id, "level", 0));
       const skill = Math.max(0, Math.min(5, rowValue(mount.id, "skill", 0)));
-      const refund = Math.max(0, rowValue(mount.id, "refund", 0));
+      const nextCost = Math.max(0, rowValue(mount.id, "nextCost", 0));
+      const manualRaw = rawRowValue(mount.id, "refund");
+      const manualRefund = manualRaw ? Math.max(0, rowValue(mount.id, "refund", 0)) : null;
+      const estimatedRefund = estimateRefund(mount, level, skill, nextCost);
+      const useEstimate = document.getElementById("refundSource")?.value !== "manual";
+      const refund = manualRefund != null ? manualRefund : useEstimate ? estimatedRefund : 0;
+      const refundKind = manualRefund != null ? "real" : useEstimate && estimatedRefund > 0 ? "estimado" : "vazio";
       const power = owned ? mount.basePower + Math.round(level * (mount.quality === "UR" ? 5200 : 1700)) : 0;
       const value = owned ? Math.round(weight * (1 + level / 180) + skill * 18) : 0;
-      return { weight, owned, locked, level, skill, refund, power, value };
+      return { weight, owned, locked, level, skill, nextCost, manualRefund, estimatedRefund, refund, refundKind, power, value };
     }
 
     function renderRows() {
@@ -356,7 +407,8 @@
           level: rowValue(mount.id, "level", 0),
           skill: rowValue(mount.id, "skill", 0),
           locked: rowValue(mount.id, "locked", false),
-          refund: rowValue(mount.id, "refund", "")
+          nextCost: rawRowValue(mount.id, "nextCost"),
+          refund: rawRowValue(mount.id, "refund")
         };
       });
       tbody.innerHTML = mounts.map((mount) => {
@@ -385,11 +437,15 @@
               <label>Skill Lv
                 <input type="number" min="0" max="5" value="0" data-id="${mount.id}" data-field="skill">
               </label>
+              <label>Próx. Lv
+                <input type="text" value="" placeholder="ex: 29.6K" data-id="${mount.id}" data-field="nextCost">
+              </label>
               <label>Travada
                 <span class="checkline"><input type="checkbox" data-id="${mount.id}" data-field="locked"> não resetar</span>
               </label>
-              <label style="grid-column:1 / -1">Retorno no reset
-                <input type="number" min="0" value="" placeholder="número mostrado pelo jogo" data-id="${mount.id}" data-field="refund">
+              <label style="grid-column:1 / -1">Retorno real do reset/reciclagem, se aparecer
+                <input type="text" value="" placeholder="deixe vazio nessa tela normal" data-id="${mount.id}" data-field="refund">
+                <span class="muted">Se ficar vazio, o plano usa estimativa por Lv/Skill ou considera 0, conforme o seletor acima.</span>
               </label>
             </div>
           </td>
@@ -413,6 +469,7 @@
         setRowValue(mount.id, "level", old.level || 0);
         setRowValue(mount.id, "skill", old.skill || 0);
         setRowValue(mount.id, "locked", old.locked);
+        setRowValue(mount.id, "nextCost", old.nextCost || "");
         setRowValue(mount.id, "refund", old.refund || "");
       });
       updateAll();
@@ -485,6 +542,7 @@
       let owned = 0;
       let currentPower = 0;
       let refund = 0;
+      let estimatedUsed = 0;
       const scored = mounts.map((mount) => ({ mount, ...investmentScore(mount) }));
 
       for (const item of scored) {
@@ -492,13 +550,16 @@
         owned += 1;
         currentPower += item.power;
         const shouldReset = mode === "all" ? !item.locked : mode === "bad" ? !item.locked && item.weight < 75 : false;
-        if (shouldReset) refund += item.refund * refundRate;
+        if (shouldReset) {
+          refund += item.refund * refundRate;
+          if (item.refundKind === "estimado") estimatedUsed += 1;
+        }
       }
 
       const budget = free + refund;
       document.getElementById("ownedCount").textContent = owned;
       document.getElementById("currentPower").textContent = br.format(currentPower);
-      document.getElementById("refundTotal").textContent = br.format(Math.round(refund));
+      document.getElementById("refundTotal").textContent = `${br.format(Math.round(refund))}${estimatedUsed ? " est." : ""}`;
       document.getElementById("budgetTotal").textContent = br.format(Math.round(budget));
       renderRecommendations(scored, budget, goal, mode);
       if (autosaveReady) saveLocal(false);
@@ -510,8 +571,17 @@
       const top = ranked.slice(0, 3);
       const weakInvested = scored.filter((x) => x.owned && x.refund > 0 && x.weight < 75 && !x.locked).sort((a, b) => a.weight - b.weight);
       const missingTop = ranked.filter((x) => !x.owned && x.weight >= 90).slice(0, 2);
+      const anyRealRefund = scored.some((x) => x.manualRefund != null);
+      const anyEstimate = scored.some((x) => x.owned && x.refundKind === "estimado");
       const allocations = allocationSplit(top, goal);
       const cards = [];
+
+      if (!anyRealRefund && anyEstimate) {
+        cards.push(`<div class="rec">
+          <strong>Retorno real ainda não confirmado</strong>
+          <p>Sua tela atual não mostra retorno de reset. Estou usando um índice estimado por Lv/Skill/custo próximo só para apontar prioridade e possível recurso mal alocado. Não confirme reset usando esse número como valor exato.</p>
+        </div>`);
+      }
 
       cards.push(`<div class="rec">
         <strong>Plano principal para ${goalLabel(goal)}</strong>
@@ -523,8 +593,8 @@
       if (weakInvested.length) {
         cards.push(`<div class="rec">
           <strong>Possível recurso mal alocado</strong>
-          <p>Estas montarias têm recurso recuperável informado e baixo fit para o objetivo atual. Se o reset devolver perto de 100%, são candidatas a reset.</p>
-          <div class="split">${weakInvested.map((x) => `<span class="status bad">${x.mount.name} · retorno ${br.format(x.refund)}</span>`).join("")}</div>
+          <p>Estas montarias têm valor recuperável real ou estimado e baixo fit para o objetivo atual. Se o popup do jogo confirmar bom retorno, são candidatas a reset.</p>
+          <div class="split">${weakInvested.map((x) => `<span class="status bad">${x.mount.name} · ${x.refundKind} ${br.format(x.refund)}</span>`).join("")}</div>
         </div>`);
       }
 
@@ -538,7 +608,7 @@
 
       cards.push(`<div class="rec">
         <strong>Regra de decisão</strong>
-        <p>${mode === "none" ? "Você escolheu não resetar: a sugestão usa só recurso livre e preserva tudo." : "Antes de confirmar reset, tire print da tela mostrando o retorno. Se o jogo não devolver recurso de skill/nível específico, marque a montaria como travada ou zere o retorno."}</p>
+        <p>${mode === "none" ? "Você escolheu não resetar: a sugestão usa só recurso livre e preserva tudo." : "Antes de confirmar reset, toque no botão verde de reciclagem/reset só até a tela de confirmação e tire print do retorno, sem confirmar. Se não aparecer retorno real, mantenha como estimativa ou marque a montaria como travada."}</p>
       </div>`);
 
       out.innerHTML = cards.join("");
@@ -620,9 +690,11 @@
           const around = text.slice(Math.max(0, text.indexOf(name) - 80), text.indexOf(name) + 220);
           const lvMatch = around.match(/(?:lv|lvl|level|nível|nivel)\s*\.?\s*(\d{1,3})/i);
           const skillMatch = around.match(/(?:skill|habilidade)\s*\.?\s*(?:lv|lvl|level)?\s*\.?\s*(\d)/i);
+          const costMatch = around.match(/(?:custo|cost|upgrade)[^\d]{0,24}(\d[\d.,]*\s*[kmb]?)/i);
           const resetMatch = around.match(/(?:reset|retorno|refund|rebirth)[^\d]{0,20}(\d[\d.,]*)/i);
           if (lvMatch) setRowValue(mount.id, "level", lvMatch[1]);
           if (skillMatch) setRowValue(mount.id, "skill", skillMatch[1]);
+          if (costMatch) setRowValue(mount.id, "nextCost", costMatch[1].replace(/\s+/g, ""));
           if (resetMatch) setRowValue(mount.id, "refund", resetMatch[1].replace(/\D/g, ""));
         }
       });
@@ -637,6 +709,7 @@
         goal: currentGoal(),
         freeResource: Number(document.getElementById("freeResource").value || 0),
         refundRate: Number(document.getElementById("refundRate").value || 100),
+        refundSource: document.getElementById("refundSource").value,
         mode: document.getElementById("mode").value,
         mounts: mounts.map((mount) => ({
           id: mount.id,
@@ -644,8 +717,10 @@
           owned: rowValue(mount.id, "owned", false),
           level: rowValue(mount.id, "level", 0),
           skillLevel: rowValue(mount.id, "skill", 0),
+          nextLevelCostShown: rawRowValue(mount.id, "nextCost"),
           locked: rowValue(mount.id, "locked", false),
-          resetRefundShown: rowValue(mount.id, "refund", 0),
+          resetRefundShown: rawRowValue(mount.id, "refund"),
+          estimatedRefund: estimateRefund(mount, rowValue(mount.id, "level", 0), rowValue(mount.id, "skill", 0), rowValue(mount.id, "nextCost", 0)),
           objectiveWeight: mount.weights[currentGoal()] || mount.weights.balanced,
           role: mount.role,
           skill: mount.skill
@@ -676,11 +751,13 @@
         if (data.goal) document.getElementById("goal").value = data.goal;
         if (data.freeResource != null) document.getElementById("freeResource").value = data.freeResource;
         if (data.refundRate != null) document.getElementById("refundRate").value = data.refundRate;
+        if (data.refundSource) document.getElementById("refundSource").value = data.refundSource;
         if (data.mode) document.getElementById("mode").value = data.mode;
         (data.mounts || []).forEach((m) => {
           setRowValue(m.id, "owned", m.owned);
           setRowValue(m.id, "level", m.level || 0);
           setRowValue(m.id, "skill", m.skillLevel || 0);
+          setRowValue(m.id, "nextCost", m.nextLevelCostShown || "");
           setRowValue(m.id, "locked", m.locked);
           setRowValue(m.id, "refund", m.resetRefundShown || "");
         });
@@ -692,6 +769,7 @@
     document.getElementById("mode").addEventListener("change", updateAll);
     document.getElementById("freeResource").addEventListener("input", updateAll);
     document.getElementById("refundRate").addEventListener("input", updateAll);
+    document.getElementById("refundSource").addEventListener("change", updateAll);
     document.getElementById("captureFiles").addEventListener("change", (event) => handleFiles(event.target.files));
     document.getElementById("ocrBtn").addEventListener("click", runOcr);
     document.getElementById("clearFilesBtn").addEventListener("click", () => { state.uploads = []; document.getElementById("thumbs").innerHTML = ""; document.getElementById("captureFiles").value = ""; });
@@ -704,5 +782,6 @@
     autosaveReady = true;
     updateAll();
   </script>
+  <script src="palmon_global_nav.js"></script>
 </body>
 </html>

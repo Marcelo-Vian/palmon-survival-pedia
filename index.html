@@ -7,524 +7,544 @@
   <style>
     :root {
       color-scheme: light;
-      --bg: #f4f8ff;
-      --panel: #ffffff;
-      --text: #19324d;
-      --muted: #5b7188;
-      --line: #cfe0f5;
-      --primary: #2c73d2;
-      --primary-2: #5fd0ff;
-      --accent: #5bbf7a;
-      --shadow: 0 14px 34px rgba(39, 75, 128, 0.12);
+      --bg: #eef3f8;
+      --paper: #ffffff;
+      --ink: #142238;
+      --muted: #667085;
+      --line: #d7e1ee;
+      --blue: #2457c5;
+      --sky: #38bdf8;
+      --green: #168a4a;
+      --amber: #b7791f;
+      --red: #b42318;
+      --soft-blue: #eaf2ff;
+      --soft-green: #edfdf4;
+      --soft-amber: #fff7e8;
+      --shadow: 0 16px 38px rgba(23, 32, 51, .10);
+      --radius: 8px;
     }
 
     * { box-sizing: border-box; }
-
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+      color: var(--ink);
       background:
-        radial-gradient(circle at top left, rgba(95, 208, 255, 0.28), transparent 28%),
-        radial-gradient(circle at top right, rgba(91, 191, 122, 0.18), transparent 24%),
-        var(--bg);
-      color: var(--text);
+        radial-gradient(circle at 10% 0%, rgba(56, 189, 248, .22), transparent 28%),
+        radial-gradient(circle at 92% 3%, rgba(22, 138, 74, .16), transparent 24%),
+        linear-gradient(180deg, #f8fbff 0%, var(--bg) 36%, #f6f8fb 100%);
     }
 
     a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    .wrap { width: min(1240px, calc(100% - 28px)); margin: 0 auto; padding: 20px 0 42px; }
 
-    .wrap {
-      width: min(1180px, calc(100% - 32px));
-      margin: 0 auto;
-      padding: 32px 0 48px;
-    }
-
-    .hero {
-      background: linear-gradient(135deg, #fff 0%, #eef6ff 100%);
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      box-shadow: var(--shadow);
-      padding: 28px;
-      display: grid;
-      gap: 18px;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      width: fit-content;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: #e8f2ff;
-      border: 1px solid #bfd8fb;
-      color: var(--primary);
-      font-weight: 700;
-      font-size: 13px;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: clamp(30px, 5vw, 50px);
-      line-height: 1.02;
-    }
-
-    .hero p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 17px;
-      line-height: 1.55;
-      max-width: 840px;
-    }
-
-    .actions {
+    .shell-top {
+      min-height: 64px;
       display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-bottom: 8px;
-    }
-
-    .lang-switch {
-      display: inline-flex;
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      overflow: hidden;
-      background: #fff;
-      box-shadow: 0 6px 16px rgba(39, 75, 128, 0.08);
-    }
-
-    .lang-panel {
-      display: inline-flex;
-      align-items: center;
       gap: 14px;
-      width: fit-content;
-      padding: 12px 14px;
-      border: 1px solid #bfd8fb;
-      border-radius: 14px;
-      background: #f8fbff;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
     }
-
-    .lang-label {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--text);
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 950;
+      font-size: 18px;
     }
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius);
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: linear-gradient(135deg, var(--blue), var(--sky));
+      box-shadow: 0 12px 20px rgba(36, 87, 197, .22);
+    }
+    .brand small { display: block; color: var(--muted); font-size: 12px; font-weight: 800; }
 
-    .lang-switch button {
+    .lang {
+      display: inline-flex;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--paper);
+      box-shadow: 0 8px 18px rgba(23,32,51,.06);
+    }
+    .lang button {
       border: 0;
       background: transparent;
-      padding: 10px 14px;
-      font-weight: 800;
+      min-height: 36px;
+      padding: 0 12px;
+      font-weight: 900;
       color: var(--muted);
       cursor: pointer;
     }
+    .lang button.active { background: var(--ink); color: #fff; }
 
-    .lang-switch button.active {
-      background: linear-gradient(135deg, var(--primary), var(--primary-2));
-      color: #fff;
+    .hero {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: rgba(255,255,255,.92);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(320px, .8fr);
+      min-height: 430px;
     }
-
+    .hero-copy { padding: 30px; align-self: center; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 30px;
+      padding: 0 10px;
+      border: 1px solid #bfd7ff;
+      border-radius: 999px;
+      background: var(--soft-blue);
+      color: #174ea6;
+      font-size: 12px;
+      font-weight: 950;
+    }
+    h1 {
+      margin: 14px 0 12px;
+      font-size: clamp(34px, 5vw, 60px);
+      line-height: 1.02;
+      letter-spacing: 0;
+      max-width: 880px;
+    }
+    .lead {
+      margin: 0;
+      color: #40556e;
+      font-size: 17px;
+      line-height: 1.62;
+      max-width: 850px;
+    }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
     .btn {
+      min-height: 44px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 46px;
-      padding: 0 18px;
-      border-radius: 12px;
-      font-weight: 700;
-      border: 1px solid transparent;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-2) 100%);
-      color: #fff;
-      box-shadow: 0 10px 20px rgba(44, 115, 210, 0.22);
-    }
-
-    .btn-secondary {
-      background: #fff;
-      border-color: var(--line);
-      color: var(--text);
-    }
-
-    .btn-disabled {
-      background: #f8fbff;
-      border-color: var(--line);
-      color: var(--muted);
-      cursor: default;
-      pointer-events: none;
-    }
-
-    .section {
-      margin-top: 28px;
-    }
-
-    .section h2 {
-      margin: 0 0 14px;
-      font-size: 26px;
-    }
-
-    .section p {
-      margin: 0 0 18px;
-      color: var(--muted);
-      line-height: 1.55;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 18px;
-    }
-
-    .card {
-      background: var(--panel);
+      gap: 8px;
+      padding: 0 15px;
+      border-radius: var(--radius);
       border: 1px solid var(--line);
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      display: grid;
+      background: var(--paper);
+      color: var(--ink);
+      font-weight: 900;
+      box-shadow: 0 6px 16px rgba(23,32,51,.05);
     }
+    .btn.primary { color: #fff; border-color: #1d58ca; background: linear-gradient(135deg, #1d58ca, #38bdf8); }
+    .btn.green { border-color: #a7f3c1; color: #07542c; background: var(--soft-green); }
+    .btn.amber { border-color: #f4cd8a; color: #704409; background: var(--soft-amber); }
+    .btn svg, .brand-mark svg, .eyebrow svg, .tool-head svg, .status svg { width: 17px; height: 17px; stroke-width: 2.4; }
 
-    .card-disabled {
-      opacity: 0.82;
-    }
-
-    .card img {
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      object-fit: cover;
-      display: block;
-      background: #dfeeff;
-    }
-
-    .card-visual {
-      min-height: 0;
-      aspect-ratio: 16 / 9;
-      display: grid;
-      place-items: center;
-      padding: 18px;
+    .hero-board {
+      border-left: 1px solid var(--line);
       background:
-        linear-gradient(135deg, rgba(44, 115, 210, 0.16), rgba(95, 208, 255, 0.22)),
-        #eaf4ff;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .apk-diagram {
-      width: 100%;
+        linear-gradient(180deg, rgba(234,242,255,.88), rgba(255,255,255,.94)),
+        #f8fbff;
+      padding: 24px;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
+      align-content: center;
+      gap: 12px;
+    }
+    .route-card {
+      border: 1px solid #c9d8ea;
+      border-radius: var(--radius);
+      background: #ffffffd8;
+      padding: 13px;
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      gap: 11px;
       align-items: center;
     }
-
-    .apk-box {
-      min-height: 58px;
-      border: 1px solid #9fc5f4;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.82);
+    .route-index {
+      width: 42px;
+      height: 42px;
+      border-radius: var(--radius);
       display: grid;
       place-items: center;
-      text-align: center;
-      color: #173552;
-      font-size: 12px;
-      font-weight: 800;
-      padding: 8px;
+      background: #13233a;
+      color: #fff;
+      font-weight: 950;
     }
+    .route-card b { display: block; }
+    .route-card span { color: var(--muted); font-size: 13px; line-height: 1.35; }
 
-    .card-body {
-      padding: 16px;
-      display: grid;
-      gap: 10px;
-    }
-
-    .card-body h3 {
-      margin: 0;
-      font-size: 22px;
-    }
-
-    .card-body p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.5;
-    }
-
-    .meta {
+    .section { margin-top: 22px; }
+    .section-head {
       display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
+      align-items: end;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
     }
+    h2 { margin: 0; font-size: 25px; }
+    .section-head p { margin: 0; color: var(--muted); line-height: 1.5; max-width: 760px; }
 
-    .chip {
-      padding: 6px 10px;
+    .tool-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+    .tool {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 12px 28px rgba(23,32,51,.07);
+      min-height: 260px;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      overflow: hidden;
+    }
+    .tool-visual {
+      min-height: 92px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 14px;
+      border-bottom: 1px solid var(--line);
+      background: #f8fbff;
+    }
+    .tool-visual.blue { background: var(--soft-blue); }
+    .tool-visual.green { background: var(--soft-green); }
+    .tool-visual.amber { background: var(--soft-amber); }
+    .tool-visual.red { background: #fff1f0; }
+    .tool-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: var(--radius);
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: var(--blue);
+    }
+    .tool-icon.green { background: var(--green); }
+    .tool-icon.amber { background: var(--amber); }
+    .tool-icon.red { background: var(--red); }
+    .tool-icon svg { width: 25px; height: 25px; stroke-width: 2.4; }
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      min-height: 28px;
+      padding: 0 9px;
+      border: 1px solid #d8e2ee;
       border-radius: 999px;
-      background: #f0f6ff;
-      border: 1px solid #d6e6fb;
-      color: var(--primary);
+      background: #fff;
+      color: #344054;
       font-size: 12px;
-      font-weight: 700;
+      font-weight: 900;
+      white-space: nowrap;
     }
+    .tool-body { padding: 14px; }
+    .tool-head { display: flex; gap: 8px; align-items: center; margin-bottom: 9px; }
+    .tool h3 { margin: 0; font-size: 20px; }
+    .tool p { margin: 0; color: var(--muted); line-height: 1.48; font-size: 14px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+    .chip { padding: 4px 8px; border-radius: 999px; background: #f4f7fb; border: 1px solid #dbe4ef; color: #344054; font-size: 12px; font-weight: 850; }
+    .tool-footer { padding: 0 14px 14px; display: flex; gap: 8px; }
+    .tool-footer .btn { width: 100%; min-height: 40px; box-shadow: none; }
 
-    .footer {
-      margin-top: 30px;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.5;
+    .quick-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--paper);
+      padding: 16px;
+      box-shadow: 0 10px 26px rgba(23,32,51,.06);
     }
+    .panel ul { margin: 10px 0 0 18px; padding: 0; color: var(--muted); line-height: 1.55; }
+    .panel li { margin: 6px 0; }
+    .status-row { display: grid; gap: 8px; margin-top: 12px; }
+    .module-row {
+      display: grid;
+      grid-template-columns: 150px 1fr auto;
+      gap: 10px;
+      align-items: center;
+      padding: 10px;
+      border: 1px solid #e1e8f2;
+      border-radius: var(--radius);
+      background: #fbfdff;
+    }
+    .module-row b { font-size: 14px; }
+    .module-row span { color: var(--muted); font-size: 13px; }
 
+    footer { margin-top: 24px; color: var(--muted); font-size: 13px; line-height: 1.5; }
+
+    @media (max-width: 1120px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-board { border-left: 0; border-top: 1px solid var(--line); grid-template-columns: repeat(2, 1fr); }
+      .tool-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
     @media (max-width: 720px) {
-      .wrap { width: min(100% - 20px, 1180px); padding-top: 20px; }
-      .hero { padding: 20px; }
-      .section { margin-top: 22px; }
+      .wrap { width: min(100% - 18px, 1240px); padding-top: 12px; }
+      .shell-top, .section-head { align-items: flex-start; flex-direction: column; }
+      .hero-copy, .hero-board { padding: 18px; }
+      .hero-board, .tool-grid, .quick-grid { grid-template-columns: 1fr; }
+      .actions { display: grid; grid-template-columns: 1fr; }
+      .module-row { grid-template-columns: 1fr; }
+      .tool { min-height: auto; }
     }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <section class="hero">
-      <div class="topbar">
-        <span class="eyebrow" data-i18n="eyebrow">Palmon Survival Hub 2026</span>
+    <header class="shell-top">
+      <a class="brand" href="index.html" aria-label="Palmon Survival Hub">
+        <span class="brand-mark"><i data-lucide="compass"></i></span>
+        <span>Palmon Survival Hub<small>Base, simuladores e auditoria</small></span>
+      </a>
+      <div class="lang" aria-label="Idioma">
+        <button id="langPt" class="active" type="button">PT</button>
+        <button id="langEn" type="button">EN</button>
       </div>
-      <div class="lang-panel">
-        <span class="lang-label" data-i18n="langLabel">Idioma / Language</span>
-        <div class="lang-switch" aria-label="Language switch">
-          <button id="langPt" class="active" type="button">PT</button>
-          <button id="langEn" type="button">EN</button>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <span class="eyebrow"><i data-lucide="sparkles"></i><span data-i18n="eyebrow">Painel principal 2026</span></span>
+          <h1 data-i18n="heroTitle">Escolha a decisão do jogo, não o arquivo</h1>
+          <p class="lead" data-i18n="heroCopy">A tela inicial agora organiza a Pedia, o montador, o simulador e os auditores por tarefa. Entre por aqui, use uma ferramenta e volte sempre ao hub pelo menu superior.</p>
+          <div class="actions">
+            <a class="btn primary" href="palmon_survival_pedia_completa.html"><i data-lucide="library-big"></i><span data-i18n="btnPedia">Abrir Pedia</span></a>
+            <a class="btn green" href="palmon_battle_simulator.html?mode=builder"><i data-lucide="layout-template"></i><span data-i18n="btnBuilder">Montar meu time</span></a>
+            <a class="btn amber" href="palmon_mount_auditor.html"><i data-lucide="scan-search"></i><span data-i18n="btnAudit">Auditar montarias</span></a>
+          </div>
         </div>
-      </div>
-      <h1 data-i18n="heroTitle">Pedia, simuladores e ferramentas do jogo em um só lugar</h1>
-      <p data-i18n="heroCopy">
-        Este hub reúne a enciclopédia consolidada, o montador de time e o simulador de batalha.
-        A base mistura dados extraídos do APK, cruzamento com fontes
-        oficiais e regras práticas de gameplay organizadas para consulta rápida.
-      </p>
-      <div class="actions">
-        <a class="btn btn-primary" id="btnPedia" data-i18n="btnPedia" href="palmon_survival_pedia_completa.html">Abrir Pedia Completa</a>
-        <a class="btn btn-secondary" id="btnBuilder" data-i18n="btnBuilder" href="palmon_battle_simulator.html?mode=builder">Montar Time</a>
-        <a class="btn btn-secondary" id="btnBattle" data-i18n="btnBattle" href="palmon_battle_simulator.html">Simular Batalha</a>
-        <a class="btn btn-secondary" id="btnMountAudit" data-i18n="btnMountAudit" href="palmon_mount_auditor.html">Auditar Montarias</a>
-      </div>
-    </section>
+        <aside class="hero-board" aria-label="Fluxo recomendado">
+          <div class="route-card"><span class="route-index">1</span><div><b data-i18n="route1Title">Estudar</b><span data-i18n="route1Copy">Pedia para regra, tier, classe, achievement e PalmonDex.</span></div></div>
+          <div class="route-card"><span class="route-index">2</span><div><b data-i18n="route2Title">Montar</b><span data-i18n="route2Copy">Arraste só os Palmons que você tem e otimize posição.</span></div></div>
+          <div class="route-card"><span class="route-index">3</span><div><b data-i18n="route3Title">Testar</b><span data-i18n="route3Copy">Simule contra inimigo ou print antes de gastar recurso.</span></div></div>
+          <div class="route-card"><span class="route-index">4</span><div><b data-i18n="route4Title">Auditar</b><span data-i18n="route4Copy">Some reset, retorno e melhor redistribuição.</span></div></div>
+        </aside>
+      </section>
 
-    <section class="section">
-      <h2 id="toolsTitle" data-i18n="toolsTitle">Ferramentas</h2>
-      <p data-i18n="toolsCopy">Entre pela Pedia para estudar o jogo, depois use os simuladores para decidir time, perks, skills e prioridades de progressão.</p>
-      <div class="grid">
-        <a class="card" href="palmon_survival_pedia_completa.html">
-          <img src="pedia_screenshot.png" alt="Preview da Pedia Completa" data-i18n-alt="imgPediaAlt">
-          <div class="card-body">
-            <h3 id="cardPediaTitle" data-i18n="cardPediaTitle">Pedia Completa</h3>
-            <p data-i18n="cardPediaCopy">Resumo executivo, combate, elementos, perks, tier list, PalmonDex e regras práticas em uma leitura só.</p>
-            <div class="meta">
-              <span class="chip" data-i18n="chipPedia1">Enciclopédia</span>
-              <span class="chip" data-i18n="chipPedia2">Tier list</span>
-              <span class="chip" data-i18n="chipPedia3">Mecânicas</span>
-            </div>
+      <section class="section" id="tools">
+        <div class="section-head">
+          <div>
+            <h2 data-i18n="toolsTitle">Ferramentas principais</h2>
+            <p data-i18n="toolsCopy">Quatro entradas principais. As páginas secundárias agora têm uma barra fixa de navegação para voltar ao hub.</p>
           </div>
-        </a>
+        </div>
+        <div class="tool-grid">
+          <article class="tool">
+            <div class="tool-visual blue"><span class="tool-icon"><i data-lucide="book-open"></i></span><span class="status"><i data-lucide="check-circle-2"></i><span data-i18n="statusReady">Pronto</span></span></div>
+            <div class="tool-body">
+              <div class="tool-head"><i data-lucide="library-big"></i><h3 data-i18n="pediaTitle">Pedia Completa</h3></div>
+              <p data-i18n="pediaCopy">Base consolidada: Palmons, elementos, ranks, perks, classes, bosses, achievements e guias por print.</p>
+              <div class="chips"><span class="chip">PalmonDex</span><span class="chip">Tier</span><span class="chip">S2</span></div>
+            </div>
+            <div class="tool-footer"><a class="btn primary" href="palmon_survival_pedia_completa.html"><i data-lucide="arrow-right"></i><span data-i18n="open">Abrir</span></a></div>
+          </article>
 
-        <a class="card" href="palmon_battle_simulator.html?mode=builder">
-          <img src="team_builder_screenshot.png" alt="Preview do Montador de Time" data-i18n-alt="imgBuilderAlt">
-          <div class="card-body">
-            <h3 id="cardBuilderTitle" data-i18n="cardBuilderTitle">Montador de Time</h3>
-            <p><span id="cardBuilderCopy" data-i18n="cardBuilderCopy">Use o mesmo motor do simulador para arrastar, trocar, otimizar so o seu elenco atual e ajustar evolucao, perks e skills por Palmon.</span></p>
-            <div class="meta">
-              <span class="chip" data-i18n="chipBuilder1">7 slots</span>
-              <span class="chip" data-i18n="chipBuilder2">Perks</span>
-              <span class="chip" data-i18n="chipBuilder3">Otimizador</span>
+          <article class="tool">
+            <div class="tool-visual green"><span class="tool-icon green"><i data-lucide="layout-template"></i></span><span class="status"><i data-lucide="check-circle-2"></i><span data-i18n="statusReady2">Pronto</span></span></div>
+            <div class="tool-body">
+              <div class="tool-head"><i data-lucide="users"></i><h3 data-i18n="builderTitle">Montador de Time</h3></div>
+              <p data-i18n="builderCopy">Monte o time que você tem, arraste posições e peça otimização sem adicionar Palmon de fora.</p>
+              <div class="chips"><span class="chip">7 slots</span><span class="chip">Perks</span><span class="chip">Skills</span></div>
             </div>
-          </div>
-        </a>
+            <div class="tool-footer"><a class="btn green" href="palmon_battle_simulator.html?mode=builder"><i data-lucide="arrow-right"></i><span data-i18n="open2">Abrir</span></a></div>
+          </article>
 
-        <a class="card" href="palmon_battle_simulator.html">
-          <img src="battle_simulator_screenshot.png" alt="Preview do Simulador de Batalha" data-i18n-alt="imgBattleAlt">
-          <div class="card-body">
-            <h3 id="cardBattleTitle" data-i18n="cardBattleTitle">Simulador de Batalha</h3>
-            <p data-i18n="cardBattleCopy">Teste distribuição frente/fundo, pressão de dano, resistência e impacto estimado das combinações do seu time.</p>
-            <div class="meta">
-              <span class="chip" data-i18n="chipBattle1">Simulação</span>
-              <span class="chip" data-i18n="chipBattle2">Posicionamento</span>
-              <span class="chip" data-i18n="chipBattle3">Comparação</span>
+          <article class="tool">
+            <div class="tool-visual amber"><span class="tool-icon amber"><i data-lucide="swords"></i></span><span class="status"><i data-lucide="check-circle-2"></i><span data-i18n="statusReady3">Pronto</span></span></div>
+            <div class="tool-body">
+              <div class="tool-head"><i data-lucide="bar-chart-3"></i><h3 data-i18n="battleTitle">Simulador de Batalha</h3></div>
+              <p data-i18n="battleCopy">Compare seu time contra inimigo, veja posicionamento, dano estimado, bônus e alertas.</p>
+              <div class="chips"><span class="chip">PvP</span><span class="chip">Dano</span><span class="chip">Slots</span></div>
             </div>
-          </div>
-        </a>
+            <div class="tool-footer"><a class="btn amber" href="palmon_battle_simulator.html"><i data-lucide="arrow-right"></i><span data-i18n="open3">Abrir</span></a></div>
+          </article>
 
-        <a class="card" href="palmon_mount_auditor.html">
-          <div class="card-visual" role="img" aria-label="Preview do Auditor de Montarias" data-i18n-aria="imgMountAuditAlt">
-            <div class="apk-diagram">
-              <div class="apk-box">Reset<br>retorno</div>
-              <div class="apk-box">7<br>montarias</div>
-              <div class="apk-box">Plano<br>ótimo</div>
+          <article class="tool">
+            <div class="tool-visual red"><span class="tool-icon red"><i data-lucide="scan-search"></i></span><span class="status"><i data-lucide="flask-conical"></i><span data-i18n="statusBeta">Beta</span></span></div>
+            <div class="tool-body">
+              <div class="tool-head"><i data-lucide="rotate-ccw"></i><h3 data-i18n="auditTitle">Auditor de Montarias</h3></div>
+              <p data-i18n="auditCopy">Informe nível, skill e retorno de reset para calcular recurso recuperável e melhor redistribuição.</p>
+              <div class="chips"><span class="chip">Reset</span><span class="chip">OCR</span><span class="chip">Snapshot</span></div>
             </div>
-          </div>
-          <div class="card-body">
-            <h3 data-i18n="cardMountAuditTitle">Auditor de Montarias</h3>
-            <p data-i18n="cardMountAuditCopy">Cadastre nível, skill e retorno de reset para calcular recurso recuperável e redistribuição por objetivo.</p>
-            <div class="meta">
-              <span class="chip" data-i18n="chipMountAudit1">Reset</span>
-              <span class="chip" data-i18n="chipMountAudit2">OCR beta</span>
-              <span class="chip" data-i18n="chipMountAudit3">Snapshot</span>
-            </div>
-          </div>
-        </a>
+            <div class="tool-footer"><a class="btn" href="palmon_mount_auditor.html"><i data-lucide="arrow-right"></i><span data-i18n="open4">Abrir</span></a></div>
+          </article>
+        </div>
+      </section>
 
-        <a class="card" href="palmon_apk_0_5_325_report.html">
-          <div class="card-visual" role="img" aria-label="Preview do relatorio APK 0.5.325" data-i18n-aria="imgApkAlt">
-            <div class="apk-diagram">
-              <div class="apk-box">APK<br>0.5.325</div>
-              <div class="apk-box">664<br>configs</div>
-              <div class="apk-box">server<br>safe map</div>
+      <section class="section">
+        <div class="quick-grid">
+          <article class="panel">
+            <h2 data-i18n="decisionTitle">Atalhos por pergunta</h2>
+            <ul>
+              <li data-i18n="decision1">“O que faço agora?” → Pedia + Montador de Time.</li>
+              <li data-i18n="decision2">“Vale resetar montaria?” → Auditor de Montarias.</li>
+              <li data-i18n="decision3">“Ganhei ou perdi essa luta?” → Simulador de Batalha.</li>
+              <li data-i18n="decision4">“Esse print é de quê?” → Pedia, seção Guia para prints.</li>
+            </ul>
+          </article>
+          <article class="panel">
+            <h2 data-i18n="statusTitle">Status dos módulos</h2>
+            <div class="status-row">
+              <div class="module-row"><b>Pedia</b><span data-i18n="modulePedia">Completa e navegável.</span><span class="status">Online</span></div>
+              <div class="module-row"><b>Times</b><span data-i18n="moduleTeams">Montador e simulador unidos no mesmo motor.</span><span class="status">Online</span></div>
+              <div class="module-row"><b>Conta</b><span data-i18n="moduleAccount">Auditor começou por montarias.</span><span class="status">Beta</span></div>
+              <div class="module-row"><b>Loja</b><span data-i18n="moduleShop">Fora do menu principal até validar servidor/prints ativos.</span><span class="status">Offline</span></div>
             </div>
-          </div>
-          <div class="card-body">
-            <h3 data-i18n="cardApkTitle">Relatorio APK 0.5.325</h3>
-            <p data-i18n="cardApkCopy">Delta tecnico do novo XAPK: configs de Boss, arquitetura de servidor e compras em nivel seguro.</p>
-            <div class="meta">
-              <span class="chip" data-i18n="chipApk1">0.5.325</span>
-              <span class="chip" data-i18n="chipApk2">Season</span>
-              <span class="chip" data-i18n="chipApk3">Engenharia</span>
-            </div>
-          </div>
-        </a>
-      </div>
-    </section>
+          </article>
+        </div>
+      </section>
 
-    <p class="footer" id="footerWrap" data-i18n="footerWrap">
-      Publicação preparada para GitHub Pages. Alguns dados vêm do cliente/APK e outros de fontes oficiais e da comunidade verificadas em 2026.
-    </p>
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <h2 data-i18n="technicalTitle">Base técnica</h2>
+            <p data-i18n="technicalCopy">Área de apoio para consulta técnica. Fica separada das ferramentas de gameplay para não poluir o fluxo principal.</p>
+          </div>
+          <a class="btn" href="palmon_apk_0_5_325_report.html"><i data-lucide="file-search"></i><span data-i18n="technicalBtn">Abrir relatório APK</span></a>
+        </div>
+      </section>
+    </main>
+
+    <footer data-i18n="footer">Publicado no GitHub Pages. Dados vêm de APK/XAPK local, prints do jogo e fontes verificadas em 2026; lacunas ficam marcadas para evitar chute.</footer>
   </div>
+
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
   <script>
     window.PALMON_SKIP_TEXT_TRANSLATION = true;
     const translations = {
       pt: {
-        pageTitle: 'Palmon Survival Hub 2026',
-        eyebrow: 'Palmon Survival Hub 2026',
-        langLabel: 'Idioma / Language',
-        heroTitle: 'Pedia, simuladores e ferramentas do jogo em um só lugar',
-        heroCopy: 'Este hub reúne a enciclopédia consolidada, o montador de time e o simulador de batalha. A base mistura dados extraídos do APK, cruzamento com fontes oficiais e regras práticas de gameplay organizadas para consulta rápida.',
-        btnPedia: 'Abrir Pedia Completa',
-        btnBuilder: 'Montar Time',
-        btnBattle: 'Simular Batalha',
-        btnMountAudit: 'Auditar Montarias',
-        toolsTitle: 'Ferramentas',
-        toolsCopy: 'Entre pela Pedia para estudar o jogo, depois use os simuladores para decidir time, perks, skills e prioridades de progressão.',
-        cardPediaTitle: 'Pedia Completa',
-        cardPediaCopy: 'Resumo executivo, combate, elementos, perks, tier list, PalmonDex e regras práticas em uma leitura só.',
-        chipPedia1: 'Enciclopédia',
-        chipPedia2: 'Tier list',
-        chipPedia3: 'Mecânicas',
-        cardBuilderTitle: 'Montador de Time',
-        cardBuilderCopy: 'Use o mesmo motor do simulador para arrastar, trocar, otimizar só o seu elenco atual e ajustar evolução, perks e skills por Palmon.',
-        chipBuilder1: '7 slots',
-        chipBuilder2: 'Perks',
-        chipBuilder3: 'Otimizador',
-        cardBattleTitle: 'Simulador de Batalha',
-        cardBattleCopy: 'Teste distribuição frente/fundo, pressão de dano, resistência e impacto estimado das combinações do seu time.',
-        chipBattle1: 'Simulação',
-        chipBattle2: 'Posicionamento',
-        chipBattle3: 'Comparação',
-        cardMountAuditTitle: 'Auditor de Montarias',
-        cardMountAuditCopy: 'Cadastre nível, skill e retorno de reset para calcular recurso recuperável e redistribuição por objetivo.',
-        chipMountAudit1: 'Reset',
-        chipMountAudit2: 'OCR beta',
-        chipMountAudit3: 'Snapshot',
-        cardApkTitle: 'Relatorio APK 0.5.325',
-        cardApkCopy: 'Delta tecnico do novo XAPK: configs de Boss, arquitetura de servidor e compras em nivel seguro.',
-        chipApk1: '0.5.325',
-        chipApk2: 'Season',
-        chipApk3: 'Engenharia',
-        footerWrap: 'Publicação preparada para GitHub Pages. Alguns dados vêm do cliente/APK e outros de fontes oficiais e da comunidade verificadas em 2026.',
-        imgPediaAlt: 'Preview da Pedia Completa',
-        imgBuilderAlt: 'Preview do Montador de Time',
-        imgBattleAlt: 'Preview do Simulador de Batalha',
-        imgMountAuditAlt: 'Preview do Auditor de Montarias',
-        imgApkAlt: 'Preview do relatorio APK 0.5.325'
+        pageTitle: "Palmon Survival Hub 2026",
+        eyebrow: "Painel principal 2026",
+        heroTitle: "Escolha a decisão do jogo, não o arquivo",
+        heroCopy: "A tela inicial agora organiza a Pedia, o montador, o simulador e os auditores por tarefa. Entre por aqui, use uma ferramenta e volte sempre ao hub pelo menu superior.",
+        btnPedia: "Abrir Pedia",
+        btnBuilder: "Montar meu time",
+        btnAudit: "Auditar montarias",
+        route1Title: "Estudar",
+        route1Copy: "Pedia para regra, tier, classe, achievement e PalmonDex.",
+        route2Title: "Montar",
+        route2Copy: "Arraste só os Palmons que você tem e otimize posição.",
+        route3Title: "Testar",
+        route3Copy: "Simule contra inimigo ou print antes de gastar recurso.",
+        route4Title: "Auditar",
+        route4Copy: "Some reset, retorno e melhor redistribuição.",
+        toolsTitle: "Ferramentas principais",
+        toolsCopy: "Quatro entradas principais. As páginas secundárias agora têm uma barra fixa de navegação para voltar ao hub.",
+        statusReady: "Pronto",
+        statusReady2: "Pronto",
+        statusReady3: "Pronto",
+        statusBeta: "Beta",
+        pediaTitle: "Pedia Completa",
+        pediaCopy: "Base consolidada: Palmons, elementos, ranks, perks, classes, bosses, achievements e guias por print.",
+        builderTitle: "Montador de Time",
+        builderCopy: "Monte o time que você tem, arraste posições e peça otimização sem adicionar Palmon de fora.",
+        battleTitle: "Simulador de Batalha",
+        battleCopy: "Compare seu time contra inimigo, veja posicionamento, dano estimado, bônus e alertas.",
+        auditTitle: "Auditor de Montarias",
+        auditCopy: "Informe nível, skill e retorno de reset para calcular recurso recuperável e melhor redistribuição.",
+        open: "Abrir",
+        open2: "Abrir",
+        open3: "Abrir",
+        open4: "Abrir",
+        decisionTitle: "Atalhos por pergunta",
+        decision1: "“O que faço agora?” → Pedia + Montador de Time.",
+        decision2: "“Vale resetar montaria?” → Auditor de Montarias.",
+        decision3: "“Ganhei ou perdi essa luta?” → Simulador de Batalha.",
+        decision4: "“Esse print é de quê?” → Pedia, seção Guia para prints.",
+        statusTitle: "Status dos módulos",
+        modulePedia: "Completa e navegável.",
+        moduleTeams: "Montador e simulador unidos no mesmo motor.",
+        moduleAccount: "Auditor começou por montarias.",
+        moduleShop: "Fora do menu principal até validar servidor/prints ativos.",
+        technicalTitle: "Base técnica",
+        technicalCopy: "Área de apoio para consulta técnica. Fica separada das ferramentas de gameplay para não poluir o fluxo principal.",
+        technicalBtn: "Abrir relatório APK",
+        footer: "Publicado no GitHub Pages. Dados vêm de APK/XAPK local, prints do jogo e fontes verificadas em 2026; lacunas ficam marcadas para evitar chute."
       },
       en: {
-        pageTitle: 'Palmon Survival Hub 2026',
-        eyebrow: 'Palmon Survival Hub 2026',
-        langLabel: 'Language / Idioma',
-        heroTitle: 'Pedia, simulators, and game tools in one place',
-        heroCopy: 'This hub brings together the consolidated encyclopedia, team builder, and battle simulator. The knowledge base combines APK-extracted data, official sources, and practical gameplay rules organized for quick consultation.',
-        btnPedia: 'Open Full Pedia',
-        btnBuilder: 'Build Team',
-        btnBattle: 'Simulate Battle',
-        btnMountAudit: 'Audit Mounts',
-        toolsTitle: 'Tools',
-        toolsCopy: 'Start with the Pedia to study the game, then use the simulators to decide team layout, perks, skills, and progression priorities.',
-        cardPediaTitle: 'Full Pedia',
-        cardPediaCopy: 'Executive summary, combat, elements, perks, tier list, PalmonDex, and practical rules in a single read.',
-        chipPedia1: 'Encyclopedia',
-        chipPedia2: 'Tier list',
-        chipPedia3: 'Mechanics',
-        cardBuilderTitle: 'Team Builder',
-        cardBuilderCopy: 'Use the same simulator engine to drag, swap, optimize only your current roster, and adjust evolution, perks, and skills for each Palmon.',
-        chipBuilder1: '7 slots',
-        chipBuilder2: 'Perks',
-        chipBuilder3: 'Optimizer',
-        cardBattleTitle: 'Battle Simulator',
-        cardBattleCopy: 'Test front/back distribution, damage pressure, survivability, and the estimated impact of your team combinations.',
-        chipBattle1: 'Simulation',
-        chipBattle2: 'Positioning',
-        chipBattle3: 'Comparison',
-        cardMountAuditTitle: 'Mount Auditor',
-        cardMountAuditCopy: 'Enter level, skill, and reset return to estimate recoverable resources and redistribution by goal.',
-        chipMountAudit1: 'Reset',
-        chipMountAudit2: 'OCR beta',
-        chipMountAudit3: 'Snapshot',
-        cardApkTitle: 'APK 0.5.325 Report',
-        cardApkCopy: 'Technical delta from the new XAPK: Boss configs, server architecture, and payments at a safe level.',
-        chipApk1: '0.5.325',
-        chipApk2: 'Season',
-        chipApk3: 'Engineering',
-        footerWrap: 'Publication prepared for GitHub Pages. Some data comes from the client/APK and other parts come from official and community sources verified in 2026.',
-        imgPediaAlt: 'Full Pedia preview',
-        imgBuilderAlt: 'Team Builder preview',
-        imgBattleAlt: 'Battle Simulator preview',
-        imgMountAuditAlt: 'Mount Auditor preview',
-        imgApkAlt: 'APK 0.5.325 report preview'
+        pageTitle: "Palmon Survival Hub 2026",
+        eyebrow: "Main dashboard 2026",
+        heroTitle: "Choose the game decision, not the file",
+        heroCopy: "The home screen now organizes the Pedia, team builder, simulator, and auditors by task. Start here, use a tool, and return to the hub from the top menu.",
+        btnPedia: "Open Pedia",
+        btnBuilder: "Build my team",
+        btnAudit: "Audit mounts",
+        route1Title: "Study",
+        route1Copy: "Pedia for rules, tiers, classes, achievements, and PalmonDex.",
+        route2Title: "Build",
+        route2Copy: "Drag only the Palmons you own and optimize positions.",
+        route3Title: "Test",
+        route3Copy: "Simulate against an enemy or screenshot before spending resources.",
+        route4Title: "Audit",
+        route4Copy: "Add reset return and find better redistribution.",
+        toolsTitle: "Main tools",
+        toolsCopy: "Four main entry points. Secondary pages now have a fixed navigation bar back to the hub.",
+        statusReady: "Ready",
+        statusReady2: "Ready",
+        statusReady3: "Ready",
+        statusBeta: "Beta",
+        pediaTitle: "Full Pedia",
+        pediaCopy: "Consolidated base: Palmons, elements, ranks, perks, classes, bosses, achievements, and screenshot guides.",
+        builderTitle: "Team Builder",
+        builderCopy: "Build the team you own, drag positions, and optimize without adding Palmons from outside.",
+        battleTitle: "Battle Simulator",
+        battleCopy: "Compare your team against an enemy and review positioning, estimated damage, bonuses, and alerts.",
+        auditTitle: "Mount Auditor",
+        auditCopy: "Enter level, skill, and reset return to calculate recoverable resources and better redistribution.",
+        open: "Open",
+        open2: "Open",
+        open3: "Open",
+        open4: "Open",
+        decisionTitle: "Shortcuts by question",
+        decision1: "“What should I do now?” → Pedia + Team Builder.",
+        decision2: "“Should I reset a mount?” → Mount Auditor.",
+        decision3: "“Would I win this fight?” → Battle Simulator.",
+        decision4: "“What is this screenshot?” → Pedia screenshot guide.",
+        statusTitle: "Module status",
+        modulePedia: "Complete and navigable.",
+        moduleTeams: "Team builder and simulator share the same engine.",
+        moduleAccount: "Account audit started with mounts.",
+        moduleShop: "Outside the main menu until active server/screenshots are reliable.",
+        technicalTitle: "Technical base",
+        technicalCopy: "Support area for technical reference. It stays separate from gameplay tools to keep the main flow clean.",
+        technicalBtn: "Open APK report",
+        footer: "Published on GitHub Pages. Data comes from local APK/XAPK, game screenshots, and sources verified in 2026; gaps are marked to avoid guessing."
       }
     };
 
-    const langButtons = { pt: document.getElementById('langPt'), en: document.getElementById('langEn') };
-    function applyTranslations(lang) {
+    const buttons = { pt: document.getElementById("langPt"), en: document.getElementById("langEn") };
+    function applyLang(lang) {
       const dict = translations[lang] || translations.pt;
       document.title = dict.pageTitle;
-      document.querySelectorAll('[data-i18n]').forEach((element) => {
-        const key = element.dataset.i18n;
-        if (dict[key]) {
-          element.textContent = dict[key];
-        }
-      });
-      document.querySelectorAll('[data-i18n-alt]').forEach((element) => {
-        const key = element.dataset.i18nAlt;
-        if (dict[key]) {
-          element.alt = dict[key];
-        }
-      });
-      document.querySelectorAll('[data-i18n-aria]').forEach((element) => {
-        const key = element.dataset.i18nAria;
-        if (dict[key]) {
-          element.setAttribute('aria-label', dict[key]);
-        }
+      document.documentElement.lang = lang === "en" ? "en" : "pt-BR";
+      Object.keys(buttons).forEach((key) => buttons[key].classList.toggle("active", key === lang));
+      document.querySelectorAll("[data-i18n]").forEach((node) => {
+        const value = dict[node.dataset.i18n];
+        if (value) node.textContent = value;
       });
     }
     function setLang(lang) {
-      langButtons.pt.classList.toggle('active', lang === 'pt');
-      langButtons.en.classList.toggle('active', lang === 'en');
-      document.documentElement.lang = lang === 'en' ? 'en' : 'pt-BR';
-      localStorage.setItem('palmon_lang', lang);
-      applyTranslations(lang);
+      localStorage.setItem("palmon_lang", lang);
+      const url = new URL(window.location.href);
+      url.searchParams.set("lang", lang);
+      history.replaceState(null, "", url.toString());
+      applyLang(lang);
+      document.querySelectorAll("a[href$='.html'],a[href*='.html?']").forEach((link) => {
+        const urlLink = new URL(link.getAttribute("href"), window.location.href);
+        urlLink.searchParams.set("lang", lang);
+        link.setAttribute("href", urlLink.pathname.split("/").pop() + urlLink.search + urlLink.hash);
+      });
     }
-    langButtons.pt.addEventListener('click', () => setLang('pt'));
-    langButtons.en.addEventListener('click', () => setLang('en'));
-    setLang(localStorage.getItem('palmon_lang') || 'pt');
+    const queryLang = new URLSearchParams(window.location.search).get("lang");
+    const storedLang = localStorage.getItem("palmon_lang");
+    const initialLang = ["pt", "en"].includes(queryLang) ? queryLang : (["pt", "en"].includes(storedLang) ? storedLang : "pt");
+    buttons.pt.addEventListener("click", () => setLang("pt"));
+    buttons.en.addEventListener("click", () => setLang("en"));
+    setLang(initialLang);
+    if (window.lucide) window.lucide.createIcons();
   </script>
-  <script src="palmon_i18n.js"></script>
 </body>
 </html>
