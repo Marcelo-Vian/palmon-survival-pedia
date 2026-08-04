@@ -233,9 +233,9 @@
           <input id="freeFood" type="text" value="0" placeholder="ex: 9.5M">
         </label>
         <label>Ferraduras livres agora
-          <input id="freeShoes" type="text" value="0" placeholder="ex: 3">
+          <input id="freeShoes" type="text" value="0" placeholder="ex: 3; reset não soma aqui">
         </label>
-        <label>% retorno estimado
+        <label>% retorno de comida estimado
           <input id="refundRate" type="number" min="0" max="100" value="100">
         </label>
         <label>Modo
@@ -252,8 +252,8 @@
       <div class="summary-grid">
         <div class="metric"><span id="ownedCount">0</span><small>montarias marcadas</small></div>
         <div class="metric"><span id="currentPower">0</span><small>poder base atual informado</small></div>
-        <div class="metric"><span id="refundTotal">0 comida + 0 ferraduras</span><small>recuperável por Lv</small></div>
-        <div class="metric"><span id="budgetTotal">0 comida + 0 ferraduras</span><small>orçamento de decisão</small></div>
+        <div class="metric"><span id="refundTotal">0 comida</span><small>comida recuperável estimada</small></div>
+        <div class="metric"><span id="budgetTotal">0 comida + 0 ferraduras</span><small>orçamento: comida + ferradura livre</small></div>
       </div>
     </section>
 
@@ -502,6 +502,11 @@
       return `${formatResource(data.food || 0)} comida + ${formatResource(data.shoes || 0)} ferraduras`;
     }
 
+    function formatRefundBundle(value) {
+      const data = value || {};
+      return `${formatResource(data.food || 0)} comida`;
+    }
+
     function spendEquivalentToReach(fromLevel, toLevel) {
       return spendToReach(fromLevel, toLevel).equivalent;
     }
@@ -542,12 +547,13 @@
       const locked = rowValue(mount.id, "locked", false);
       const level = Math.max(0, rowValue(mount.id, "level", 0));
       const skill = skillFromMountLevel(level);
-      const spent = estimatedSpendFromLevel(level);
+      const invested = estimatedSpendFromLevel(level);
+      const spent = resource(invested.food, 0);
       const refund = spent.equivalent;
-      const refundKind = level > 0 ? "por Lv" : "vazio";
+      const refundKind = level > 0 ? "comida por Lv" : "vazio";
       const power = owned ? mount.basePower + Math.round(level * (mount.quality === "UR" ? 5200 : 1700)) : 0;
       const value = owned ? Math.round(weight * (1 + level / 180) + skill * 18) : 0;
-      return { weight, owned, locked, level, skill, spent, refund, refundKind, power, value };
+      return { weight, owned, locked, level, skill, spent, invested, refund, refundKind, power, value };
     }
 
     function renderRows() {
@@ -591,7 +597,7 @@
               <label>Travada
                 <span class="checkline"><input type="checkbox" data-id="${mount.id}" data-field="locked"> não resetar</span>
               </label>
-              <div class="muted" style="grid-column:1 / -1">Custo e retorno são calculados pelo Lv informado; a faixa de Skill vem do APK.</div>
+              <div class="muted" style="grid-column:1 / -1">Custo de upgrade usa comida + gates de ferradura. Retorno estimado considera só comida até a ferradura de reset ser confirmada.</div>
             </div>
           </td>
           <td>
@@ -691,12 +697,13 @@
     function raisePlanItemTo(item, desiredLevel, remainingBudget) {
       let remaining = resource(remainingBudget?.food || 0, remainingBudget?.shoes || 0);
       const desired = Math.max(item.target, Math.min(181, desiredLevel));
-      while (item.target < desired) {
-        const cost = nextLevelCost(item.target);
-        if (cost.equivalent <= 0 || !canAfford(cost, remaining)) break;
-        item.target += 1;
-        item.spent = addResource(item.spent, cost);
-        remaining = subtractResource(remaining, cost);
+      if (item.target < desired) {
+        const fullCost = spendToReach(item.target, desired);
+        if (fullCost.equivalent > 0 && canAfford(fullCost, remaining)) {
+          item.target = desired;
+          item.spent = addResource(item.spent, fullCost);
+          remaining = subtractResource(remaining, fullCost);
+        }
       }
       return remaining;
     }
@@ -713,7 +720,7 @@
         weight: x.weight
       }));
       let remaining = resource(budget?.food || 0, budget?.shoes || 0);
-      const stages = [70, 100, 181];
+      const stages = [30, 50, 70, 100, 181];
       stages.forEach((stage) => {
         plan.forEach((item) => {
           remaining = raisePlanItemTo(item, stage, remaining);
@@ -732,19 +739,24 @@
         const cost = nextLevelCost(item.target);
         item.nextLevelCost = cost;
         item.nextLevelShortage = shortageFor(cost, remaining);
+        item.nextMilestone = nextMilestoneForLevel(item.target);
+        item.nextMilestoneCost = item.nextMilestone ? spendToReach(item.target, item.nextMilestone) : resource(0, 0);
+        item.nextMilestoneShortage = item.nextMilestone ? shortageFor(item.nextMilestoneCost, remaining) : resource(0, 0);
       });
       return { plan, remaining, next };
     }
 
     function levelAction(item) {
       if (item.target > item.level) {
-        return `Subir primeiro para Lv ${item.target}`;
+        return `Subir direto para Lv ${item.target}; fecha marco de Skill ${item.targetSkill}`;
       }
-      if ((item.nextLevelShortage?.food || 0) > 0 || (item.nextLevelShortage?.shoes || 0) > 0) {
-        return `Travado no Lv ${item.target}; falta ${formatResourceBundle(item.nextLevelShortage)} para o próximo upgrade`;
+      if (item.nextMilestone) {
+        const missing = item.nextMilestoneShortage || resource(0, 0);
+        if ((missing.food || 0) > 0 || (missing.shoes || 0) > 0) {
+          return `Não subir parcial; guardar para Lv ${item.nextMilestone}. Falta ${formatResourceBundle(missing)}`;
+        }
+        return `Pode fechar marco Lv ${item.nextMilestone}; não pare em nível intermediário`;
       }
-      const milestone = nextMilestoneForLevel(item.target);
-      if (milestone) return `Manter; próximo marco Lv ${milestone}`;
       return "Manter no máximo";
     }
 
@@ -771,7 +783,7 @@
       const budget = addResource(free, refund);
       document.getElementById("ownedCount").textContent = owned;
       document.getElementById("currentPower").textContent = br.format(currentPower);
-      document.getElementById("refundTotal").textContent = formatResourceBundle(refund);
+      document.getElementById("refundTotal").textContent = formatRefundBundle(refund);
       document.getElementById("budgetTotal").textContent = formatResourceBundle(budget);
       updateStageHint();
       scored.forEach((item) => {
@@ -793,7 +805,7 @@
 
       cards.push(`<div class="rec">
         <strong>Regra do APK 0.5.384 aplicada</strong>
-        <p>As tabelas de montaria/custo/reset do APK 0.5.384 batem byte a byte com a base 0.5.346. Skill da montaria é automática por faixa de nível: 1-29 = Skill 1, 30-49 = Skill 2, 50-69 = Skill 3, 70-99 = Skill 4, 100+ = Skill 5. A ferramenta separa comida e ferraduras; ferraduras aparecem nos gates de 5 níveis, como no seu print Lv50 pedindo 45.</p>
+        <p>As tabelas de montaria/custo/reset do APK 0.5.384 batem byte a byte com a base 0.5.346. Skill da montaria é automática por faixa de nível: 1-29 = Skill 1, 30-49 = Skill 2, 50-69 = Skill 3, 70-99 = Skill 4, 100+ = Skill 5. A ferramenta separa comida e ferraduras; ferraduras aparecem nos gates de 5 níveis, como no seu print Lv50 pedindo 45. Ferradura recuperada no reset ainda não está confirmada, então ela não entra no retorno estimado.</p>
       </div>`);
 
       cards.push(`<div class="rec">
@@ -810,7 +822,7 @@
             <td>${levelAction(x)}</td>
           </tr>`).join("")}</tbody>
         </table></div>` : `<p class="muted">Marque quais montarias você tem e informe o Lv atual para eu calcular o plano em níveis.</p>`}
-        <p class="muted">Orçamento usado: ${formatResourceBundle(free)} livre + ${formatResourceBundle(refund)} de reset = ${formatResourceBundle(budget)}. O plano sobe com comida em todo nível e trava nas barreiras de ferradura a cada 5 níveis. Os marcos reais de decisão são Lv 30, 50, 70 e 100.</p>
+        <p class="muted">Orçamento usado: ${formatResourceBundle(free)} livre + ${formatRefundBundle(refund)} de reset = ${formatResourceBundle(budget)}. O plano sobe com comida em todo nível e trava nas barreiras de ferradura a cada 5 níveis. Ferradura no orçamento vem só do campo "Ferraduras livres agora", não do reset. Os marcos reais de decisão são Lv 30, 50, 70 e 100.</p>
         ${levelPlan.next ? `<p class="muted">Próximo marco: ${levelPlan.next.item.mount.name} de Lv ${levelPlan.next.item.target} para Lv ${levelPlan.next.milestone}. Falta cerca de ${formatResourceBundle(levelPlan.next.missing)} depois do orçamento atual.</p>` : ""}
       </div>`);
 
@@ -819,13 +831,13 @@
           <strong>Resetar para financiar</strong>
           <p>Estas são as melhores candidatas a reset no modo atual porque estão fora do top do objetivo e têm recurso preso em nível.</p>
           <div class="table-wrap"><table>
-            <thead><tr><th>Prioridade</th><th>Resetar</th><th>Lv/Skill</th><th>Retorno estimado</th><th>Motivo</th></tr></thead>
+            <thead><tr><th>Prioridade</th><th>Resetar</th><th>Lv/Skill</th><th>Comida estimada</th><th>Motivo</th></tr></thead>
             <tbody>${resetCandidates.slice(0, 6).map((x, idx) => `<tr>
               <td>#${idx + 1}</td>
               <td><b>${x.mount.name}</b></td>
               <td>Lv ${x.level}<br><span class="muted">Skill ${x.skill}</span></td>
-              <td>${formatResourceBundle(x.spent)}</td>
-              <td>Score ${x.weight}/100 para ${goalLabel(goal)}; melhor mover para o top se o reset não tiver perda grande.</td>
+              <td>${formatRefundBundle(x.spent)}</td>
+              <td>Score ${x.weight}/100 para ${goalLabel(goal)}; ferradura de reset não entra na conta até ser confirmada no jogo.</td>
             </tr>`).join("")}</tbody>
           </table></div>
         </div>`);
