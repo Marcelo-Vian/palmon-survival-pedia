@@ -866,6 +866,66 @@
       return options.sort((a, b) => Number(b.closes) - Number(a.closes) || b.net.equivalent - a.net.equivalent);
     }
 
+    function actionPainFor(candidate, action, goal = currentGoal()) {
+      const priority = lv100Priority(candidate.mount, goal);
+      if (action === "baixar para Lv50") return Math.round(priority * 0.45 + Math.max(0, candidate.level - 50) * 0.8);
+      if (action === "resetar inteira") return Math.round(priority * 1.35 + candidate.level * 0.6);
+      return 0;
+    }
+
+    function combinedSacrificeOptionsForLv100(primary, candidates, budget, refundRate, refundPolicy) {
+      if (!primary || primary.level >= 100) return [];
+      const need = spendToReach(primary.level, 100);
+      const pool = candidates
+        .filter((x) => x.owned && x.mount.id !== primary.mount.id && x.level > 0)
+        .sort((a, b) => lv100Priority(b.mount) - lv100Priority(a.mount))
+        .slice(0, 6);
+      const variants = pool.map((candidate) => {
+        const list = [{ candidate, action: "manter", net: resource(0, 0), pain: 0 }];
+        if (candidate.level > 50) {
+          list.push({
+            candidate,
+            action: "baixar para Lv50",
+            net: netResourceIfRebuildTo(candidate, 50, refundRate, refundPolicy),
+            pain: actionPainFor(candidate, "baixar para Lv50")
+          });
+        }
+        list.push({
+          candidate,
+          action: "resetar inteira",
+          net: netResourceIfRebuildTo(candidate, 0, refundRate, refundPolicy),
+          pain: actionPainFor(candidate, "resetar inteira")
+        });
+        return list;
+      });
+
+      const results = [];
+      function walk(index, selected, net, pain) {
+        if (index >= variants.length) {
+          const changes = selected.filter((x) => x.action !== "manter");
+          if (!changes.length) return;
+          const newBudget = addResource(budget, net);
+          const missing = shortageFor(need, newBudget);
+          results.push({
+            changes,
+            net,
+            newBudget,
+            missing,
+            closes: canAfford(need, newBudget),
+            pain
+          });
+          return;
+        }
+        variants[index].forEach((variant) => {
+          walk(index + 1, selected.concat(variant), addResource(net, variant.net), pain + variant.pain);
+        });
+      }
+      walk(0, [], resource(0, 0), 0);
+      return results
+        .sort((a, b) => Number(b.closes) - Number(a.closes) || a.missing.equivalent - b.missing.equivalent || a.pain - b.pain)
+        .slice(0, 8);
+    }
+
     function levelAction(item) {
       if (item.target > item.level) {
         return `Subir direto para Lv ${item.target}; fecha marco de Skill ${item.targetSkill}`;
@@ -938,9 +998,15 @@
       const firstLv100Cost = firstLv100 ? spendToReach(firstLv100.level, 100) : resource(0, 0);
       const firstLv100Missing = firstLv100 ? shortageFor(firstLv100Cost, budget) : resource(0, 0);
       const firstLv100Ready = firstLv100 ? canAfford(firstLv100Cost, budget) : false;
+      const sacrificePool = ranked.filter((x) => x.owned && !resetIds.has(x.mount.id));
       const sacrificeOptions = firstLv100
-        ? sacrificeOptionsForLv100(firstLv100, ranked.filter((x) => x.owned && !resetIds.has(x.mount.id)), budget, refundRate, refundPolicy)
+        ? sacrificeOptionsForLv100(firstLv100, sacrificePool, budget, refundRate, refundPolicy)
         : [];
+      const comboOptions = firstLv100
+        ? combinedSacrificeOptionsForLv100(firstLv100, sacrificePool, budget, refundRate, refundPolicy)
+        : [];
+      const bestCombo = comboOptions[0] || null;
+      const bestClosingCombo = comboOptions.find((x) => x.closes) || null;
       const cards = [];
 
       cards.push(`<div class="rec">
@@ -951,6 +1017,12 @@
       cards.push(`<div class="rec">
         <strong>Resumo financeiro das montarias</strong>
         <p>Investido nas montarias marcadas: <b>${formatResourceBundle(investedTotal)}</b>. Reset sugerido: <b>${formatResourceBundle(refund)}</b>. Recurso livre informado: <b>${formatResourceBundle(free)}</b>. Orçamento para redistribuir: <b>${formatResourceBundle(budget)}</b>.</p>
+      </div>`);
+
+      cards.push(`<div class="rec">
+        <strong>Decisão direta</strong>
+        <p>${firstLv100 ? `Alvo principal agora: <b>${firstLv100.mount.name} Lv100</b>. ${firstLv100Ready ? "FAÇA: o orçamento selecionado fecha o Lv100." : bestClosingCombo ? `Dá para fechar usando troca combinada: <b>${bestClosingCombo.changes.map((x) => `${x.candidate.mount.name} ${x.action}`).join(" + ")}</b>.` : `Não fecha Lv100 ainda. Mesmo a melhor combinação testada ainda deixa faltando <b>${bestCombo ? formatResourceBundle(bestCombo.missing) : formatResourceBundle(firstLv100Missing)}</b>.`}` : "Marque suas montarias para gerar decisão direta."}</p>
+        ${firstLv100 && !firstLv100Ready && !bestClosingCombo ? `<p class="callout warn">Resposta prática: não destrua uma secundária boa só para tentar Lv100 agora. Se for gastar, use apenas ganho parcial conscientemente; para decisão forte, junte até fechar ${firstLv100.mount.name} Lv100.</p>` : ""}
       </div>`);
 
       cards.push(`<div class="rec">
@@ -992,6 +1064,22 @@
             </tr>`).join("")}</tbody>
           </table></div>` : `<p class="muted">Não há secundária preservada com nível investido para testar.</p>`}
           <p class="${bestClose ? "callout ok" : "callout warn"}">${bestClose ? `Existe troca que fecha o Lv100: ${bestClose.candidate.mount.name} ${bestClose.action}. Só faça se aceitar perder essa secundária.` : `No orçamento atual, baixar/resetar uma secundária isolada ainda não fecha ${firstLv100.mount.name} Lv100. Portanto, a decisão correta é manter as Lv70 importantes e juntar recurso, ou usar ganho parcial conscientemente.`}</p>
+        </div>`);
+
+        cards.push(`<div class="rec">
+          <strong>Combinações para tentar fechar ${firstLv100.mount.name} Lv100</strong>
+          <p>Esta tabela testa várias trocas ao mesmo tempo. Ela mostra se existe uma combinação que realmente fecha Lv100 ou só chega mais perto.</p>
+          ${comboOptions.length ? `<div class="table-wrap"><table>
+            <thead><tr><th>#</th><th>Combinação testada</th><th>Libera total</th><th>Falta depois</th><th>Veredito</th></tr></thead>
+            <tbody>${comboOptions.map((x, idx) => `<tr>
+              <td>#${idx + 1}</td>
+              <td>${x.changes.map((change) => `<b>${change.candidate.mount.name}</b> ${change.action}`).join("<br>")}</td>
+              <td>${formatResourceBundle(x.net)}</td>
+              <td>${x.closes ? "0 comida + 0 ferraduras" : formatResourceBundle(x.missing)}</td>
+              <td>${x.closes ? `FECHA ${firstLv100.mount.name} Lv100` : "NÃO fecha Lv100"}</td>
+            </tr>`).join("")}</tbody>
+          </table></div>` : `<p class="muted">Não há combinação útil para testar.</p>`}
+          <p class="${bestClosingCombo ? "callout ok" : "callout warn"}">${bestClosingCombo ? `Melhor resposta: se quiser forçar Lv100 agora, use a primeira combinação que fecha. Confira se aceita perder essas secundárias antes de resetar.` : `Nenhuma combinação testada fecha ${firstLv100.mount.name} Lv100 com o orçamento atual. O site deve tratar reset como espera/planejamento, não como ação imediata.`}</p>
         </div>`);
       }
 
