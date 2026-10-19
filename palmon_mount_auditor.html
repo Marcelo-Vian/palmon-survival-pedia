@@ -223,10 +223,10 @@
         </label>
         <label>Season / etapa
           <select id="serverStage">
-            <option value="s2_crimson">Season 2: Crimson Reign</option>
+            <option value="conquest" selected>Conquest Season / S3</option>
+            <option value="s2_crimson">Season 2: Crimson Reign (histórico)</option>
             <option value="s1_ice">S1: Dawn of the Ice Age</option>
             <option value="owned">Nao sei / usar apenas o que marquei</option>
-            <option value="conquest">Conquest Season / S3</option>
           </select>
         </label>
         <label>Comida livre agora
@@ -254,7 +254,7 @@
           </select>
         </label>
       </div>
-      <p class="callout ok" id="stageHint">Pelo print validado, seu servidor esta em Season 2: Crimson Reign. Nesta tela o lobo/Skybound Patrol ja aparece como conteudo de S2; por isso a ferramenta nao usa mais regra antiga de dia 60/95 para decidir montaria.</p>
+      <p class="callout ok" id="stageHint">Conquest Season / S3 é o contexto padrão. O cálculo de comida e ferraduras usa seu inventário real; rankings de montaria continuam separados de Palmons e precisam ser tratados como prioridade de função, não como regra de calendário.</p>
       <p class="callout" style="margin-top:10px">Onde conferir: abra a tela de Season/Eventos. O nome correto aparece no topo esquerdo, como "Season 2: Crimson Reign"; os cards abaixo mostram eventos e tempo restante. O numero do servidor, tipo S123, sozinho nao confirma a etapa porque servidores abrem em ondas diferentes.</p>
 
       <div class="summary-grid">
@@ -396,7 +396,7 @@
         s1_ice: "S1: Dawn of the Ice Age confirmada no texto do APK e em fonte oficial. Use esta opcao se sua tela de Season ainda mostrar S1.",
         s2_crimson: "Pelo seu print, o servidor esta em Season 2: Crimson Reign. Skybound Patrol/lobo ja aparece na S2; a ferramenta nao usa mais regra antiga de dia 60/95.",
         owned: "Modo manual: a ferramenta ignora calendario e calcula apenas com as montarias marcadas em Tenho.",
-        conquest: "Conquest Season/S3 fica separado para consulta futura. Nao use para seu servidor atual se a tela mostra Season 2: Crimson Reign."
+        conquest: "Conquest Season/S3 é o contexto atual. A auditoria usa os níveis e montarias que você marcou; não inventa desbloqueios por número de servidor."
       };
       hint.textContent = text[stage] || text.s2_crimson;
     }

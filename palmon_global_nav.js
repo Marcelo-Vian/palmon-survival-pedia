@@ -4,8 +4,7 @@
 
   const pages = [
     { href: "index.html", label: { pt: "Inicio", en: "Home" }, icon: "home", match: ["", "index.html"] },
-    { href: "palmon_s3_conquest.html", label: { pt: "S3 Conquest", en: "S3 Conquest" }, icon: "landmark", match: ["palmon_s3_conquest.html"] },
-    { href: "palmon_survival_pedia_completa.html", label: { pt: "Pedia", en: "Pedia" }, icon: "library-big", match: ["palmon_survival_pedia_completa.html"] },
+    { href: "palmon_survival_pedia_completa.html#conquest", label: { pt: "Pedia S3", en: "S3 Pedia" }, icon: "landmark", match: ["palmon_survival_pedia_completa.html", "palmon_s3_conquest.html"] },
     { href: "palmon_battle_simulator.html?mode=builder", label: { pt: "Montar time", en: "Team builder" }, icon: "layout-template", match: ["palmon_battle_simulator.html?mode=builder"] },
     { href: "palmon_battle_simulator.html", label: { pt: "Simular", en: "Simulate" }, icon: "swords", match: ["palmon_battle_simulator.html"] },
     { href: "palmon_mount_auditor.html", label: { pt: "Montarias", en: "Mounts" }, icon: "scan-search", match: ["palmon_mount_auditor.html"] },

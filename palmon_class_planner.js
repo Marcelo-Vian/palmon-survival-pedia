@@ -86,7 +86,7 @@
     growth: "crescimento/F2P/base",
     balanced: "equilibrado",
     combat: "combate/PvP/rally",
-    map: "mapa S2"
+    map: "mapa histórico S2"
   };
   const CLASS_LABEL = { builder: "Builder", fighter: "Fighter" };
   const OMITTED_S1 = { builder: 4, fighter: 4 };
@@ -161,7 +161,7 @@
     rows.innerHTML = sortedByTree.map((skill) => {
       const put = assigned[skill.key] || 0;
       const rowClass = put ? "" : " class=\"planner-row-zero\"";
-      const colorLabel = skill.color === "green" ? "Verde/S2" : "Amarela";
+      const colorLabel = skill.color === "green" ? "Verde/histórico S2" : "Amarela";
       return `<tr${rowClass}>
         <td><span class="planner-lv">Lv ${skill.unlock}</span></td>
         <td><span class="planner-pos">${POS[skill.pos] || skill.pos}</span></td>
@@ -178,7 +178,7 @@
 
     summary.innerHTML = `<b>${CLASS_LABEL[cls]} · objetivo ${GOAL_LABEL[goal]}</b><br>
       Usei <b>${used}</b> de <b>${points}</b> pontos no Explorer Level <b>${level}</b>.
-      Considerei <b>${eligible.length}</b> skills liberadas: <b>${orange}</b> amarelas/laranjas e <b>${green}</b> verdes/S2.
+      Considerei <b>${eligible.length}</b> skills liberadas: <b>${orange}</b> amarelas/laranjas e <b>${green}</b> verdes históricas de S2. Em Conquest, valide os nós na tela atual antes de gastar pontos.
       <br><b>Lv1 nesta rota:</b> ${lv1 || "sem skills liberadas"}.`;
 
     next.innerHTML = `<b>Proxima acao</b><br>
@@ -186,7 +186,7 @@
       <br><small>A tabela abaixo mostra tambem as skills que foram consideradas e adiadas.</small>`;
 
     const notes = [];
-    notes.push(`Modo Season 2: ${OMITTED_S1[cls]} no(s) antigo(s) de Season 1 foram ignorados/substituidos.`);
+    notes.push(`Árvore histórica: ${OMITTED_S1[cls]} no(s) antigo(s) de Season 1 foram ignorados/substituidos. Nós temáticos de S2 não são tratados como recomendação para Conquest.`);
     if (cls === "builder" && goal === "combat") notes.push("Builder ajuda a sobreviver e apoiar guilda, mas nao substitui Fighter para PvP pesado.");
     if (cls === "fighter" && goal === "growth") notes.push("Fighter em crescimento ainda evolui, mas Builder rende melhor para base/pesquisa.");
     if (level === 50 && points === 57) notes.push("Este bate com seu print novo: Lv50 e 57 pontos totais.");
