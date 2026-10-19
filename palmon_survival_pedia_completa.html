@@ -26,11 +26,11 @@
       <p>Filtro por elemento. “Super Strong”, “Strong”, “Good” e “Filler” vêm da fonte atual e são contexto de Conquest, não uma sentença sobre o poder do seu card já evoluído.</p>
       <div class="filter" id="filters"><button class="active" data-element="all">Todos</button><button data-element="Agua">Água</button><button data-element="Eletrico">Elétrico</button><button data-element="Fogo">Fogo</button><button data-element="Terra">Terra</button></div>
       <div style="overflow:auto"><table class="table"><thead><tr><th>Palmon</th><th>Elemento</th><th>Tier Conquest</th><th>Função</th><th>Linha</th><th>Decisão</th></tr></thead><tbody id="tiers"></tbody></table></div>
-      <p class="note">SP/Boss não entra nesta tabela como se fosse Palmon comum. Ele é tratado abaixo, porque buffa o squad do próprio elemento.</p>
+      <p class="note">SP entra no rank e no montador como Palmon de squad. Boss é outra categoria e fica separado abaixo.</p>
     </section>
     <section class="section">
-      <h2>Bosses e SP</h2>
-      <p>Os Bosses do perfil estão em uma categoria própria. A pergunta correta não é “qual SP é mais forte?”, mas “qual Boss reforça o elemento do time que vou usar?”.</p>
+      <h2>Bosses</h2>
+      <p>Boss não é SP. Aqui aparecem somente Bosses confirmados nos seus prints, separados dos Palmons de squad.</p>
       <div style="overflow:auto"><table class="table"><thead><tr><th>Boss</th><th>Elemento</th><th>Estado</th><th>Próxima leitura</th></tr></thead><tbody id="bosses"></tbody></table></div>
     </section>
     <section class="grid two">
@@ -45,7 +45,7 @@
     const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
     const label={Agua:'Água',Eletrico:'Elétrico',Fogo:'Fogo',Terra:'Terra'};
     function tierClass(t){return t==='Super Strong'?'super':t==='Strong'?'strong':t==='Good'?'good':'filler'}
-    function renderTier(element='all'){document.querySelector('#tiers').innerHTML=data.roster.filter(p=>element==='all'||p.element===element).map(p=>'<tr><td><b>'+esc(p.name)+'</b>'+ (p.owned?' <span class="badge">seu</span>':'')+'</td><td>'+label[p.element]+'</td><td class="tier '+tierClass(p.tier)+'">'+esc(p.tier)+'</td><td>'+esc(p.role)+'</td><td>'+esc(p.name)+(p.evolved?' → '+esc(p.evolved):'')+'</td><td>'+esc(p.note)+'</td></tr>').join('')}
+    function renderTier(element='all'){document.querySelector('#tiers').innerHTML=data.roster.concat(data.spPals||[]).filter(p=>element==='all'||p.element===element).map(p=>'<tr><td><b>'+esc(p.name)+'</b>'+ (p.owned?' <span class="badge">seu</span>':'')+'</td><td>'+label[p.element]+'</td><td class="tier '+tierClass(p.tier)+'">'+esc(p.tier)+'</td><td>'+esc(p.role)+'</td><td>'+esc(p.name)+(p.evolved?' → '+esc(p.evolved):'')+'</td><td>'+esc(p.note)+'</td></tr>').join('')}
     document.querySelector('#bosses').innerHTML=data.bosses.map(b=>'<tr><td><b>'+esc(b.name)+'</b>'+(b.rarity?' <span class="badge">'+esc(b.rarity)+'</span>':'')+'</td><td>'+label[b.element]+'</td><td>Lv '+esc(b.level)+' · '+esc(b.stars)+' estrelas · '+esc(b.skill)+'<br><span class="muted">'+esc(b.status)+'</span></td><td>'+esc(b.note)+'</td></tr>').join('');
     document.querySelector('#sources').innerHTML='<ul>'+data.sources.map(s=>'<li><b>'+(s.url?'<a href="'+esc(s.url)+'" target="_blank" rel="noopener">'+esc(s.name)+'</a>':esc(s.name))+'</b>: '+esc(s.detail)+'</li>').join('')+'</ul>';
     document.querySelector('#version').textContent=data.version;

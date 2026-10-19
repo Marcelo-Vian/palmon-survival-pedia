@@ -26,12 +26,14 @@ window.PALMON_S3 = {
     {name:'Rapheni',evolved:'Pyronyx',element:'Terra',rarity:'UR',tier:'Good',role:'Earth bruiser',season:'Conquest',owned:false,note:'Novo Conquest; comp Terra.'},
     {name:'Dialuna',evolved:'Dialunova',element:'Terra',rarity:'UR',tier:'Filler',role:'Earth backline',season:'Conquest',owned:false,note:'Filler antes da evolução.'}
   ],
+  spPals: [
+    {name:'SP Água',evolved:'',element:'Agua',rarity:'SP',tier:'Mythic SP',role:'Palmon de squad',season:'Aurora',owned:false,note:'Wishlist vista no print. Nome não aparece na captura; não assumir posse.'},
+    {name:'SP Elétrico',evolved:'',element:'Eletrico',rarity:'SP',tier:'Mythic SP',role:'Palmon de squad',season:'Aurora',owned:false,note:'Wishlist vista no print; é Palmon, não Boss.'},
+    {name:'SP Terra',evolved:'',element:'Terra',rarity:'SP',tier:'Mythic SP',role:'Palmon de squad',season:'Aurora',owned:false,note:'Wishlist vista no print; é Palmon, não Boss.'},
+    {name:'SP Fogo',evolved:'',element:'Fogo',rarity:'SP',tier:'Mythic SP',role:'Palmon de squad',season:'Aurora',owned:false,note:'Wishlist vista no print; é Palmon, não Boss.'}
+  ],
   bosses: [
-    {name:'Inkuisitor',element:'Agua',level:200,stars:'3-0',skill:'5 / 5 / 4',status:'Taming Lv20; importado de prints',note:'O próximo ascension exibido dá +13% de ataque a Água no mesmo squad.'},
-    {name:'Tidewave Wyrm',element:'Agua',rarity:'SP',level:350,stars:5,skill:'Lv30 / Lv30 / Lv30 + máximas',status:'Confirmado nos prints',note:'Boss completo para núcleo Água.'},
-    {name:'Thunderzenith Wyrm',element:'Eletrico',rarity:'SP',level:350,stars:5,skill:'Lv30 / Lv30 / Lv30 + máximas',status:'Confirmado nos prints',note:'Boss completo para núcleo Elétrico.'},
-    {name:'Phantasmal Wyrm',element:'Terra',rarity:'SP',level:350,stars:5,skill:'Lv30 / Lv30 / Lv30 + máximas',status:'Confirmado nos prints',note:'Boss completo para núcleo Terra.'},
-    {name:'Crimsonblaze Wyrm',element:'Fogo',rarity:'SP',level:350,stars:5,skill:'Lv30 / Lv30 / Lv30 + máximas',status:'Confirmado nos prints',note:'Boss completo para núcleo Fogo.'}
+    {name:'Inkuisitor',element:'Agua',level:200,stars:'3-0',skill:'5 / 5 / 4',status:'Taming Lv20; importado de prints',note:'Boss separado: o próximo ascension exibido dá +13% de ataque a Água no mesmo squad.'}
   ],
   player: {
     account:{name:'Whos The Coon?',server:'Pallantis #158',season:'Conquest Season',power:559667373}, resources:{food:'16.2M',horseshoes:25,orbs:1118,affinity:304},
