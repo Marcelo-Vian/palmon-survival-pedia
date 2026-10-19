@@ -27,11 +27,12 @@ window.PALMON_S3 = {
     {name:'Dialuna',evolved:'Dialunova',element:'Terra',rarity:'UR',tier:'Filler',role:'Earth backline',season:'Conquest',owned:false,note:'Filler antes da evolução.'}
   ],
   spPals: [
-    {name:'SP Água',evolved:'',element:'Agua',rarity:'SP',tier:'Mythic SP',role:'Palmon de squad',season:'Aurora',owned:false,note:'Wishlist vista no print. Nome não aparece na captura; não assumir posse.'},
-    {name:'SP Elétrico',evolved:'',element:'Eletrico',rarity:'SP',tier:'Mythic SP',role:'Palmon de squad',season:'Aurora',owned:false,note:'Wishlist vista no print; é Palmon, não Boss.'},
-    {name:'SP Terra',evolved:'',element:'Terra',rarity:'SP',tier:'Mythic SP',role:'Palmon de squad',season:'Aurora',owned:false,note:'Wishlist vista no print; é Palmon, não Boss.'},
-    {name:'SP Fogo',evolved:'',element:'Fogo',rarity:'SP',tier:'Mythic SP',role:'Palmon de squad',season:'Aurora',owned:false,note:'Wishlist vista no print; é Palmon, não Boss.'}
+    {name:'Tidewave Wyrm',evolved:'',element:'Agua',rarity:'SP',tier:'Mythic SP',role:'Palmon de squad',season:'Dragonfire Clash',owned:false,note:'SP Mythic Água. A Wishlist foi vista no print; não assumir posse até haver tela individual.'},
+    {name:'Thunderzenith Wyrm',evolved:'',element:'Eletrico',rarity:'SP',tier:'Mythic SP',role:'Palmon de squad',season:'Dragonfire Clash',owned:false,note:'SP Mythic Elétrico. A Wishlist foi vista no print; não assumir posse até haver tela individual.'},
+    {name:'Phantasmal Wyrm',evolved:'',element:'Terra',rarity:'SP',tier:'Mythic SP',role:'Palmon de squad',season:'Dragonfire Clash',owned:false,note:'SP Mythic Terra. A Wishlist foi vista no print; não assumir posse até haver tela individual.'},
+    {name:'Crimsonblaze Wyrm',evolved:'',element:'Fogo',rarity:'SP',tier:'Mythic SP',role:'Palmon de squad',season:'Dragonfire Clash',owned:false,note:'SP Mythic Fogo. A Wishlist foi vista no print; não assumir posse até haver tela individual.'}
   ],
+  spRules:'SP Mythic Palmons chegam a 10 estrelas; estrelas 6 e 10 liberam Ultimate extra. O 4º skill aumenta os bônus totais de ATK, DEF e HP para 30%, acima dos 20% de UR.',
   bosses: [
     {name:'Inkuisitor',element:'Agua',level:200,stars:'3-0',skill:'5 / 5 / 4',status:'Taming Lv20; importado de prints',note:'Boss separado: o próximo ascension exibido dá +13% de ataque a Água no mesmo squad.'}
   ],
