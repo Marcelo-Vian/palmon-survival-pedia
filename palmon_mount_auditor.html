@@ -1333,6 +1333,17 @@
     autosaveReady = true;
     updateAll();
   </script>
+  <script src="palmon_s3_data.js"></script>
+  <script>
+    (function () {
+      const title = document.querySelector('h1');
+      if (title) title.textContent = 'Auditor de montarias · Conquest';
+      const sources = document.getElementById('sources');
+      if (sources) {
+        sources.innerHTML = '<h2>5. Fontes e validação</h2><p class="callout ok"><b>Conquest atual:</b> o perfil importa Bunny Runny Lv100, Night Mare Lv70, Skybound Patrol Lv70, Amourphibian Lv30, Swiftger Lv15, Narfoal Lv10 e Slackycappy Lv10. Não use este módulo para tratar S2 como temporada atual.</p><p>O auditor calcula apenas com comida e ferraduras declaradas e separa custo investido de recurso efetivamente devolvido no reset. Uma regra sem confirmação no print/APK aparece como estimativa, nunca como saldo.</p>';
+      }
+    })();
+  </script>
   <script src="palmon_global_nav.js"></script>
 </body>
 </html>
