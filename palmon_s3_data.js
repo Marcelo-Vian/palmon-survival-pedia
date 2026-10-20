@@ -1,73 +1,92 @@
-/* Snapshot do perfil e referência S3. Atualizado a partir dos prints de 19/10/2026. */
+/* Fonte unica do perfil. Evidencia: screenshots de 19/10/2026 + XAPK 0.5.451.
+ * "tier" so e preenchido quando a forma aparece no rank Conquest do LoadoutGG.
+ * SP Mythic nao recebe tier individual inventado: a fonte atual nao os compara. */
 window.PALMON_S3 = {
-  season: 'Conquest Season', seasonLabel: 'Season 3: Conquest', version: '0.5.451', updated: '2026-10-19',
+  meta: {
+    season: 'Season 3: Conquest',
+    version: '0.5.451',
+    capturedAt: '2026-10-19',
+    rankUpdated: '2026-09-23',
+    rankSource: 'https://loadoutgg.com/palmon-survival/tier-list/'
+  },
   player: {
-    account: { name: 'Who’s The Coon?', server: 'Pallantis #158', season: 'Season 3: Conquest', power: '559,667,373' },
-    resources: { auroraOrbs: 1118, affinity: '304 / 1200', food: '16.2M', horseshoes: 25 },
+    account: {
+      name: "Who's The Coon?",
+      server: 'Pallantis #158',
+      power: '559,667,373'
+    },
+    auroraSnapshot: {
+      affinity: '304 / 1200',
+      orbs: 1118,
+      selected: 'Thunderzenith Wyrm',
+      note: 'Ultima leitura visivel no print. Nao representa compras ou invocacoes feitas depois dele.'
+    },
     roster: [
-      {name:'Cryovern',element:'Agua',rarity:'UR',level:310,stars:5,power:'11,925,180',tile:'0 0',role:'DPS principal',tier:'S',note:'Seu carry Água mais desenvolvido.'},
-      {name:'Lionarch',element:'Terra',rarity:'UR',level:310,stars:5,power:'8,296,500',tile:'1 0',role:'Frente',tier:'S',note:'Peça avançada do elenco.'},
-      {name:'Gnashfin',element:'Agua',rarity:'UR',level:310,stars:5,power:'8,436,920',tile:'2 0',role:'DPS Água',tier:'S',note:'Núcleo Água confirmado.'},
-      {name:'Shadowkaeru',element:'Agua',rarity:'UR',level:310,stars:5,power:'9,092,530',tile:'3 0',role:'Utilidade / dano',tier:'S',note:'Evolução VII registrada no print.'},
-      {name:'Finnabelle',element:'Agua',rarity:'UR',level:310,stars:5,power:'8,411,780',tile:'4 0',role:'Suporte',tier:'S',note:'Peça do núcleo Água.'},
-      {name:'Anubeast',element:'Fogo',rarity:'UR',level:310,stars:5,power:'8,309,736',tile:'5 0',role:'DPS',tier:'S',note:'Alto investimento já feito.'},
-      {name:'Mammolith',element:'Terra',rarity:'UR',level:280,stars:5,power:'8,192,650',tile:'7 0',role:'Tanque',tier:'S',note:'Linha de frente mais forte no snapshot.'},
-      {name:'Zapantis',element:'Eletrico',rarity:'UR',level:260,stars:5,power:'7,097,370',tile:'8 0',role:'DPS Elétrico',tier:'S',note:'Seu núcleo Elétrico confirmado.'},
-      {name:'Limudroid',element:'Eletrico',rarity:'UR',level:260,stars:4,power:'4,067,780',tile:'9 0',role:'Controle',tier:'A',note:'Investimento intermediário.'},
-      {name:'Fulgairy',element:'Eletrico',rarity:'UR',level:250,stars:4,power:'3,725,020',tile:'0 1',role:'Mitigação',tier:'A',note:'Peça defensiva Elétrico.'},
-      {name:'Lucidina',element:'Agua',rarity:'UR',level:202,stars:5,power:'3,705,660',tile:'2 1',role:'Suporte',tier:'A',note:'Água, abaixo do núcleo Lv310.'},
-      {name:'Kungpaw',element:'Terra',rarity:'UR',level:200,stars:5,power:'3,384,740',tile:'3 1',role:'Frente',tier:'A',note:'Alternativa Terra.'},
-      {name:'Abuzzinian',element:'Eletrico',rarity:'UR',level:219,stars:4,power:'3,229,580',tile:'4 1',role:'DPS',tier:'A',note:'Avaliar só depois do núcleo atual.'},
-      {name:'Spookaboo',element:'Fogo',rarity:'UR',level:200,stars:4,power:'2,769,740',tile:'5 1',role:'Controle',tier:'A',note:'Controle de Fogo.'},
-      {name:'Blazeal',element:'Fogo',rarity:'UR',level:200,stars:3,power:'2,430,440',tile:'6 1',role:'DPS',tier:'A',note:'Fogo secundário.'},
-      {name:'Magmolin',element:'Fogo',rarity:'UR',level:202,stars:3,power:'2,389,160',tile:'7 1',role:'DPS',tier:'A',note:'Linha de longo prazo se vierem cópias.'},
-      {name:'Escarffier',element:'Agua',rarity:'UR',level:201,stars:2,power:'2,373,200',tile:'8 1',role:'Filler',tier:'B',note:'Sem prioridade de recurso.'},
-      {name:'Leviadolph',element:'Agua',rarity:'UR',level:170,stars:3,power:'1,899,440',tile:'9 1',role:'Filler',tier:'B',note:'Não concorrer com Cryovern.'},
-      {name:'Barkplug',element:'Eletrico',rarity:'UR',level:180,stars:2,power:'1,846,340',tile:'0 2',role:'Suporte',tier:'B',note:'Congelar investimento.'},
-      {name:'Sunplume',element:'Fogo',rarity:'UR',level:152,stars:3,power:'1,696,860',tile:'1 2',role:'Passiva',tier:'B',note:'Valor de conta; não é carry.'},
-      {name:'Hoofrit',element:'Terra',rarity:'UR',level:151,stars:3,power:'1,660,700',tile:'2 2',role:'Filler',tier:'B',note:'Sem prioridade atual.'},
-      {name:'Ghillant',element:'Terra',rarity:'UR',level:151,stars:3,power:'1,660,700',tile:'4 2',role:'Suporte',tier:'B',note:'Foco somente com evolução/cópias.'},
-      {name:'Oleana',element:'Terra',rarity:'UR',level:159,stars:2,power:'1,623,980',tile:'5 2',role:'Suporte',tier:'B',note:'Sem prioridade atual.'},
-      {name:'Pipistrigoi',element:'Fogo',rarity:'UR',level:151,stars:2,power:'1,534,700',tile:'6 2',role:'Filler',tier:'B',note:'Congelar investimento.'},
-      {name:'Revontulet',element:'Fogo',rarity:'UR',level:150,stars:2,power:'1,454,600',tile:'7 2',role:'DPS',tier:'B',note:'Só reavaliar ao conseguir cópias.'}
+      {id:'cryovern',name:'Cryovern',element:'Agua',level:310,stars:5,power:'11,925,180',role:'DPS / carry',tier:'S+',tierForm:'Cryovern',image:'images/Cryovern_5023_evolve.png'},
+      {id:'thundermane',name:'Thundermane',element:'Eletrico',level:310,stars:5,power:null,role:'DPS / carry',tier:'S+',tierForm:'Thundermane',image:'images/Thundermane_5025_evolve.png'},
+      {id:'leviadolph',name:'Leviadolph',element:'Agua',level:310,stars:5,power:'8,796,890',role:'DPS / frente',tier:'A',tierForm:'Leviadolph Mega',image:'assets/profile/leviadolph.png'},
+      {id:'shadowkaeru',name:'Shadowkaeru',element:'Agua',level:310,stars:5,power:'9,092,530',role:'DPS / controle',tier:'S',tierForm:'Shadowkaeru Mega',image:'assets/profile/shadowkaeru.png'},
+      {id:'finnabelle',name:'Finnabelle',element:'Agua',level:310,stars:5,power:'8,411,780',role:'Suporte',tier:'A',tierForm:'Finnabelle',image:'images/Finnabelle_5013_evolve.png'},
+      {id:'anubeast',name:'Anubeast',element:'Terra',level:310,stars:5,power:'8,309,736',role:'DPS / frente',tier:'A',tierForm:'Anubeast',image:'images/Anubeast_5008_evolve.png'},
+      {id:'lionarch',name:'Lionarch',element:'Agua',level:310,stars:5,power:'8,296,500',role:'Frente',tier:'A',tierForm:'Lionarch',image:'images/Lionarch_5019_evolve.png'},
+      {id:'gnashfin',name:'Gnashfin',element:'Agua',level:310,stars:5,power:'8,436,920',role:'DPS Agua',tier:'A',tierForm:'Gnashfin Evolved',image:'images/Gnashfin_5027_evolve.png'},
+      {id:'mammolith',name:'Mammolith',element:'Terra',level:280,stars:5,power:'8,192,650',role:'Tanque',tier:'S',tierForm:'Mammolith Base',image:'images/Mammolith_5024.png'},
+      {id:'zapantis',name:'Zapantis',element:'Eletrico',level:260,stars:5,power:'7,097,370',role:'DPS Eletrico',tier:'S',tierForm:'Zapantis Base',image:'images/Zapantis_5033.png'},
+      {id:'battereina',name:'Battereina',element:'Eletrico',level:260,stars:3,power:'3,882,180',role:'DPS',tier:'C',tierForm:'Battereina',image:'images/Battereina_5020.png'},
+      {id:'limudroid',name:'Limudroid',element:'Eletrico',level:260,stars:4,power:'4,067,780',role:'Controle',tier:'C',tierForm:'Limudroid',image:'images/Limudroid_5018.png'},
+      {id:'fulgairy',name:'Fulgairy',element:'Eletrico',level:250,stars:4,power:'3,725,020',role:'Mitigacao',tier:'B',tierForm:'Fulgairy',image:'images/Fulgairy_5016.png'},
+      {id:'abuzzinian',name:'Abuzzinian',element:'Eletrico',level:219,stars:4,power:'3,229,580',role:'DPS',tier:'B',tierForm:'Abuzzinian',image:'images/Abuzzinian_5007.png'},
+      {id:'lucidina',name:'Lucidina',element:'Agua',level:202,stars:5,power:'3,705,660',role:'Suporte',tier:'B',tierForm:'Lucidina',image:'images/Lucidina_5003.png'},
+      {id:'magmolin',name:'Magmolin',element:'Fogo',level:202,stars:3,power:'2,389,160',role:'DPS',tier:'B',tierForm:'Magmolin',image:'images/Magmolin_5011.png'},
+      {id:'escarffier',name:'Escarffier',element:'Fogo',level:201,stars:2,power:'2,373,200',role:'Filler',tier:'B',tierForm:'Escarffier',image:'images/Escarffier_5022.png'},
+      {id:'kungpaw',name:'Kungpaw',element:'Terra',level:200,stars:5,power:'3,384,740',role:'Frente',tier:'A',tierForm:'Kungpaw Base',image:'images/Kungpaw_5031.png'},
+      {id:'spookaboo',name:'Spookaboo',element:'Fogo',level:200,stars:4,power:'2,769,740',role:'Controle',tier:'S',tierForm:'Spookaboo',image:'images/Spookaboo_5030.png'},
+      {id:'blazeal',name:'Blazeal',element:'Fogo',level:200,stars:3,power:'2,430,440',role:'DPS',tier:'B',tierForm:'Blazeal',image:'images/Blazeal_5009.png'},
+      {id:'barkplug',name:'Barkplug',element:'Eletrico',level:180,stars:2,power:'1,846,340',role:'Suporte',tier:'B',tierForm:'Barkplug',image:'images/Barkplug_5001.png'},
+      {id:'mantleray',name:'Mantleray',element:'Eletrico',level:170,stars:3,power:'1,899,440',role:'DPS',tier:'B',tierForm:'Mantleray',image:'images/Mantleray_5004.png'},
+      {id:'oleana',name:'Oleana',element:'Terra',level:159,stars:2,power:'1,623,980',role:'Suporte',tier:'S',tierForm:'Oleana',image:'images/Oleana_5029.png'},
+      {id:'sunplume',name:'Sunplume',element:'Fogo',level:152,stars:3,power:'1,696,860',role:'Passiva',tier:'S',tierForm:'Sunplume',image:'assets/profile/sunplume.png'},
+      {id:'baboom',name:'Baboom',element:'Terra',level:151,stars:3,power:'1,660,700',role:'DPS',tier:'B',tierForm:'Baboom',image:'images/Baboom_5010.png'},
+      {id:'ghillant',name:'Ghillant',element:'Terra',level:151,stars:3,power:'1,660,700',role:'Suporte',tier:'A',tierForm:'Ghillant Base',image:'images/Ghillant_5005.png'},
+      {id:'hoofrit',name:'Hoofrit',element:'Terra',level:151,stars:3,power:'1,660,700',role:'Filler',tier:'B',tierForm:'Hoofrit',image:'images/Hoofrit_5017.png'},
+      {id:'pipistrigoi',name:'Pipistrigoi',element:'Fogo',level:151,stars:2,power:'1,534,700',role:'Filler',tier:'B',tierForm:'Pipistrigoi',image:'images/Pipistrigoi_5028.png'},
+      {id:'revontulet',name:'Revontulet',element:'Fogo',level:150,stars:2,power:'1,454,600',role:'DPS',tier:'B',tierForm:'Revontulet',image:'images/Revontulet_5021.png'},
+      {id:'salamantis',name:'Salamantis',element:'Terra',level:1,stars:0,power:'98,000',role:'DPS',tier:'C',tierForm:'Salamantis',image:'images/Salamantis_5015.png'},
+      {id:'surveilynx',name:'Surveilynx',element:'Terra',level:1,stars:0,power:'98,000',role:'DPS',tier:'C',tierForm:'Surveilynx',image:'images/Surveilynx_5012.png'},
+      {id:'woozard',name:'Woozard',element:'Terra',level:1,stars:0,power:'62,000',role:'DPS',tier:'C',tierForm:'Woozard',image:'images/Woozard_5014.png'}
     ],
     teams: [
-      {name:'Time 1',confirmed:true,source:'Roster visível no print',members:['Cryovern','Lionarch','Gnashfin','Shadowkaeru','Finnabelle','Anubeast','Mammolith'],note:'Sete cards visíveis; composição carregada do print.'},
-      {name:'Time 2',confirmed:false,members:[],note:'Ainda não exibido com os sete cards identificáveis no material atual.'},
-      {name:'Time 3',confirmed:false,members:[],note:'Ainda não exibido com os sete cards identificáveis no material atual.'},
-      {name:'Time 4',confirmed:false,members:[],note:'Ainda não exibido com os sete cards identificáveis no material atual.'}
+      {name:'Time 1',confirmed:true,source:'Captura de tela 2026-10-19 183909',members:['Cryovern','Thundermane','Leviadolph','Shadowkaeru','Finnabelle','Anubeast','Lionarch'],note:'Os sete cards visiveis no print. Nao inclui Mammolith.'},
+      {name:'Time 2',confirmed:false,source:null,members:[],note:'Print recebido, mas os sete cards ainda nao foram associados com seguranca.'},
+      {name:'Time 3',confirmed:false,source:null,members:[],note:'Print recebido, mas os sete cards ainda nao foram associados com seguranca.'},
+      {name:'Time 4',confirmed:false,source:null,members:[],note:'Print recebido, mas os sete cards ainda nao foram associados com seguranca.'}
     ],
-    mounts:[
-      {name:'Bunny Runny',level:100,skill:5,decision:'Principal. Não resetar.'},
-      {name:'Night Mare',level:70,skill:4,decision:'Secundária investida; comparar antes de resetar.'},
-      {name:'Skybound Patrol',level:70,skill:4,decision:'Secundária investida; comparar antes de resetar.'},
-      {name:'Amourphibian',level:30,skill:2,decision:'Tanque; manter sem disputar o recurso da Bunny.'},
-      {name:'Swiftger',level:15,skill:1,decision:'Congelar investimento.'},
-      {name:'Narfoal',level:10,skill:1,decision:'Congelar investimento.'},
-      {name:'Slackycappy',level:10,skill:1,decision:'Congelar investimento.'}
+    mounts: [
+      {name:'Bunny Runny',level:100,skill:5,decision:'Principal capturada. Nenhuma conta de reset e prometida sem tela de retorno.'},
+      {name:'Night Mare',level:70,skill:4,decision:'Secundaria investida.'},
+      {name:'Skybound Patrol',level:70,skill:4,decision:'Secundaria investida.'},
+      {name:'Amourphibian',level:30,skill:2,decision:'Tanque.'},
+      {name:'Swiftger',level:15,skill:1,decision:'Baixo investimento.'},
+      {name:'Narfoal',level:10,skill:1,decision:'Baixo investimento.'},
+      {name:'Slackycappy',level:10,skill:1,decision:'Baixo investimento.'}
     ]
   },
   spPals: [
-    {name:'Tidewave Wyrm',element:'Agua',rarity:'SP Mythic',rank:'S+ / SP',role:'DPS Água',note:'SP de squad; a Wishlist não confirma posse.'},
-    {name:'Thunderzenith Wyrm',element:'Eletrico',rarity:'SP Mythic',rank:'S+ / SP',role:'DPS Elétrico',note:'SP de squad; a Wishlist não confirma posse.'},
-    {name:'Phantasmal Wyrm',element:'Terra',rarity:'SP Mythic',rank:'S+ / SP',role:'DPS Terra',note:'SP de squad; a Wishlist não confirma posse.'},
-    {name:'Crimsonblaze Wyrm',element:'Fogo',rarity:'SP Mythic',rank:'S+ / SP',role:'DPS Fogo',note:'SP de squad; a Wishlist não confirma posse.'}
+    {id:'tidewave-wyrm',name:'Tidewave Wyrm',element:'Agua',role:'DPS Agua',image:'assets/profile/sp-0.png'},
+    {id:'thunderzenith-wyrm',name:'Thunderzenith Wyrm',element:'Eletrico',role:'DPS Eletrico',image:'assets/profile/sp-1.png'},
+    {id:'phantasmal-wyrm',name:'Phantasmal Wyrm',element:'Terra',role:'DPS Terra',image:'assets/profile/sp-2.png'},
+    {id:'crimsonblaze-wyrm',name:'Crimsonblaze Wyrm',element:'Fogo',role:'DPS Fogo',image:'assets/profile/sp-3.png'}
   ],
-  currentRank: [
-    {name:'Tidewave Wyrm',element:'Agua',rarity:'SP Mythic',rank:'S+ / SP',role:'DPS Água',source:'Wishlist + anúncio oficial'},
-    {name:'Thunderzenith Wyrm',element:'Eletrico',rarity:'SP Mythic',rank:'S+ / SP',role:'DPS Elétrico',source:'Wishlist + anúncio oficial'},
-    {name:'Phantasmal Wyrm',element:'Terra',rarity:'SP Mythic',rank:'S+ / SP',role:'DPS Terra',source:'Wishlist + anúncio oficial'},
-    {name:'Crimsonblaze Wyrm',element:'Fogo',rarity:'SP Mythic',rank:'S+ / SP',role:'DPS Fogo',source:'Wishlist + anúncio oficial'},
-    {name:'Sylphira / Abysphira',element:'Agua',rarity:'UR',rank:'S',role:'Carry Água',source:'Tier Conquest'},
-    {name:'Scorphelia / Scorphelias',element:'Terra',rarity:'UR',rank:'S',role:'Carry Terra',source:'Tier Conquest'},
-    {name:'Zapantis / Shockmantis',element:'Eletrico',rarity:'UR',rank:'A',role:'Carry Elétrico',source:'Tier Conquest'},
-    {name:'Sunplume',element:'Fogo',rarity:'UR',rank:'A',role:'Passiva',source:'Tier Conquest'}
+  bosses: [
+    {name:'Inkuisitor',element:'Agua',status:'Idolizing 20; Star Lvl 3-0',detail:'Ascensao visivel: +13% ATK para Palmons Agua no mesmo squad.',image:'assets/profile/boss-inkuisitor.png'},
+    {name:'Boglem',element:'Terra',status:'Lv55 no print',detail:'Tela de upgrade registrada; nao ha tier de squad aplicado.',image:'assets/profile/boss-boglem.png'},
+    {name:'Ophidillain',element:'Nao confirmado',status:'Star Lvl 0-0',detail:'Ascensao bloqueada por Serpent’s Rise no print.',image:'assets/profile/boss-ophidillain.png'},
+    {name:'Oinkohm',element:'Eletrico',status:'Skill 1/5',detail:'Tela de skills registrada.',image:'assets/profile/boss-oinkohm.png'}
   ],
-  boss: {name:'Inkuisitor',element:'Agua',taming:20,level:200,stars:'3-0',skills:'5 / 5 / 4',next:'Ascension seguinte: +13% de ATK para Palmons Água no mesmo squad.'},
   sources: [
-    {name:'XAPK 0.5.451',detail:'Versão e assets analisados localmente.'},
-    {name:'AllClash - tier list',url:'https://www.allclash.com/best-palmons-in-palmon-survival-tier-list/',detail:'Referência Conquest para UR.'},
-    {name:'LoadoutGG - seasons',url:'https://loadoutgg.com/palmon-survival/guides/seasons/',detail:'Referência de temporadas.'},
-    {name:'Atualização oficial SP Mythic',url:'https://www.facebook.com/PalmonSurvival/',detail:'Quatro Wyrms SP, 10 estrelas e Ultimate nas estrelas 6 e 10.'}
+    {name:'LoadoutGG - Conquest tier list',url:'https://loadoutgg.com/palmon-survival/tier-list/',detail:'Atualizada em 23/09/2026. Ranqueia formas UR de Conquest; nao compara individualmente os quatro Wyrms SP.'},
+    {name:'XAPK 0.5.451',detail:'Usado para conferir nomes, sistemas e artes existentes no cliente.'},
+    {name:'Screenshots do perfil',detail:'Roster, Time 1, Aurora, montarias e Bosses foram lidos das capturas de 19/10/2026.'},
+    {name:'Atualizacao oficial SP Mythic',url:'https://www.facebook.com/PalmonSurvival/',detail:'Confirma os quatro Wyrms como Palmons de squad, nao Bosses.'}
   ]
 };

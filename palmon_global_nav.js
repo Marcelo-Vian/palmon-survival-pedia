@@ -9,7 +9,7 @@
     { href: "palmon_battle_simulator.html?mode=builder", label: { pt: "Montar time", en: "Team builder" }, icon: "layout-template", match: ["palmon_battle_simulator.html?mode=builder"] },
     { href: "palmon_battle_simulator.html", label: { pt: "Simular", en: "Simulate" }, icon: "swords", match: ["palmon_battle_simulator.html"] },
     { href: "palmon_mount_auditor.html", label: { pt: "Montarias", en: "Mounts" }, icon: "scan-search", match: ["palmon_mount_auditor.html"] },
-    { href: "palmon_apk_0_5_325_report.html", label: { pt: "Base tecnica", en: "Technical base" }, icon: "file-search", match: ["palmon_apk_0_5_325_report.html"] }
+    { href: "palmon_apk_0_5_325_report.html", label: { pt: "Arquivo tecnico", en: "Technical archive" }, icon: "file-search", match: ["palmon_apk_0_5_325_report.html"] }
   ];
 
   function currentFile() {

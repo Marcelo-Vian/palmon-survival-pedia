@@ -204,8 +204,8 @@
           <span class="pill">3. Skill é automática</span>
           <span class="pill">4. Gere plano</span>
         </div>
-        <p class="callout ok" style="margin:0">Regra do APK 0.5.384 validada: a faixa de skill é `{29,49,69,99,100}`. Então a decisão nasce do Lv da montaria: Lv 30 libera Skill 2, Lv 50 libera Skill 3, Lv 70 libera Skill 4 e Lv 100 libera Skill 5.</p>
-        <p class="callout warn" style="margin:10px 0 0">As tabelas locais `home_mount`, `home_mount_skill`, `home_mount_level`, `home_mount_rebirth` e `home_mount_rebirth_task` estão iguais entre 0.5.346 e 0.5.384. O meta abaixo cruza isso com guias externos de 2026.</p>
+        <p class="callout ok" style="margin:0">Faixa de skill confirmada nos prints: 1-29 = Skill 1; 30-49 = Skill 2; 50-69 = Skill 3; 70-99 = Skill 4; 100+ = Skill 5.</p>
+        <p class="callout warn" style="margin:10px 0 0"><b>Importante:</b> a curva completa de comida/ferraduras e o retorno de reset ainda nao foram validados no XAPK 0.5.451. Este modulo so deve usar valores de recurso se voce preencher a tela real do jogo; nao trate estimativa como saldo recuperavel.</p>
       </aside>
     </header>
 
@@ -242,7 +242,7 @@
           </select>
         </label>
         <label>% retorno do reset
-          <input id="refundRate" type="number" min="0" max="100" value="100">
+          <input id="refundRate" type="number" min="0" max="100" value="0">
         </label>
         <label>Modo
           <select id="mode">
@@ -254,15 +254,15 @@
           </select>
         </label>
       </div>
-      <p class="callout ok" id="stageHint">Conquest Season / S3 é o contexto padrão. O cálculo de comida e ferraduras usa seu inventário real; rankings de montaria continuam separados de Palmons e precisam ser tratados como prioridade de função, não como regra de calendário.</p>
-      <p class="callout" style="margin-top:10px">Onde conferir: abra a tela de Season/Eventos. O nome correto aparece no topo esquerdo, como "Season 2: Crimson Reign"; os cards abaixo mostram eventos e tempo restante. O numero do servidor, tipo S123, sozinho nao confirma a etapa porque servidores abrem em ondas diferentes.</p>
+      <p class="callout ok" id="stageHint">Conquest Season / S3 e o contexto padrao. Prioridade de montaria e separada de Palmons; recursos so entram no plano quando foram lidos na tela atual.</p>
+      <p class="callout" style="margin-top:10px">Onde conferir: abra Season/Eventos e use o nome no topo esquerdo. O numero do servidor sozinho nao confirma etapa porque servidores abrem em ondas diferentes.</p>
 
       <div class="summary-grid">
         <div class="metric"><span id="ownedCount">0</span><small>montarias marcadas</small></div>
         <div class="metric"><span id="currentPower">0</span><small>poder base atual informado</small></div>
-        <div class="metric"><span id="investedTotal">0 comida + 0 ferraduras</span><small>gasto atual estimado</small></div>
-        <div class="metric"><span id="refundTotal">0 comida + 0 ferraduras</span><small>volta se resetar sugeridas</small></div>
-        <div class="metric"><span id="budgetTotal">0 comida + 0 ferraduras</span><small>livre + reset sugerido</small></div>
+        <div class="metric"><span id="investedTotal">0 comida + 0 ferraduras</span><small>modelo de gasto - validar no jogo</small></div>
+        <div class="metric"><span id="refundTotal">0 comida + 0 ferraduras</span><small>retorno somente se confirmado</small></div>
+        <div class="metric"><span id="budgetTotal">0 comida + 0 ferraduras</span><small>livre + retorno declarado</small></div>
       </div>
     </section>
 
@@ -306,7 +306,7 @@
           <button class="btn primary" id="applyTextBtn" type="button">Aplicar texto nas montarias</button>
           <button class="btn" id="downloadBtn" type="button">Exportar snapshot JSON</button>
         </div>
-        <p class="callout" style="margin-bottom:0">O print principal que você mandou já serve: preencha o Lv atual de cada montaria e a ferramenta calcula a skill automática, o recurso estimado preso nela e o melhor destino em níveis.</p>
+        <p class="callout" style="margin-bottom:0">O print principal ja serve para nivel e Skill. Para calcular recurso preso e retorno de reset sem erro, envie tambem uma tela de custo de upgrade e a tela de confirmacao de reset.</p>
       </div>
     </section>
 
@@ -320,11 +320,11 @@
       <div class="grid-3">
         <div class="card">
           <h3>APK local</h3>
-          <p>APK/XAPK analisado em 04/08/2026. A localizacao extraida confirma `S1: Dawn of the Ice Age`, `Season 2: Crimson Reign`, eventos de S2 como Healing Bloom/Bloodmoon Surge/Clone Purge e `Skybound Patrol`. As tabelas de montaria continuam iguais entre 0.5.346 e 0.5.384.</p>
+          <p>O XAPK 0.5.451 foi usado para nomes e sistemas. Ele nao e prova suficiente, por si so, da curva total de comida/ferraduras nem da devolucao de reset; esses campos permanecem condicionais ao print atual.</p>
         </div>
         <div class="card">
           <h3>Season validada</h3>
-          <p>Seu print mostra `Season 2: Crimson Reign` e aproximadamente 40 dias restantes. Fontes oficiais publicas tambem indexam <a href="https://www.youtube.com/watch?v=2SecOH9ygXg" target="_blank" rel="noopener">Season 2: Crimson Reign</a> e posts oficiais citam `Season I: Dawn of the Ice Age` e `Conquest Season`.</p>
+          <p>O perfil atual esta em Season 3: Conquest. Season 2: Crimson Reign permanece apenas como historico; ela nao deve alterar recomendacao atual.</p>
         </div>
         <div class="card">
           <h3>Meta externo</h3>
@@ -1010,12 +1010,12 @@
       const cards = [];
 
       cards.push(`<div class="rec">
-        <strong>Regra do APK 0.5.384 aplicada</strong>
-        <p>Skill da montaria é automática por faixa de nível: 1-29 = Skill 1, 30-49 = Skill 2, 50-69 = Skill 3, 70-99 = Skill 4, 100+ = Skill 5. O gasto atual estimado sempre mostra comida + ferradura. Para o reset, a simulação está em modo <b>${refundPolicyText}</b>; mude o seletor do topo se o jogo mostrar retorno diferente.</p>
+        <strong>Faixa de skill confirmada; recursos pendentes de validacao</strong>
+        <p>Skill da montaria e automatica por faixa de nivel: 1-29 = Skill 1, 30-49 = Skill 2, 50-69 = Skill 3, 70-99 = Skill 4, 100+ = Skill 5. Com retorno de reset em 0%, nenhum saldo e presumido. So preencha o seletor de retorno depois de conferir a tela real de reset.</p>
       </div>`);
 
       cards.push(`<div class="rec">
-        <strong>Resumo financeiro das montarias</strong>
+        <strong>Modelo financeiro das montarias</strong>
         <p>Investido nas montarias marcadas: <b>${formatResourceBundle(investedTotal)}</b>. Reset sugerido: <b>${formatResourceBundle(refund)}</b>. Recurso livre informado: <b>${formatResourceBundle(free)}</b>. Orçamento para redistribuir: <b>${formatResourceBundle(budget)}</b>.</p>
       </div>`);
 
@@ -1160,7 +1160,7 @@
 
       cards.push(`<div class="rec">
         <strong>Meta 2026 considerado</strong>
-        <p>Prioridade atual corrigida por season: para seu print de Season 2: Crimson Reign, use inventario real. Se Bunny, Skybound e Night Mare ja estao disponiveis, elas entram como nucleo S; Amourphibian e a melhor peca de tank/front. Guias antigos por dia do servidor foram rebaixados porque conflitam com evidencia ao vivo.</p>
+        <p>Conquest/S3 e o contexto atual. Bunny, Night Mare e Skybound seguem como nucleo de combate por funcao; Amourphibian fica como peca de frente. Nao use este painel para inventar comida, ferraduras ou retorno de reset: confirme cada numero no jogo antes de executar a sugestao.</p>
       </div>`);
 
       out.innerHTML = cards.join("");
