@@ -1,5 +1,5 @@
 (() => {
-  const STORAGE_KEY = 'palmon-profile-workspace-v4';
+  const STORAGE_KEY = 'palmon-profile-workspace-v5';
   const clone = value => JSON.parse(JSON.stringify(value));
   const BASE = clone(window.PALMON_S3.player);
   const slotOrder = ['1', '2', '6', '3', '4', '5', '7'];
@@ -7,7 +7,7 @@
     1: ['Frente esquerda', 'front'], 2: ['Frente centro', 'front'], 6: ['Frente direita', 'front'],
     3: ['Fundo esquerda', 'back'], 4: ['Fundo centro E', 'back'], 5: ['Fundo centro D', 'back'], 7: ['Fundo direita', 'back'],
   };
-  const tierValue = { 'S+': 100, S: 80, A: 60, B: 40, C: 20 };
+  const tierValue = window.PALMON_KNOWLEDGE?.tierScore || { 'S+': 100, S: 80, A: 60, B: 40, C: 20, SP: 90, '?': 24 };
   const gearNames = ['Arma', 'Armadura', 'Acessório', 'Capacete'];
   const gearQuality = [['?', 'Não informado'], ['0', 'Sem peça'], ['1', 'Branco'], ['2', 'Verde'], ['3', 'Azul'], ['4', 'Roxo'], ['5', 'Laranja']];
   const $ = id => document.getElementById(id);
@@ -18,11 +18,23 @@
   let teamIndex = 0;
   let state = load();
 
+  function known(card) { return window.PALMON_KNOWLEDGE?.withKnowledge ? window.PALMON_KNOWLEDGE.withKnowledge(card) : card; }
+  function detail(card) { return window.PALMON_KNOWLEDGE?.descriptor ? window.PALMON_KNOWLEDGE.descriptor(card) : { name: card.name, image: card.image, stage: 'base', stageLabel: card.form || 'Base', tier: card.tier, evolutionPath: [card.name] }; }
+  function formStages(card) { return window.PALMON_KNOWLEDGE?.availableStages ? window.PALMON_KNOWLEDGE.availableStages(window.PALMON_KNOWLEDGE.lineFor(card)) : ['base', 'evolved']; }
+
   function hydrate(profile) {
     profile.account = profile.account || {};
     profile.roster = (profile.roster || []).map(card => {
       const referencePower = card.referencePower ?? card.power ?? '';
-      return window.PalmonPower.defaults({ ...card, owned: card.owned !== false, form: card.form || 'Evoluida', referencePower });
+      const migrated = { ...card, owned: card.owned !== false, referencePower };
+      // v4 stored a generic display form. Infer the actual form from the APK art/name once.
+      if (!migrated.stage) delete migrated.form;
+      return known(window.PalmonPower.defaults(migrated));
+    });
+    // The snapshot seeds what the player owns; the full APK catalog stays editable below it.
+    (window.PALMON_KNOWLEDGE?.catalog || []).forEach(line => {
+      const exists = profile.roster.some(card => window.PALMON_KNOWLEDGE.lineFor(card)?.id === line.id);
+      if (!exists) profile.roster.push(known(window.PalmonPower.defaults({ id: `catalog-${line.id.toLowerCase()}`, name: line.base, baseName: line.base, lineId: line.id, element: line.element, role: line.role, rarity: line.rarity, image: line.image, level: 1, stars: 0, owned: false, referencePower: '' })));
     });
     profile.teams = (profile.teams || []).map(team => {
       const members = (team.members || []).map(value => {
@@ -40,7 +52,7 @@
 
   function load() {
     try {
-      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || localStorage.getItem('palmon-profile-workspace-v3') || 'null');
+      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || localStorage.getItem('palmon-profile-workspace-v4') || localStorage.getItem('palmon-profile-workspace-v3') || 'null');
       if (saved && Array.isArray(saved.roster) && Array.isArray(saved.teams)) return hydrate(saved);
     } catch (_) { /* Use the imported snapshot when local data is invalid. */ }
     return hydrate(clone(BASE));
@@ -70,7 +82,8 @@
     const gamePower = effectivePower(card);
     const level = Math.min(310, Number(card.level) || 0);
     const stars = Math.min(25, Number(card.stars) || 0);
-    return Math.round((tierValue[card.tier] || 20) * 0.50 + level / 310 * 18 + stars / 25 * 7 + Math.min(25, gamePower / 600000));
+    const knowledgeScore = window.PALMON_KNOWLEDGE?.strategicScore ? window.PALMON_KNOWLEDGE.strategicScore(card) : (tierValue[card.tier] || 20);
+    return Math.round(knowledgeScore * 0.52 + level / 310 * 18 + stars / 25 * 7 + Math.min(25, gamePower / 600000));
   }
   function objectiveLabel() {
     const value = $('objective').value;
@@ -135,8 +148,10 @@
   function slotHtml(slot) {
     const id = teamSlots()[slotOrder.indexOf(slot)] || '';
     const card = pal(id);
-    const options = ['<option value="">Vazio</option>'].concat(owned().map(item => `<option value="${esc(item.id)}" ${item.id === id ? 'selected' : ''}>${esc(item.name)} · Lv ${item.level}</option>`)).join('');
-    return `<article class="slot"><div class="slot-art">${card ? `<img src="${esc(card.image)}" alt="${esc(card.name)}">` : '<span class="pill">Vazio</span>'}<span><b>${esc(slotMeta[slot][0])}</b><small>${card ? `${esc(card.element)} · ${esc(card.tier)} · ${fmt(effectivePower(card))}` : 'Escolha um Palmon'}</small></span></div><select data-slot="${slot}">${options}</select></article>`;
+    const options = ['<option value="">Vazio</option>'].concat(owned().map(item => `<option value="${esc(item.id)}" ${item.id === id ? 'selected' : ''}>${esc(detail(item).name)} · Lv ${item.level}</option>`)).join('');
+    const info = card && detail(card);
+    const art = info?.image;
+    return `<article class="slot"><div class="slot-art">${card ? (art ? `<img src="${esc(art)}" alt="${esc(info.name)}">` : '<span class="pill">SP</span>') : '<span class="pill">Vazio</span>'}<span><b>${esc(slotMeta[slot][0])}</b><small>${card ? `${esc(card.element)} · ${esc(info.tier)} · ${fmt(effectivePower(card))}` : 'Escolha um Palmon'}</small></span></div><select data-slot="${slot}">${options}</select></article>`;
   }
 
   function renderFormation() {
@@ -161,7 +176,7 @@
     const notes = [];
     if (!current.length) notes.push('<span class="warn-text">Escolha cards nos slots ou use “Aplicar melhor time”.</span>');
     if (missing.length) {
-      const pairs = missing.slice(0, 3).map((inId, index) => weak[index] ? `troque <b>${esc(pal(weak[index]).name)}</b> por <b>${esc(pal(inId).name)}</b>` : `adicione <b>${esc(pal(inId).name)}</b>`);
+      const pairs = missing.slice(0, 3).map((inId, index) => weak[index] ? `troque <b>${esc(detail(pal(weak[index])).name)}</b> por <b>${esc(detail(pal(inId)).name)}</b>` : `adicione <b>${esc(detail(pal(inId)).name)}</b>`);
       notes.push(`Prioridade: ${pairs.join('; ')}.`);
     } else if (current.length === 7) notes.push('<span class="ok">Nenhuma troca clara no objetivo atual. Complete skills, evolução e equipamento para fechar o poder calculado.</span>');
     if (bonus.count < 3 && current.length >= 3) notes.push(`Seu maior grupo elemental é ${bonus.element} com ${bonus.count}. Três iguais liberam o primeiro bônus de sinergia.`);
@@ -208,7 +223,7 @@
 
   function equipmentFields(card) {
     return gearNames.map((name, index) => {
-      const item = card.equipment[index];
+      const item = (card.equipment || [])[index];
       const quality = item?.quality;
       const options = gearQuality.map(([value, label]) => `<option value="${value}" ${String(quality ?? '?') === value ? 'selected' : ''}>${label}</option>`).join('');
       return `<div class="gear"><b>${name}</b><label class="field">Qualidade<select data-gear-quality="${esc(card.id)}" data-gear-index="${index}">${options}</select></label><label class="field">Reforço<input data-gear-level="${esc(card.id)}" data-gear-index="${index}" type="number" min="0" value="${item?.level ?? ''}" placeholder="Lv"></label><label class="field">Estrelas<input data-gear-stars="${esc(card.id)}" data-gear-index="${index}" type="number" min="0" value="${item?.stars ?? ''}" placeholder="0"></label></div>`;
@@ -217,9 +232,13 @@
 
   function cardHtml(card) {
     const result = calc(card);
+    const info = detail(card);
     const reference = parsePower(card.referencePower);
     const exactLabel = result.exact ? '<span class="power-ok">Confirmado pelo APK</span>' : `<span class="power-warn">Falta: ${esc(result.missing.join(', '))}</span>`;
-    return `<article class="pal"><div class="pal-top"><img src="${esc(card.image)}" alt="${esc(card.name)}"><div><div class="pal-title"><b>${esc(card.name)}</b><span class="pill">${esc(card.tier)}</span></div><div class="pal-meta">${esc(card.element)} · ${esc(card.role)}</div><div class="pal-meta">${esc(card.tierForm)}</div><label class="owned"><input data-owned="${esc(card.id)}" type="checkbox" ${card.owned ? 'checked' : ''}> Eu tenho</label></div></div><div class="power-result"><div><span>Poder calculado no APK</span><b>${result.available ? fmt(result.total) : '—'}</b>${exactLabel}</div><div><span>Poder registrado no print</span><b>${reference ? fmt(reference) : 'Não capturado'}</b></div></div><div class="power-components">${componentHtml(result)}</div><div class="pal-fields"><label class="field">Nível<input data-roster="${esc(card.id)}" data-field="level" type="number" min="1" value="${Number(card.level || 1)}"></label><label class="field">Estrelas<select data-roster="${esc(card.id)}" data-field="stars">${Array.from({ length: 26 }, (_, star) => `<option value="${star}" ${Number(card.stars) === star ? 'selected' : ''}>${star}</option>`).join('')}</select></label><label class="field">Forma<select data-roster="${esc(card.id)}" data-field="form"><option ${card.form === 'Base' ? 'selected' : ''}>Base</option><option ${card.form === 'Evoluida' ? 'selected' : ''}>Evoluida</option><option ${card.form === 'Super evoluida' ? 'selected' : ''}>Super evoluida</option></select></label><label class="field">ID no APK<input value="${result.heroId || 'Não identificado'}" readonly></label></div><details class="build-details"><summary>Skills, evolução e equipamento</summary><div class="build-block"><b>Skills</b><div class="mini-fields">${skillFields(card, result)}</div></div><div class="build-block"><b>Evolução</b><p class="sub">Marque apenas os grupos realmente ativos e escolha o estágio de cada nó. A árvore soma exatamente os valores configurados no APK.</p>${evolutionFields(card)}</div><div class="build-block"><b>Equipamento</b><p class="sub">Cada peça aplica a fórmula oficial: (base + reforço) × efeito de estrela + poder da estrela.</p><div class="gear-grid">${equipmentFields(card)}</div></div></details></article>`;
+    const stages = formStages(card).map(stage => `<option value="${stage}" ${info.stage === stage ? 'selected' : ''}>${esc(window.PALMON_KNOWLEDGE.stageLabel(stage))}</option>`).join('');
+    const path = info.evolutionPath.join(' → ');
+    const portrait = info.image ? `<img src="${esc(info.image)}" alt="${esc(info.name)}">` : '<span class="pill">SP</span>';
+    return `<article class="pal"><div class="pal-top">${portrait}<div><div class="pal-title"><b>${esc(info.name)}</b><span class="pill">${esc(info.tier)}</span></div><div class="pal-meta">${esc(card.element)} · ${esc(card.role)} · ${esc(info.stageLabel)}</div><div class="pal-meta">${esc(path)}</div><div class="pal-meta">${esc(info.tierSource)} · ${esc(info.tierConfidence)}</div><label class="owned"><input data-owned="${esc(card.id)}" type="checkbox" ${card.owned ? 'checked' : ''}> Eu tenho</label></div></div><div class="power-result"><div><span>Poder calculado no APK</span><b>${result.available ? fmt(result.total) : '—'}</b>${exactLabel}</div><div><span>Poder registrado no print</span><b>${reference ? fmt(reference) : 'Não capturado'}</b></div></div><div class="power-components">${componentHtml(result)}</div><div class="pal-fields"><label class="field">Nível<input data-roster="${esc(card.id)}" data-field="level" type="number" min="1" value="${Number(card.level || 1)}"></label><label class="field">Estrelas<select data-roster="${esc(card.id)}" data-field="stars">${Array.from({ length: 26 }, (_, star) => `<option value="${star}" ${Number(card.stars) === star ? 'selected' : ''}>${star}</option>`).join('')}</select></label><label class="field">Estágio<select data-roster="${esc(card.id)}" data-field="stage">${stages}</select></label><label class="field">ID no APK<input value="${result.heroId || 'Não identificado'}" readonly></label></div><details class="build-details"><summary>Skills, evolução e equipamento</summary><div class="build-block"><b>Skills</b><div class="mini-fields">${skillFields(card, result)}</div></div><div class="build-block"><b>Evolução</b><p class="sub">Marque apenas os grupos realmente ativos e escolha o estágio de cada nó. A árvore soma exatamente os valores configurados no APK.</p>${evolutionFields(card)}</div><div class="build-block"><b>Equipamento</b><p class="sub">Cada peça aplica a fórmula oficial: (base + reforço) × efeito de estrela + poder da estrela.</p><div class="gear-grid">${equipmentFields(card)}</div></div></details></article>`;
   }
 
   function bindCardEditors() {
@@ -231,7 +250,8 @@
     }));
     document.querySelectorAll('[data-roster]').forEach(input => input.addEventListener('change', () => {
       const card = pal(input.dataset.roster); const field = input.dataset.field;
-      card[field] = field === 'level' || field === 'stars' ? Number(input.value) || 0 : input.value;
+      if (field === 'stage') Object.assign(card, known({ ...card, stage: input.value, form: window.PALMON_KNOWLEDGE.stageLabel(input.value) }));
+      else card[field] = field === 'level' || field === 'stars' ? Number(input.value) || 0 : input.value;
       save(true); render();
     }));
     document.querySelectorAll('[data-skill]').forEach(input => input.addEventListener('change', () => {
@@ -262,7 +282,7 @@
 
   function renderRoster() {
     const search = $('search').value.trim().toLowerCase();
-    const matches = card => (elementFilter === 'all' || card.element === elementFilter) && card.name.toLowerCase().includes(search);
+    const matches = card => (elementFilter === 'all' || card.element === elementFilter) && `${detail(card).name} ${detail(card).evolutionPath.join(' ')}`.toLowerCase().includes(search);
     const mine = state.roster.filter(card => card.owned && matches(card)).sort((a, b) => effectivePower(b) - effectivePower(a));
     const missing = state.roster.filter(card => !card.owned && matches(card)).sort((a, b) => a.name.localeCompare(b.name));
     $('rosterCount').textContent = `${mine.length} no seu elenco · ${missing.length} ainda não obtidos`;
