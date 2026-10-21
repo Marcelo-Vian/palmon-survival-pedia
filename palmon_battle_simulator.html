@@ -177,7 +177,7 @@ DATA.palmons.unshift(...SP_PALMONS,...S3_PALMONS);
 // simulator weights only; no S3 skill coefficient is presented as a decoded APK fact.
 function loadEditableProfile(){
   try{
-    const saved=JSON.parse(localStorage.getItem('palmon-profile-workspace-v3')||'null');
+    const saved=JSON.parse(localStorage.getItem('palmon-profile-workspace-v4')||localStorage.getItem('palmon-profile-workspace-v3')||'null');
     if(saved&&Array.isArray(saved.roster)&&Array.isArray(saved.teams))return saved;
   }catch(error){}
   return window.PALMON_S3?.player||{};
