@@ -175,7 +175,15 @@ const SP_PALMONS=(window.PALMON_S3?.spPals||[]).map((p,index)=>({
 DATA.palmons.unshift(...SP_PALMONS,...S3_PALMONS);
 // Replace early placeholder claims with the current S3 reference. Values below remain
 // simulator weights only; no S3 skill coefficient is presented as a decoded APK fact.
-const S3_REFERENCE=window.PALMON_S3?.player?.roster||[];
+function loadEditableProfile(){
+  try{
+    const saved=JSON.parse(localStorage.getItem('palmon-profile-workspace-v3')||'null');
+    if(saved&&Array.isArray(saved.roster)&&Array.isArray(saved.teams))return saved;
+  }catch(error){}
+  return window.PALMON_S3?.player||{};
+}
+const EDITABLE_PROFILE=loadEditableProfile();
+const S3_REFERENCE=(EDITABLE_PROFILE.roster||[]).filter(p=>p.owned!==false);
 const TIER_RANK={'S+':1,S:2,A:3,B:4,C:5};
 function profileRole(ref){
   if(/tanque/i.test(ref.role))return 'Tank';
@@ -240,10 +248,10 @@ const state = {
 };
 const BUILDER_STORAGE_KEY='palmon-builder-profile-s3';
 function setTimeOneSnapshot(){
-  const names=window.PALMON_S3?.player?.teams?.[0]?.members||[];
+  const names=EDITABLE_PROFILE?.teams?.[0]?.members||[];
   state.teams.my.slots=Object.fromEntries(SLOT_ORDER.map(s=>[s,null]));
   state.teams.my.cfg={};
-  names.map(name=>PROFILE_PALMONS.find(p=>p.name===name)).filter(Boolean).forEach((p,index)=>{
+  names.map(name=>PROFILE_PALMONS.find(p=>p.id===name||p.name===name)).filter(Boolean).forEach((p,index)=>{
     const slot=SLOT_ORDER[index];
     state.teams.my.slots[slot]=p.id;
     const cfg=defaultConfig(p);
