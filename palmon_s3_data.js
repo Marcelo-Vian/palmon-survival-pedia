@@ -72,16 +72,42 @@ window.PALMON_S3 = {
     ]
   },
   spPals: [
-    {id:'tidewave-wyrm',name:'Tidewave Wyrm',element:'Agua',role:'DPS Agua',image:'assets/profile/sp-0.png'},
-    {id:'thunderzenith-wyrm',name:'Thunderzenith Wyrm',element:'Eletrico',role:'DPS Eletrico',image:'assets/profile/sp-1.png'},
-    {id:'phantasmal-wyrm',name:'Phantasmal Wyrm',element:'Terra',role:'DPS Terra',image:'assets/profile/sp-2.png'},
-    {id:'crimsonblaze-wyrm',name:'Crimsonblaze Wyrm',element:'Fogo',role:'DPS Fogo',image:'assets/profile/sp-3.png'}
+    {id:'tidewave-wyrm',name:'Tidewave Wyrm',element:'Agua',role:'DPS Agua',image:''},
+    {id:'thunderzenith-wyrm',name:'Thunderzenith Wyrm',element:'Eletrico',role:'DPS Eletrico',image:''},
+    {id:'phantasmal-wyrm',name:'Phantasmal Wyrm',element:'Terra',role:'DPS Terra',image:''},
+    {id:'crimsonblaze-wyrm',name:'Crimsonblaze Wyrm',element:'Fogo',role:'DPS Fogo',image:''}
   ],
   bosses: [
-    {name:'Inkuisitor',element:'Agua',status:'Idolizing 20; Star Lvl 3-0',detail:'Ascensao visivel: +13% ATK para Palmons Agua no mesmo squad.',image:'assets/profile/boss-inkuisitor.png'},
-    {name:'Boglem',element:'Terra',status:'Lv55 no print',detail:'Tela de upgrade registrada; nao ha tier de squad aplicado.',image:'assets/profile/boss-boglem.png'},
-    {name:'Ophidillain',element:'Nao confirmado',status:'Star Lvl 0-0',detail:'Ascensao bloqueada por Serpent’s Rise no print.',image:'assets/profile/boss-ophidillain.png'},
-    {name:'Oinkohm',element:'Eletrico',status:'Skill 1/5',detail:'Tela de skills registrada.',image:'assets/profile/boss-oinkohm.png'}
+    {
+      id:'inkuisitor', name:'Inkuisitor', element:'Agua', level:200, stars:'3-0', power:'41,120,000',
+      skills:['5','5','4'], taming:'Idolizing 20',
+      detail:'Ascensao registrada: +13% ATK para Palmons Agua no mesmo squad. Upgrade para Lv201 bloqueado ate 4 estrelas.',
+      source:'Capturas 2026-10-19 181823-181846', image:'assets/bosses/apk_forms/formation_pic_bossc3.png'
+    },
+    {
+      id:'boglem', name:'Boglem', element:'Terra', level:55, stars:'1-0', power:'3,072,000',
+      skills:['1','',''], taming:'Idolizing 50',
+      detail:'Ascensao registrada: +7% ATK para Palmons Terra no mesmo squad.',
+      source:'Capturas 2026-10-19 181852-181913', image:'assets/bosses/apk_forms/formation_pic_bossc4.png'
+    },
+    {
+      id:'ophidillain', name:'Ophidillain', element:'Agua', level:1, stars:'0-0', power:'400',
+      skills:['1','',''], taming:'Idolizing 10',
+      detail:'Upgrade bloqueado por Serpent’s Rise; ascensao ainda em 0-0.',
+      source:'Capturas 2026-10-19 181920-181937', image:'assets/bosses/apk_forms/formation_pic_bossc5.png'
+    },
+    {
+      id:'subterranean-lizard', name:'Subterranean Lizard', element:'Fogo', level:'', stars:'0-0', power:'60,000',
+      skills:['','',''], taming:'Idolizing 50',
+      detail:'Ascensao registrada: +4% ATK para Palmons Fogo no mesmo squad. Nivel nao foi lido com seguranca no print.',
+      source:'Capturas 2026-10-19 181945-182001', image:'assets/bosses/apk_forms/formation_pic_bossc1.png'
+    },
+    {
+      id:'oinkohm', name:'Oinkohm', element:'Eletrico', level:100, stars:'1-0', power:'3,220,000',
+      skills:['1','',''], taming:'Idolizing 50',
+      detail:'Upgrade para Lv101 bloqueado ate 2 estrelas.',
+      source:'Capturas 2026-10-19 182009-182026', image:'assets/bosses/apk_forms/formation_pic_bossc2.png'
+    }
   ],
   sources: [
     {name:'LoadoutGG - Conquest tier list',url:'https://loadoutgg.com/palmon-survival/tier-list/',detail:'Atualizada em 23/09/2026. Ranqueia formas UR de Conquest; nao compara individualmente os quatro Wyrms SP.'},

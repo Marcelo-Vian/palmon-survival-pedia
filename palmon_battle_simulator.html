@@ -55,6 +55,7 @@ a{color:inherit;text-decoration:none}
 .skill-card.main{box-shadow:0 10px 20px rgba(37,99,235,.08)}
 .skill-tag{border-radius:999px}
 .battle-log{background:linear-gradient(180deg,#fff,#fcfdff)}
+.art-fallback{display:grid;place-items:center;width:54px;height:54px;border-radius:14px;background:linear-gradient(145deg,#fde68a,#fb923c);color:#7c2d12;font-size:13px;font-weight:950;letter-spacing:.04em}.slot .art-fallback{width:72px;height:72px;border-radius:18px}.config-head .art-fallback{width:56px;height:56px;border-radius:15px}
 .builder-mode .team-panel.enemy,.builder-mode #autoEnemy,.builder-mode #simulateNow,.builder-mode #battleLogPanel,.builder-mode #summaryEnemyDamage,.builder-mode #summaryEnemyBonus,.builder-mode #summaryWinnerCard{display:none!important}
 .builder-mode .teams{grid-template-columns:1fr}
 .builder-mode .summary-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
@@ -170,7 +171,7 @@ const SP_PALMONS=(window.PALMON_S3?.spPals||[]).map((p,index)=>({
   line:'Fundo',role:'DPS fundo',function:'SP Mythic de squad',slotRecommended:'Slot 4 - Fundo meio-esquerda',slotAlt:'Slot 5 - Fundo meio-direita',
   skillFocus:'Ultimate SP',skillPriority:'Ultimate > quarto skill > ataque base',skillReason:'Classe SP Mythic: 10 estrelas; Ultimate extra nas estrelas 6 e 10. Peso de simulacao, nao coeficiente extraido.',
   perksRecommended:'Warlike/Guerreiro ATK +10% | Belligerent/Beligerante ATK +7% | Blessed/Abençoado Crit Rate +8% | Heartless/Impiedoso Crit Dmg +15%',perksAlt:'Robust/Vigorous quando o slot cair cedo.',
-  attack:1120,defense:135,hp:28500,power:80000,damagePct:3300,image:'assets/profile/sp-'+index+'.png',imageEvolved:'',
+  attack:1120,defense:135,hp:28500,power:80000,damagePct:3300,image:p.image||'',imageEvolved:'',
   skills:[{name:'Ataque SP',description:'Ataque base de referencia.',damage:700,damageRaw:'peso do simulador',typeSkill:1},{name:'Ultimate SP',description:'Ultimate de referencia para compor a recomendacao.',damage:3300,damageRaw:'peso do simulador',typeSkill:2},{name:'Promissor SP',description:'O quarto skill de SP totaliza 30% de bonus de ATK, DEF e HP.',damage:0,damageRaw:'passivo',typeSkill:3}]
 }));
 DATA.palmons.unshift(...SP_PALMONS,...S3_PALMONS);
@@ -178,13 +179,16 @@ DATA.palmons.unshift(...SP_PALMONS,...S3_PALMONS);
 // simulator weights only; no S3 skill coefficient is presented as a decoded APK fact.
 function loadEditableProfile(){
   try{
-    const saved=JSON.parse(localStorage.getItem('palmon-profile-workspace-v5')||localStorage.getItem('palmon-profile-workspace-v4')||localStorage.getItem('palmon-profile-workspace-v3')||'null');
+    const saved=JSON.parse(localStorage.getItem('palmon-profile-workspace-v6')||localStorage.getItem('palmon-profile-workspace-v5')||localStorage.getItem('palmon-profile-workspace-v4')||localStorage.getItem('palmon-profile-workspace-v3')||'null');
     if(saved&&Array.isArray(saved.roster)&&Array.isArray(saved.teams))return saved;
   }catch(error){}
   return window.PALMON_S3?.player||{};
 }
 const EDITABLE_PROFILE=loadEditableProfile();
-const S3_REFERENCE=(EDITABLE_PROFILE.roster||[]).filter(p=>p.owned!==false);
+const S3_REFERENCE=(EDITABLE_PROFILE.roster||[]).filter(p=>{
+  const rarity=window.PALMON_KNOWLEDGE?.lineFor(p)?.rarity||p.rarity||'';
+  return p.owned!==false&&(rarity==='UR'||rarity==='SP Mythic');
+});
 const TIER_RANK={'S+':1,SP:1,S:2,A:3,B:4,C:5,D:6,'?':7};
 function profileRole(ref){
   if(/tanque/i.test(ref.role))return 'Tank';
@@ -334,6 +338,9 @@ function defaultConfig(p,maxed=false){ return {skillLevels:(p.skills||[]).map(()
 function cloneCfg(cfg){ return JSON.parse(JSON.stringify(cfg)); }
 function fmt(n){ return Math.round(n).toLocaleString('pt-BR'); }
 function safe(s){ return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function artHtml(src, name, className=''){
+  return src ? `<img class="${className}" src="${safe(src)}" alt="${safe(name)}">` : '<span class="art-fallback" aria-label="Palmon SP">SP</span>';
+}
 function clamp(n,min,max){ return Math.max(min,Math.min(max,Number(n)||min)); }
 function skillLevel(cfg,index){ return clamp((cfg.skillLevels||[])[index] ?? cfg.skillLevel ?? 1,1,30); }
 function skillNamesPriority(p){
@@ -495,7 +502,7 @@ function simulateBattle(){
 function renderRoster(){
   const q=document.getElementById('rosterSearch').value.toLowerCase(), role=document.getElementById('rosterRole').value, el=document.getElementById('rosterElement').value, tier=document.getElementById('rosterTier').value;
   const list=PALMONS.filter(p=>(!q||(p.name+p.evolved+p.skillFocus).toLowerCase().includes(q))&&(role==='all'||p.role===role)&&(el==='all'||p.element===el)&&(tier==='all'||p.tier===tier)).slice(0,90);
-  document.getElementById('roster').innerHTML=list.map(p=>`<div class="roster-card" draggable="true" data-id="${p.id}"><img src="${p.image}" alt=""><div><b>#${p.rank} ${p.name}</b><small><span class="tier tier-${p.tier}">${p.tier}</span> ${p.element} · ${p.role}<br>Foco: ${p.skillFocus}</small></div></div>`).join('');
+  document.getElementById('roster').innerHTML=list.map(p=>`<div class="roster-card" draggable="true" data-id="${p.id}">${artHtml(p.image,p.name)}<div><b>#${p.rank} ${p.name}</b><small><span class="tier tier-${p.tier}">${p.tier}</span> ${p.element} · ${p.role}<br>Foco: ${p.skillFocus}</small></div></div>`).join('');
   document.querySelectorAll('.roster-card').forEach(card=>{
     card.addEventListener('dragstart',e=>e.dataTransfer.setData('application/json',JSON.stringify({type:'roster',id:card.dataset.id})));
     card.addEventListener('click',()=>assignPalmon(state.selected.team,state.selected.slot,card.dataset.id));
@@ -506,7 +513,7 @@ function renderTeam(team){
   const front=[],back=[];
   SLOT_ORDER.forEach(slot=>{
     const est=estimateUnit(team,slot); let inner=`<div class="slot-name">${SLOT_META[slot].label}</div>`;
-    if(est) inner+=`<img src="${est.img}" alt=""><b>${est.name}</b><small>${est.p.element} · ${est.p.role}</small><div class="metrics"><span class="metric-pill">Dano ${fmt(est.damage)}</span><span class="metric-pill">HP ${fmt(est.surv)}</span></div><button data-clear-team="${team}" data-clear-slot="${slot}">limpar</button>`;
+    if(est) inner+=`${artHtml(est.img,est.name)}<b>${est.name}</b><small>${est.p.element} · ${est.p.role}</small><div class="metrics"><span class="metric-pill">Dano ${fmt(est.damage)}</span><span class="metric-pill">HP ${fmt(est.surv)}</span></div><button data-clear-team="${team}" data-clear-slot="${slot}">limpar</button>`;
     else inner+=`<small>Solte aqui<br>${SLOT_META[slot].ideal}</small>`;
     const html=`<div class="slot ${est?'filled':''} ${state.selected.team===team&&state.selected.slot===slot?'selected':''}" draggable="${est?'true':'false'}" data-team="${team}" data-slot="${slot}">${inner}</div>`;
     (SLOT_META[slot].row==='front'?front:back).push(html);
@@ -596,7 +603,7 @@ function renderConfigs(){
   const items=[];
   ['my','enemy'].forEach(team=>SLOT_ORDER.forEach(slot=>{
     const est=estimateUnit(team,slot); if(!est)return; const p=est.p,cfg=est.cfg;
-    items.push(`<div class="config"><div class="config-head"><img src="${est.img}" alt=""><div><b>${team==='my'?'Meu':'Inimigo'} · ${SLOT_META[slot].label}</b><br><small>#${p.rank} ${displayName(p,cfg)} · ${p.element} · ${p.role}</small></div></div>
+    items.push(`<div class="config"><div class="config-head">${artHtml(est.img,est.name)}<div><b>${team==='my'?'Meu':'Inimigo'} · ${SLOT_META[slot].label}</b><br><small>#${p.rank} ${displayName(p,cfg)} · ${p.element} · ${p.role}</small></div></div>
       <div class="config-controls">
         <label>Forma<select data-form-team="${team}" data-form-slot="${slot}"><option value="base" ${cfg.form==='base'?'selected':''}>Base</option><option value="evolved" ${cfg.form==='evolved'?'selected':''} ${canEvolve(p)?'':'disabled'}>Evoluido</option></select></label>
         <label>Estrelas<select data-stars-team="${team}" data-stars-slot="${slot}">${[1,2,3,4,5].map(n=>`<option value="${n}" ${n==cfg.stars?'selected':''}>${n}</option>`).join('')}</select></label>
