@@ -55,6 +55,45 @@ Este arquivo e a referencia auditavel do perfil. Ele foi montado a partir das ca
 | Surveilynx | 1 | 0 | 98.000 |
 | Woozard | 1 | 0 | 62.000 |
 
+## Skills lidas das capturas
+
+Os quatro valores seguem a ordem visual da tela do Palmon: superior esquerda, superior direita, inferior esquerda e centro inferior. `0` significa slot bloqueado no print; `nao capturada` fica vazio no site, em vez de receber `Lv 1` inventado.
+
+| Palmon | Skills lidas |
+|---|---|
+| Cryovern | 27 / 30 / 30 / 10 |
+| Thundermane | nao capturada |
+| Leviadolph | 18 / 28 / 26 / 10 |
+| Shadowkaeru | 21 / 30 / 30 / 10 |
+| Finnabelle | 15 / 26 / 27 / 10 |
+| Anubeast | 16 / 30 / 28 / 10 |
+| Lionarch | nao capturada |
+| Gnashfin | 16 / 26 / 27 / 10 |
+| Mammolith | 1 / 1 / 0 / 0 |
+| Zapantis | 1 / 1 / 1 / 0 |
+| Battereina | 1 / 1 / 1 / 0 |
+| Limudroid | 1 / 1 / 2 / 0 |
+| Fulgairy | 1 / 1 / 1 / 0 |
+| Abuzzinian | 9 / 1 / 1 / 0 |
+| Lucidina | 4 / 20 / 1 / 0 |
+| Magmolin | 1 / 1 / 1 / 0 |
+| Escarffier | 3 / 1 / 1 / 0 |
+| Kungpaw | 1 / 1 / 1 / 0 |
+| Spookaboo | 1 / 1 / 1 / 0 |
+| Blazeal | 2 / 1 / 1 / 0 |
+| Barkplug | 1 / 2 / 2 / 0 |
+| Mantleray | 1 / 1 / 1 / 0 |
+| Oleana | nao capturada |
+| Sunplume | 1 / 1 / 1 / 0 |
+| Baboom | 1 / 1 / 1 / 0 |
+| Ghillant | 1 / 1 / 1 / 0 |
+| Hoofrit | 1 / 1 / 1 / 0 |
+| Pipistrigoi | 1 / 1 / 1 / 0 |
+| Revontulet | 1 / 1 / 1 / 0 |
+| Salamantis | 1 / 1 / 1 / 0 |
+| Surveilynx | 1 / 1 / 1 / 0 |
+| Woozard | 1 / 1 / 1 / 0 |
+
 ## SP Mythic
 
 Os quatro Wyrms aparecem na Wishlist: Tidewave Wyrm, Thunderzenith Wyrm, Phantasmal Wyrm e Crimsonblaze Wyrm. O print confirma a Wishlist e o alvo Thunderzenith na Aurora; nao confirma posse individual de nenhum Wyrm. Por isso ficam como **nao obtidos** ate voce marcar posse no perfil.

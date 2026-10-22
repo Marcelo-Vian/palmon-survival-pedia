@@ -26,7 +26,14 @@ Snapshot confirmado em 19/10/2026. Este arquivo pode ser carregado em Meu perfil
       "role": "DPS / carry",
       "tier": "S+",
       "tierForm": "Cryovern",
-      "image": "images/08_Cryovern_5023_evolve.png"
+      "image": "images/08_Cryovern_5023_evolve.png",
+      "skills": [
+        27,
+        30,
+        30,
+        10
+      ],
+      "skillsSource": "prints-2026-10-19"
     },
     {
       "id": "thundermane",
@@ -38,7 +45,14 @@ Snapshot confirmado em 19/10/2026. Este arquivo pode ser carregado em Meu perfil
       "role": "DPS / carry",
       "tier": "S+",
       "tierForm": "Thundermane",
-      "image": "images/05_Thundermane_5025_evolve.png"
+      "image": "images/05_Thundermane_5025_evolve.png",
+      "skills": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "skillsSource": "nao-capturada"
     },
     {
       "id": "leviadolph",
@@ -50,7 +64,14 @@ Snapshot confirmado em 19/10/2026. Este arquivo pode ser carregado em Meu perfil
       "role": "DPS / frente",
       "tier": "A",
       "tierForm": "Leviadolph Mega",
-      "image": "images/10_Adolphonis_5006_evolve.png"
+      "image": "images/10_Adolphonis_5006_evolve.png",
+      "skills": [
+        18,
+        28,
+        26,
+        10
+      ],
+      "skillsSource": "prints-2026-10-19"
     },
     {
       "id": "shadowkaeru",
@@ -62,7 +83,14 @@ Snapshot confirmado em 19/10/2026. Este arquivo pode ser carregado em Meu perfil
       "role": "DPS / controle",
       "tier": "S",
       "tierForm": "Shadowkaeru Mega",
-      "image": "images/09_Bufonobi_5002_evolve.png"
+      "image": "images/09_Bufonobi_5002_evolve.png",
+      "skills": [
+        21,
+        30,
+        30,
+        10
+      ],
+      "skillsSource": "prints-2026-10-19"
     },
     {
       "id": "finnabelle",
@@ -74,7 +102,14 @@ Snapshot confirmado em 19/10/2026. Este arquivo pode ser carregado em Meu perfil
       "role": "Suporte",
       "tier": "A",
       "tierForm": "Finnabelle",
-      "image": "images/30_Finnabelle_5013_evolve.png"
+      "image": "images/30_Finnabelle_5013_evolve.png",
+      "skills": [
+        15,
+        26,
+        27,
+        10
+      ],
+      "skillsSource": "prints-2026-10-19"
     },
     {
       "id": "anubeast",
@@ -86,7 +121,14 @@ Snapshot confirmado em 19/10/2026. Este arquivo pode ser carregado em Meu perfil
       "role": "DPS / frente",
       "tier": "A",
       "tierForm": "Anubeast",
-      "image": "images/18_Anubeast_5008_evolve.png"
+      "image": "images/18_Anubeast_5008_evolve.png",
+      "skills": [
+        16,
+        30,
+        28,
+        10
+      ],
+      "skillsSource": "prints-2026-10-19"
     },
     {
       "id": "lionarch",
@@ -98,7 +140,14 @@ Snapshot confirmado em 19/10/2026. Este arquivo pode ser carregado em Meu perfil
       "role": "Frente",
       "tier": "A",
       "tierForm": "Lionarch",
-      "image": "images/31_Lionarch_5019_evolve.png"
+      "image": "images/31_Lionarch_5019_evolve.png",
+      "skills": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "skillsSource": "nao-capturada"
     },
     {
       "id": "gnashfin",
@@ -110,7 +159,14 @@ Snapshot confirmado em 19/10/2026. Este arquivo pode ser carregado em Meu perfil
       "role": "DPS Agua",
       "tier": "A",
       "tierForm": "Gnashfin Evolved",
-      "image": "images/13_Gnashfin_5027_evolve.png"
+      "image": "images/13_Gnashfin_5027_evolve.png",
+      "skills": [
+        16,
+        26,
+        27,
+        10
+      ],
+      "skillsSource": "prints-2026-10-19"
     },
     {
       "id": "mammolith",
@@ -122,7 +178,14 @@ Snapshot confirmado em 19/10/2026. Este arquivo pode ser carregado em Meu perfil
       "role": "Tanque",
       "tier": "S",
       "tierForm": "Mammolith Base",
-      "image": "images/03_Mammolith_5024.png"
+      "image": "images/03_Mammolith_5024.png",
+      "skills": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "skillsSource": "prints-2026-10-19"
     },
     {
       "id": "zapantis",
@@ -134,7 +197,14 @@ Snapshot confirmado em 19/10/2026. Este arquivo pode ser carregado em Meu perfil
       "role": "DPS Eletrico",
       "tier": "S",
       "tierForm": "Zapantis Base",
-      "image": "images/07_Zapantis_5033.png"
+      "image": "images/07_Zapantis_5033.png",
+      "skills": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "skillsSource": "prints-2026-10-19"
     },
     {
       "id": "battereina",
@@ -146,7 +216,14 @@ Snapshot confirmado em 19/10/2026. Este arquivo pode ser carregado em Meu perfil
       "role": "DPS",
       "tier": "C",
       "tierForm": "Battereina",
-      "image": "images/29_Battereina_5020.png"
+      "image": "images/29_Battereina_5020.png",
+      "skills": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "skillsSource": "prints-2026-10-19"
     },
     {
       "id": "limudroid",
@@ -158,7 +235,14 @@ Snapshot confirmado em 19/10/2026. Este arquivo pode ser carregado em Meu perfil
       "role": "Controle",
       "tier": "C",
       "tierForm": "Limudroid",
-      "image": "images/20_Limudroid_5018.png"
+      "image": "images/20_Limudroid_5018.png",
+      "skills": [
+        1,
+        1,
+        2,
+        0
+      ],
+      "skillsSource": "prints-2026-10-19"
     },
     {
       "id": "fulgairy",
@@ -170,7 +254,14 @@ Snapshot confirmado em 19/10/2026. Este arquivo pode ser carregado em Meu perfil
       "role": "Mitigacao",
       "tier": "B",
       "tierForm": "Fulgairy",
-      "image": "images/26_Fulgairy_5016.png"
+      "image": "images/26_Fulgairy_5016.png",
+      "skills": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "skillsSource": "prints-2026-10-19"
     },
     {
       "id": "abuzzinian",
@@ -182,7 +273,14 @@ Snapshot confirmado em 19/10/2026. Este arquivo pode ser carregado em Meu perfil
       "role": "DPS",
       "tier": "B",
       "tierForm": "Abuzzinian",
-      "image": "images/25_Abuzzinian_5007.png"
+      "image": "images/25_Abuzzinian_5007.png",
+      "skills": [
+        9,
+        1,
+        1,
+        0
+      ],
+      "skillsSource": "prints-2026-10-19"
     },
     {
       "id": "lucidina",
@@ -194,7 +292,14 @@ Snapshot confirmado em 19/10/2026. Este arquivo pode ser carregado em Meu perfil
       "role": "Suporte",
       "tier": "B",
       "tierForm": "Lucidina",
-      "image": "images/24_Lucidina_5003.png"
+      "image": "images/24_Lucidina_5003.png",
+      "skills": [
+        4,
+        20,
+        1,
+        0
+      ],
+      "skillsSource": "prints-2026-10-19"
     },
     {
       "id": "magmolin",
@@ -206,7 +311,14 @@ Snapshot confirmado em 19/10/2026. Este arquivo pode ser carregado em Meu perfil
       "role": "DPS",
       "tier": "B",
       "tierForm": "Magmolin",
-      "image": "images/17_Magmolin_5011.png"
+      "image": "images/17_Magmolin_5011.png",
+      "skills": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "skillsSource": "prints-2026-10-19"
     },
     {
       "id": "escarffier",
@@ -218,7 +330,14 @@ Snapshot confirmado em 19/10/2026. Este arquivo pode ser carregado em Meu perfil
       "role": "Filler",
       "tier": "B",
       "tierForm": "Escarffier",
-      "image": "images/35_Escarffier_5022.png"
+      "image": "images/35_Escarffier_5022.png",
+      "skills": [
+        3,
+        1,
+        1,
+        0
+      ],
+      "skillsSource": "prints-2026-10-19"
     },
     {
       "id": "kungpaw",
@@ -230,7 +349,14 @@ Snapshot confirmado em 19/10/2026. Este arquivo pode ser carregado em Meu perfil
       "role": "Frente",
       "tier": "A",
       "tierForm": "Kungpaw Base",
-      "image": "images/23_Kungpaw_5031.png"
+      "image": "images/23_Kungpaw_5031.png",
+      "skills": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "skillsSource": "prints-2026-10-19"
     },
     {
       "id": "spookaboo",
@@ -242,7 +368,14 @@ Snapshot confirmado em 19/10/2026. Este arquivo pode ser carregado em Meu perfil
       "role": "Controle",
       "tier": "S",
       "tierForm": "Spookaboo",
-      "image": "images/22_Spookaboo_5030.png"
+      "image": "images/22_Spookaboo_5030.png",
+      "skills": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "skillsSource": "prints-2026-10-19"
     },
     {
       "id": "blazeal",
@@ -254,7 +387,14 @@ Snapshot confirmado em 19/10/2026. Este arquivo pode ser carregado em Meu perfil
       "role": "DPS",
       "tier": "B",
       "tierForm": "Blazeal",
-      "image": "images/15_Blazeal_5009.png"
+      "image": "images/15_Blazeal_5009.png",
+      "skills": [
+        2,
+        1,
+        1,
+        0
+      ],
+      "skillsSource": "prints-2026-10-19"
     },
     {
       "id": "barkplug",
@@ -266,7 +406,14 @@ Snapshot confirmado em 19/10/2026. Este arquivo pode ser carregado em Meu perfil
       "role": "Suporte",
       "tier": "B",
       "tierForm": "Barkplug",
-      "image": "images/11_Barkplug_5001.png"
+      "image": "images/11_Barkplug_5001.png",
+      "skills": [
+        1,
+        2,
+        2,
+        0
+      ],
+      "skillsSource": "prints-2026-10-19"
     },
     {
       "id": "mantleray",
@@ -278,7 +425,14 @@ Snapshot confirmado em 19/10/2026. Este arquivo pode ser carregado em Meu perfil
       "role": "DPS",
       "tier": "B",
       "tierForm": "Mantleray",
-      "image": "images/34_Mantleray_5004.png"
+      "image": "images/34_Mantleray_5004.png",
+      "skills": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "skillsSource": "prints-2026-10-19"
     },
     {
       "id": "oleana",
@@ -290,7 +444,14 @@ Snapshot confirmado em 19/10/2026. Este arquivo pode ser carregado em Meu perfil
       "role": "Suporte",
       "tier": "S",
       "tierForm": "Oleana",
-      "image": "images/21_Oleana_5029.png"
+      "image": "images/21_Oleana_5029.png",
+      "skills": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "skillsSource": "nao-capturada"
     },
     {
       "id": "sunplume",
@@ -302,7 +463,14 @@ Snapshot confirmado em 19/10/2026. Este arquivo pode ser carregado em Meu perfil
       "role": "Passiva",
       "tier": "S",
       "tierForm": "Sunplume",
-      "image": "images/02_Cinderpurr_5035_evolve.png"
+      "image": "images/02_Cinderpurr_5035_evolve.png",
+      "skills": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "skillsSource": "prints-2026-10-19"
     },
     {
       "id": "baboom",
@@ -314,7 +482,14 @@ Snapshot confirmado em 19/10/2026. Este arquivo pode ser carregado em Meu perfil
       "role": "DPS",
       "tier": "B",
       "tierForm": "Baboom",
-      "image": "images/14_Baboom_5010.png"
+      "image": "images/14_Baboom_5010.png",
+      "skills": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "skillsSource": "prints-2026-10-19"
     },
     {
       "id": "ghillant",
@@ -326,7 +501,14 @@ Snapshot confirmado em 19/10/2026. Este arquivo pode ser carregado em Meu perfil
       "role": "Suporte",
       "tier": "A",
       "tierForm": "Ghillant Base",
-      "image": "images/32_Ghillant_5005.png"
+      "image": "images/32_Ghillant_5005.png",
+      "skills": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "skillsSource": "prints-2026-10-19"
     },
     {
       "id": "hoofrit",
@@ -338,7 +520,14 @@ Snapshot confirmado em 19/10/2026. Este arquivo pode ser carregado em Meu perfil
       "role": "Filler",
       "tier": "B",
       "tierForm": "Hoofrit",
-      "image": "images/16_Hoofrit_5017.png"
+      "image": "images/16_Hoofrit_5017.png",
+      "skills": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "skillsSource": "prints-2026-10-19"
     },
     {
       "id": "pipistrigoi",
@@ -350,7 +539,14 @@ Snapshot confirmado em 19/10/2026. Este arquivo pode ser carregado em Meu perfil
       "role": "Filler",
       "tier": "B",
       "tierForm": "Pipistrigoi",
-      "image": "images/28_Pipistrigoi_5028.png"
+      "image": "images/28_Pipistrigoi_5028.png",
+      "skills": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "skillsSource": "prints-2026-10-19"
     },
     {
       "id": "revontulet",
@@ -362,7 +558,14 @@ Snapshot confirmado em 19/10/2026. Este arquivo pode ser carregado em Meu perfil
       "role": "DPS",
       "tier": "B",
       "tierForm": "Revontulet",
-      "image": "images/33_Revontulet_5021.png"
+      "image": "images/33_Revontulet_5021.png",
+      "skills": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "skillsSource": "prints-2026-10-19"
     },
     {
       "id": "salamantis",
@@ -374,7 +577,14 @@ Snapshot confirmado em 19/10/2026. Este arquivo pode ser carregado em Meu perfil
       "role": "DPS",
       "tier": "C",
       "tierForm": "Salamantis",
-      "image": "images/12_Salamantis_5015.png"
+      "image": "images/12_Salamantis_5015.png",
+      "skills": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "skillsSource": "prints-2026-10-19"
     },
     {
       "id": "surveilynx",
@@ -386,7 +596,14 @@ Snapshot confirmado em 19/10/2026. Este arquivo pode ser carregado em Meu perfil
       "role": "DPS",
       "tier": "C",
       "tierForm": "Surveilynx",
-      "image": "images/27_Surveilynx_5012.png"
+      "image": "images/27_Surveilynx_5012.png",
+      "skills": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "skillsSource": "prints-2026-10-19"
     },
     {
       "id": "woozard",
@@ -398,7 +615,14 @@ Snapshot confirmado em 19/10/2026. Este arquivo pode ser carregado em Meu perfil
       "role": "DPS",
       "tier": "C",
       "tierForm": "Woozard",
-      "image": "images/19_Woozard_5014.png"
+      "image": "images/19_Woozard_5014.png",
+      "skills": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "skillsSource": "prints-2026-10-19"
     }
   ],
   "teams": [
@@ -481,93 +705,6 @@ Snapshot confirmado em 19/10/2026. Este arquivo pode ser carregado em Meu perfil
       "level": 10,
       "skill": 1,
       "decision": "Baixo investimento."
-    }
-  ],
-  "bosses": [
-    {
-      "id": "inkuisitor",
-      "name": "Inkuisitor",
-      "element": "Agua",
-      "level": 200,
-      "stars": "3-0",
-      "power": "41,120,000",
-      "skills": [
-        "5",
-        "5",
-        "4"
-      ],
-      "taming": "Idolizing 20",
-      "detail": "Ascensao registrada: +13% ATK para Palmons Agua no mesmo squad. Upgrade para Lv201 bloqueado ate 4 estrelas.",
-      "source": "Capturas 2026-10-19 181823-181846",
-      "image": "assets/bosses/apk_forms/formation_pic_bossc3.png"
-    },
-    {
-      "id": "boglem",
-      "name": "Boglem",
-      "element": "Terra",
-      "level": 55,
-      "stars": "1-0",
-      "power": "3,072,000",
-      "skills": [
-        "1",
-        "",
-        ""
-      ],
-      "taming": "Idolizing 50",
-      "detail": "Ascensao registrada: +7% ATK para Palmons Terra no mesmo squad.",
-      "source": "Capturas 2026-10-19 181852-181913",
-      "image": "assets/bosses/apk_forms/formation_pic_bossc4.png"
-    },
-    {
-      "id": "ophidillain",
-      "name": "Ophidillain",
-      "element": "Agua",
-      "level": 1,
-      "stars": "0-0",
-      "power": "400",
-      "skills": [
-        "1",
-        "",
-        ""
-      ],
-      "taming": "Idolizing 10",
-      "detail": "Upgrade bloqueado por Serpent’s Rise; ascensao ainda em 0-0.",
-      "source": "Capturas 2026-10-19 181920-181937",
-      "image": "assets/bosses/apk_forms/formation_pic_bossc5.png"
-    },
-    {
-      "id": "subterranean-lizard",
-      "name": "Subterranean Lizard",
-      "element": "Fogo",
-      "level": "",
-      "stars": "0-0",
-      "power": "60,000",
-      "skills": [
-        "",
-        "",
-        ""
-      ],
-      "taming": "Idolizing 50",
-      "detail": "Ascensao registrada: +4% ATK para Palmons Fogo no mesmo squad. Nivel nao foi lido com seguranca no print.",
-      "source": "Capturas 2026-10-19 181945-182001",
-      "image": "assets/bosses/apk_forms/formation_pic_bossc1.png"
-    },
-    {
-      "id": "oinkohm",
-      "name": "Oinkohm",
-      "element": "Eletrico",
-      "level": 100,
-      "stars": "1-0",
-      "power": "3,220,000",
-      "skills": [
-        "1",
-        "",
-        ""
-      ],
-      "taming": "Idolizing 50",
-      "detail": "Upgrade para Lv101 bloqueado ate 2 estrelas.",
-      "source": "Capturas 2026-10-19 182009-182026",
-      "image": "assets/bosses/apk_forms/formation_pic_bossc2.png"
     }
   ]
 }

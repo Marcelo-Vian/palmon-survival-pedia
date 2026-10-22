@@ -13,10 +13,13 @@ window.PalmonPower = (() => {
 
   function configForSkill(id, level) {
     const base = number(id);
-    const wanted = Math.max(1, number(level) || 1);
+    if (level === null || level === undefined || level === '') return { id: base, config: null, unknown: true };
+    const reported = number(level);
+    if (reported <= 0) return { id: base, config: null, locked: true };
+    const wanted = Math.max(1, reported);
     for (let offset = wanted - 1; offset >= 0; offset--) {
       const skill = source().skills[key(base + offset)];
-      if (skill) return { id: base + offset, config: skill };
+      if (skill && number(skill[0]) === wanted) return { id: base + offset, config: skill };
     }
     return { id: base, config: source().skills[key(base)] || null };
   }
@@ -145,7 +148,7 @@ window.PalmonPower = (() => {
     const skillLevels = palmon.skills || [];
     const skills = hero[3].map((skillId, index) => {
       const resolved = configForSkill(skillId, skillLevels[index]);
-      return { index, id: resolved.id, level: resolved.config ? resolved.config[0] : 0, max: resolved.config ? resolved.config[1] : 0, power: number(resolved.config?.[2]) };
+      return { index, id: resolved.id, reported: skillLevels[index], level: resolved.config ? resolved.config[0] : (resolved.locked ? 0 : null), max: resolved.config ? resolved.config[1] : 0, power: number(resolved.config?.[2]), unknown: !!resolved.unknown, locked: !!resolved.locked };
     });
     const skillPower = skills.reduce((total, skill) => total + skill.power, 0);
     const evolution = evolutionDetails(hero, palmon);
@@ -153,7 +156,8 @@ window.PalmonPower = (() => {
     const missing = [];
     if (!levelPower) missing.push('nível fora da curva do APK');
     if (!starPower && number(palmon.stars) > 0) missing.push('estrela fora da curva do APK');
-    if (skillLevels.length !== hero[3].length) missing.push('níveis das skills');
+    const skillsRead = skillLevels.length === hero[3].length && skillLevels.every(level => level !== null && level !== undefined && level !== '' && Number.isInteger(Number(level)) && Number(level) >= 0);
+    if (!skillsRead) missing.push('níveis das skills');
     if (!evolution.configured) missing.push('progresso de evolução');
     if (!equipment.configured) missing.push('equipamentos');
     const components = { base: number(hero[0]), level: levelPower, stars: starPower, skills: skillPower, evolution: evolution.total, equipment: equipment.total };
@@ -174,7 +178,7 @@ window.PalmonPower = (() => {
     const heroId = resolveHeroId(palmon);
     const hero = heroId && source().heroes[heroId];
     if (!hero) return palmon;
-    const skills = Array.isArray(palmon.skills) && palmon.skills.length === hero[3].length ? palmon.skills : hero[3].map(() => 1);
+    const skills = Array.isArray(palmon.skills) && palmon.skills.length === hero[3].length ? palmon.skills : hero[3].map(() => null);
     const equipment = Array.isArray(palmon.equipment) && palmon.equipment.length === 4 ? palmon.equipment : [null, null, null, null];
     return { ...palmon, gameId: number(heroId), skills, equipment, evolution: palmon.evolution || {} };
   }

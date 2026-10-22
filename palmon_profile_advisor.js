@@ -2,6 +2,7 @@
   const STORAGE_KEY = 'palmon-profile-workspace-v6';
   const clone = value => JSON.parse(JSON.stringify(value));
   const BASE = clone(window.PALMON_S3.player);
+  const screenshotSkillSeeds = new Map((BASE.roster || []).filter(card => Array.isArray(card.skills)).map(card => [card.id, { skills: [...card.skills], skillsSource: card.skillsSource || 'prints-2026-10-19' }]));
   const slotOrder = ['1', '2', '6', '3', '4', '5', '7'];
   const slotMeta = {
     1: ['Frente esquerda', 'front'], 2: ['Frente centro', 'front'], 6: ['Frente direita', 'front'],
@@ -40,6 +41,15 @@
     profile.roster = (profile.roster || []).map(card => {
       const referencePower = card.referencePower ?? card.power ?? '';
       const migrated = { ...card, owned: card.owned !== false, referencePower };
+      const hasManualSkillEdit = migrated.skillsSource === 'manual' || (Array.isArray(migrated.skills) && migrated.skills.some(level => level !== 1));
+      const skillSeed = screenshotSkillSeeds.get(migrated.id);
+      // Older workspace versions invented Lv 1 for every missing skill. Replace only that old
+      // placeholder with the values actually read from the player's screenshots.
+      if (!hasManualSkillEdit && skillSeed) Object.assign(migrated, clone(skillSeed));
+      else if (!hasManualSkillEdit && !skillSeed) {
+        migrated.skills = null;
+        migrated.skillsSource = 'nao-capturada';
+      } else if (hasManualSkillEdit && !migrated.skillsSource) migrated.skillsSource = 'manual';
       // v4 stored a generic display form. Infer the actual form from the APK art/name once.
       if (!migrated.stage) delete migrated.form;
       return known(window.PalmonPower.defaults(migrated));
@@ -265,14 +275,29 @@
 
   function skillFields(card, result) {
     if (!result.available) return '';
-    return `<div class="skill-list">${result.skills.map(skill => `<label class="skill-field">${skillIconHtml(result, skill)}<span class="skill-copy"><b>Skill ${skill.index + 1}</b><small>ID ${skill.id || '—'} · Lv ${skill.level || '?'} · +${fmt(skill.power)} poder</small></span><input data-skill="${esc(card.id)}" data-skill-index="${skill.index}" type="number" min="1" max="${skill.max || 1}" value="${Number(card.skills[skill.index] || 1)}" aria-label="Nivel da skill ${skill.index + 1}"></label>`).join('')}</div>`;
+    const source = card.skillsSource === 'prints-2026-10-19' ? 'Lidas dos seus prints de 19/10.' : card.skillsSource === 'manual' ? 'Editadas manualmente neste perfil.' : 'Não capturada: preencha apenas se aparecer no jogo.';
+    return `<div class="skill-list">${result.skills.map(skill => {
+      const value = card.skills[skill.index];
+      const reading = skill.unknown ? 'não capturada' : skill.locked ? 'bloqueada' : `Lv ${skill.reported}`;
+      const power = skill.unknown || skill.locked ? '' : ` · +${fmt(skill.power)} poder`;
+      const max = Math.max(skill.max || 0, Number(skill.reported) || 0, 30);
+      return `<label class="skill-field">${skillIconHtml(result, skill)}<span class="skill-copy"><b>Skill ${skill.index + 1}</b><small>ID ${skill.id || '—'} · ${reading}${power}</small></span><input data-skill="${esc(card.id)}" data-skill-index="${skill.index}" type="number" min="0" max="${max}" value="${value ?? ''}" placeholder="?" aria-label="Nível da skill ${skill.index + 1}"></label>`;
+    }).join('')}</div><p class="sub skill-source">${source}</p>`;
+  }
+
+  function selectedEvolutionNode(saved, root, index) {
+    const selected = Number(saved?.nodes?.[index] || 0);
+    return root.nodes.find(node => node.id === selected) || null;
   }
 
   function evolutionSummary(card) {
     const options = window.PalmonPower.evolutionOptions(card);
     if (!options.length) return '<p class="sub">Sem arvore de evolucao cadastrada no APK para esta forma.</p>';
     const active = options.filter(option => card.evolution?.[option.id]?.active).length;
-    const configured = options.reduce((total, option) => total + (card.evolution?.[option.id]?.nodes || []).filter(Boolean).length, 0);
+    const configured = options.reduce((total, option) => {
+      const saved = card.evolution?.[option.id];
+      return total + option.roots.filter((root, index) => (selectedEvolutionNode(saved, root, index)?.stage || 0) > 0).length;
+    }, 0);
     return `<div class="evolution-summary"><span>${active}/${options.length} ramos ativos</span><span>${configured} estagios informados</span><span>O poder entra automaticamente no total</span></div>`;
   }
 
@@ -282,11 +307,13 @@
     return options.map((evolution, evolutionIndex) => {
       const saved = card.evolution?.[evolution.id] || {};
       const nodes = evolution.roots.map((root, nodeIndex) => {
-        const selected = Number(saved.nodes?.[nodeIndex] || root.rootId);
-        const choices = root.nodes.map(node => `<option value="${node.id}" ${node.id === selected ? 'selected' : ''}>Estágio ${node.stage} · +${fmt(node.power)}</option>`).join('');
-        return `<label class="field">Nó ${nodeIndex + 1}<select data-evo-node="${esc(card.id)}" data-evo-id="${evolution.id}" data-evo-index="${nodeIndex}" ${saved.active ? '' : 'disabled'}>${choices}</select></label>`;
+        const selected = selectedEvolutionNode(saved, root, nodeIndex);
+        const choices = [`<option value="" ${selected ? '' : 'selected'}>Não informado</option>`].concat(root.nodes.map(node => `<option value="${node.id}" ${node.id === selected?.id ? 'selected' : ''}>Estágio ${node.stage} · +${fmt(node.power)}</option>`)).join('');
+        return `<label class="field">Escolha ${nodeIndex + 1}<select data-evo-node="${esc(card.id)}" data-evo-id="${evolution.id}" data-evo-index="${nodeIndex}" ${saved.active ? '' : 'disabled'}>${choices}</select></label>`;
       }).join('');
-      return `<div class="evolution-group"><label class="owned"><input data-evo-active="${esc(card.id)}" data-evo-id="${evolution.id}" type="checkbox" ${saved.active ? 'checked' : ''}> Ramo ${evolutionIndex + 1} ativo</label><div class="mini-fields">${nodes}</div></div>`;
+      const configured = evolution.roots.filter((root, index) => (selectedEvolutionNode(saved, root, index)?.stage || 0) > 0).length;
+      const summary = saved.active ? `Ramo ${evolutionIndex + 1} ativo · ${configured}/${evolution.roots.length} escolhas` : `Ramo ${evolutionIndex + 1} não usado`;
+      return `<details class="evolution-group" data-evolution-branch="${esc(card.id)}:${evolution.id}" ${saved.active ? 'open' : ''}><summary>${summary}</summary><div class="evolution-body"><label class="evolution-toggle"><input data-evo-active="${esc(card.id)}" data-evo-id="${evolution.id}" type="checkbox" ${saved.active ? 'checked' : ''}> Usar este ramo no cálculo</label><button class="evolution-clear" type="button" data-evo-clear="${esc(card.id)}" data-evo-id="${evolution.id}">Limpar ramo</button><p class="sub">Marque o ramo somente se ele estiver ativo no jogo. Depois escolha o estágio visível em cada caminho.</p><div class="mini-fields">${nodes}</div></div></details>`;
     }).join('');
   }
 
@@ -307,7 +334,7 @@
     const stages = formStages(card).map(stage => `<option value="${stage}" ${info.stage === stage ? 'selected' : ''}>${esc(window.PALMON_KNOWLEDGE.stageLabel(stage))}</option>`).join('');
     const path = info.evolutionPath.join(' → ');
     const portrait = info.image ? `<img src="${esc(info.image)}" alt="${esc(info.name)}">` : '<span class="pill">SP</span>';
-    return `<article class="pal"><div class="pal-top">${portrait}<div><div class="pal-title"><b>${esc(info.name)}</b><span class="pill">${esc(info.tier)}</span></div><div class="pal-meta">${esc(card.element)} · ${esc(card.role)} · ${esc(info.stageLabel)}</div><div class="pal-meta">${esc(path)}</div><div class="pal-meta">${esc(info.tierSource)} · ${esc(info.tierConfidence)}</div><label class="owned"><input data-owned="${esc(card.id)}" type="checkbox" ${card.owned ? 'checked' : ''}> Eu tenho</label></div></div><div class="power-result"><div><span>Poder calculado no APK</span><b>${result.available ? fmt(result.total) : '—'}</b>${exactLabel}</div><div><span>Poder registrado no print</span><b>${reference ? fmt(reference) : 'Não capturado'}</b></div></div><div class="power-components">${componentHtml(result)}</div><div class="pal-fields"><label class="field">Nível<input data-roster="${esc(card.id)}" data-field="level" type="number" min="1" value="${Number(card.level || 1)}"></label><label class="field">Estrelas<select data-roster="${esc(card.id)}" data-field="stars">${Array.from({ length: 26 }, (_, star) => `<option value="${star}" ${Number(card.stars) === star ? 'selected' : ''}>${star}</option>`).join('')}</select></label><label class="field">Estágio<select data-roster="${esc(card.id)}" data-field="stage">${stages}</select></label><label class="field">ID no APK<input value="${result.heroId || 'Não identificado'}" readonly></label></div><details class="build-details"><summary>Build: skills, evolução e equipamento</summary><div class="build-block"><b>Skills</b>${skillFields(card, result)}</div><div class="build-block"><b>Evolução</b>${evolutionSummary(card)}<details class="advanced-evolution"><summary>Editar ramos de evolução do APK</summary><p class="sub">Use apenas quando souber quais ramos e estágios estão ativos no jogo.</p>${evolutionFields(card)}</details></div><div class="build-block"><b>Equipamento</b><p class="sub">Cada peça aplica a fórmula oficial: (base + reforço) × efeito de estrela + poder da estrela.</p><div class="gear-grid">${equipmentFields(card)}</div></div></details></article>`;
+    return `<article class="pal"><div class="pal-top">${portrait}<div><div class="pal-title"><b>${esc(info.name)}</b><span class="pill">${esc(info.tier)}</span></div><div class="pal-meta">${esc(card.element)} · ${esc(card.role)} · ${esc(info.stageLabel)}</div><div class="pal-meta">${esc(path)}</div><div class="pal-meta">${esc(info.tierSource)} · ${esc(info.tierConfidence)}</div><label class="owned"><input data-owned="${esc(card.id)}" type="checkbox" ${card.owned ? 'checked' : ''}> Eu tenho</label></div></div><div class="power-result"><div><span>Poder calculado no APK</span><b>${result.available ? fmt(result.total) : '—'}</b>${exactLabel}</div><div><span>Poder registrado no print</span><b>${reference ? fmt(reference) : 'Não capturado'}</b></div></div><div class="power-components">${componentHtml(result)}</div><div class="pal-fields"><label class="field">Nível<input data-roster="${esc(card.id)}" data-field="level" type="number" min="1" value="${Number(card.level || 1)}"></label><label class="field">Estrelas<select data-roster="${esc(card.id)}" data-field="stars">${Array.from({ length: 26 }, (_, star) => `<option value="${star}" ${Number(card.stars) === star ? 'selected' : ''}>${star}</option>`).join('')}</select></label><label class="field">Estágio<select data-roster="${esc(card.id)}" data-field="stage">${stages}</select></label><label class="field">ID no APK<input value="${result.heroId || 'Não identificado'}" readonly></label></div><details class="build-details" data-build-details="${esc(card.id)}"><summary>Build: skills, evolução e equipamento</summary><div class="build-block"><b>Skills</b>${skillFields(card, result)}</div><div class="build-block"><b>Evolução</b>${evolutionSummary(card)}<details class="advanced-evolution" data-evolution-details="${esc(card.id)}"><summary>Editar ramos de evolução do APK</summary><p class="sub">Abra apenas os ramos que você quer preencher. O painel permanece aberto após cada alteração.</p>${evolutionFields(card)}</details></div><div class="build-block"><b>Equipamento</b><p class="sub">Cada peça aplica a fórmula oficial: (base + reforço) × efeito de estrela + poder da estrela.</p><div class="gear-grid">${equipmentFields(card)}</div></div></details></article>`;
   }
 
   function bindCardEditors() {
@@ -324,7 +351,7 @@
       save(true); render();
     }));
     document.querySelectorAll('[data-skill]').forEach(input => input.addEventListener('change', () => {
-      const card = pal(input.dataset.skill); card.skills[Number(input.dataset.skillIndex)] = Number(input.value) || 1; save(true); render();
+      const card = pal(input.dataset.skill); card.skills[Number(input.dataset.skillIndex)] = input.value === '' ? null : Number(input.value); card.skillsSource = 'manual'; save(true); render();
     }));
     document.querySelectorAll('[data-evo-active]').forEach(input => input.addEventListener('change', () => {
       const card = pal(input.dataset.evoActive); const id = input.dataset.evoId;
@@ -335,7 +362,12 @@
     document.querySelectorAll('[data-evo-node]').forEach(input => input.addEventListener('change', () => {
       const card = pal(input.dataset.evoNode); const id = input.dataset.evoId; const index = Number(input.dataset.evoIndex);
       card.evolution[id] = card.evolution[id] || { active: true, nodes: [] };
-      card.evolution[id].nodes[index] = Number(input.value) || 0;
+      card.evolution[id].nodes[index] = input.value === '' ? null : Number(input.value);
+      save(true); render();
+    }));
+    document.querySelectorAll('[data-evo-clear]').forEach(button => button.addEventListener('click', () => {
+      const card = pal(button.dataset.evoClear); const id = button.dataset.evoId;
+      card.evolution[id] = { active: false, nodes: [] };
       save(true); render();
     }));
     document.querySelectorAll('[data-gear-quality],[data-gear-level],[data-gear-stars]').forEach(input => input.addEventListener('change', () => {
@@ -360,8 +392,27 @@
     bindCardEditors();
   }
 
+  function expansionState() {
+    return {
+      builds: [...document.querySelectorAll('[data-build-details][open]')].map(node => node.dataset.buildDetails),
+      editors: [...document.querySelectorAll('[data-evolution-details][open]')].map(node => node.dataset.evolutionDetails),
+      branches: [...document.querySelectorAll('[data-evolution-branch][open]')].map(node => node.dataset.evolutionBranch),
+    };
+  }
+
+  function restoreExpansion(expanded) {
+    const restore = (selector, attribute, values) => document.querySelectorAll(selector).forEach(node => { if (values.includes(node.dataset[attribute])) node.open = true; });
+    restore('[data-build-details]', 'buildDetails', expanded.builds);
+    restore('[data-evolution-details]', 'evolutionDetails', expanded.editors);
+    restore('[data-evolution-branch]', 'evolutionBranch', expanded.branches);
+  }
+
   function render() {
+    const expanded = expansionState();
+    const scrollTop = window.scrollY;
     renderTeamPicker(); renderAccount(); renderAdvice(); renderFormation(); renderBossAdvisor(); renderRoster();
+    restoreExpansion(expanded);
+    requestAnimationFrame(() => window.scrollTo({ top: scrollTop }));
   }
 
   $('teamPick').addEventListener('change', () => { teamIndex = Number($('teamPick').value); render(); });
