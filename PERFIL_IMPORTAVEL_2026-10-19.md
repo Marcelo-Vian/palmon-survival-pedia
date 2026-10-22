@@ -47,12 +47,12 @@ Snapshot confirmado em 19/10/2026. Este arquivo pode ser carregado em Meu perfil
       "tierForm": "Thundermane",
       "image": "images/05_Thundermane_5025_evolve.png",
       "skills": [
-        null,
-        null,
-        null,
-        null
+        30,
+        30,
+        30,
+        10
       ],
-      "skillsSource": "nao-capturada"
+      "skillsSource": "prints-2026-10-19"
     },
     {
       "id": "leviadolph",
@@ -142,12 +142,12 @@ Snapshot confirmado em 19/10/2026. Este arquivo pode ser carregado em Meu perfil
       "tierForm": "Lionarch",
       "image": "images/31_Lionarch_5019_evolve.png",
       "skills": [
-        null,
-        null,
-        null,
-        null
+        10,
+        26,
+        27,
+        10
       ],
-      "skillsSource": "nao-capturada"
+      "skillsSource": "prints-2026-10-19"
     },
     {
       "id": "gnashfin",
@@ -446,12 +446,12 @@ Snapshot confirmado em 19/10/2026. Este arquivo pode ser carregado em Meu perfil
       "tierForm": "Oleana",
       "image": "images/21_Oleana_5029.png",
       "skills": [
-        null,
-        null,
-        null,
-        null
+        1,
+        1,
+        1,
+        0
       ],
-      "skillsSource": "nao-capturada"
+      "skillsSource": "prints-2026-10-19"
     },
     {
       "id": "sunplume",

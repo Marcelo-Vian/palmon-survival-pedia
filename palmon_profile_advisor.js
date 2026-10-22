@@ -41,7 +41,7 @@
     profile.roster = (profile.roster || []).map(card => {
       const referencePower = card.referencePower ?? card.power ?? '';
       const migrated = { ...card, owned: card.owned !== false, referencePower };
-      const hasManualSkillEdit = migrated.skillsSource === 'manual' || (Array.isArray(migrated.skills) && migrated.skills.some(level => level !== 1));
+      const hasManualSkillEdit = migrated.skillsSource === 'manual' || (!migrated.skillsSource && Array.isArray(migrated.skills) && migrated.skills.some(level => level !== 1));
       const skillSeed = screenshotSkillSeeds.get(migrated.id);
       // Older workspace versions invented Lv 1 for every missing skill. Replace only that old
       // placeholder with the values actually read from the player's screenshots.

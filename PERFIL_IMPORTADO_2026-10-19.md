@@ -62,12 +62,12 @@ Os quatro valores seguem a ordem visual da tela do Palmon: superior esquerda, su
 | Palmon | Skills lidas |
 |---|---|
 | Cryovern | 27 / 30 / 30 / 10 |
-| Thundermane | nao capturada |
+| Thundermane | 30 / 30 / 30 / 10 |
 | Leviadolph | 18 / 28 / 26 / 10 |
 | Shadowkaeru | 21 / 30 / 30 / 10 |
 | Finnabelle | 15 / 26 / 27 / 10 |
 | Anubeast | 16 / 30 / 28 / 10 |
-| Lionarch | nao capturada |
+| Lionarch | 10 / 26 / 27 / 10 |
 | Gnashfin | 16 / 26 / 27 / 10 |
 | Mammolith | 1 / 1 / 0 / 0 |
 | Zapantis | 1 / 1 / 1 / 0 |
@@ -83,7 +83,7 @@ Os quatro valores seguem a ordem visual da tela do Palmon: superior esquerda, su
 | Blazeal | 2 / 1 / 1 / 0 |
 | Barkplug | 1 / 2 / 2 / 0 |
 | Mantleray | 1 / 1 / 1 / 0 |
-| Oleana | nao capturada |
+| Oleana | 1 / 1 / 1 / 0 |
 | Sunplume | 1 / 1 / 1 / 0 |
 | Baboom | 1 / 1 / 1 / 0 |
 | Ghillant | 1 / 1 / 1 / 0 |
