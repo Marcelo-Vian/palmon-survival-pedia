@@ -102,7 +102,9 @@ Os quatro Wyrms aparecem na Wishlist: Tidewave Wyrm, Thunderzenith Wyrm, Phantas
 
 ### Time 1 confirmado
 
-`Cryovern`, `Thundermane`, `Leviadolph`, `Shadowkaeru`, `Finnabelle`, `Anubeast` e `Lionarch`.
+Poder mostrado no jogo: `243.560.153`.
+
+`Leviadolph`, `Anubeast`, `Gnashfin`, `Shadowkaeru`, `Cryovern`, `Finnabelle` e `Lionarch`. No print do campo eles aparecem pelos nomes de linha `Dolphriend`, `Statchew`, `Gnashfin`, `Ninjump`, `Glacewing`, `Fingenue` e `Regalion`.
 
 Os prints recebidos para Times 2, 3 e 4 ainda nao foram associados card a card com seguranca. Eles permanecem editaveis, sem nomes inventados.
 

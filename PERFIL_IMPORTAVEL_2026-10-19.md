@@ -1,6 +1,6 @@
 # Perfil Palmon Survival - importavel
 
-Snapshot confirmado em 19/10/2026. Este arquivo pode ser carregado em Meu perfil > Importar perfil.
+Snapshot confirmado em 19/10/2026, com o Time 1 atualizado pela captura de 22/10. Este arquivo pode ser carregado em Meu perfil > Importar perfil.
 
 ```json
 {
@@ -629,17 +629,18 @@ Snapshot confirmado em 19/10/2026. Este arquivo pode ser carregado em Meu perfil
     {
       "name": "Time 1",
       "confirmed": true,
-      "source": "Captura de tela 2026-10-19 183909",
+      "source": "Captura de tela 2026-10-22 084155",
+      "power": "243,560,153",
       "members": [
-        "Cryovern",
-        "Thundermane",
         "Leviadolph",
-        "Shadowkaeru",
-        "Finnabelle",
         "Anubeast",
+        "Gnashfin",
+        "Shadowkaeru",
+        "Cryovern",
+        "Finnabelle",
         "Lionarch"
       ],
-      "note": "Os sete cards visiveis no print. Nao inclui Mammolith."
+      "note": "Time ativo confirmado no print: Dolphriend, Statchew, Gnashfin, Ninjump, Glacewing, Fingenue e Regalion nas respectivas linhas evolutivas."
     },
     {
       "name": "Time 2",

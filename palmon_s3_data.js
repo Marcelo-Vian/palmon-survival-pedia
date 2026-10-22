@@ -56,7 +56,7 @@ window.PALMON_S3 = {
       {id:'woozard',name:'Woozard',element:'Terra',level:1,stars:0,power:'62,000',role:'DPS',tier:'C',tierForm:'Woozard',image:'images/19_Woozard_5014.png',skills:[1,1,1,0],skillsSource:'prints-2026-10-19'}
     ],
     teams: [
-      {name:'Time 1',confirmed:true,source:'Captura de tela 2026-10-19 183909',members:['Cryovern','Thundermane','Leviadolph','Shadowkaeru','Finnabelle','Anubeast','Lionarch'],note:'Os sete cards visiveis no print. Nao inclui Mammolith.'},
+      {name:'Time 1',confirmed:true,source:'Captura de tela 2026-10-22 084155',power:'243,560,153',members:['Leviadolph','Anubeast','Gnashfin','Shadowkaeru','Cryovern','Finnabelle','Lionarch'],note:'Time ativo confirmado no print: Dolphriend, Statchew, Gnashfin, Ninjump, Glacewing, Fingenue e Regalion nas respectivas linhas evolutivas.'},
       {name:'Time 2',confirmed:false,source:null,members:[],note:'Print recebido, mas os sete cards ainda nao foram associados com seguranca.'},
       {name:'Time 3',confirmed:false,source:null,members:[],note:'Print recebido, mas os sete cards ainda nao foram associados com seguranca.'},
       {name:'Time 4',confirmed:false,source:null,members:[],note:'Print recebido, mas os sete cards ainda nao foram associados com seguranca.'}
