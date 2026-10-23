@@ -1,7 +1,7 @@
-# Auditoria de Arquitetura - Palmon: Survival 0.5.451
+# Auditoria de Arquitetura - Palmon: Survival 0.5.451 + checagem instalada 0.5.465
 
 Data da auditoria: 2026-10-23  
-Escopo: leitura estatica do XAPK e do codigo cliente extraido. Nenhuma credencial, token de sessao, pacote de rede ao vivo ou dado privado da conta foi copiado para este documento.
+Escopo: leitura estatica do XAPK `0.5.451`, comparacao estrutural com a instalacao `0.5.465` em execucao e inventario limitado por ADB. Nenhuma credencial, token de sessao, pacote de rede ao vivo ou dado privado da conta foi copiado para este documento.
 
 ## Objetivo e limite
 
@@ -32,6 +32,44 @@ Quando este documento usa as palavras abaixo, elas tem significado estrito:
 | Arm64 config SHA-256 | `68859AF059D4115E265C178A8D03806FA4EFB73263B6A4C067E68EB7036EA9E0` |
 
 Importante: a versao do APK e uma fotografia. Um APK posterior pode trocar tabelas, telas, campos, balanceamento, assets e protocolos. O catalogo e as formulas precisam ser revalidados a cada salto de versao relevante.
+
+### Checagem da instalacao ativa
+
+Em 2026-10-23, uma instalacao aberta pelo usuario foi verificada por ADB normal, sem root, sem alterar o jogo e sem ler o armazenamento privado do aplicativo.
+
+| Item | Valor confirmado |
+| --- | --- |
+| Pacote | `com.funfizz.palmon.gp` |
+| Origem da instalacao | Google Play (`com.android.vending`) |
+| Versao instalada | `0.5.465` (version code `267`) |
+| APK base SHA-256 | `382637BEE2CE8224B967A574750A7E7F1DE5846A6AFFB9F66630B44084CAC187` |
+| Split arm64 SHA-256 | `89A26B1F255AFEF230C2CE8939F462C9171EDE312B3A91DE594602CBE285E480` |
+| `global-metadata.dat` | 11.710.936 bytes, SHA-256 `113E100810D48B1A8953A372D497822572BD2F94F93F2C08C683E9EAF99C40BF` |
+| `libil2cpp.so` | 80.183.352 bytes, SHA-256 `4BD919403903162C2EBB89718DCCBEA8E48C2BAA3471EAAC8B73C29F3F47872A` |
+| Metadata IL2CPP | Versao `31`, lida pelo dumper local |
+
+O APK base contem os metadados IL2CPP; o split arm64 contem `libil2cpp`, `libxlua` e as bibliotecas nativas. A geracao do mapa de tipos da `0.5.465` foi concluida localmente. A pausa final do utilitario de analise falhou por nao haver um console interativo, mas aconteceu depois da criacao de `dump.cs`, `script.json`, `stringliteral.json` e das DLLs de referencia; isso nao afeta a leitura feita.
+
+## Resultado da leitura dinamica 0.5.465
+
+### O que a instalacao atual confirma
+
+- A arquitetura continua sendo Unity IL2CPP com xLua. Os tipos nativos `LIMNetManager`, `NetManager`, `FsmLogin` e o modelo de formacao continuam presentes.
+- `FormationData`, `FormationNewData`, posicoes, grupos e tipos de formato mantem a mesma estrutura encontrada na `0.5.451`. Isso confirma que posicao e formacao continuam sendo dados reais que o advisor deve registrar, e nao texto decorativo.
+- Uma rotina de instanciacao de formacao passou a receber uma colecao somente-leitura de herois e a contagem explicita deles. E uma mudanca de carregamento/visual do grupo; nao e evidencia de uma nova formula de poder e nao deve ser transformada em multiplicador inventado pelo site.
+- O conteudo baixado em `Sandbox/versiondata` contem camadas atuais de Lua, UI, modelos, audio, cenas, shader e cache de download. Entre os modulos observados ha fluxos de `worldboss`, `uicardformation` e `mount`, confirmando que Boss, equipe/formacao e montarias fazem parte do conteudo vivo, nao de um catalogo antigo congelado.
+
+### O limite real do ADB normal
+
+O processo do jogo estava em execucao e o armazenamento externo proprio do aplicativo podia ser inventariado. Porem, `run-as com.funfizz.palmon.gp` foi recusado pelo Android. Logo, a area privada onde o aplicativo pode manter preferencias, banco, sessao e cache protegido permanece inacessivel por ADB normal.
+
+O armazenamento externo contem diretorios de cache e registros de jogo, alem do `Sandbox` de recursos. Alguns caches podem relacionar identidade ou sessao. Eles nao foram copiados, abertos, enviados ao repositorio nem usados para preencher o perfil. Forcar acesso a essa area exigiria burlar o isolamento do Android ou manipular autenticacao, o que nao e necessario nem aceitavel para o advisor.
+
+### Consequencia para o importador
+
+Esta leitura fecha uma decisao de arquitetura: o site nao deve tentar importar o perfil bruto a partir de cache do telefone. O caminho robusto e importar um snapshot visivel e editavel, preservando a origem de cada campo, e usar o APK somente para catalogo, imagens, nomes base/evoluido, tabelas e regras verificaveis.
+
+O dado oficial que ainda precisa ser capturado por tela, video ou preenchimento guiado inclui: posse, sete slots e posicoes de cada time, poder exibido por time, Boss, Armigo, joias, equipamentos, arvores de evolucao, skills, buffs e Power Detail. Esses campos devem continuar editaveis e marcados como `print`, `usuario`, `calculado` ou `desconhecido`.
 
 ## Mapa geral do cliente
 
@@ -332,9 +370,9 @@ O video deve ser usado apenas para criar um snapshot editavel. O sistema deve ma
 
 | Tema | Situacao | Como fechar sem risco |
 | --- | --- | --- |
-| Versao atual do jogo | O XAPK auditado e 0.5.451; pode ser anterior ao cliente em uso. | Auditar o XAPK da versao instalada. |
+| Versao atual do jogo | Checada na instalacao aberta: `0.5.465` (code `267`), com metadados e binario arm64 analisados. O catalogo e o balanceamento continuam sujeitos aos dados de conteudo da temporada. | Revalidar tabelas quando a temporada ou versao relevante mudar. |
 | Endpoint ativo e schema binario completo | Nao confirmado estaticamente. | Nao e necessario para o advisor; nao tentar interceptar/reproduzir trafego. |
-| Cache privado do aparelho | Nao lido nesta maquina. | Habilitar uma ponte ADB de leitura e fazer apenas inventario/redacao aprovada. |
+| Cache privado do aparelho | Deliberadamente nao lido. O Android bloqueou `run-as` para o pacote em ADB normal, e caches podem conter dados de identidade/sessao. | Manter o limite; usar somente capturas visiveis e campos editaveis. |
 | Formula completa de cada `propertypower` | Componentes conhecidos, mas campos dinamicos globais ainda faltam. | Importar Power Detail, formacao, joias, equipamentos, tech e buffs e validar por exemplos do jogo. |
 | Perfil atual completo | Prints existentes cobrem parte relevante, mas nao substituem todas as telas detalhadas. | Video de inventario conforme checklist acima. |
 
@@ -352,9 +390,12 @@ Os artefatos abaixo foram usados, mas nao devem ser adicionados ao repositorio n
 - `analysis/working_power/decrypted/PowerData.lua`
 - `analysis/working_power/decrypted/UIHeroDescAttributes.lua`
 - `analysis/working_power/decrypted/power_detail_type.lua`
+- `analysis/apk_0_5_465/com.funfizz.palmon.gp.apk`
+- `analysis/apk_0_5_465/config.arm64_v8a.apk`
+- `analysis/apk_0_5_465/il2cpp_dump/dump.cs`
 
 ## Resultado da auditoria
 
-O jogo usa o servidor como fonte de verdade para o perfil. O APK contem catalogo, assets, telas, formulas parciais e os modelos que recebem dados, mas nao basta para recuperar de forma confiavel todos os valores da conta sem sincronizacao ou uma captura do usuario.
+O jogo usa o servidor como fonte de verdade para o perfil. A comparacao com a instalacao `0.5.465` confirmou que esse desenho continua valido: o APK e o `Sandbox` fornecem catalogo, assets, telas, regras parciais e modelos de dados, mas nao substituem o estado sincronizado da conta.
 
 Portanto, o caminho correto para o site nao e tentar usar uma credencial do jogo. E um importador de perfil baseado em snapshot verificavel, com todos os campos editaveis, valores oficiais preservados, origem explicita, formulas auditadas e reconciliacao guiada dos campos que faltarem.
