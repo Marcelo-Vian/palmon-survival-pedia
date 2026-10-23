@@ -56,7 +56,7 @@ window.PALMON_S3 = {
       {id:'woozard',name:'Woozard',element:'Terra',level:1,stars:0,power:'62,000',role:'DPS',tier:'C',tierForm:'Woozard',image:'images/19_Woozard_5014.png',skills:[1,1,1,0],skillsSource:'prints-2026-10-19'}
     ],
     teams: [
-      {name:'Time 1',confirmed:true,source:'Captura de tela 2026-10-22 084155',power:'243,560,153',members:['Leviadolph','Anubeast','Gnashfin','Shadowkaeru','Cryovern','Finnabelle','Lionarch'],note:'Time ativo confirmado no print: Dolphriend, Statchew, Gnashfin, Ninjump, Glacewing, Fingenue e Regalion nas respectivas linhas evolutivas.'},
+      {name:'Time 1',confirmed:true,source:'Captura de tela 2026-10-22 120828',power:'243,560,153',members:['Leviadolph','Anubeast','Gnashfin','Shadowkaeru','Cryovern','Finnabelle','Lionarch'],observedLabels:['Regalion','Glacewing','Gnashfin','Fingenue','Statchew','Ninjump','Dolphriend'],observedLineIds:['Regalion','Glacewing','Gnashley','Fingenue','Statchew','Ninjump','Dolphriend'],observedAura:{Agua:6,Terra:1},validation:{power:'243,560,153',auraBps:2500},note:'Time ativo confirmado no print: Regalion, Glacewing, Gnashfin, Fingenue, Statchew, Ninjump e Dolphriend. O print confirma as linhas e a aura 6 Agua + 1 Terra; nao infere estrelas, estagios ou posicoes individuais.'},
       {name:'Time 2',confirmed:false,source:null,members:[],note:'Print recebido, mas os sete cards ainda nao foram associados com seguranca.'},
       {name:'Time 3',confirmed:false,source:null,members:[],note:'Print recebido, mas os sete cards ainda nao foram associados com seguranca.'},
       {name:'Time 4',confirmed:false,source:null,members:[],note:'Print recebido, mas os sete cards ainda nao foram associados com seguranca.'}

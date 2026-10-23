@@ -1,5 +1,5 @@
 (() => {
-  const STORAGE_KEY = 'palmon-profile-workspace-v6';
+  const STORAGE_KEY = 'palmon-profile-workspace-v7';
   const clone = value => JSON.parse(JSON.stringify(value));
   const BASE = clone(window.PALMON_S3.player);
   const screenshotSkillSeeds = new Map((BASE.roster || []).filter(card => Array.isArray(card.skills)).map(card => [card.id, { skills: [...card.skills], skillsSource: card.skillsSource || 'prints-2026-10-19' }]));
@@ -36,6 +36,13 @@
     };
   }
 
+  function lineupSignatureFor(profile, members) {
+    return (members || []).map(id => {
+      const card = (profile.roster || []).find(item => item.id === id);
+      return window.PALMON_KNOWLEDGE?.lineFor(card)?.id || card?.lineId || card?.id || '';
+    }).filter(Boolean).sort().join('|');
+  }
+
   function hydrate(profile) {
     profile.account = profile.account || {};
     profile.roster = (profile.roster || []).map(card => {
@@ -66,7 +73,28 @@
         return profile.roster.find(card => card.name === value)?.id || null;
       }).slice(0, 7);
       while (members.length < 7) members.push(null);
-      return { ...seed, ...team, power: team.power ?? seed.power ?? '', members };
+      const merged = { ...seed, ...team, power: team.power ?? seed.power ?? '', members };
+      const currentSignature = lineupSignatureFor(profile, members);
+      const observedSignature = (seed.observedLineIds || []).slice().sort().join('|');
+      if (merged.name === 'Time 1' && (!team.source || team.source === 'Captura de tela 2026-10-22 084155')) {
+        merged.source = seed.source;
+        merged.observedLabels = seed.observedLabels;
+        merged.observedLineIds = seed.observedLineIds;
+        merged.observedAura = seed.observedAura;
+        merged.validation = seed.validation;
+        merged.note = seed.note;
+      }
+      merged.squadPower = {
+        selectedBossId: '', armigoPower: '', jewelPower: '', calibration: null,
+        ...(seed.squadPower || {}), ...(team.squadPower || {}),
+      };
+      if (!merged.powerLineupSignature && merged.power && merged.name === 'Time 1' && currentSignature === observedSignature) {
+        merged.powerLineupSignature = currentSignature;
+        merged.powerReferenceState = 'current';
+      } else if (!merged.powerLineupSignature && merged.power) {
+        merged.powerReferenceState = 'legacy';
+      }
+      return merged;
     });
     while (profile.teams.length < 4) profile.teams.push({ name: `Time ${profile.teams.length + 1}`, members: [null, null, null, null, null, null, null] });
     profile.auroraSnapshot = profile.auroraSnapshot || { orbs: 0, affinity: '', selected: '' };
@@ -80,7 +108,7 @@
 
   function load() {
     try {
-      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || localStorage.getItem('palmon-profile-workspace-v5') || localStorage.getItem('palmon-profile-workspace-v4') || localStorage.getItem('palmon-profile-workspace-v3') || 'null');
+      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || localStorage.getItem('palmon-profile-workspace-v6') || localStorage.getItem('palmon-profile-workspace-v5') || localStorage.getItem('palmon-profile-workspace-v4') || localStorage.getItem('palmon-profile-workspace-v3') || 'null');
       if (saved && Array.isArray(saved.roster) && Array.isArray(saved.teams)) return hydrate(saved);
     } catch (_) { /* Use the imported snapshot when local data is invalid. */ }
     return hydrate(clone(BASE));
@@ -154,15 +182,97 @@
   function teamPower(ids) { return ids.reduce((total, id) => total + (pal(id) ? effectivePower(pal(id)) : 0), 0); }
   function teamIsExact(ids) { return ids.length > 0 && ids.every(id => calc(pal(id)).exact); }
   function elementBonus(ids) {
-    const counts = {};
-    ids.forEach(id => { const element = pal(id)?.element; if (element) counts[element] = (counts[element] || 0) + 1; });
+    const aura = window.PALMON_SQUAD_POWER.auraForElements(ids.map(id => pal(id)?.element));
+    const counts = aura.counts;
     let element = ''; let count = 0;
     Object.entries(counts).forEach(([name, value]) => { if (value > count) { element = name; count = value; } });
-    const bonus = count >= 7 ? 30 : count >= 6 ? 25 : count >= 5 ? 20 : count >= 4 ? 10 : count >= 3 ? 5 : 0;
-    return { element, count, bonus };
+    return { ...aura, element, count, bonus: aura.percent };
+  }
+
+  function lineupSignature(ids = teamSlots()) {
+    return ids.map(id => window.PALMON_KNOWLEDGE?.lineFor(pal(id))?.id || pal(id)?.lineId || id || '').filter(Boolean).sort().join('|');
+  }
+
+  function isCurrentPowerReference(team = currentTeam()) {
+    return Boolean(team?.power && team.powerLineupSignature && team.powerLineupSignature === lineupSignature());
+  }
+
+  function squadConfig(team = currentTeam()) {
+    team.squadPower = { selectedBossId: '', armigoPower: '', jewelPower: '', calibration: null, ...(team.squadPower || {}) };
+    return team.squadPower;
+  }
+
+  function squadModel() {
+    const team = currentTeam();
+    const ids = filledIds();
+    const cards = ids.map(pal).filter(Boolean);
+    const aura = elementBonus(ids);
+    const config = squadConfig(team);
+    const boss = state.bosses.find(item => item.id === config.selectedBossId);
+    const officialPower = parsePower(team.power);
+    const bossPower = boss ? parsePower(boss.power) : 0;
+    const armigoPower = parsePower(config.armigoPower);
+    const jewelPower = parsePower(config.jewelPower);
+    const currentReference = isCurrentPowerReference(team);
+    const solved = currentReference
+      ? window.PALMON_SQUAD_POWER.solveCompensatedProperty({ officialPower, bossPower, armigoPower, jewelPower, auraBps: aura.bps })
+      : { available: false, value: 0, total: 0 };
+    const calculated = solved.available
+      ? window.PALMON_SQUAD_POWER.calculate({ propertyPower: solved.value, bossPower, armigoPower, jewelPower, auraBps: aura.bps })
+      : null;
+    const referencePowerTotal = cards.reduce((sum, card) => sum + parsePower(card.referencePower), 0);
+    const calibration = config.calibration;
+    let forecast = null;
+    if (!currentReference && calibration?.referencePowerTotal > 0 && calibration?.compensatedPower >= 0) {
+      const projectedProperty = Math.round(calibration.compensatedPower * referencePowerTotal / calibration.referencePowerTotal);
+      forecast = window.PALMON_SQUAD_POWER.calculate({ propertyPower: projectedProperty, bossPower, armigoPower, jewelPower, auraBps: aura.bps });
+    }
+    const displayCalculation = calculated || forecast;
+    const distribution = displayCalculation
+      ? window.PALMON_SQUAD_POWER.distributeCompensation(cards.map(card => ({ id: card.id, referencePower: parsePower(card.referencePower) })), currentReference ? solved.value : Math.round((calibration?.compensatedPower || 0) * (referencePowerTotal / Math.max(1, calibration?.referencePowerTotal || 1))))
+      : [];
+    const target = team.validation || {};
+    const targetPower = parsePower(target.power);
+    const difference = displayCalculation && officialPower ? displayCalculation.total - officialPower : null;
+    const validationPass = Boolean(targetPower) && currentReference && Boolean(displayCalculation) && difference === 0
+      && officialPower === targetPower
+      && (!target.auraBps || aura.bps === target.auraBps);
+    return { team, ids, cards, aura, config, boss, officialPower, bossPower, armigoPower, jewelPower, currentReference, solved, calculated, forecast, displayCalculation, distribution, referencePowerTotal, difference, validationPass };
+  }
+
+  function captureCalibration() {
+    const model = squadModel();
+    if (!model.currentReference || !model.solved.available || !model.officialPower) return;
+    model.config.calibration = {
+      signature: lineupSignature(), officialPower: model.officialPower, auraBps: model.aura.bps,
+      compensatedPower: model.solved.value, referencePowerTotal: model.referencePowerTotal,
+    };
+  }
+
+  function positionAdvice(ids) {
+    const mismatch = ids.map((id, index) => ({ card: pal(id), slot: slotOrder[index] }))
+      .find(({ card, slot }) => card && ((slotMeta[slot][1] === 'front') !== /(frente|tanque|controle)/i.test(card.role || '')));
+    if (!mismatch) return '';
+    const lane = /(frente|tanque|controle)/i.test(mismatch.card.role || '') ? 'frente' : 'retaguarda';
+    return `Posição tática: ${esc(detail(mismatch.card).name)} rende melhor na ${lane}; mover de slot não altera o poder exibido.`;
+  }
+
+  function auraSwapAdvice(ids) {
+    const now = elementBonus(ids);
+    const current = new Set(ids);
+    let best = null;
+    ids.forEach(outId => owned().filter(card => !current.has(card.id)).forEach(inCard => {
+      const proposal = ids.map(id => id === outId ? inCard.id : id);
+      const candidate = elementBonus(proposal);
+      if (candidate.bps > now.bps && (!best || candidate.bps > best.aura.bps)) best = { outId, inCard, aura: candidate };
+    }));
+    if (!best) return '';
+    return `Aura: trocar <b>${esc(detail(pal(best.outId)).name)}</b> por <b>${esc(detail(best.inCard).name)}</b> leva a sinergia de +${now.percent}% para +${best.aura.percent}%.`;
   }
 
   function setSlot(slot, id) {
+    captureCalibration();
+    const previousSignature = lineupSignature();
     const members = [...currentTeam().members];
     const index = slotOrder.indexOf(slot);
     while (members.length < 7) members.push(null);
@@ -172,14 +282,15 @@
     if (id && already >= 0 && already !== index) members[already] = null;
     members[index] = nextId;
     currentTeam().members = members;
-    if (changed) currentTeam().power = '';
+    if (changed && currentTeam().power && previousSignature !== lineupSignature()) currentTeam().powerReferenceState = 'stale';
     save(true);
     render();
   }
 
   function applyPlan() {
+    captureCalibration();
     currentTeam().members = [...recommend(), null, null, null, null, null, null].slice(0, 7);
-    currentTeam().power = '';
+    if (currentTeam().power) currentTeam().powerReferenceState = 'stale';
     save(true);
     render();
     toast(`Melhor time aplicado ao ${currentTeam().name}.`);
@@ -219,6 +330,7 @@
     document.querySelectorAll('[data-boss]').forEach(input => input.addEventListener('input', () => {
       state.bosses[Number(input.dataset.boss)][input.dataset.bossField] = input.value;
       save(true);
+      renderSquadPower();
     }));
     document.querySelectorAll('[data-boss-skill]').forEach(input => input.addEventListener('input', () => {
       const boss = state.bosses[Number(input.dataset.bossSkill)];
@@ -238,13 +350,20 @@
     const currentScore = teamScore(current);
     const recommendedScore = teamScore(plan);
     const bonus = elementBonus(current);
+    const powerModel = squadModel();
     const missing = plan.filter(id => !current.includes(id));
     const weak = current.filter(id => !plan.includes(id));
     $('decisionTitle').textContent = current.length ? `Seu ${currentTeam().name} pode ganhar ${Math.max(0, recommendedScore - currentScore)} pontos comparativos para ${objectiveLabel()}.` : `Monte ${currentTeam().name} para o advisor calcular a próxima troca.`;
-    $('decisionCopy').textContent = $('objective').value !== 'general' && $('objective').value !== 'pvp' && pool.length < 7 ? `Você tem ${pool.length} Palmons marcados desse elemento. O plano usa somente o seu elenco.` : 'O plano considera somente cards marcados como seus. O poder mostrado vem do cálculo APK quando todos os atributos foram preenchidos; antes disso mantém a leitura do seu print como referência.';
     const gamePower = parsePower(currentTeam().power);
-    $('decisionCopy').textContent = $('objective').value !== 'general' && $('objective').value !== 'pvp' && pool.length < 7 ? `Você tem ${pool.length} Palmons marcados desse elemento. O plano usa somente o seu elenco.` : 'O poder principal vem da tela do jogo e pode ser corrigido acima. Nível, estrelas, skills e evolução servem para o advisor comparar as trocas, não para substituir esse total.';
-    $('stats').innerHTML = `<div class="stat team-power"><b>${gamePower ? fmt(gamePower) : '—'}</b><small>Poder do ${esc(currentTeam().name)} no jogo</small></div><div class="stat"><b>${current.length}/7</b><small>Slots ocupados</small></div><div class="stat"><b>${currentScore}</b><small>Score do advisor</small></div><div class="stat"><b>${bonus.bonus ? `+${bonus.bonus}%` : '0%'}</b><small>${bonus.element ? `${bonus.element} · ${bonus.count} no time` : 'Bônus elemental'}</small></div>`;
+    $('decisionCopy').textContent = $('objective').value !== 'general' && $('objective').value !== 'pvp' && pool.length < 7
+      ? `Você tem ${pool.length} Palmons marcados desse elemento. O plano usa somente o seu elenco.`
+      : powerModel.currentReference
+        ? 'O poder do jogo está ligado à composição atual. Abaixo, a auditoria mostra cada componente da fórmula do APK sem inventar propertypower do servidor.'
+        : gamePower
+          ? 'O poder do jogo foi preservado como referência da composição anterior. A previsão abaixo é estimativa até você registrar o novo total no jogo.'
+          : 'Informe o poder exibido no jogo quando quiser calibrar a fórmula desta composição.';
+    const auraLabel = bonus.qualified.length ? bonus.qualified.map(entry => `${entry.element} ${entry.count}`).join(' + ') : 'Sem aura ativa';
+    $('stats').innerHTML = `<div class="stat team-power"><b>${gamePower ? fmt(gamePower) : '—'}</b><small>${powerModel.currentReference ? `Poder do ${esc(currentTeam().name)} no jogo` : 'Referência do jogo / composição anterior'}</small></div><div class="stat"><b>${current.length}/7</b><small>Slots ocupados</small></div><div class="stat"><b>${currentScore}</b><small>Score do advisor</small></div><div class="stat"><b>${bonus.bonus ? `+${bonus.bonus}%` : '0%'}</b><small>${esc(auraLabel)}</small></div>`;
     const notes = [];
     if (!current.length) notes.push('<span class="warn-text">Escolha cards nos slots ou use “Aplicar melhor time”.</span>');
     if (missing.length) {
@@ -252,7 +371,47 @@
       notes.push(`Prioridade: ${pairs.join('; ')}.`);
     } else if (current.length === 7) notes.push('<span class="ok">Nenhuma troca clara no objetivo atual. Use o poder do jogo como medida principal e ajuste os dados dos cards para melhorar a recomendação.</span>');
     if (bonus.count < 3 && current.length >= 3) notes.push(`Seu maior grupo elemental é ${bonus.element} com ${bonus.count}. Três iguais liberam o primeiro bônus de sinergia.`);
+    const auraNote = auraSwapAdvice(current);
+    const positionNote = positionAdvice(teamSlots());
+    if (auraNote) notes.push(auraNote);
+    if (positionNote) notes.push(positionNote);
     $('advice').innerHTML = notes.map(note => `<li>${note}</li>`).join('');
+  }
+
+  function renderSquadPower() {
+    const root = $('squadPowerResult');
+    if (!root) return;
+    const model = squadModel();
+    const bossOptions = ['<option value="">Não informado / nenhum</option>']
+      .concat(state.bosses.map(boss => `<option value="${esc(boss.id)}" ${boss.id === model.config.selectedBossId ? 'selected' : ''}>${esc(boss.name)} · ${fmt(parsePower(boss.power))}</option>`));
+    $('squadBoss').innerHTML = bossOptions.join('');
+    $('armigoPower').value = model.config.armigoPower || '';
+    $('jewelPower').value = model.config.jewelPower || '';
+
+    const compositionText = Object.entries(model.aura.counts).map(([element, count]) => `${esc(element)} ${count}`).join(' + ');
+    const auraText = model.aura.qualified.length
+      ? `${compositionText}: +${model.aura.percent}%`
+      : 'Nenhum grupo com 3 Palmons';
+    const result = model.displayCalculation;
+    const compensatedPower = model.solved.available ? model.solved.value : model.config.calibration?.compensatedPower;
+    let status = '<span class="squad-power-status warn">Aguardando poder do jogo</span>';
+    if (model.validationPass) status = '<span class="squad-power-status ok">Baseline validado: 243.560.153 · aura 6 Água + 1 Terra</span>';
+    else if (model.currentReference && result && model.difference === 0) status = '<span class="squad-power-status ok">Calibrado para a composição atual</span>';
+    else if (result) status = '<span class="squad-power-status warn">Estimativa: a composição mudou desde a referência</span>';
+    else if (model.officialPower) status = '<span class="squad-power-status warn">Referência antiga: informe o novo poder no jogo para calibrar</span>';
+
+    const cards = model.distribution.map(item => {
+      const card = pal(item.id);
+      return `<span>${esc(detail(card).name)}: ${fmt(item.power)}</span>`;
+    }).join('') || '<span>Sem base individual suficiente para projeção.</span>';
+    const expected = result ? fmt(result.total) : '—';
+    const difference = model.difference === null ? '—' : `${model.difference >= 0 ? '+' : ''}${fmt(Math.abs(model.difference))}`;
+    root.innerHTML = `${status}<div class="squad-power-grid"><div class="squad-power-item"><small>Poder no jogo</small><b>${model.officialPower ? fmt(model.officialPower) : '—'}</b></div><div class="squad-power-item"><small>Aura APK</small><b>+${model.aura.percent}%</b></div><div class="squad-power-item"><small>Boss selecionado</small><b>${model.boss ? fmt(model.bossPower) : 'Não informado'}</b></div><div class="squad-power-item"><small>Armigos pré-aura</small><b>${fmt(model.armigoPower)}</b></div><div class="squad-power-item"><small>Joias pós-aura</small><b>${fmt(model.jewelPower)}</b></div><div class="squad-power-item"><small>Poder compensado</small><b>${compensatedPower === undefined ? '—' : fmt(compensatedPower)}</b></div><div class="squad-power-item"><small>Total pela fórmula</small><b>${expected}</b></div><div class="squad-power-item"><small>Diferença</small><b>${difference}</b></div><div class="squad-power-item"><small>Sinergia</small><b>${auraText}</b></div></div><p class="squad-power-formula">Fórmula do APK: teto((poder compensado + Boss + Armigos) × (1 + aura)) + joias. “Poder compensado” fecha a conta reversa e não afirma o propertypower enviado pelo servidor.</p><div class="squad-power-cards">${cards}</div>`;
+
+    const saveAndRender = () => { if (isCurrentPowerReference()) captureCalibration(); save(true); renderSquadPower(); renderAdvice(); };
+    $('squadBoss').onchange = () => { model.config.selectedBossId = $('squadBoss').value; saveAndRender(); };
+    $('armigoPower').onchange = () => { model.config.armigoPower = $('armigoPower').value; saveAndRender(); };
+    $('jewelPower').onchange = () => { model.config.jewelPower = $('jewelPower').value; saveAndRender(); };
   }
 
   function renderAccount() {
@@ -429,7 +588,7 @@
   function render() {
     const expanded = expansionState();
     const scrollTop = window.scrollY;
-    renderTeamPicker(); renderAccount(); renderAdvice(); renderFormation(); renderBossAdvisor(); renderRoster();
+    renderTeamPicker(); renderAccount(); renderAdvice(); renderFormation(); renderSquadPower(); renderBossAdvisor(); renderRoster();
     restoreExpansion(expanded);
     requestAnimationFrame(() => window.scrollTo({ top: scrollTop }));
   }
@@ -437,8 +596,17 @@
   $('teamPick').addEventListener('change', () => { teamIndex = Number($('teamPick').value); render(); });
   $('teamPower').addEventListener('input', () => {
     currentTeam().power = $('teamPower').value;
+    if (parsePower(currentTeam().power)) {
+      currentTeam().powerLineupSignature = lineupSignature();
+      currentTeam().powerReferenceState = 'current';
+      captureCalibration();
+    } else {
+      currentTeam().powerLineupSignature = '';
+      currentTeam().powerReferenceState = '';
+    }
     save(true);
     renderAdvice();
+    renderSquadPower();
   });
   $('objective').addEventListener('change', render);
   $('applyPlan').addEventListener('click', applyPlan);
