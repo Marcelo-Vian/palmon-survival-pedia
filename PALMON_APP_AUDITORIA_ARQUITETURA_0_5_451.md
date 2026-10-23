@@ -55,6 +55,8 @@ O APK base contem os metadados IL2CPP; o split arm64 contem `libil2cpp`, `libxlu
 ### O que a instalacao atual confirma
 
 - A arquitetura continua sendo Unity IL2CPP com xLua. Os tipos nativos `LIMNetManager`, `NetManager`, `FsmLogin` e o modelo de formacao continuam presentes.
+- Os dois canais do cliente continuam presentes: `LIMNetManager` usa WebSocket, enquanto `NetManager` abre conexao por host/porta. A negociacao `ExchangeEncrypt` e a codificacao de mensagens tambem permanecem na `0.5.465`. Isso confirma um protocolo de sessao protegido, nao autoriza interceptacao, reproducao ou uso de endpoints.
+- `SDKManager` ainda expoe o estado de login e identificadores internos de sessao/servidor. A presenca desses campos explica por que o perfil sincronizado depende de autenticacao; os valores nunca sao inspecionados, copiados ou aceitos pelo advisor.
 - `FormationData`, `FormationNewData`, posicoes, grupos e tipos de formato mantem a mesma estrutura encontrada na `0.5.451`. Isso confirma que posicao e formacao continuam sendo dados reais que o advisor deve registrar, e nao texto decorativo.
 - Uma rotina de instanciacao de formacao passou a receber uma colecao somente-leitura de herois e a contagem explicita deles. E uma mudanca de carregamento/visual do grupo; nao e evidencia de uma nova formula de poder e nao deve ser transformada em multiplicador inventado pelo site.
 - O conteudo baixado em `Sandbox/versiondata` contem camadas atuais de Lua, UI, modelos, audio, cenas, shader e cache de download. Entre os modulos observados ha fluxos de `worldboss`, `uicardformation` e `mount`, confirmando que Boss, equipe/formacao e montarias fazem parte do conteudo vivo, nao de um catalogo antigo congelado.
